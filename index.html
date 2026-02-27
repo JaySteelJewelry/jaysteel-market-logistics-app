@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Market & Tabling Logistics Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Leaflet CSS (map library) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Market & Tabling Logistics Planner</h1>
+    <p>FL &amp; GA markets, college events, logistics &amp; routes (no sales data).</p>
+  </header>
+
+  <main class="app-main">
+    <section class="controls">
+      <div class="filters">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by name, city, venue, notes..."
+        />
+
+        <select id="stateFilter">
+          <option value="">State: All</option>
+          <option value="FL">Florida (FL)</option>
+          <option value="GA">Georgia (GA)</option>
+        </select>
+
+        <select id="typeFilter">
+          <option value="">Type: All</option>
+          <option value="campus">Campus</option>
+          <option value="farmersMarket">Farmers market</option>
+          <option value="craftFair">Craft fair</option>
+          <option value="festival">Festival</option>
+        </select>
+
+        <select id="statusFilter">
+          <option value="">Status: All</option>
+          <option value="idea">Idea</option>
+          <option value="researching">Researching</option>
+          <option value="applied">Applied</option>
+          <option value="approved">Approved</option>
+          <option value="waitlist">Waitlist</option>
+          <option value="paid">Paid</option>
+          <option value="completed">Completed</option>
+          <option value="skip">Skip</option>
+        </select>
+
+        <label class="date-range-label">
+          Date from
+          <input type="date" id="startDateFilter" />
+        </label>
+        <label class="date-range-label">
+          to
+          <input type="date" id="endDateFilter" />
+        </label>
+      </div>
+
+      <div class="route-controls">
+        <button id="clearFiltersBtn">Clear filters</button>
+        <button id="openRouteBtn">Open route in Google Maps</button>
+      </div>
+    </section>
+
+    <section class="content">
+      <div id="map"></div>
+
+      <div class="event-list-container">
+        <h2>Events</h2>
+        <div id="eventList" class="event-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>
+      Static logistics planner for Jay Steel Jewelry. Hosted free on GitHub Pages.
+    </small>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="app.js"></script>
+</body>
+</html>
