@@ -1,0 +1,37 @@
+name: Refresh vendor opportunities
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repo-data-writes
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Scan public calendars
+        env:
+          DISCORD_OPPORTUNITIES_WEBHOOK_URL: ${{ secrets.DISCORD_OPPORTUNITIES_WEBHOOK_URL }}
+        run: python scripts/opportunities.py
+      - name: Save results
+        run: |
+          if [ -n "$(git status --porcelain data/opportunities.json)" ]; then
+            git config user.name "jaysteel-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/opportunities.json
+            git commit -m "Opportunities refresh"
+            git pull --rebase origin main
+            git push
+          fi

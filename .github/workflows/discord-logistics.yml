@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: discord-logistics
+  group: repo-data-writes
   cancel-in-progress: false
 
 jobs:
@@ -33,6 +33,7 @@ jobs:
             git config user.name "jaysteel-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data/discord.json
-            git commit -m "Discord card id [skip ci]"
+            git commit -m "Discord card id"
+            git pull --rebase origin main
             git push
           fi

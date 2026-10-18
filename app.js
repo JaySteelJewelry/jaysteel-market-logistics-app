@@ -285,6 +285,62 @@
     return `<hr class="gold-rule"><p class="fine">Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY · Jacksonville, FL</p>`;
   }
 
+
+  /* ---------- opportunities ---------- */
+  let OPP = null, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
+  const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
+  function loadOpp() {
+    return fetch("data/opportunities.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  function viewOpp() {
+    setTab("opp");
+    if (!OPP) { app.innerHTML = '<p class="loading">Loading opportunities…</p>'; loadOpp().then((d) => { OPP = d; viewOpp(); }).catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load opportunities right now.</p>'; }); return; }
+    const today = todayISO(); const weekAgo = new Date(parse(today) - 7 * 86400000).toISOString().slice(0, 10);
+    const applied = store.get("applied", {});
+    const all = OPP.items.concat(OPP.ongoing || []);
+    const counties = [...new Set(all.filter((i) => !oState || i.state === oState).map((i) => i.county).filter(Boolean))].sort();
+    const match = (i) => (oType === "all" || i.type === oType) && (!oState || i.state === oState) && (!oCounty || i.county === oCounty)
+      && (!oVendor || i.vendorMatch) && (!oHideApplied || !applied[i.id])
+      && (!oQuery || `${i.title} ${i.org || ""} ${i.city || ""} ${i.source}`.toLowerCase().includes(oQuery.toLowerCase()));
+    const dated = OPP.items.filter((i) => i.date >= today).filter(match);
+    const ongoing = (OPP.ongoing || []).filter(match);
+    const isNew = (i) => i.origin !== "seed" && i.firstSeen >= weekAgo;
+    const card = (i) => {
+      const dateBox = i.date ? `<div class="date"><small>${fmt(i.date, { month: "short" }).toUpperCase()}</small><b>${parse(i.date).getUTCDate()}</b><i>${fmt(i.date, { weekday: "short" }).toUpperCase()}</i></div>` : `<div class="date"><small>ANY</small><b>∞</b><i>TIME</i></div>`;
+      const tags = [isNew(i) ? '<span class="badge s-approved">New this week</span>' : "", i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : "", `<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span>`, applied[i.id] ? '<span class="badge s-agreement">Applied</span>' : ""].join(" ");
+      return `<div class="opp${applied[i.id] ? " past" : ""}">
+        <div class="row" style="border:0;background:none;padding:0">${dateBox}<div class="t"><p class="n">${esc(i.title)}</p>
+        <p class="m">${esc([i.time, i.city && i.state ? `${i.city}, ${i.state}` : "", i.county ? i.county + " Co." : ""].filter(Boolean).join(" · "))}</p>
+        <p class="m">${esc(i.org || i.source)}${i.when ? " · " + esc(i.when) : ""}</p></div><span></span></div>
+        ${i.fee || i.deadline ? `<p class="m" style="margin:8px 0 0">${i.fee ? "💵 " + esc(i.fee) : ""}${i.fee && i.deadline ? " · " : ""}${i.deadline ? "⏰ " + esc(i.deadline) : ""}</p>` : ""}
+        <div class="tags">${tags}</div>
+        <div class="actions" style="margin:10px 0 0">${i.url ? `<a class="btn small primary" href="${esc(i.url)}" target="_blank" rel="noopener">Apply / details ↗</a>` : '<span></span>'}<button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${!!applied[i.id]}">${applied[i.id] ? "✓ Applied" : "Mark applied"}</button></div></div>`;
+    };
+    const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
+    const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
+    let html = `<h2 class="h2">Opportunities</h2><p class="sub">Public vendor calls, markets, college market days + city/county events — FL (Nassau → Volusia) and GA (Atlanta, Hall Co.).</p>
+      <input class="search" type="search" id="oq" placeholder="Search opportunities…" value="${esc(oQuery)}" aria-label="Search opportunities">
+      <div class="chips" role="group" aria-label="Type">${typeChips.map(([k, l]) => `<button class="chip" data-ot="${k}" aria-pressed="${oType === k}">${l}</button>`).join("")}</div>
+      <div class="form" style="padding:0 0 6px"><select id="ost" aria-label="State"><option value="">All states</option><option ${oState === "FL" ? "selected" : ""}>FL</option><option ${oState === "GA" ? "selected" : ""}>GA</option></select>
+        <select id="oco" aria-label="County"><option value="">All counties</option>${counties.map((c) => `<option ${oCounty === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div>
+      <div class="chips"><button class="chip" id="ov" aria-pressed="${oVendor}">Vendor-friendly only</button><button class="chip" id="oh" aria-pressed="${oHideApplied}">Hide applied</button></div>`;
+    let month = "";
+    html += dated.length ? dated.map((i) => { const m = fmt(i.date, { month: "long", year: "numeric" }); const h = m !== month ? `<p class="month">${m}</p>` : ""; month = m; return h + card(i); }).join("") : '<p class="empty">Nothing dated matches these filters.</p>';
+    if (ongoing.length) html += `<p class="month">Ongoing &amp; annual · apply anytime</p>` + ongoing.map(card).join("");
+    html += `<details class="panel" style="padding:12px 14px;margin-top:16px"><summary style="cursor:pointer;color:var(--gold);font-weight:600;font-size:.82rem">Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
+      <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + " items" : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
+      <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Always confirm details on the organizer's page.</p></details>` + footer();
+    app.innerHTML = html;
+    app.querySelectorAll("[data-ot]").forEach((b) => b.addEventListener("click", () => { oType = b.dataset.ot; viewOpp(); }));
+    document.getElementById("ost").onchange = (e) => { oState = e.target.value; oCounty = ""; viewOpp(); };
+    document.getElementById("oco").onchange = (e) => { oCounty = e.target.value; viewOpp(); };
+    document.getElementById("ov").onclick = () => { oVendor = !oVendor; viewOpp(); };
+    document.getElementById("oh").onclick = () => { oHideApplied = !oHideApplied; viewOpp(); };
+    app.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { const a = store.get("applied", {}); if (a[b.dataset.ap]) delete a[b.dataset.ap]; else a[b.dataset.ap] = todayISO(); store.set("applied", a); const y = window.scrollY; viewOpp(); window.scrollTo(0, y); }));
+    const q = document.getElementById("oq");
+    q.addEventListener("input", () => { oQuery = q.value; const pos = q.selectionStart; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); });
+  }
+
   /* ---------- .ics ---------- */
   function ics(events) {
     const pad = (n) => String(n).padStart(2, "0");
@@ -317,6 +373,7 @@
     if (h.startsWith("e/")) return viewEvent(decodeURIComponent(h.slice(2)));
     if (h === "calendar") return viewCalendar();
     if (h === "money") return viewMoney();
+    if (h === "opportunities") return viewOpp();
     if (h === "links") return viewLinks();
     viewList();
   }

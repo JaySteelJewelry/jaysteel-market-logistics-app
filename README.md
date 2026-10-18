@@ -38,3 +38,14 @@ Times are 24-hour Eastern (`"18:00"` = 6 PM). Multi-day events add `"endDate"`.
 `.github/workflows/discord-logistics.yml` posts/edits one "Logistics" card in the private JAY STEEL Discord
 (daily at 7 AM Eastern, on every change to `data/events.json`, or by hand from the Actions tab → Run workflow).
 The webhook URL lives only in the repo secret `DISCORD_WEBHOOK_URL` — never in the code.
+
+## Opportunities tab ("Find")
+
+`scripts/opportunities.py` scans public calendars (college Engage/Localist feeds, CivicPlus city/county calendars,
+Eventbrite/VendorsMap where they allow it) for vendor markets, market days, festivals and tabling calls in
+NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) and Georgia (Atlanta area, Hall County).
+It runs **every 6 hours** (`.github/workflows/opportunities.yml`, or Actions → Run workflow) — not literally live.
+Each source is tried on its own; the app's Sources list shows which ones returned data on the last scan.
+Results: `data/opportunities.json`. Ongoing/annual leads come from `data/opportunities_seed.json`.
+New vendor-type finds are posted to #market-log in Discord (secret `DISCORD_OPPORTUNITIES_WEBHOOK_URL`).
+Add a source: one line in `SOURCES` at the top of the script.
