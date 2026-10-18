@@ -177,7 +177,7 @@
     app.innerHTML = `<a class="back" href="#/">‹ All markets</a>
       <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
       <div class="actions">
-        ${e.address ? `<a class="btn primary" href="${maps(e.address)}" target="_blank" rel="noopener">📍 Directions</a><a class="btn" href="${amaps(e.address)}" target="_blank" rel="noopener"> Apple Maps</a>` : ""}
+        ${e.address ? `<a class="btn primary" href="${maps(e.address)}" target="_blank" rel="noopener">📍 Directions</a><a class="btn" href="${amaps(e.address)}" target="_blank" rel="noopener">🗺️ Apple Maps</a>` : ""}
         <button class="btn" id="ics">🗓️ Add to calendar</button>
         ${e.link ? `<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">🔗 Event site</a>` : `<a class="btn" href="#/links">🛍️ Store links</a>`}
       </div>
