@@ -19,7 +19,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* header */
 .top{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto;padding:max(14px,env(safe-area-inset-top)) 16px 10px}
-.brand img{display:block;width:62px;height:auto;filter:drop-shadow(0 2px 10px rgba(217,168,78,.25))}
+.brand img{display:block;width:54px;height:auto;filter:drop-shadow(0 2px 10px rgba(217,168,78,.25))}
 .eyebrow{margin:0;font-size:.66rem;letter-spacing:.32em;color:var(--gold);font-weight:600}
 .top h1{margin:0;font-family:var(--serif);font-weight:600;font-size:1.65rem;line-height:1.1;color:var(--bone);letter-spacing:.01em}
 
@@ -163,5 +163,5 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tabs a[aria-current="page"]{color:var(--gold-hi)}
 .loading{color:var(--muted);text-align:center;padding:40px 0}
 .toast{position:fixed;left:50%;bottom:calc(var(--tabh) + 18px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--gold);color:#140f04;padding:9px 16px;border-radius:999px;font-size:.82rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:20}
-@media (min-width:640px){.top h1{font-size:2rem}.brand img{width:76px}}
+@media (min-width:640px){.top h1{font-size:2rem}.brand img{width:64px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
