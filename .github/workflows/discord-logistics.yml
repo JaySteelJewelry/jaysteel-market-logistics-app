@@ -1,0 +1,38 @@
+name: Discord logistics card
+
+on:
+  push:
+    branches: [main]
+    paths: ["data/events.json"]
+  schedule:
+    - cron: "0 11 * * *"   # 7 AM Eastern (EDT) / 6 AM (EST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discord-logistics
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Post or edit the Logistics card
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node scripts/discord-logistics.mjs
+      - name: Save the card's message id if it changed
+        run: |
+          if [ -n "$(git status --porcelain data/discord.json)" ]; then
+            git config user.name "jaysteel-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/discord.json
+            git commit -m "Discord card id [skip ci]"
+            git push
+          fi
