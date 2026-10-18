@@ -1,410 +1,328 @@
-// --- Global state ---
-let allEvents = [];
-let filteredEvents = [];
-let selectedRouteEventIds = new Set();
-let map;
-let markers = [];
-
-// --- Utility: parse ISO date safely ---
-function parseDate(value) {
-  if (!value) return null;
-  const d = new Date(value);
-  return isNaN(d.getTime()) ? null : d;
-}
-
-// --- Initialize map (Leaflet) ---
-function initMap() {
-  // Center roughly between North FL and GA
-  map = L.map("map").setView([30.5, -82.0], 6);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: "&copy; OpenStreetMap contributors"
-  }).addTo(map);
-}
-
-// --- Render markers based on filteredEvents ---
-function renderMarkers() {
-  markers.forEach(m => map.removeLayer(m));
-  markers = [];
-
-  filteredEvents.forEach(evt => {
-    if (!evt.latitude || !evt.longitude) return;
-
-    const marker = L.marker([evt.latitude, evt.longitude]).addTo(map);
-    marker.bindPopup(`
-      <strong>${evt.name}</strong><br/>
-      ${evt.venue}<br/>
-      ${evt.city}, ${evt.state}<br/>
-      ${formatDate(evt.start)} – ${formatTime(evt.start)}
-    `);
-    markers.push(marker);
-  });
-
-  if (filteredEvents.length > 0) {
-    const group = new L.featureGroup(markers);
-    map.fitBounds(group.getBounds().pad(0.3));
-  }
-}
-
-// --- Render event list cards ---
-function renderEventList() {
-  const container = document.getElementById("eventList");
-  container.innerHTML = "";
-
-  if (filteredEvents.length === 0) {
-    container.innerHTML = "<p>No events match your filters.</p>";
-    return;
-  }
-
-  filteredEvents
-    .slice()
-    .sort((a, b) => (a.start || 0) - (b.start || 0))
-    .forEach(evt => {
-      const card = document.createElement("div");
-      card.className = "event-card";
-
-      const header = document.createElement("div");
-      header.className = "event-card-header";
-
-      const title = document.createElement("div");
-      title.className = "event-title";
-      title.textContent = evt.name;
-      header.appendChild(title);
-
-      const badges = document.createElement("div");
-      badges.className = "badges";
-
-      const typeBadge = document.createElement("span");
-      typeBadge.className = `badge badge-type-${evt.type}`;
-      typeBadge.textContent = typeLabel(evt.type);
-      badges.appendChild(typeBadge);
-
-      const statusBadge = document.createElement("span");
-      statusBadge.className = "badge badge-status";
-      statusBadge.textContent = capitalize(evt.status);
-      badges.appendChild(statusBadge);
-
-      header.appendChild(badges);
-      card.appendChild(header);
-
-      const meta = document.createElement("div");
-      meta.className = "event-meta";
-      meta.innerHTML = `
-        <small>${evt.venue}</small>
-        <small>${evt.address || ""} ${evt.city}, ${evt.state}</small>
-        <small>${formatDate(evt.start)} &middot; ${formatTime(evt.start)}–${formatTime(evt.end)}</small>
-        ${evt.feeDescription ? `<small>Fee: ${evt.feeDescription}</small>` : ""}
-      `;
-      card.appendChild(meta);
-
-      if (evt.notes) {
-        const notesEl = document.createElement("div");
-        notesEl.className = "event-notes";
-        notesEl.innerHTML = `<small>${evt.notes}</small>`;
-        card.appendChild(notesEl);
-      }
-
-      const actions = document.createElement("div");
-      actions.className = "event-actions";
-
-      // Calendar button (ICS download)
-      const calBtn = document.createElement("button");
-      calBtn.className = "btn-calendar";
-      calBtn.textContent = "Add to calendar (.ics)";
-      calBtn.addEventListener("click", () => downloadICS(evt));
-      actions.appendChild(calBtn);
-
-      // Email button (mailto)
-      if (evt.organizerEmail && evt.organizerEmail.trim() !== "") {
-        const emailBtn = document.createElement("button");
-        emailBtn.className = "btn-email";
-        emailBtn.textContent = "Email to apply";
-        emailBtn.addEventListener("click", () => openMailto(evt));
-        actions.appendChild(emailBtn);
-      }
-
-      // Route button
-      const routeBtn = document.createElement("button");
-      routeBtn.className = "btn-route";
-      routeBtn.textContent = selectedRouteEventIds.has(evt.id)
-        ? "In route (click to remove)"
-        : "Add to route";
-      routeBtn.addEventListener("click", () => toggleRoute(evt.id));
-      actions.appendChild(routeBtn);
-
-      // Apply link
-      if (evt.applicationURL) {
-        const applyLink = document.createElement("a");
-        applyLink.className = "btn-apply";
-        applyLink.textContent = "Open application page";
-        applyLink.href = evt.applicationURL;
-        applyLink.target = "_blank";
-        applyLink.rel = "noopener noreferrer";
-        actions.appendChild(applyLink);
-      }
-
-      card.appendChild(actions);
-      container.appendChild(card);
-    });
-}
-
-// --- Filters ---
-function applyFilters() {
-  const state = document.getElementById("stateFilter").value;
-  const type = document.getElementById("typeFilter").value;
-  const status = document.getElementById("statusFilter").value;
-  const search = document.getElementById("searchInput").value.trim().toLowerCase();
-  const startFilter = parseDate(document.getElementById("startDateFilter").value);
-  const endFilter = parseDate(document.getElementById("endDateFilter").value);
-
-  filteredEvents = allEvents.filter(evt => {
-    if (state && evt.state !== state) return false;
-    if (type && evt.type !== type) return false;
-    if (status && evt.status !== status) return false;
-    if (startFilter && evt.start && evt.start < startFilter) return false;
-    if (endFilter && evt.start && evt.start > endFilter) return false;
-
-    if (search) {
-      const haystack = [
-        evt.name,
-        evt.venue,
-        evt.city,
-        evt.state,
-        evt.notes || ""
-      ]
-        .join(" ")
-        .toLowerCase();
-      if (!haystack.includes(search)) return false;
-    }
-
-    return true;
-  });
-
-  renderEventList();
-  renderMarkers();
-}
-
-function clearFilters() {
-  document.getElementById("stateFilter").value = "";
-  document.getElementById("typeFilter").value = "";
-  document.getElementById("statusFilter").value = "";
-  document.getElementById("searchInput").value = "";
-  document.getElementById("startDateFilter").value = "";
-  document.getElementById("endDateFilter").value = "";
-  applyFilters();
-}
-
-// --- ICS generation (client-side) ---
-function downloadICS(evt) {
-  // Minimal, valid iCalendar content.[web:55][web:51][web:105]
-  const dtstamp = toICSDate(new Date());
-  const dtstart = toICSDate(evt.start);
-  const dtend = toICSDate(evt.end || evt.start);
-  const uid = `${evt.id}@jaysteel-logistics`;
-
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Jay Steel//Market Logistics Planner//EN",
-    "CALSCALE:GREGORIAN",
-    "BEGIN:VEVENT",
-    `UID:${uid}`,
-    `DTSTAMP:${dtstamp}`,
-    `DTSTART:${dtstart}`,
-    `DTEND:${dtend}`,
-    `SUMMARY:${escapeICS(evt.name)}`,
-    `LOCATION:${escapeICS(
-      `${evt.venue}, ${evt.address || ""} ${evt.city}, ${evt.state}`
-    )}`,
-    `DESCRIPTION:${escapeICS(buildDescription(evt))}`,
-    "END:VEVENT",
-    "END:VCALENDAR"
+/* JAY STEEL JEWELRY · Market Logistics
+   Data: data/events.json (edit that one file to add/change markets).
+   Checklists + sales/expense tally are saved on this device (localStorage). */
+(function () {
+  "use strict";
+  const TZ = "America/New_York";
+  const STORE_URL = "https://jaysteeljewelry.github.io/";
+  const EDIT_URL = "https://github.com/JaySteelJewelry/jaysteel-market-logistics-app/edit/main/data/events.json";
+  const STATUS = {
+    approved: { label: "Approved", icon: "✅" },
+    agreement: { label: "Agreement sent", icon: "📝" },
+    pending: { label: "Pending", icon: "⏳" },
+    tentative: { label: "Tentative", icon: "❓" },
+    booked: { label: "On my calendar", icon: "📌" }
+  };
+  const DEFAULT_PACK = [
+    "10×10 tent + 4 weights (30 lb/leg)", "Table(s) + tablecloth", "Jewelry displays, busts + trays", "Mirror",
+    "Inventory: necklaces, bracelets, rings, earrings", "Price tags / price sign", "Square reader + phone charged",
+    "Power bank + cables", "Cash box + change ($100 in small bills)", "QR code sign (IG / WhatsApp)",
+    "Business cards", "Bags / pouches + gift boxes", "Banner + zip ties", "Polishing cloth", "Water + snacks",
+    "Receipts / resale certificate copy", "Chair"
   ];
+  const app = document.getElementById("app");
+  let DATA = null, filter = "upcoming", query = "", calMonth = null, calSel = null;
 
-  const blob = new Blob([lines.join("\r\n")], {
-    type: "text/calendar;charset=utf-8"
-  });
-
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${slugify(evt.name)}.ics`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function toICSDate(date) {
-  if (!date) return "";
-  const pad = n => String(n).padStart(2, "0");
-  const y = date.getUTCFullYear();
-  const m = pad(date.getUTCMonth() + 1);
-  const d = pad(date.getUTCDate());
-  const hh = pad(date.getUTCHours());
-  const mm = pad(date.getUTCMinutes());
-  const ss = pad(date.getUTCSeconds());
-  // UTC timestamp.[web:55]
-  return `${y}${m}${d}T${hh}${mm}${ss}Z`;
-}
-
-function escapeICS(text) {
-  if (!text) return "";
-  return String(text)
-    .replace(/\\/g, "\\\\")
-    .replace(/;/g, "\\;")
-    .replace(/,/g, "\\,")
-    .replace(/\r?\n/g, "\\n");
-}
-
-function buildDescription(evt) {
-  let desc = `Vendor event: ${evt.name}\\nVenue: ${evt.venue}\\nLocation: ${evt.address || ""} ${evt.city}, ${evt.state}`;
-  if (evt.feeDescription) {
-    desc += `\\nFee: ${evt.feeDescription}`;
+  /* ---------- helpers ---------- */
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const todayISO = () => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const parse = (iso) => { const [y, m, d] = iso.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d, 12)); };
+  const fmt = (iso, opts) => parse(iso).toLocaleDateString("en-US", Object.assign({ timeZone: "UTC" }, opts));
+  const daysBetween = (a, b) => Math.round((parse(b) - parse(a)) / 86400000);
+  const t12 = (t) => { if (!t) return ""; let [h, m] = t.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return m ? `${h}:${String(m).padStart(2, "0")} ${ap}` : `${h} ${ap}`; };
+  const timeRange = (e) => e.start ? (e.end ? `${t12(e.start)}–${t12(e.end)}` : t12(e.start)) : "Time TBD";
+  const whenText = (e) => {
+    const d = fmt(e.date, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    const multi = e.endDate ? ` – ${fmt(e.endDate, { weekday: "short", month: "short", day: "numeric" })}` : "";
+    return `${d}${multi} · ${timeRange(e)}${e.endDate ? " nightly" : ""}`;
+  };
+  const lastDay = (e) => e.endDate || e.date;
+  const badge = (s) => `<span class="badge s-${esc(s)}">${esc((STATUS[s] || { label: s }).label)}</span>`;
+  const money = (n) => (n < 0 ? "−" : "") + "$" + Math.abs(n).toFixed(2).replace(/\.00$/, "");
+  const maps = (a) => "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(a);
+  const amaps = (a) => "https://maps.apple.com/?daddr=" + encodeURIComponent(a);
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("jsj." + k); return v ? JSON.parse(v) : d; } catch (_) { return d; } },
+    set(k, v) { try { localStorage.setItem("jsj." + k, JSON.stringify(v)); } catch (_) { toast("Couldn't save on this device"); } }
+  };
+  function toast(msg) {
+    const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
   }
-  if (evt.applicationURL) {
-    desc += `\\nApplication: ${evt.applicationURL}`;
+  function download(name, text, type) {
+    const blob = new Blob([text], { type: type || "text/plain" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
   }
-  if (evt.notes) {
-    desc += `\\nNotes: ${evt.notes}`;
-  }
-  return desc;
-}
+  const csvCell = (v) => { v = String(v == null ? "" : v); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
+  const byId = (id) => DATA.events.find((e) => e.id === id);
 
-// --- Email (mailto with pre-filled subject/body) ---
-function openMailto(evt) {
-  if (!evt.organizerEmail) return;
-
-  const subject = `Vendor Application – ${evt.name} – Jay Steel Jewelry`;
-  const body = `
-Hello,
-
-I’d like to apply as a vendor for ${evt.name} at ${evt.venue} in ${evt.city}, ${evt.state}.
-
-Business: Jay Steel Jewelry
-Products: Stainless steel, gold-filled, sterling silver jewelry, student-friendly price points.
-
-Could you please share:
-• Vendor fee and what’s included
-• Table size and whether power is available
-• Estimated attendance and typical audience
-• Any licensing or insurance requirements
-
-Thank you,
-[Your Name]
-Jay Steel Jewelry
-`;
-
-  // Encode subject and body per mailto rules.[web:60][web:106]
-  const params = new URLSearchParams({
-    subject,
-    body
-  });
-  const url = `mailto:${encodeURIComponent(evt.organizerEmail)}?${params.toString()}`;
-  window.location.href = url;
-}
-
-// --- Route planning (Google Maps multi-stop) ---
-function toggleRoute(eventId) {
-  if (selectedRouteEventIds.has(eventId)) {
-    selectedRouteEventIds.delete(eventId);
-  } else {
-    selectedRouteEventIds.add(eventId);
-  }
-  renderEventList();
-}
-
-function openRouteInGoogleMaps() {
-  const events = allEvents.filter(e => selectedRouteEventIds.has(e.id));
-  if (events.length === 0) {
-    alert("Add at least one event to the route first.");
-    return;
+  /* ---------- tally + checklist state ---------- */
+  const tally = (id) => store.get("tally." + id, []);
+  const totals = (rows) => rows.reduce((t, r) => { if (r.type === "sale") t.sales += r.amount; else t.exp += r.amount; return t; }, { sales: 0, exp: 0 });
+  function checklist(id) {
+    const saved = store.get("check." + id, null);
+    if (saved) return saved;
+    const tpl = store.get("packTemplate", DEFAULT_PACK);
+    return tpl.map((text) => ({ text, done: false }));
   }
 
-  // Build a multi-stop directions URL.[web:95][web:101]
-  const base = "https://www.google.com/maps/dir/";
-  const parts = events.map(evt =>
-    encodeURIComponent(`${evt.venue} ${evt.address || ""} ${evt.city} ${evt.state}`)
-  );
-  const url = base + parts.join("/");
-  window.open(url, "_blank", "noopener");
-}
-
-// --- Helpers ---
-function formatDate(date) {
-  if (!date) return "";
-  return date.toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  });
-}
-
-function formatTime(date) {
-  if (!date) return "";
-  return date.toLocaleTimeString(undefined, {
-    hour: "numeric",
-    minute: "2-digit"
-  });
-}
-
-function typeLabel(type) {
-  switch (type) {
-    case "campus":
-      return "Campus";
-    case "farmersMarket":
-      return "Farmers market";
-    case "craftFair":
-      return "Craft fair";
-    case "festival":
-      return "Festival";
-    default:
-      return type;
+  /* ---------- views ---------- */
+  function setTab(name) {
+    document.querySelectorAll(".tabs a").forEach((a) => a.toggleAttribute("aria-current", false));
+    const a = document.querySelector(`.tabs a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
   }
-}
 
-function capitalize(str) {
-  if (!str) return "";
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  function rowHTML(e, today) {
+    const past = lastDay(e) < today;
+    const d = parse(e.date);
+    return `<a class="row${past ? " past" : ""}" href="#/e/${encodeURIComponent(e.id)}">
+      <div class="date"><small>${fmt(e.date, { month: "short" }).toUpperCase()}</small><b>${d.getUTCDate()}</b><i>${fmt(e.date, { weekday: "short" }).toUpperCase()}</i></div>
+      <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))} · ${esc(e.venue || e.address || "")}</p>${badge(e.status)}</div>
+      <span class="chev" aria-hidden="true">›</span></a>`;
+  }
 
-function slugify(str) {
-  return String(str)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .substring(0, 50);
-}
+  function viewList() {
+    setTab("list");
+    const today = todayISO();
+    const upcoming = DATA.events.filter((e) => lastDay(e) >= today);
+    const next = upcoming.find((e) => e.status !== "pending" && e.status !== "tentative") || upcoming[0];
+    const approved = upcoming.filter((e) => e.status === "approved" || e.status === "agreement" || e.status === "booked").length;
+    const waiting = upcoming.filter((e) => e.status === "pending" || e.status === "tentative").length;
+    const due = dueItems(today);
+    let list = DATA.events.filter((e) => {
+      if (filter === "upcoming" && lastDay(e) < today) return false;
+      if (filter === "past" && lastDay(e) >= today) return false;
+      if (!["upcoming", "past", "all"].includes(filter) && e.status !== filter) return false;
+      if (filter !== "past" && filter !== "all" && lastDay(e) < today) return false;
+      if (query) { const hay = `${e.name} ${e.venue || ""} ${e.address || ""} ${e.notes || ""}`.toLowerCase(); if (!hay.includes(query.toLowerCase())) return false; }
+      return true;
+    });
+    if (filter === "past") list = list.slice().reverse();
+    let html = "";
+    if (next) {
+      const n = daysBetween(today, next.date);
+      html += `<a class="next" href="#/e/${encodeURIComponent(next.id)}"><p class="label">NEXT MARKET</p>
+        <p class="name">${esc(next.name)}</p><p class="meta">${esc(whenText(next))}<br>${esc(next.venue || "")}</p>
+        <div class="count"><b>${n <= 0 ? "Today" : n}</b><small>${n <= 0 ? "" : n === 1 ? "DAY" : "DAYS"}</small></div></a>`;
+    }
+    html += `<div class="stats"><div class="stat"><b>${approved}</b><span>Confirmed</span></div><div class="stat"><b>${waiting}</b><span>Waiting</span></div><div class="stat"><b>${due.length}</b><span>To pay</span></div></div>`;
+    const chips = [["upcoming", "Upcoming"], ["approved", "✅ Approved"], ["agreement", "📝 Agreement"], ["pending", "⏳ Pending"], ["tentative", "❓ Tentative"], ["booked", "📌 Calendar"], ["past", "Past"], ["all", "All"]];
+    html += `<h2 class="h2">Markets</h2><input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets">
+      <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}</button>`).join("")}</div>`;
+    if (!list.length) html += `<p class="empty">No markets match.</p>`;
+    let month = "";
+    html += list.map((e) => {
+      const m = fmt(e.date, { month: "long", year: "numeric" });
+      const head = m !== month ? `<p class="month">${m}</p>` : ""; month = m;
+      return head + rowHTML(e, today);
+    }).join("").replace(/<\/a><p class="month">/g, '</a><p class="month">');
+    if (DATA.openApplications && DATA.openApplications.length && filter !== "past") {
+      html += `<h2 class="h2">Open applications · no date yet</h2>` + DATA.openApplications.map((o) => `<div class="panel">
+        <div class="kv"><span class="ic">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="k">${esc((STATUS[o.status] || { label: o.status }).label)}</p><p class="v"><b>${esc(o.name)}</b><br>${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div></div>
+        ${o.nextStep ? `<div class="kv"><span class="ic">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}</div>`).join("");
+    }
+    html += footer();
+    app.innerHTML = html;
+    app.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => { filter = b.dataset.f; viewList(); }));
+    const q = document.getElementById("q");
+    q.addEventListener("input", () => { query = q.value; const pos = q.selectionStart; viewList(); const nq = document.getElementById("q"); nq.focus(); nq.setSelectionRange(pos, pos); });
+  }
 
-// --- Load events & initialize ---
-async function loadEvents() {
-  const res = await fetch("events.json");
-  const data = await res.json();
+  function dueItems(today) {
+    return DATA.events.filter((e) => e.payBy && e.payBy >= today && (e.status === "approved" || e.status === "agreement" || e.status === "pending"))
+      .sort((a, b) => a.payBy.localeCompare(b.payBy));
+  }
 
-  allEvents = data.map(evt => ({
-    ...evt,
-    start: parseDate(evt.start),
-    end: parseDate(evt.end)
-  }));
-  filteredEvents = allEvents.slice();
-}
+  function viewCalendar() {
+    setTab("calendar");
+    const today = todayISO();
+    if (!calMonth) calMonth = today.slice(0, 7);
+    const [y, m] = calMonth.split("-").map(Number);
+    const first = new Date(Date.UTC(y, m - 1, 1, 12)); const startDow = first.getUTCDay();
+    const daysIn = new Date(Date.UTC(y, m, 0, 12)).getUTCDate();
+    const map = {};
+    DATA.events.forEach((e) => { let d = e.date; const end = lastDay(e); while (d <= end) { (map[d] = map[d] || []).push(e); const nd = parse(d); nd.setUTCDate(nd.getUTCDate() + 1); d = nd.toISOString().slice(0, 10); } });
+    let cells = ""; for (let i = 0; i < startDow; i++) cells += `<div class="day out" aria-hidden="true"></div>`;
+    for (let d = 1; d <= daysIn; d++) {
+      const iso = `${calMonth}-${String(d).padStart(2, "0")}`; const evs = map[iso] || [];
+      cells += `<button class="day${iso === today ? " today" : ""}${iso === calSel ? " sel" : ""}" data-d="${iso}" aria-label="${fmt(iso, { month: "long", day: "numeric" })}, ${evs.length} market${evs.length === 1 ? "" : "s"}">
+        <span class="num">${d}</span><span class="dots">${evs.slice(0, 4).map((e) => `<i class="dot s-${e.status}"></i>`).join("")}</span></button>`;
+    }
+    const sel = calSel && map[calSel] ? map[calSel] : null;
+    const monthEvents = DATA.events.filter((e) => e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth));
+    app.innerHTML = `<div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
+      <h2 class="h2">${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
+      <div class="grid">${["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="dow">${d}</div>`).join("")}${cells}</div>
+      <div class="legend">${Object.entries(STATUS).map(([k, v]) => `<span class="s-${k}"><i class="dot"></i><em style="color:var(--muted);font-style:normal">${v.label}</em></span>`).join("")}</div>
+      <p class="month">${sel ? fmt(calSel, { weekday: "long", month: "long", day: "numeric" }) : "This month"}</p>
+      <div class="list">${(sel || monthEvents).map((e) => rowHTML(e, today)).join("") || '<p class="empty">No markets this month.</p>'}</div>
+      <button class="btn full" id="icsall" style="margin-top:14px">⬇︎ Add all upcoming to my phone calendar (.ics)</button>${footer()}`;
+    app.querySelectorAll(".day[data-d]").forEach((b) => b.addEventListener("click", () => { calSel = calSel === b.dataset.d ? null : b.dataset.d; viewCalendar(); }));
+    document.getElementById("prev").onclick = () => { calMonth = shiftMonth(calMonth, -1); calSel = null; viewCalendar(); };
+    document.getElementById("nextm").onclick = () => { calMonth = shiftMonth(calMonth, 1); calSel = null; viewCalendar(); };
+    document.getElementById("icsall").onclick = () => download("jaysteel-markets.ics", ics(DATA.events.filter((e) => lastDay(e) >= today)), "text/calendar");
+  }
+  const shiftMonth = (ym, n) => { const [y, m] = ym.split("-").map(Number); const d = new Date(Date.UTC(y, m - 1 + n, 1)); return d.toISOString().slice(0, 7); };
 
-function initFilters() {
-  document.getElementById("searchInput").addEventListener("input", applyFilters);
-  document.getElementById("stateFilter").addEventListener("change", applyFilters);
-  document.getElementById("typeFilter").addEventListener("change", applyFilters);
-  document.getElementById("statusFilter").addEventListener("change", applyFilters);
-  document.getElementById("startDateFilter").addEventListener("change", applyFilters);
-  document.getElementById("endDateFilter").addEventListener("change", applyFilters);
+  function kv(ic, k, v) { return v ? `<div class="kv"><span class="ic" aria-hidden="true">${ic}</span><div><p class="k">${k}</p><p class="v">${v}</p></div></div>` : ""; }
 
-  document.getElementById("clearFiltersBtn").addEventListener("click", clearFilters);
-  document.getElementById("openRouteBtn").addEventListener("click", openRouteInGoogleMaps);
-}
+  function viewEvent(id) {
+    setTab("list");
+    const e = byId(id);
+    if (!e) { app.innerHTML = `<a class="back" href="#/">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`; return; }
+    const c = e.contact || {};
+    const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && `<a href="tel:${esc(c.phone.replace(/[^\d+]/g, ""))}">${esc(c.phone)}</a>`].filter(Boolean).join("<br>");
+    const pay = [e.fee && `<b>${esc(e.fee)}</b>`, e.payBy && `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
+    app.innerHTML = `<a class="back" href="#/">‹ All markets</a>
+      <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
+      <div class="actions">
+        ${e.address ? `<a class="btn primary" href="${maps(e.address)}" target="_blank" rel="noopener">📍 Directions</a><a class="btn" href="${amaps(e.address)}" target="_blank" rel="noopener"> Apple Maps</a>` : ""}
+        <button class="btn" id="ics">🗓️ Add to calendar</button>
+        ${e.link ? `<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">🔗 Event site</a>` : `<a class="btn" href="#/links">🛍️ Store links</a>`}
+      </div>
+      <div class="panel">
+        ${kv("📍", "Where", `${esc(e.venue || "")}${e.address ? "<br>" + esc(e.address) : ""}`)}
+        ${kv("💵", "Fee · how paid", pay)}
+        ${kv("☎️", "Contact", contact)}
+        ${kv("🧰", "Setup", e.setup && esc(e.setup))}
+        ${kv("➡️", "Next step", e.nextStep && esc(e.nextStep))}
+        ${kv("📝", "Notes", e.notes && esc(e.notes))}
+      </div>
+      ${e.headsUp ? `<div class="panel heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
+      <h3 class="h2">Packing checklist</h3><div class="panel" id="pack"></div>
+      <h3 class="h2">Sales &amp; expenses</h3><div class="panel" id="money"></div>${footer()}`;
+    document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
+    renderPack(e); renderTally(e);
+    window.scrollTo(0, 0);
+  }
 
-window.addEventListener("DOMContentLoaded", async () => {
-  initMap();
-  initFilters();
-  await loadEvents();
-  applyFilters();
-});
+  function renderPack(e) {
+    const box = document.getElementById("pack"); const items = checklist(e.id);
+    const done = items.filter((i) => i.done).length; const pct = items.length ? Math.round((done / items.length) * 100) : 0;
+    box.innerHTML = `<div class="progress" aria-hidden="true"><i style="width:${pct}%"></i></div><p class="sub" style="margin:4px 0 6px">${done} of ${items.length} packed</p>
+      <ul class="check">${items.map((it, i) => `<li><input type="checkbox" id="c${i}" data-i="${i}" ${it.done ? "checked" : ""}><label for="c${i}">${esc(it.text)}</label><button class="x" data-del="${i}" aria-label="Remove ${esc(it.text)}">×</button></li>`).join("")}</ul>
+      <form class="addrow" id="addItem"><input id="newItem" placeholder="Add an item…" aria-label="Add a checklist item" maxlength="80"><button class="btn small" type="submit">Add</button></form>
+      <div class="actions" style="margin-bottom:12px"><button class="btn small" id="resetPack">Uncheck all</button><button class="btn small" id="saveTpl">Save as my default list</button></div>`;
+    const save = (list) => { store.set("check." + e.id, list); renderPack(e); };
+    box.querySelectorAll("input[type=checkbox]").forEach((cb) => cb.addEventListener("change", () => { const l = checklist(e.id); l[cb.dataset.i].done = cb.checked; save(l); }));
+    box.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); l.splice(b.dataset.del, 1); save(l); }));
+    document.getElementById("addItem").addEventListener("submit", (ev) => { ev.preventDefault(); const v = document.getElementById("newItem").value.trim(); if (!v) return; const l = checklist(e.id); l.push({ text: v, done: false }); save(l); });
+    document.getElementById("resetPack").onclick = () => { save(checklist(e.id).map((i) => ({ text: i.text, done: false }))); };
+    document.getElementById("saveTpl").onclick = () => { store.set("packTemplate", checklist(e.id).map((i) => i.text)); toast("Saved as your default list"); };
+  }
+
+  let entryType = "sale";
+  function renderTally(e) {
+    const box = document.getElementById("money"); const rows = tally(e.id); const t = totals(rows);
+    box.innerHTML = `<form class="form" id="tform">
+        <div class="seg full" role="group" aria-label="Entry type"><button type="button" data-t="sale" aria-pressed="${entryType === "sale"}">+ Sale</button><button type="button" data-t="expense" aria-pressed="${entryType === "expense"}">− Expense</button></div>
+        <input id="amt" type="number" inputmode="decimal" step="0.01" min="0" placeholder="Amount $" aria-label="Amount in dollars" required>
+        <select id="method" aria-label="Payment method"><option>Card</option><option>Cash</option><option>Cash App / Zelle</option><option>Other</option></select>
+        <input class="full" id="note" placeholder="${entryType === "sale" ? "What sold (e.g. Cuban link 20in)" : "What for (e.g. booth fee, parking)"}" maxlength="80" aria-label="Note">
+        <button class="btn primary full" type="submit">Add ${entryType}</button></form>
+      <div class="tot"><div><b class="pos">${money(t.sales)}</b><span>Sales</span></div><div><b class="neg">${money(t.exp)}</b><span>Expenses</span></div><div><b class="${t.sales - t.exp >= 0 ? "pos" : "neg"}">${money(t.sales - t.exp)}</b><span>Profit</span></div></div>
+      <ul class="ledger">${rows.length ? rows.slice().reverse().map((r) => `<li><span>${esc(r.note || (r.type === "sale" ? "Sale" : "Expense"))}<small>${esc(r.method || "")} · ${esc(new Date(r.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }))}</small></span><b class="${r.type === "sale" ? "pos" : "neg"}">${r.type === "sale" ? "+" : "−"}${money(r.amount)}</b><button class="x" data-rm="${r.at}" aria-label="Delete entry">×</button></li>`).join("") : '<li class="empty">No entries yet. Add sales as you go — totals update live.</li>'}</ul>
+      <div class="actions" style="margin:10px 0 12px"><button class="btn small full" id="csv1">⬇︎ Export this market (CSV)</button></div>`;
+    box.querySelectorAll(".seg button").forEach((b) => b.addEventListener("click", () => { entryType = b.dataset.t; renderTally(e); }));
+    document.getElementById("tform").addEventListener("submit", (ev) => {
+      ev.preventDefault(); const amount = parseFloat(document.getElementById("amt").value);
+      if (!(amount > 0)) { toast("Enter an amount"); return; }
+      const l = tally(e.id); l.push({ type: entryType, amount: Math.round(amount * 100) / 100, method: document.getElementById("method").value, note: document.getElementById("note").value.trim(), at: Date.now() });
+      store.set("tally." + e.id, l); renderTally(e); toast(entryType === "sale" ? "Sale added" : "Expense added");
+    });
+    box.querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", () => { if (!confirm("Delete this entry?")) return; store.set("tally." + e.id, tally(e.id).filter((r) => String(r.at) !== b.dataset.rm)); renderTally(e); }));
+    document.getElementById("csv1").onclick = () => download(`${e.id}-sales.csv`, toCSV([e]), "text/csv");
+  }
+
+  function toCSV(events) {
+    const out = [["market", "date", "type", "amount", "method", "note", "time"].join(",")];
+    events.forEach((e) => tally(e.id).forEach((r) => out.push([e.name, e.date, r.type, (r.type === "sale" ? r.amount : -r.amount).toFixed(2), r.method, r.note, new Date(r.at).toISOString()].map(csvCell).join(","))));
+    return out.join("\n") + "\n";
+  }
+
+  function viewMoney() {
+    setTab("money");
+    const today = todayISO(); const due = dueItems(today);
+    const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
+    const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
+    app.innerHTML = `<h2 class="h2">Money</h2><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
+      <p class="month">To pay · coming up</p>
+      <div class="due">${due.length ? due.map((e) => `<a href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small style="color:var(--muted)">${esc(e.fee || "")}</small></span><b>by ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
+      <p class="month">All markets · totals</p>
+      <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
+      <div class="panel"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}" style="color:var(--bone);text-decoration:none">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
+      <div class="actions"><button class="btn primary full" id="csvall">⬇︎ Export all sales &amp; expenses (CSV)</button>
+        <button class="btn small" id="backup">Back up my data</button><label class="btn small" for="restore">Restore backup<input type="file" id="restore" accept="application/json" class="visually-hidden"></label></div>${footer()}`;
+    document.getElementById("csvall").onclick = () => download(`jaysteel-sales-${today}.csv`, toCSV(DATA.events), "text/csv");
+    document.getElementById("backup").onclick = () => {
+      const dump = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith("jsj.")) dump[k] = localStorage.getItem(k); }
+      download(`jaysteel-logistics-backup-${today}.json`, JSON.stringify(dump, null, 1), "application/json");
+    };
+    document.getElementById("restore").addEventListener("change", (ev) => {
+      const f = ev.target.files[0]; if (!f) return; const r = new FileReader();
+      r.onload = () => { try { const d = JSON.parse(r.result); Object.keys(d).forEach((k) => { if (k.startsWith("jsj.")) localStorage.setItem(k, d[k]); }); toast("Backup restored"); viewMoney(); } catch (_) { toast("That file isn't a backup"); } };
+      r.readAsText(f);
+    });
+  }
+
+  function viewLinks() {
+    setTab("links");
+    const L = DATA.links || {};
+    const card = (href, i, b, s) => `<a class="linkcard" href="${esc(href)}" target="_blank" rel="noopener"><span class="i" aria-hidden="true">${i}</span><span><b>${b}</b><small>${s}</small></span></a>`;
+    app.innerHTML = `<h2 class="h2">Shop JAY STEEL</h2><p class="sub">Send customers here from the booth, Discord or socials.</p>
+      ${card(L.store || STORE_URL, "🛍️", "Online store", "jaysteeljewelry.github.io")}
+      ${card("https://www.whatsapp.com/catalog/19043232898/", "💬", "WhatsApp catalog", "Browse + order by message")}
+      ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "📸", "Instagram", "@jaysteeljewelry")}
+      <a class="linkcard" href="tel:+19043232898"><span class="i" aria-hidden="true">📞</span><span><b>Call or text</b><small>${esc(L.phone || "(904) 323-2898")}</small></span></a>
+      <p class="promise">Tough as Steel, Styled to Thrill.</p>
+      <p class="fine">Hypoallergenic and non-tarnish jewelry crafted with 18K gold plating over 316L stainless steel, gold-filled, and 925 sterling silver.</p>
+      <hr class="gold-rule"><p class="month">Manage the app</p>
+      ${card(EDIT_URL, "✏️", "Edit markets", "Change data/events.json on GitHub — the app + Discord update")}${footer()}`;
+  }
+
+  function footer() {
+    return `<hr class="gold-rule"><p class="fine">Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY · Jacksonville, FL</p>`;
+  }
+
+  /* ---------- .ics ---------- */
+  function ics(events) {
+    const pad = (n) => String(n).padStart(2, "0");
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    const escI = (s) => String(s || "").replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/[,;]/g, (m) => "\\" + m);
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//JAY STEEL JEWELRY//Market Logistics//EN", "CALSCALE:GREGORIAN"];
+    events.forEach((e) => {
+      const d = e.date.replace(/-/g, "");
+      lines.push("BEGIN:VEVENT", `UID:${e.id}@jaysteeljewelry.github.io`, `DTSTAMP:${stamp}`);
+      if (e.start) {
+        lines.push(`DTSTART;TZID=${TZ}:${d}T${e.start.replace(":", "")}00`);
+        lines.push(`DTEND;TZID=${TZ}:${d}T${(e.end || e.start).replace(":", "")}00`);
+        if (e.endDate) { const n = daysBetween(e.date, e.endDate) + 1; lines.push(`RRULE:FREQ=DAILY;COUNT=${n}`); }
+      } else {
+        const end = parse(lastDay(e)); end.setUTCDate(end.getUTCDate() + 1);
+        lines.push(`DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${end.getUTCFullYear()}${pad(end.getUTCMonth() + 1)}${pad(end.getUTCDate())}`);
+      }
+      lines.push(`SUMMARY:${escI(`${(STATUS[e.status] || {}).icon || ""} ${e.name}`.trim())}`);
+      if (e.address) lines.push(`LOCATION:${escI(e.address)}`);
+      lines.push(`DESCRIPTION:${escI([e.fee && "Fee: " + e.fee, e.payBy && "Pay by: " + e.payBy, e.setup, e.nextStep].filter(Boolean).join("\n"))}`, "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    return lines.join("\r\n") + "\r\n";
+  }
+
+  /* ---------- router ---------- */
+  function route() {
+    if (!DATA) return;
+    const h = location.hash.replace(/^#\/?/, "");
+    if (h.startsWith("e/")) return viewEvent(decodeURIComponent(h.slice(2)));
+    if (h === "calendar") return viewCalendar();
+    if (h === "money") return viewMoney();
+    if (h === "links") return viewLinks();
+    viewList();
+  }
+  window.addEventListener("hashchange", route);
+  fetch("data/events.json", { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); DATA = d; route(); })
+    .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Pull to refresh.</p>'; });
+})();

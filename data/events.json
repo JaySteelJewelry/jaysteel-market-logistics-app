@@ -1,0 +1,670 @@
+{
+  "business": "JAY STEEL JEWELRY",
+  "updated": "2026-10-18",
+  "timezone": "America/New_York",
+  "links": {
+    "store": "https://jaysteeljewelry.github.io/",
+    "instagram": "https://www.instagram.com/jaysteeljewelry/",
+    "phone": "(904) 323-2898"
+  },
+  "statusLegend": {
+    "approved": "✅ Approved",
+    "agreement": "📝 Agreement sent",
+    "pending": "⏳ Pending",
+    "tentative": "❓ Tentative",
+    "booked": "📌 On my calendar"
+  },
+  "events": [
+    {
+      "id": "bjs-sunday-2026-10-18",
+      "name": "Small Business Sunday Market @ BJ's",
+      "series": "bjs-sunday",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-10-18",
+      "start": "11:00",
+      "end": "17:00",
+      "venue": "BJ's Restaurant & Brewhouse",
+      "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
+      "notes": "Small Business Sunday Markets vendor.",
+      "link": "https://smallbizsundaymarkets.com"
+    },
+    {
+      "id": "uf-market-2026-10-21",
+      "name": "UF Market",
+      "series": "uf-market",
+      "kind": "campus",
+      "status": "booked",
+      "date": "2026-10-21",
+      "start": "08:00",
+      "end": "16:00",
+      "venue": "University of Florida",
+      "address": "Gainesville, FL"
+    },
+    {
+      "id": "unf-tabling-2026-10-22",
+      "name": "UNF Tabling",
+      "series": "unf-tabling",
+      "kind": "campus",
+      "status": "booked",
+      "date": "2026-10-22",
+      "venue": "University of North Florida",
+      "address": "1 UNF Dr, Jacksonville, FL 32224"
+    },
+    {
+      "id": "shop-small-hyatt-2026-10-25",
+      "name": "Shop Small Business @ Hyatt Place",
+      "series": "shop-small-hyatt",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-10-25",
+      "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
+      "address": "4742 Town Center Pkwy, Jacksonville, FL",
+      "notes": "Time not on the calendar."
+    },
+    {
+      "id": "unf-tabling-2026-10-28",
+      "name": "UNF Tabling w/ Kathy",
+      "series": "unf-tabling",
+      "kind": "campus",
+      "status": "booked",
+      "date": "2026-10-28",
+      "start": "08:00",
+      "end": "16:00",
+      "venue": "University of North Florida",
+      "address": "1 UNF Dr, Jacksonville, FL 32224"
+    },
+    {
+      "id": "unf-tabling-2026-10-29",
+      "name": "UNF Tabling w/ Kathy",
+      "series": "unf-tabling",
+      "kind": "campus",
+      "status": "booked",
+      "date": "2026-10-29",
+      "start": "08:00",
+      "end": "16:00",
+      "venue": "University of North Florida",
+      "address": "1 UNF Dr, Jacksonville, FL 32224"
+    },
+    {
+      "id": "dart-bar-2026-10-30",
+      "name": "Dart Bar King Street Bazaar",
+      "series": "dart-bar",
+      "kind": "market",
+      "status": "tentative",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "venue": "Dart Bar & Games",
+      "address": "1261 King St, Jacksonville, FL 32204",
+      "fee": "Free",
+      "contact": {
+        "name": "Ally Moyer",
+        "email": "dartbarjax@gmail.com"
+      },
+      "setup": "Setup from 6:15 PM. Alley spaces 10×10 — bring the tent.",
+      "nextStep": "When Ally's Google Form arrives, fill it (needs your Google sign-in). Date not confirmed yet."
+    },
+    {
+      "id": "904-pop-up-2026-11-01",
+      "name": "904 Pop Up — Seawalk Pavilion",
+      "series": "904-pop-up",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-01",
+      "venue": "Seawalk Pavilion",
+      "address": "Seawalk Pavilion, Jacksonville Beach, FL",
+      "fee": "$135 (10×10) — $200 tier = pass",
+      "payHow": "Password link after approval, no refunds",
+      "contact": {
+        "name": "904 Pop Up",
+        "email": "reply comes to jaysteeljewelry@gmail.com"
+      },
+      "nextStep": "Approval email expected 3–5 business days after Oct 17."
+    },
+    {
+      "id": "unf-tabling-2026-11-03",
+      "name": "UNF Tabling",
+      "series": "unf-tabling",
+      "kind": "campus",
+      "status": "booked",
+      "date": "2026-11-03",
+      "venue": "University of North Florida",
+      "address": "1 UNF Dr, Jacksonville, FL 32224"
+    },
+    {
+      "id": "first-friday-flagler-2026-11-06",
+      "name": "First Friday Flagler Beach",
+      "series": "first-friday-flagler",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-06",
+      "start": "18:00",
+      "end": "21:00",
+      "venue": "Veterans Park",
+      "address": "105 S 2nd St, Flagler Beach, FL",
+      "fee": "~$100 to Surf 97.3 + $35 city itinerant fee",
+      "payHow": "Both paid day-of by 5 PM at City Hall",
+      "contact": {
+        "name": "Surf 97.3",
+        "email": "flaglerbeachradio@gmail.com",
+        "phone": "(386) 449-8355"
+      },
+      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt."
+    },
+    {
+      "id": "park-street-1st-2026-11-07",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-07",
+      "start": "10:00",
+      "end": "16:00",
+      "venue": "Park Street Market",
+      "address": "2761 Park St, Jacksonville, FL"
+    },
+    {
+      "id": "northside-2026-11-07",
+      "name": "The Northside Market",
+      "series": "northside",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-07",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "The Northside Market",
+      "address": "590 Duval Station Rd, Jacksonville, FL",
+      "fee": "Not listed yet",
+      "contact": {
+        "email": "thenorthsidemarket904@gmail.com"
+      },
+      "nextStep": "Waiting on their reply with fee + form.",
+      "headsUp": "Same day as Park Street Market on your calendar."
+    },
+    {
+      "id": "bjs-sunday-2026-11-15",
+      "name": "Small Business Sunday Market @ BJ's",
+      "series": "bjs-sunday",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-15",
+      "start": "11:00",
+      "end": "17:00",
+      "venue": "BJ's Restaurant & Brewhouse",
+      "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
+      "notes": "Small Business Sunday Markets vendor.",
+      "link": "https://smallbizsundaymarkets.com"
+    },
+    {
+      "id": "green-room-2026-11-20",
+      "name": "Green Room Brewing × Pot & Knot",
+      "series": "green-room",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-20",
+      "start": "16:00",
+      "end": "20:00",
+      "venue": "Green Room Brewing",
+      "address": "228 Third St N, Jacksonville Beach, FL",
+      "fee": "$35",
+      "notes": "Applied, not accepted yet."
+    },
+    {
+      "id": "park-street-3rd-2026-11-21",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-21",
+      "start": "09:00",
+      "end": "15:00",
+      "venue": "Park Street Market",
+      "address": "Park St, Jacksonville, FL 32256",
+      "headsUp": "Same day as Mayport Waterfront Market."
+    },
+    {
+      "id": "mayport-2026-11-21",
+      "name": "Mayport Village Waterfront Market",
+      "series": "mayport",
+      "kind": "market",
+      "status": "approved",
+      "date": "2026-11-21",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "Mayport Village",
+      "address": "4542 Ocean St, Jacksonville, FL 32233",
+      "fee": "$45 (returning-vendor fee)",
+      "payBy": "2026-10-18",
+      "payHow": "You book + pay on the vendor portal (booth held 10 min while paying)",
+      "contact": {
+        "name": "Mitch Reeves",
+        "email": "mayportmarket@mayportwaterfrontpartnership.org"
+      },
+      "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
+      "nextStep": "Book + pay Nov 21 on the vendor portal.",
+      "headsUp": "Park Street Market is on your calendar the same day.",
+      "link": "https://market.mayportwaterfrontpartnership.org"
+    },
+    {
+      "id": "shop-small-hyatt-2026-11-22",
+      "name": "Shop Small Business @ Hyatt Place",
+      "series": "shop-small-hyatt",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-22",
+      "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
+      "address": "4742 Town Center Pkwy, Jacksonville, FL",
+      "notes": "Time not on the calendar."
+    },
+    {
+      "id": "curative-2026-11-28",
+      "name": "Curative Market — Holiday Marketplace (indoor)",
+      "series": "curative",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-28",
+      "start": "12:00",
+      "end": "16:00",
+      "venue": "Rise at Glen Kernan Park",
+      "address": "4890 Sweetgrass Pl, Jacksonville, FL",
+      "fee": "$50",
+      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "contact": {
+        "name": "Candace Fenderson",
+        "email": "info@thecurativemarketco.com",
+        "phone": "(904) 274-1242"
+      },
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+    },
+    {
+      "id": "curative-2026-11-29",
+      "name": "Curative Market — Town Center Signature Market",
+      "series": "curative",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-29",
+      "start": "14:00",
+      "end": "18:00",
+      "venue": "Moe's, St. Johns Town Center",
+      "address": "St. Johns Town Center, Jacksonville, FL",
+      "fee": "$50",
+      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "contact": {
+        "name": "Candace Fenderson",
+        "email": "info@thecurativemarketco.com",
+        "phone": "(904) 274-1242"
+      },
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+    },
+    {
+      "id": "first-friday-flagler-2026-12-04",
+      "name": "First Friday Flagler Beach (holiday + tree lighting)",
+      "series": "first-friday-flagler",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-04",
+      "start": "18:00",
+      "end": "21:00",
+      "venue": "Veterans Park",
+      "address": "105 S 2nd St, Flagler Beach, FL",
+      "fee": "~$100 to Surf 97.3 + $35 city itinerant fee",
+      "payHow": "Both paid day-of by 5 PM at City Hall",
+      "contact": {
+        "name": "Surf 97.3",
+        "email": "flaglerbeachradio@gmail.com",
+        "phone": "(386) 449-8355"
+      },
+      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt."
+    },
+    {
+      "id": "park-street-1st-2026-12-05",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-12-05",
+      "start": "10:00",
+      "end": "16:00",
+      "venue": "Park Street Market",
+      "address": "2761 Park St, Jacksonville, FL"
+    },
+    {
+      "id": "northside-2026-12-05",
+      "name": "The Northside Market",
+      "series": "northside",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-05",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "The Northside Market",
+      "address": "590 Duval Station Rd, Jacksonville, FL",
+      "fee": "Not listed yet",
+      "contact": {
+        "email": "thenorthsidemarket904@gmail.com"
+      },
+      "nextStep": "Waiting on their reply with fee + form.",
+      "headsUp": "Same day as Park Street Market on your calendar."
+    },
+    {
+      "id": "oakleaf-2026-12-05",
+      "name": "Oakleaf Christmas Parade Vendor Market",
+      "series": "oakleaf",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-05",
+      "start": "16:00",
+      "end": "19:00",
+      "venue": "Oakleaf Plantation Clocktower Roundabout",
+      "address": "Oakleaf Plantation Clocktower Roundabout, Orange Park, FL",
+      "fee": "$55 after acceptance",
+      "payHow": "Payment instructions come with the acceptance email",
+      "contact": {
+        "email": "oakleafcommunityevents@gmail.com",
+        "phone": "(904) 535-9044"
+      },
+      "setup": "Vendors 4 PM · parade 6:30 PM.",
+      "nextStep": "Wait for acceptance (their deadline Nov 28)."
+    },
+    {
+      "id": "curative-2026-12-06",
+      "name": "Curative Market — Sunday Market Mandarin",
+      "series": "curative",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-06",
+      "start": "15:00",
+      "end": "19:00",
+      "venue": "Mandarin",
+      "address": "10478 San Jose Blvd #4, Jacksonville, FL",
+      "fee": "$35",
+      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "contact": {
+        "name": "Candace Fenderson",
+        "email": "info@thecurativemarketco.com",
+        "phone": "(904) 274-1242"
+      },
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+    },
+    {
+      "id": "putnam-2026-12-10",
+      "name": "Putnam's Festival of Lights",
+      "series": "putnam",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-10",
+      "start": "17:00",
+      "end": "21:00",
+      "venue": "Putnam County Fairgrounds",
+      "address": "East Palatka, FL",
+      "fee": "$100 per 10×10",
+      "payBy": "2026-11-01",
+      "payHow": "Due by Nov 1 if accepted",
+      "contact": {
+        "name": "The Putnam County Fair",
+        "email": "info@putnamfairandexpo.com"
+      },
+      "setup": "Booth manned all 4 nights (Thu–Sun), 5–9 PM.",
+      "nextStep": "Watch for the acceptance email, then pay $100 by Nov 1.",
+      "endDate": "2026-12-13"
+    },
+    {
+      "id": "904-pop-up-2026-12-12",
+      "name": "904 Pop Up — RiversEdge",
+      "series": "904-pop-up",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-12",
+      "venue": "RiversEdge, Downtown Jax",
+      "address": "RiversEdge, Jacksonville, FL",
+      "fee": "$135 (10×10) — $200 tier = pass",
+      "payHow": "Password link after approval, no refunds",
+      "contact": {
+        "name": "904 Pop Up",
+        "email": "reply comes to jaysteeljewelry@gmail.com"
+      },
+      "nextStep": "Approval email expected 3–5 business days after Oct 17.",
+      "headsUp": "Same day as Eagle Landing (agreement sent)."
+    },
+    {
+      "id": "eagle-landing-2026-12-12",
+      "name": "Eagle Landing Holiday Vendor Market",
+      "series": "eagle-landing",
+      "kind": "market",
+      "status": "agreement",
+      "date": "2026-12-12",
+      "start": "10:00",
+      "end": "15:00",
+      "venue": "Village Green, Eagle Landing",
+      "address": "3975 Eagle Landing Pkwy, Orange Park, FL",
+      "fee": "$30 (non-resident), non-refundable",
+      "payBy": "2026-12-01",
+      "payHow": "Pay day-of or prepay by Dec 1",
+      "contact": {
+        "name": "Jessica Quesenberry",
+        "email": "eventsatel@gmail.com"
+      },
+      "setup": "Setup 8 AM.",
+      "nextStep": "Wait for their confirmation.",
+      "headsUp": "Same day as 904 Pop Up RiversEdge."
+    },
+    {
+      "id": "green-room-2026-12-18",
+      "name": "Green Room Brewing × Pot & Knot",
+      "series": "green-room",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-18",
+      "start": "16:00",
+      "end": "20:00",
+      "venue": "Green Room Brewing",
+      "address": "228 Third St N, Jacksonville Beach, FL",
+      "fee": "$35",
+      "notes": "Applied, not accepted yet."
+    },
+    {
+      "id": "park-street-3rd-2026-12-19",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-12-19",
+      "start": "09:00",
+      "end": "15:00",
+      "venue": "Park Street Market",
+      "address": "Park St, Jacksonville, FL 32256",
+      "headsUp": "Same day as Mayport Waterfront Market."
+    },
+    {
+      "id": "mayport-2026-12-19",
+      "name": "Mayport Village Waterfront Market",
+      "series": "mayport",
+      "kind": "market",
+      "status": "approved",
+      "date": "2026-12-19",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "Mayport Village",
+      "address": "4542 Ocean St, Jacksonville, FL 32233",
+      "fee": "$35",
+      "payHow": "You book + pay on the vendor portal (booth held 10 min while paying)",
+      "contact": {
+        "name": "Mitch Reeves",
+        "email": "mayportmarket@mayportwaterfrontpartnership.org"
+      },
+      "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
+      "nextStep": "Book + pay Dec 19 on the vendor portal.",
+      "headsUp": "Park Street Market is on your calendar the same day.",
+      "link": "https://market.mayportwaterfrontpartnership.org"
+    },
+    {
+      "id": "bjs-sunday-2026-12-20",
+      "name": "Small Business Sunday Market @ BJ's",
+      "series": "bjs-sunday",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-12-20",
+      "start": "11:00",
+      "end": "17:00",
+      "venue": "BJ's Restaurant & Brewhouse",
+      "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
+      "notes": "Small Business Sunday Markets vendor.",
+      "link": "https://smallbizsundaymarkets.com"
+    },
+    {
+      "id": "curative-2026-12-20",
+      "name": "Curative Market — Merry at Moe's",
+      "series": "curative",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-20",
+      "start": "11:00",
+      "end": "15:00",
+      "venue": "Moe's, St. Johns Town Center",
+      "address": "St. Johns Town Center, Jacksonville, FL",
+      "fee": "$25",
+      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "contact": {
+        "name": "Candace Fenderson",
+        "email": "info@thecurativemarketco.com",
+        "phone": "(904) 274-1242"
+      },
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
+      "headsUp": "Same day as BJ's Sunday Market on your calendar."
+    },
+    {
+      "id": "shop-small-hyatt-2026-12-27",
+      "name": "Shop Small Business @ Hyatt Place",
+      "series": "shop-small-hyatt",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-12-27",
+      "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
+      "address": "4742 Town Center Pkwy, Jacksonville, FL",
+      "notes": "Time not on the calendar."
+    },
+    {
+      "id": "park-street-1st-2027-01-02",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2027-01-02",
+      "start": "10:00",
+      "end": "16:00",
+      "venue": "Park Street Market",
+      "address": "2761 Park St, Jacksonville, FL"
+    },
+    {
+      "id": "green-room-2027-01-15",
+      "name": "Green Room Brewing × Pot & Knot",
+      "series": "green-room",
+      "kind": "market",
+      "status": "pending",
+      "date": "2027-01-15",
+      "start": "16:00",
+      "end": "20:00",
+      "venue": "Green Room Brewing",
+      "address": "228 Third St N, Jacksonville Beach, FL",
+      "fee": "$35",
+      "notes": "Applied, not accepted yet."
+    },
+    {
+      "id": "park-street-3rd-2027-01-16",
+      "name": "Park Street Market",
+      "series": "park-street",
+      "kind": "market",
+      "status": "booked",
+      "date": "2027-01-16",
+      "start": "09:00",
+      "end": "15:00",
+      "venue": "Park Street Market",
+      "address": "Park St, Jacksonville, FL 32256",
+      "headsUp": "Same day as Mayport Waterfront Market."
+    },
+    {
+      "id": "mayport-2027-01-16",
+      "name": "Mayport Village Waterfront Market",
+      "series": "mayport",
+      "kind": "market",
+      "status": "booked",
+      "date": "2027-01-16",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "Mayport Village",
+      "address": "4542 Ocean St, Jacksonville, FL 32233",
+      "fee": "$35",
+      "payHow": "You book + pay on the vendor portal (booth held 10 min while paying)",
+      "contact": {
+        "name": "Mitch Reeves",
+        "email": "mayportmarket@mayportwaterfrontpartnership.org"
+      },
+      "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
+      "nextStep": "Book on the vendor portal.",
+      "link": "https://market.mayportwaterfrontpartnership.org"
+    },
+    {
+      "id": "bjs-sunday-2027-01-17",
+      "name": "Small Business Sunday Market @ BJ's",
+      "series": "bjs-sunday",
+      "kind": "market",
+      "status": "booked",
+      "date": "2027-01-17",
+      "start": "11:00",
+      "end": "17:00",
+      "venue": "BJ's Restaurant & Brewhouse",
+      "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
+      "notes": "Small Business Sunday Markets vendor.",
+      "link": "https://smallbizsundaymarkets.com"
+    },
+    {
+      "id": "shop-small-hyatt-2027-01-24",
+      "name": "Shop Small Business @ Hyatt Place",
+      "series": "shop-small-hyatt",
+      "kind": "market",
+      "status": "booked",
+      "date": "2027-01-24",
+      "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
+      "address": "4742 Town Center Pkwy, Jacksonville, FL",
+      "notes": "Time not on the calendar."
+    }
+  ],
+  "openApplications": [
+    {
+      "name": "Neptune Beach Farmers Market",
+      "status": "pending",
+      "when": "Every Sunday · 10 AM–2 PM (arrive 9:30)",
+      "address": "1515 Florida Blvd, Neptune Beach, FL",
+      "fee": "$40 cash/check day-of",
+      "contact": {
+        "name": "Julie Olsson",
+        "email": "neptunebeachfarmersmarket@gmail.com"
+      },
+      "nextStep": "She needs a copy of your renewed Duval business tax receipt before your first market."
+    },
+    {
+      "name": "3rd Saturday Market in the Park (Green Cove Springs)",
+      "status": "pending",
+      "when": "3rd Saturdays, Sep–June",
+      "address": "Green Cove Springs, FL",
+      "fee": "$33 per market",
+      "contact": {
+        "name": "GCSBL",
+        "email": "via gcsbl.com"
+      },
+      "nextStep": "Wait for confirmation; pick dates then. Next dates clash with Mayport."
+    },
+    {
+      "name": "Wildlight Market Place (Yulee)",
+      "status": "pending",
+      "when": "1st & 3rd Saturdays",
+      "address": "Wildlight, Yulee, FL",
+      "fee": "$25 membership, then $25–33 per market",
+      "contact": {
+        "email": "info@WildlightMarketPlace.com"
+      },
+      "nextStep": "Wait for approval; pick dates then."
+    }
+  ]
+}
