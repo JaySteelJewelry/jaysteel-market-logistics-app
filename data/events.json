@@ -27,7 +27,8 @@
       "venue": "BJ's Restaurant & Brewhouse",
       "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
       "notes": "Small Business Sunday Markets vendor.",
-      "link": "https://smallbizsundaymarkets.com"
+      "link": "https://smallbizsundaymarkets.com",
+      "paid": false
     },
     {
       "id": "uf-market-2026-10-21",
@@ -39,7 +40,8 @@
       "start": "08:00",
       "end": "16:00",
       "venue": "University of Florida",
-      "address": "Gainesville, FL"
+      "address": "Gainesville, FL",
+      "paid": false
     },
     {
       "id": "unf-tabling-2026-10-22",
@@ -49,7 +51,8 @@
       "status": "booked",
       "date": "2026-10-22",
       "venue": "University of North Florida",
-      "address": "1 UNF Dr, Jacksonville, FL 32224"
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": false
     },
     {
       "id": "shop-small-hyatt-2026-10-25",
@@ -60,7 +63,8 @@
       "date": "2026-10-25",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar."
+      "notes": "Time not on the calendar.",
+      "paid": false
     },
     {
       "id": "unf-tabling-2026-10-28",
@@ -72,7 +76,8 @@
       "start": "08:00",
       "end": "16:00",
       "venue": "University of North Florida",
-      "address": "1 UNF Dr, Jacksonville, FL 32224"
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": false
     },
     {
       "id": "unf-tabling-2026-10-29",
@@ -84,7 +89,8 @@
       "start": "08:00",
       "end": "16:00",
       "venue": "University of North Florida",
-      "address": "1 UNF Dr, Jacksonville, FL 32224"
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": false
     },
     {
       "id": "dart-bar-2026-10-30",
@@ -103,7 +109,8 @@
         "email": "dartbarjax@gmail.com"
       },
       "setup": "Setup from 6:15 PM. Alley spaces 10×10 — bring the tent.",
-      "nextStep": "When Ally's Google Form arrives, fill it (needs your Google sign-in). Date not confirmed yet."
+      "nextStep": "When Ally's Google Form arrives, fill it (needs your Google sign-in). Date not confirmed yet.",
+      "paid": false
     },
     {
       "id": "904-pop-up-2026-11-01",
@@ -120,7 +127,8 @@
         "name": "904 Pop Up",
         "email": "reply comes to jaysteeljewelry@gmail.com"
       },
-      "nextStep": "Approval email expected 3–5 business days after Oct 17."
+      "nextStep": "Approval email expected 3–5 business days after Oct 17.",
+      "paid": false
     },
     {
       "id": "unf-tabling-2026-11-03",
@@ -130,7 +138,8 @@
       "status": "booked",
       "date": "2026-11-03",
       "venue": "University of North Florida",
-      "address": "1 UNF Dr, Jacksonville, FL 32224"
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": false
     },
     {
       "id": "first-friday-flagler-2026-11-06",
@@ -150,7 +159,8 @@
         "email": "flaglerbeachradio@gmail.com",
         "phone": "(386) 449-8355"
       },
-      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt."
+      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt.",
+      "paid": false
     },
     {
       "id": "park-street-1st-2026-11-07",
@@ -162,7 +172,8 @@
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
-      "address": "2761 Park St, Jacksonville, FL"
+      "address": "2761 Park St, Jacksonville, FL",
+      "paid": false
     },
     {
       "id": "northside-2026-11-07",
@@ -180,7 +191,8 @@
         "email": "thenorthsidemarket904@gmail.com"
       },
       "nextStep": "Waiting on their reply with fee + form.",
-      "headsUp": "Same day as Park Street Market on your calendar."
+      "headsUp": "Same day as Park Street Market on your calendar.",
+      "paid": false
     },
     {
       "id": "bjs-sunday-2026-11-15",
@@ -194,7 +206,8 @@
       "venue": "BJ's Restaurant & Brewhouse",
       "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
       "notes": "Small Business Sunday Markets vendor.",
-      "link": "https://smallbizsundaymarkets.com"
+      "link": "https://smallbizsundaymarkets.com",
+      "paid": false
     },
     {
       "id": "green-room-2026-11-20",
@@ -208,7 +221,8 @@
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet."
+      "notes": "Applied, not accepted yet.",
+      "paid": false
     },
     {
       "id": "park-street-3rd-2026-11-21",
@@ -221,7 +235,8 @@
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
-      "headsUp": "Same day as Mayport Waterfront Market."
+      "headsUp": "Same day as Mayport Waterfront Market.",
+      "paid": false
     },
     {
       "id": "mayport-2026-11-21",
@@ -244,7 +259,8 @@
       "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
       "nextStep": "Book + pay Nov 21 on the vendor portal.",
       "headsUp": "Park Street Market is on your calendar the same day.",
-      "link": "https://market.mayportwaterfrontpartnership.org"
+      "link": "https://market.mayportwaterfrontpartnership.org",
+      "paid": false
     },
     {
       "id": "shop-small-hyatt-2026-11-22",
@@ -255,7 +271,8 @@
       "date": "2026-11-22",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar."
+      "notes": "Time not on the calendar.",
+      "paid": false
     },
     {
       "id": "curative-2026-11-28",
@@ -275,7 +292,8 @@
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
+      "paid": false
     },
     {
       "id": "curative-2026-11-29",
@@ -295,7 +313,8 @@
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
+      "paid": false
     },
     {
       "id": "first-friday-flagler-2026-12-04",
@@ -315,7 +334,8 @@
         "email": "flaglerbeachradio@gmail.com",
         "phone": "(386) 449-8355"
       },
-      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt."
+      "nextStep": "Invite email goes out mid-month — first 24 non-food vendors to reply get a spot. City form needs your driver's license # + a current business tax receipt.",
+      "paid": false
     },
     {
       "id": "park-street-1st-2026-12-05",
@@ -327,7 +347,8 @@
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
-      "address": "2761 Park St, Jacksonville, FL"
+      "address": "2761 Park St, Jacksonville, FL",
+      "paid": false
     },
     {
       "id": "northside-2026-12-05",
@@ -345,7 +366,8 @@
         "email": "thenorthsidemarket904@gmail.com"
       },
       "nextStep": "Waiting on their reply with fee + form.",
-      "headsUp": "Same day as Park Street Market on your calendar."
+      "headsUp": "Same day as Park Street Market on your calendar.",
+      "paid": false
     },
     {
       "id": "oakleaf-2026-12-05",
@@ -365,7 +387,8 @@
         "phone": "(904) 535-9044"
       },
       "setup": "Vendors 4 PM · parade 6:30 PM.",
-      "nextStep": "Wait for acceptance (their deadline Nov 28)."
+      "nextStep": "Wait for acceptance (their deadline Nov 28).",
+      "paid": false
     },
     {
       "id": "curative-2026-12-06",
@@ -385,7 +408,8 @@
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing."
+      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
+      "paid": false
     },
     {
       "id": "putnam-2026-12-10",
@@ -407,7 +431,8 @@
       },
       "setup": "Booth manned all 4 nights (Thu–Sun), 5–9 PM.",
       "nextStep": "Watch for the acceptance email, then pay $100 by Nov 1.",
-      "endDate": "2026-12-13"
+      "endDate": "2026-12-13",
+      "paid": false
     },
     {
       "id": "904-pop-up-2026-12-12",
@@ -425,7 +450,8 @@
         "email": "reply comes to jaysteeljewelry@gmail.com"
       },
       "nextStep": "Approval email expected 3–5 business days after Oct 17.",
-      "headsUp": "Same day as Eagle Landing (agreement sent)."
+      "headsUp": "Same day as Eagle Landing (agreement sent).",
+      "paid": false
     },
     {
       "id": "eagle-landing-2026-12-12",
@@ -447,7 +473,8 @@
       },
       "setup": "Setup 8 AM.",
       "nextStep": "Wait for their confirmation.",
-      "headsUp": "Same day as 904 Pop Up RiversEdge."
+      "headsUp": "Same day as 904 Pop Up RiversEdge.",
+      "paid": false
     },
     {
       "id": "green-room-2026-12-18",
@@ -461,7 +488,8 @@
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet."
+      "notes": "Applied, not accepted yet.",
+      "paid": false
     },
     {
       "id": "park-street-3rd-2026-12-19",
@@ -474,7 +502,8 @@
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
-      "headsUp": "Same day as Mayport Waterfront Market."
+      "headsUp": "Same day as Mayport Waterfront Market.",
+      "paid": false
     },
     {
       "id": "mayport-2026-12-19",
@@ -496,7 +525,8 @@
       "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
       "nextStep": "Book + pay Dec 19 on the vendor portal.",
       "headsUp": "Park Street Market is on your calendar the same day.",
-      "link": "https://market.mayportwaterfrontpartnership.org"
+      "link": "https://market.mayportwaterfrontpartnership.org",
+      "paid": false
     },
     {
       "id": "bjs-sunday-2026-12-20",
@@ -510,7 +540,8 @@
       "venue": "BJ's Restaurant & Brewhouse",
       "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
       "notes": "Small Business Sunday Markets vendor.",
-      "link": "https://smallbizsundaymarkets.com"
+      "link": "https://smallbizsundaymarkets.com",
+      "paid": false
     },
     {
       "id": "curative-2026-12-20",
@@ -531,7 +562,8 @@
         "phone": "(904) 274-1242"
       },
       "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
-      "headsUp": "Same day as BJ's Sunday Market on your calendar."
+      "headsUp": "Same day as BJ's Sunday Market on your calendar.",
+      "paid": false
     },
     {
       "id": "shop-small-hyatt-2026-12-27",
@@ -542,7 +574,8 @@
       "date": "2026-12-27",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar."
+      "notes": "Time not on the calendar.",
+      "paid": false
     },
     {
       "id": "park-street-1st-2027-01-02",
@@ -554,7 +587,8 @@
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
-      "address": "2761 Park St, Jacksonville, FL"
+      "address": "2761 Park St, Jacksonville, FL",
+      "paid": false
     },
     {
       "id": "green-room-2027-01-15",
@@ -568,7 +602,8 @@
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet."
+      "notes": "Applied, not accepted yet.",
+      "paid": false
     },
     {
       "id": "park-street-3rd-2027-01-16",
@@ -581,7 +616,8 @@
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
-      "headsUp": "Same day as Mayport Waterfront Market."
+      "headsUp": "Same day as Mayport Waterfront Market.",
+      "paid": false
     },
     {
       "id": "mayport-2027-01-16",
@@ -602,7 +638,8 @@
       },
       "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
       "nextStep": "Book on the vendor portal.",
-      "link": "https://market.mayportwaterfrontpartnership.org"
+      "link": "https://market.mayportwaterfrontpartnership.org",
+      "paid": false
     },
     {
       "id": "bjs-sunday-2027-01-17",
@@ -616,7 +653,8 @@
       "venue": "BJ's Restaurant & Brewhouse",
       "address": "15022 Max Leggett Pkwy, Jacksonville, FL",
       "notes": "Small Business Sunday Markets vendor.",
-      "link": "https://smallbizsundaymarkets.com"
+      "link": "https://smallbizsundaymarkets.com",
+      "paid": false
     },
     {
       "id": "shop-small-hyatt-2027-01-24",
@@ -627,7 +665,8 @@
       "date": "2027-01-24",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar."
+      "notes": "Time not on the calendar.",
+      "paid": false
     }
   ],
   "openApplications": [

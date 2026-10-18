@@ -173,7 +173,8 @@
     if (!e) { app.innerHTML = `<a class="back" href="#/">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`; return; }
     const c = e.contact || {};
     const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && `<a href="tel:${esc(c.phone.replace(/[^\d+]/g, ""))}">${esc(c.phone)}</a>`].filter(Boolean).join("<br>");
-    const pay = [e.fee && `<b>${esc(e.fee)}</b>`, e.payBy && `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
+    const paidLine = (e.status === "approved" || e.status === "agreement") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
+    const pay = [e.fee && `<b>${esc(e.fee)}</b>`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, e.payBy && `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
     app.innerHTML = `<a class="back" href="#/">‹ All markets</a>
       <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
       <div class="actions">
@@ -378,6 +379,7 @@
     viewList();
   }
   window.addEventListener("hashchange", route);
+  if ("serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); }); }
   fetch("data/events.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); DATA = d; route(); })

@@ -21,11 +21,13 @@ Each event looks like this (only `id`, `name`, `date`, `status` are required):
   "venue": "Mayport Village", "address": "4542 Ocean St, Jacksonville, FL 32233",
   "fee": "$45", "payBy": "2026-10-18", "payHow": "Vendor portal",
   "contact": { "name": "Mitch Reeves", "email": "mayportmarket@mayportwaterfrontpartnership.org" },
+  "paid": false, "booth": "B12",
   "setup": "Setup 7:30–9:45 AM", "nextStep": "Book + pay on the portal", "headsUp": "Same day as Park Street"
 }
 ```
 
 Status words: `approved` ✅ · `agreement` 📝 · `pending` ⏳ · `tentative` ❓ · `booked` 📌 (on your own calendar).
+`paid: true` + `status: "approved"` makes the market show in **📍 Find us at** on the store page (jaysteeljewelry.github.io). `booth` is optional.
 Times are 24-hour Eastern (`"18:00"` = 6 PM). Multi-day events add `"endDate"`.
 
 ## Where things are saved
