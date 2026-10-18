@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T15:12Z",
+ "updated": "2026-10-18T20:44Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -366,7 +366,7 @@
    "type": "market",
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://diglocal.org/markets/farmers-market-vendors/",
-   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday b",
+   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday before market)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-10-18"
@@ -461,7 +461,7 @@
    "type": "county",
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://bakercountyfair.com/online-forms/outside-food-merchandise-application/",
-   "deadline": "2026 cycle: exhibit hall paid in full by 2026-09-15; food/me",
+   "deadline": "2026 cycle: exhibit hall paid in full by 2026-09-15; food/merch fee & menu by 2026-10-01",
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-10-20"
@@ -1278,7 +1278,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://cdn.saffire.com/files.ashx?t=fg&rid=PutnamCountyFair&f=2026_Inside_Exhibitor_Application.pdf&cb=791d18b9",
    "fee": "2026 rates: Inside commercial $20 per linear foot (9 days); Outdoor commercial & nonprofit $35 per foot",
-   "deadline": "Returning exhibitors: first Monday in December (2026 cycle d",
+   "deadline": "Returning exhibitors: first Monday in December (2026 cycle deadline was 2025-12-01)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2027-03-24"
@@ -1407,7 +1407,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://gcsbl.com/2026VENDOR/",
    "fee": "$33 per market",
-   "deadline": "Rolling – applications reviewed monthly; remaining spaces op",
+   "deadline": "Rolling – applications reviewed monthly; remaining spaces open to approved list on the 5th of each month",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1423,7 +1423,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://orangeparkmarket.saffire.com/p/vendors/2324-waiting-list",
    "fee": "$25 per market day (farmers, general vendors, food up to 15x10)",
-   "deadline": "Rolling (waitlist); 2026 season application deadline was Mar",
+   "deadline": "Rolling (waitlist); 2026 season application deadline was March 31 per market Facebook",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1439,7 +1439,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://www.opfallfestival.com/p/artists-and-vendors/applications",
    "fee": "Zones: Green $200 / Purple $175 / Blue $150; premium orange +$25",
-   "deadline": "Booth payments due Sept 1; food vendor deadline July 17 (202",
+   "deadline": "Booth payments due Sept 1; food vendor deadline July 17 (2024 text, still posted)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1576,7 +1576,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://ems.unf.edu/EmsWebApp/AccountManagement.aspx",
    "fee": "$40 + tax per booth (external); first-time vendors $25 + tax; buy 6 booths in a semester, 7th free",
-   "deadline": "Rolling – Web App request due 5 p.m. two Wednesdays before e",
+   "deadline": "Rolling – Web App request due 5 p.m. two Wednesdays before each Market Day; payment due 5 p.m. the Wednesday prior; cancellations by 3 p.m. Monday prior",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1592,7 +1592,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://ems.unf.edu/EmsWebApp/AccountManagement.aspx",
    "fee": "$50 for up to 4 hours (Tabling: Osprey Plaza, The Green; Mon–Sun)",
-   "deadline": "Rolling – external tabling requests due 15 business days in ",
+   "deadline": "Rolling – external tabling requests due 15 business days in advance",
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "when": "Any weekday by reservation (academic year)"
@@ -1609,7 +1609,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://diglocal.org/markets/farmers-market-vendors/",
    "fee": "$25 per tent per market",
-   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday b",
+   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday before market)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1682,7 +1682,7 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://www.neflfair.org/inside-vendor-application",
    "fee": "Indoor $400 per 10x10; Outdoor $50 per foot of frontage (min 10 ft)",
-   "deadline": "2026 cycle: contract, full payment and COI were due 2026-06-",
+   "deadline": "2026 cycle: contract, full payment and COI were due 2026-06-01",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -2013,7 +2013,7 @@
    "type": "college",
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://www.stetson.edu/administration/vibrancy/cub/reservations.php",
-   "deadline": "At least one week before the desired date (CUB Tabling, per ",
+   "deadline": "At least one week before the desired date (CUB Tabling, per search listing)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "when": "Weekdays 10:00 AM–2:00 PM during semesters (CUB Tabling, per search listing)"
