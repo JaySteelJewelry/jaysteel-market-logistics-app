@@ -374,20 +374,21 @@
       "name": "Oakleaf Christmas Parade Vendor Market",
       "series": "oakleaf",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-12-05",
       "start": "16:00",
       "end": "19:00",
       "venue": "Oakleaf Plantation Clocktower Roundabout",
       "address": "Oakleaf Plantation Clocktower Roundabout, Orange Park, FL",
-      "fee": "$55 after acceptance",
-      "payHow": "Payment instructions come with the acceptance email",
+      "fee": "$55",
+      "payHow": "Invoice coming by email from Oakleaf Community Events — NOT paid yet; pay when it arrives",
       "contact": {
+        "name": "Sarah Compere",
         "email": "oakleafcommunityevents@gmail.com",
         "phone": "(904) 535-9044"
       },
       "setup": "Vendors 4 PM · parade 6:30 PM.",
-      "nextStep": "Wait for acceptance (their deadline Nov 28).",
+      "nextStep": "Approved Oct 18. Pay $55 when the invoice arrives; day-of schedule also coming by email.",
       "paid": false
     },
     {
