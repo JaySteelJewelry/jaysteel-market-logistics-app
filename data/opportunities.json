@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T20:44Z",
+ "updated": "2026-10-19T04:41Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -355,71 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "seed-fl-0021",
-   "origin": "seed",
-   "title": "Atlantic Beach Farmers Market",
-   "org": "Dig Local Network / City of Atlantic Beach",
-   "city": "Atlantic Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://diglocal.org/markets/farmers-market-vendors/",
-   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday before market)",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-18"
-  },
-  {
-   "id": "seed-fl-0045",
-   "origin": "seed",
-   "title": "Neptune Beach Farmers Market (Sundays)",
-   "org": "Salt Air Farmers Market, LLC (DBA Neptune Beach Farmers Market)",
-   "city": "Neptune Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://www.neptunebeachfarmersmarket.org/_files/ugd/b744eb_701feaed89d7435e8760e5f5c57fc603.pdf",
-   "fee": "$40 per market (cash/check on market day)",
-   "deadline": "Rolling (waitlist for well-represented products)",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-18"
-  },
-  {
-   "id": "seed-fl-0063",
-   "origin": "seed",
-   "title": "Palm Coast Farmers Market – Sundays at European Village",
-   "org": "Palm Coast Farmers Market (\"Village Open-Air Market\") at European Village",
-   "city": "Palm Coast",
-   "county": "Flagler",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://palmcoastfarmersmarket.com/apply",
-   "deadline": "Rolling – reply within ~7 days or consider not approved",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-18"
-  },
-  {
-   "id": "seed-fl-0107",
-   "origin": "seed",
-   "title": "St. Augustine Sunday Farmers Market at Classic Car Museum (every Sunday)",
-   "org": "St Augustine Farmers Market (Sunday market)",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://bit.ly/interested-vendor",
-   "deadline": "Rolling",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-18"
-  },
   {
    "id": "42f14ff9d75d",
    "title": "After Dark",
@@ -1444,6 +1379,21 @@
    "firstSeen": "2026-10-13"
   },
   {
+   "id": "seed-fl-0021",
+   "origin": "seed",
+   "title": "Atlantic Beach Farmers Market",
+   "org": "Dig Local Network / City of Atlantic Beach",
+   "city": "Atlantic Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://diglocal.org/markets/farmers-market-vendors/",
+   "deadline": "Rolling (weekly reservation + fee due by 12:00 PM Thursday before market)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0022",
    "origin": "seed",
    "title": "Beach Blvd Flea & Farmers Market – Table/Unit Rentals ($11 Table Fridays)",
@@ -1614,6 +1564,22 @@
    "firstSeen": "2026-10-13"
   },
   {
+   "id": "seed-fl-0045",
+   "origin": "seed",
+   "title": "Neptune Beach Farmers Market (Sundays)",
+   "org": "Salt Air Farmers Market, LLC (DBA Neptune Beach Farmers Market)",
+   "city": "Neptune Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://www.neptunebeachfarmersmarket.org/_files/ugd/b744eb_701feaed89d7435e8760e5f5c57fc603.pdf",
+   "fee": "$40 per market (cash/check on market day)",
+   "deadline": "Rolling (waitlist for well-represented products)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0058",
    "origin": "seed",
    "title": "Flagler County Fair & Youth Show",
@@ -1652,6 +1618,21 @@
    "type": "city",
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://www.palmcoast.gov/events/home/details/beats-and-eats",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0063",
+   "origin": "seed",
+   "title": "Palm Coast Farmers Market – Sundays at European Village",
+   "org": "Palm Coast Farmers Market (\"Village Open-Air Market\") at European Village",
+   "city": "Palm Coast",
+   "county": "Flagler",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://palmcoastfarmersmarket.com/apply",
+   "deadline": "Rolling – reply within ~7 days or consider not approved",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1864,6 +1845,21 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://singoutloudsignup.com/food-trucks-food-vendors/",
    "fee": "25% of sales via festival POS (2023 terms)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0107",
+   "origin": "seed",
+   "title": "St. Augustine Sunday Farmers Market at Classic Car Museum (every Sunday)",
+   "org": "St Augustine Farmers Market (Sunday market)",
+   "city": "St. Augustine",
+   "county": "St. Johns",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://bit.ly/interested-vendor",
+   "deadline": "Rolling",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
