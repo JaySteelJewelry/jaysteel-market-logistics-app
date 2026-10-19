@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.github.io/",
@@ -12,7 +12,8 @@
     "agreement": "📝 Agreement sent",
     "pending": "⏳ Pending",
     "tentative": "❓ Tentative",
-    "booked": "📌 On my calendar"
+    "booked": "📌 On my calendar",
+    "conditional": "❓ Conditional approval"
   },
   "events": [
     {
@@ -279,42 +280,44 @@
       "name": "Curative Market — Holiday Marketplace (indoor)",
       "series": "curative",
       "kind": "market",
-      "status": "pending",
+      "status": "conditional",
       "date": "2026-11-28",
       "start": "12:00",
       "end": "16:00",
       "venue": "Rise at Glen Kernan Park",
       "address": "4890 Sweetgrass Pl, Jacksonville, FL",
       "fee": "$50",
-      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "payHow": "Square invoice by email after Luis picks dates — pay within 24 h, non-refundable; nothing reserved until paid",
       "contact": {
         "name": "Candace Fenderson",
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
-      "paid": false
+      "nextStep": "pick dates → reply Candace → pay Square invoice within 24h",
+      "paid": false,
+      "approval": "Conditional approval Oct 18, 7:43 AM (Candace)"
     },
     {
       "id": "curative-2026-11-29",
       "name": "Curative Market — Town Center Signature Market",
       "series": "curative",
       "kind": "market",
-      "status": "pending",
+      "status": "conditional",
       "date": "2026-11-29",
       "start": "14:00",
       "end": "18:00",
       "venue": "Moe's, St. Johns Town Center",
       "address": "St. Johns Town Center, Jacksonville, FL",
       "fee": "$50",
-      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "payHow": "Square invoice by email after Luis picks dates — pay within 24 h, non-refundable; nothing reserved until paid",
       "contact": {
         "name": "Candace Fenderson",
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
-      "paid": false
+      "nextStep": "pick dates → reply Candace → pay Square invoice within 24h",
+      "paid": false,
+      "approval": "Conditional approval Oct 18, 7:43 AM (Candace)"
     },
     {
       "id": "first-friday-flagler-2026-12-04",
@@ -396,21 +399,22 @@
       "name": "Curative Market — Sunday Market Mandarin",
       "series": "curative",
       "kind": "market",
-      "status": "pending",
+      "status": "conditional",
       "date": "2026-12-06",
       "start": "15:00",
       "end": "19:00",
       "venue": "Mandarin",
       "address": "10478 San Jose Blvd #4, Jacksonville, FL",
       "fee": "$35",
-      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "payHow": "Square invoice by email after Luis picks dates — pay within 24 h, non-refundable; nothing reserved until paid",
       "contact": {
         "name": "Candace Fenderson",
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
-      "paid": false
+      "nextStep": "pick dates → reply Candace → pay Square invoice within 24h",
+      "paid": false,
+      "approval": "Conditional approval Oct 18, 7:43 AM (Candace)"
     },
     {
       "id": "putnam-2026-12-10",
@@ -549,22 +553,24 @@
       "name": "Curative Market — Merry at Moe's",
       "series": "curative",
       "kind": "market",
-      "status": "pending",
+      "status": "conditional",
       "date": "2026-12-20",
       "start": "11:00",
       "end": "15:00",
       "venue": "Moe's, St. Johns Town Center",
       "address": "St. Johns Town Center, Jacksonville, FL",
       "fee": "$25",
-      "payHow": "Square invoice by email on approval — pay within 24 h, non-refundable",
+      "payHow": "Square invoice by email after Luis picks dates — pay within 24 h, non-refundable; nothing reserved until paid",
       "contact": {
         "name": "Candace Fenderson",
         "email": "info@thecurativemarketco.com",
         "phone": "(904) 274-1242"
       },
-      "nextStep": "Wait for approval; pay each invoice within 24 h of it landing.",
+      "nextStep": "pick dates → reply Candace → pay Square invoice within 24h",
       "headsUp": "Same day as BJ's Sunday Market on your calendar.",
-      "paid": false
+      "paid": false,
+      "approval": "Conditional approval Oct 18, 7:43 AM (Candace)",
+      "feeNote": "plus a small unwrapped toy"
     },
     {
       "id": "shop-small-hyatt-2026-12-27",
