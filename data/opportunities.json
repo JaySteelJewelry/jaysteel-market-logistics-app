@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T04:52Z",
+ "updated": "2026-10-20T11:38Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -109,9 +109,9 @@
    "state": "GA",
    "county": "Hall",
    "url": "https://ung.campuslabs.com/engage/events.rss",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -2014,10 +2014,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "7375d2cf6b17",
-  "bd730a30b915",
-  "ee96288141d3",
-  "493968ad39d9"
- ]
+ "newThisRun": []
 }
