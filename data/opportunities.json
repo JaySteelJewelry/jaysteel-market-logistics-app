@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T11:38Z",
+ "updated": "2026-10-20T17:10Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -39,9 +39,9 @@
    "state": "FL",
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "Georgia State University (Engage)",
@@ -69,9 +69,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
-   "ok": true,
-   "items": 2,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -432,21 +432,6 @@
    "date": "2026-10-22"
   },
   {
-   "id": "7375d2cf6b17",
-   "title": "2026 Mini 500",
-   "date": "2026-10-23",
-   "time": "5:00 PM",
-   "location": "Peter's Parking Deck",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia Tech (Engage)",
-   "url": "https://gatech.campuslabs.com/engage/event/12540254",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-20"
-  },
-  {
    "id": "5ba2900637bc",
    "title": "Social Media Expo JAX 2026",
    "date": "2026-10-23",
@@ -768,21 +753,6 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-05"
-  },
-  {
-   "id": "ee96288141d3",
-   "title": "Persian-American Resource Society Tabling at GTIA Night Market",
-   "date": "2026-11-05",
-   "time": "6:00 PM",
-   "location": "Tech Green Walkway",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "tabling",
-   "source": "Georgia Tech (Engage)",
-   "url": "https://gatech.campuslabs.com/engage/event/12869696",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-20"
   },
   {
    "id": "seed-fl-0201",
