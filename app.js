@@ -82,7 +82,7 @@
 
   /* ---------- Apply via Tab (Oct 20 2026) ----------
      Static site, so the hand-off is a prefilled WhatsApp message to Tab's own number. Tab submits the application and
-     the real status comes back in data/events.json. "⏳ Sent to Tab" is remembered on this device only. */
+     the real status comes back in data/events.json. Applying is remembered on this device ("applied", same as Mark applied). */
   const TAB_WA = "12512765320";
   const APPLY_OK = ["open", "lead", "not-applied", "not_applied", "notapplied", "unapplied", "idea", "prospect"];
   const canApplyStatus = (s) => !s || APPLY_OK.includes(String(s).toLowerCase());
@@ -99,6 +99,14 @@
   const alreadyKnown = (title, ks) => { const t = nameKey(title); return t.length >= 8 && ks.some((k) => t === k || t.startsWith(k + " ") || k.startsWith(t + " ")); };
   const sentMap = () => store.get("sentToTab", {});
   const isSent = (id) => !!sentMap()[id];
+  /* Oct 20 2026: tapping Apply in the sheet = the same state as "Mark applied" (store key "applied"), plus the sent-to-Tab note.
+     Older "⏳ Sent to Tab" entries are migrated to applied at start-up. Undo = the "✓ Applied" toggle on the Find card. */
+  const appliedMap = () => store.get("applied", {});
+  const isApplied = (id) => !!appliedMap()[id];
+  function markApplied(id, when) { const a = appliedMap(); if (!a[id]) { a[id] = when || todayISO(); store.set("applied", a); } }
+  function unmarkApplied(id) { const a = appliedMap(); delete a[id]; store.set("applied", a); const s = sentMap(); if (s[id]) { delete s[id]; store.set("sentToTab", s); } }
+  function migrateSent() { const s = sentMap(), a = appliedMap(); let ch = false; Object.keys(s).forEach((id) => { if (!a[id]) { a[id] = String(s[id] || "").slice(0, 10) || todayISO(); ch = true; } }); if (ch) store.set("applied", a); }
+  const appliedLabel = (id) => (isSent(id) ? "✅ Applied · sent to Tab" : "✅ Applied");
   function applyMsg(x) {
     return `APPLY ✅ ${x.name} — ${x.dates} — id:${x.id}${x.link ? " — " + x.link : ""}\nLuis sent from the JAY STEEL logistics app.`;
   }
@@ -107,7 +115,7 @@
   const APPLY_REG = {};
   function applyBtn(x) {
     APPLY_REG[x.id] = x;
-    if (isSent(x.id)) return `<p class="sent-tab" role="status"><span class="badge s-pending">⏳ Sent to Tab</span></p>`;
+    if (isApplied(x.id) || isSent(x.id)) return `<p class="sent-tab" role="status"><span class="badge s-agreement">${appliedLabel(x.id)}</span></p>`;
     return `<button type="button" class="btn small primary apply-tab" data-apply="${esc(x.id)}" aria-label="Apply via Tab: ${esc(x.name)}">Apply via Tab</button>`;
   }
   function wireApply(root, rerender) {
@@ -127,8 +135,8 @@
     wrap.addEventListener("click", (ev) => { if (ev.target === wrap) close(); });
     document.getElementById("as-no").onclick = close;
     document.getElementById("as-yes").addEventListener("click", () => {
-      const m = sentMap(); m[x.id] = new Date().toISOString(); store.set("sentToTab", m);
-      setTimeout(() => { close(); toast("⏳ Sent to Tab"); const y = window.scrollY; if (rerender) rerender(); window.scrollTo(0, y); }, 60);
+      const m = sentMap(); m[x.id] = new Date().toISOString(); store.set("sentToTab", m); markApplied(x.id);
+      setTimeout(() => { close(); toast("✅ Applied · sent to Tab"); const y = window.scrollY; if (rerender) rerender(); window.scrollTo(0, y); }, 60);
     });
     document.getElementById("as-yes").focus();
   }
@@ -404,8 +412,8 @@
   /* ---------- opportunities ---------- */
   let OPP = null, oLimit = 25, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
   const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
-  function loadOpp() {
-    return fetch("data/opportunities.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+  function loadOpp(fresh) {
+    return fetch("data/opportunities.json" + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
   }
   function viewOpp() {
     setTab("opp");
@@ -425,7 +433,7 @@
     const oppDates = (i) => i.date ? fmt(i.date, { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : (i.when || "Ongoing · apply anytime");
     const card = (i) => {
       const dateBox = i.date ? `<div class="date"><small>${fmt(i.date, { month: "short" }).toUpperCase()}</small><b>${parse(i.date).getUTCDate()}</b><i>${fmt(i.date, { weekday: "short" }).toUpperCase()}</i></div>` : `<div class="date"><small>ANY</small><b>∞</b><i>TIME</i></div>`;
-      const tags = [isNew(i) ? '<span class="badge s-approved">New this week</span>' : "", i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : "", `<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span>`, applied[i.id] ? '<span class="badge s-agreement">Applied</span>' : ""].join(" ");
+      const tags = [isNew(i) ? '<span class="badge s-approved">New this week</span>' : "", i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : "", `<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span>`, applied[i.id] ? `<span class="badge s-agreement">${isSent(i.id) ? "✅ Applied · sent to Tab" : "Applied"}</span>` : ""].join(" ");
       return `<div class="opp${applied[i.id] ? " past" : ""}">
         <div class="row">${dateBox}<div class="t"><p class="n">${esc(i.title)}</p>
         <p class="m">${esc([i.time, i.city && i.state ? `${i.city}, ${i.state}` : "", i.county ? i.county + " Co." : ""].filter(Boolean).join(" · "))}</p>
@@ -459,7 +467,7 @@
     document.getElementById("oco").onchange = (e) => { oCounty = e.target.value; oLimit = 25; viewOpp(); };
     document.getElementById("ov").onclick = () => { oVendor = !oVendor; oLimit = 25; viewOpp(); };
     document.getElementById("oh").onclick = () => { oHideApplied = !oHideApplied; oLimit = 25; viewOpp(); };
-    app.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { const a = store.get("applied", {}); if (a[b.dataset.ap]) delete a[b.dataset.ap]; else a[b.dataset.ap] = todayISO(); store.set("applied", a); const y = window.scrollY; viewOpp(); window.scrollTo(0, y); }));
+    app.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { if (isApplied(b.dataset.ap)) unmarkApplied(b.dataset.ap); else markApplied(b.dataset.ap); const y = window.scrollY; viewOpp(); window.scrollTo(0, y); }));
     const q = document.getElementById("oq");
     q.addEventListener("input", debounce(() => { oQuery = q.value; const pos = q.selectionStart; oLimit = 25; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); }, 220));
   }
@@ -502,8 +510,51 @@
   }
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
   if ("serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); }); }
+  const sortEvents = (d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); return d; };
+
+  /* ---------- refresh (Oct 20 2026): ↻ in the header, or pull down at the top of the page ----------
+     Re-fetches events.json + the Find feed past every cache, and loads a new app version if one is waiting. */
+  let refreshing = false, swReloading = false;
+  const hadController = "serviceWorker" in navigator && !!navigator.serviceWorker.controller;
+  if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("controllerchange", () => { if (refreshing && hadController && !swReloading) { swReloading = true; location.reload(); } });
+  const rbtn = document.getElementById("refresh-btn");
+  async function refreshAll() {
+    if (refreshing) return; refreshing = true;
+    if (rbtn) { rbtn.classList.add("spin"); rbtn.setAttribute("aria-busy", "true"); }
+    try {
+      if ("serviceWorker" in navigator) {
+        const reg = await navigator.serviceWorker.getRegistration().catch(() => null);
+        if (reg) {
+          await reg.update().catch(() => {});
+          const w = reg.waiting || reg.installing;
+          if (w && hadController) { w.postMessage("skipWaiting"); setTimeout(() => { if (!swReloading) { swReloading = true; location.reload(); } }, 2500); return; }
+        }
+      }
+      const t = Date.now();
+      const [d, o] = await Promise.all([
+        fetch("data/events.json?t=" + t, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+        loadOpp(true).catch(() => OPP),
+      ]);
+      DATA = sortEvents(d); if (o) OPP = o; migrateSent();
+      const y = window.scrollY; route(); window.scrollTo(0, y);
+      toast("Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }));
+    } catch (_) { toast("Couldn't refresh. Check your signal"); }
+    finally { if (!swReloading) { refreshing = false; if (rbtn) { rbtn.classList.remove("spin"); rbtn.removeAttribute("aria-busy"); } } }
+  }
+  if (rbtn) rbtn.addEventListener("click", refreshAll);
+  (function pullToRefresh() {
+    const ind = document.createElement("div"); ind.className = "ptr"; ind.setAttribute("aria-hidden", "true");
+    ind.innerHTML = rbtn ? rbtn.querySelector("svg").outerHTML : "↻"; document.body.appendChild(ind);
+    const MAX = 90, GO = 70; let y0 = null, x0 = 0, dy = 0;
+    const paint = () => { const p = Math.min(dy, MAX); ind.style.opacity = String(Math.min(1, p / GO)); ind.style.transform = `translateY(${p - 20}px) rotate(${p * 3}deg)`; ind.classList.toggle("ready", dy >= GO); };
+    const reset = () => { y0 = null; dy = 0; ind.style.transition = "opacity .2s, transform .2s"; ind.style.opacity = "0"; ind.style.transform = "translateY(-20px)"; ind.classList.remove("ready"); };
+    window.addEventListener("touchstart", (e) => { if (window.scrollY > 0 || refreshing || document.body.classList.contains("sheet-open") || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; dy = 0; ind.style.transition = "none"; }, { passive: true });
+    window.addEventListener("touchmove", (e) => { if (y0 == null) return; const d = e.touches[0].clientY - y0, dx = Math.abs(e.touches[0].clientX - x0); if (window.scrollY > 0 || d < 0 || dx > Math.abs(d)) { if (dy) reset(); else y0 = null; return; } dy = d * 0.6; paint(); }, { passive: true });
+    window.addEventListener("touchend", () => { if (y0 == null) return; const go = dy >= GO; reset(); if (go) refreshAll(); }, { passive: true });
+  })();
+
   fetch("data/events.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then((d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); DATA = d; route(); })
+    .then((d) => { DATA = sortEvents(d); migrateSent(); route(); })
     .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Check your signal, then pull down to refresh.</p>'; });
 })();

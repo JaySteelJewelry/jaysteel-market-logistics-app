@@ -1,6 +1,6 @@
 /* JAY STEEL Logistics service worker: app shell cached for offline; data is network-first. */
-const CACHE = "jsl-v5"; /* v5 Oct 20 2026: "Apply via Tab" buttons (WhatsApp hand-off to Tab) */
-const SHELL = ["./", "index.html", "styles.css?v=5", "app.js?v=5", "manifest.json", "data/events.json",
+const CACHE = "jsl-v6"; /* v6 Oct 20 2026: Apply via Tab marks the event applied + refresh button */
+const SHELL = ["./", "index.html", "styles.css?v=6", "app.js?v=6", "manifest.json", "data/events.json",
   "assets/js-icon.webp", "assets/js-icon.png", "assets/icon-192.png", "assets/fonts/montserrat.woff2", "assets/fonts/cormorant.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -16,3 +16,4 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(caches.match(e.request).then((hit) => hit || fetch(e.request).then((r) => { if (r.ok) { const copy = r.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); } return r; })));
   }
 });
+self.addEventListener("message", (e) => { if (e.data === "skipWaiting") self.skipWaiting(); });
