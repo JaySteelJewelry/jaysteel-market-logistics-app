@@ -98,7 +98,7 @@
       "name": "Dart Bar King Street Bazaar",
       "series": "dart-bar",
       "kind": "market",
-      "status": "tentative",
+      "status": "pending",
       "date": "2026-10-30",
       "start": "19:00",
       "end": "22:00",
@@ -110,8 +110,10 @@
         "email": "dartbarjax@gmail.com"
       },
       "setup": "Setup from 6:15 PM. Alley spaces 10×10 — bring the tent.",
-      "nextStep": "When Ally's Google Form arrives, fill it (needs your Google sign-in). Date not confirmed yet.",
-      "paid": false
+      "nextStep": "Tab submits the Google Form once your Google login is saved. Watch for the confirmation email from Ally.",
+      "paid": false,
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSc-EsNbNyjcrG2qCAgfGjbSTtD3F0UsIwY7p6HZ8GNXUOV2vg/viewform",
+      "notes": "Applying — form being submitted. Not approved yet; selected vendors get a separate confirmation email."
     },
     {
       "id": "904-pop-up-2026-11-01",
