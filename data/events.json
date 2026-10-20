@@ -185,7 +185,7 @@
       "name": "The Northside Market",
       "series": "northside",
       "kind": "market",
-      "status": "approved",
+      "status": "conditional",
       "date": "2026-11-07",
       "start": "10:00",
       "end": "14:00",
@@ -193,16 +193,16 @@
       "address": "First Coast High School, 590 Duval Station Rd, Jacksonville, FL (student lot, Starratt Rd side)",
       "fee": "$40",
       "payBy": "2026-10-30",
-      "payHow": "$40 non-refundable by Fri Oct 30 — Venmo @Cayla-Kurtz or Cash App $TheNorthsideMarket, business name (JAY STEEL JEWELRY) in the notes. NOT paid yet; spot not reserved until paid.",
+      "payHow": "$40 non-refundable by Fri Oct 30, ONLY once confirmed — Venmo @Cayla-Kurtz or Cash App $TheNorthsideMarket, business name (JAY STEEL JEWELRY) in the notes. NOT paid; don't pay until confirmed.",
       "contact": {
         "name": "Cayla Kurtz",
         "email": "thenorthsidemarket904@gmail.com"
       },
       "setup": "10×10 tent, tables + table coverings required; tent weights encouraged; no electricity. All vehicles parked by 9:45 AM. Space + load-in time sent the day before.",
-      "nextStep": "Approved Oct 20. Reply to confirm (waiting on your OK) and pay $40 by Fri Oct 30.",
+      "nextStep": "Not confirmed. Oct 20 'acceptance' was a group email to the whole vendor list; at 12:22 PM Cayla replied to your application asking you to apply on her Jotform (https://www.jotform.com/form/253077771197164). On hold — your call.",
       "headsUp": "Same day as Park Street Market on your calendar.",
       "paid": false,
-      "approval": "Approved Oct 20, 12:17 PM (Cayla Kurtz)"
+      "approval": "Unconfirmed — group acceptance email Oct 20, 12:17 PM; Cayla asked for a Jotform application Oct 20, 12:22 PM"
     },
     {
       "id": "bjs-sunday-2026-11-15",
