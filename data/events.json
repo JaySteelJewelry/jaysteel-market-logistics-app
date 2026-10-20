@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.github.io/",
@@ -118,18 +118,22 @@
       "name": "904 Pop Up — Seawalk Pavilion",
       "series": "904-pop-up",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-11-01",
+      "start": "11:00",
+      "end": "17:00",
       "venue": "Seawalk Pavilion",
       "address": "Seawalk Pavilion, Jacksonville Beach, FL",
-      "fee": "$135 (10×10) — $200 tier = pass",
-      "payHow": "Password link after approval, no refunds",
+      "fee": "$135",
+      "payBy": "2026-10-22",
+      "payHow": "Pay $135 (standard 10×10) at 904popup.com/event/nov1seawalkpavilion/ with the password from their Oct 19 email — NOT paid yet; space not confirmed until paid; no refunds. Premium $235 = pass.",
       "contact": {
         "name": "904 Pop Up",
-        "email": "reply comes to jaysteeljewelry@gmail.com"
+        "email": "904popup@gmail.com"
       },
-      "nextStep": "Approval email expected 3–5 business days after Oct 17.",
-      "paid": false
+      "nextStep": "Approved Oct 19. Pay $135 by Thu Oct 22 or lose the spot. Vendor sitemap comes ~1 week before.",
+      "paid": false,
+      "approval": "Approved Oct 19, 10:54 PM (904 Pop Up)"
     },
     {
       "id": "unf-tabling-2026-11-03",
