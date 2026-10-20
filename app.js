@@ -123,7 +123,9 @@
     }
     html += `<div class="stats"><a class="stat" href="#/" data-jump="approved" style="text-decoration:none"><b>${approved}</b><span>Confirmed</span></a><a class="stat" href="#/" data-jump="waiting" style="text-decoration:none"><b>${waiting}</b><span>Waiting</span></a><a class="stat${over.length ? " alert" : ""}" href="#/money" style="text-decoration:none"><b>${due.length + over.length}</b><span>${over.length ? `To pay · ${over.length} late` : "To pay"}</span></a></div>`;
     const count = (k) => upcoming.filter((e) => e.status === k).length;
-    const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), [["past", "Past"], ["all", "All"]]);
+    const nOpen = (DATA.openApplications || []).length;
+    /* Oct 20: "No date yet" is its own chip, so each chip shows only its own markets (no mixed long scroll) */
+    const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), nOpen ? [["nodate", "🗓 No date yet", nOpen]] : [], [["past", "Past"], ["all", "All"]]);
     if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
     html += `<h2 class="h2">Markets</h2><input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off">
       <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l, n]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}${n != null ? `<span class="n">${n}</span>` : ""}</button>`).join("")}</div>
@@ -168,7 +170,8 @@
       const head = m !== month ? `<p class="month">${m}</p>` : ""; month = m;
       return head + rowHTML(e, today);
     }).join("")}</div>` : `<p class="empty">No markets match${query ? ` “${esc(query)}”` : ""}.</p>`;
-    const oa = document.getElementById("openapps"); if (oa) oa.hidden = filter === "past";
+    const oa = document.getElementById("openapps"); if (oa) oa.hidden = !(filter === "nodate" || filter === "all");
+    box.hidden = filter === "nodate";
   }
 
   const PAYABLE = ["approved", "agreement", "pending", "conditional"];
