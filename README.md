@@ -5,6 +5,10 @@ Live app: https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/
 A phone-first planner for every market JAY STEEL JEWELRY sells at: status badges, calendar, fees and pay-by dates,
 contacts, directions, a packing checklist and a sales/expense tally per market (CSV export).
 
+## Light / dark
+
+The sun/moon button in the header switches themes. It starts on the phone's own setting, and your choice is saved on that device (shared with the home page).
+
 ## Edit your markets (the only file you touch)
 
 Open [`data/events.json`](data/events.json) on GitHub → pencil icon → change or copy an event block → **Commit changes**.

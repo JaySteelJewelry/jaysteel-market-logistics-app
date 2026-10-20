@@ -11,12 +11,14 @@
     agreement: { label: "Agreement sent", icon: "📝" },
     pending: { label: "Pending", icon: "⏳" },
     tentative: { label: "Tentative", icon: "❓" },
-    booked: { label: "On my calendar", icon: "📌" }
+    booked: { label: "On my calendar", icon: "📌" },
+    conditional: { label: "Conditional", icon: "❓" }
   };
+  const EMAIL = "jaysteeljewelry@gmail.com";
   const DEFAULT_PACK = [
     "10×10 tent + 4 weights (30 lb/leg)", "Table(s) + tablecloth", "Jewelry displays, busts + trays", "Mirror",
     "Inventory: necklaces, bracelets, rings, earrings", "Price tags / price sign", "Square reader + phone charged",
-    "Power bank + cables", "Cash box + change ($100 in small bills)", "QR code sign (IG / WhatsApp)",
+    "Power bank + cables", "Cash box + change ($100 in small bills)", "QR code sign (store / IG)",
     "Business cards", "Bags / pouches + gift boxes", "Banner + zip ties", "Polishing cloth", "Water + snacks",
     "Receipts / resale certificate copy", "Chair"
   ];
@@ -49,6 +51,26 @@
     const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
     document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
   }
+  const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+  const show = (html) => { app.innerHTML = `<div class="view">${html}</div>`; };
+
+  /* ---------- theme (sun/moon). The <head> script already applied it before first paint. ---------- */
+  (function themeToggle() {
+    const KEY = "jsj-theme", root = document.documentElement, btn = document.getElementById("theme-toggle"), meta = document.getElementById("theme-color");
+    const apply = (t) => {
+      root.setAttribute("data-theme", t);
+      if (meta) meta.setAttribute("content", t === "light" ? "#F6F4EF" : "#0A0A0A");
+      if (btn) { const next = t === "light" ? "dark" : "light"; btn.setAttribute("aria-label", `Switch to ${next} mode`); btn.setAttribute("aria-pressed", String(t === "light")); }
+    };
+    apply(root.getAttribute("data-theme") === "light" ? "light" : "dark");
+    if (btn) btn.addEventListener("click", () => { const t = root.getAttribute("data-theme") === "light" ? "dark" : "light"; apply(t); try { localStorage.setItem(KEY, t); } catch (_) {} });
+    if (window.matchMedia) {
+      const mq = window.matchMedia("(prefers-color-scheme: light)");
+      const follow = (e) => { let saved = null; try { saved = localStorage.getItem(KEY); } catch (_) {} if (saved !== "light" && saved !== "dark") apply(e.matches ? "light" : "dark"); };
+      if (mq.addEventListener) mq.addEventListener("change", follow); else if (mq.addListener) mq.addListener(follow);
+    }
+  })();
+
   function download(name, text, type) {
     const blob = new Blob([text], { type: type || "text/plain" });
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
@@ -82,23 +104,16 @@
       <span class="chev" aria-hidden="true">›</span></a>`;
   }
 
+  const UPCOMING_OK = ["approved", "agreement", "booked"];
+  const WAITING = ["pending", "tentative", "conditional"];
   function viewList() {
     setTab("list");
     const today = todayISO();
     const upcoming = DATA.events.filter((e) => lastDay(e) >= today);
     const next = upcoming.find((e) => e.status !== "pending" && e.status !== "tentative") || upcoming[0];
-    const approved = upcoming.filter((e) => e.status === "approved" || e.status === "agreement" || e.status === "booked").length;
-    const waiting = upcoming.filter((e) => e.status === "pending" || e.status === "tentative").length;
-    const due = dueItems(today);
-    let list = DATA.events.filter((e) => {
-      if (filter === "upcoming" && lastDay(e) < today) return false;
-      if (filter === "past" && lastDay(e) >= today) return false;
-      if (!["upcoming", "past", "all"].includes(filter) && e.status !== filter) return false;
-      if (filter !== "past" && filter !== "all" && lastDay(e) < today) return false;
-      if (query) { const hay = `${e.name} ${e.venue || ""} ${e.address || ""} ${e.notes || ""}`.toLowerCase(); if (!hay.includes(query.toLowerCase())) return false; }
-      return true;
-    });
-    if (filter === "past") list = list.slice().reverse();
+    const approved = upcoming.filter((e) => UPCOMING_OK.includes(e.status)).length;
+    const waiting = upcoming.filter((e) => WAITING.includes(e.status)).length;
+    const due = dueItems(today), over = overdueItems(today);
     let html = "";
     if (next) {
       const n = daysBetween(today, next.date);
@@ -106,31 +121,64 @@
         <p class="name">${esc(next.name)}</p><p class="meta">${esc(whenText(next))}<br>${esc(next.venue || "")}</p>
         <div class="count"><b>${n <= 0 ? "Today" : n}</b><small>${n <= 0 ? "" : n === 1 ? "DAY" : "DAYS"}</small></div></a>`;
     }
-    html += `<div class="stats"><div class="stat"><b>${approved}</b><span>Confirmed</span></div><div class="stat"><b>${waiting}</b><span>Waiting</span></div><div class="stat"><b>${due.length}</b><span>To pay</span></div></div>`;
-    const chips = [["upcoming", "Upcoming"], ["approved", "✅ Approved"], ["agreement", "📝 Agreement"], ["pending", "⏳ Pending"], ["tentative", "❓ Tentative"], ["booked", "📌 Calendar"], ["past", "Past"], ["all", "All"]];
-    html += `<h2 class="h2">Markets</h2><input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets">
-      <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}</button>`).join("")}</div>`;
-    if (!list.length) html += `<p class="empty">No markets match.</p>`;
+    html += `<div class="stats"><a class="stat" href="#/" data-jump="approved" style="text-decoration:none"><b>${approved}</b><span>Confirmed</span></a><a class="stat" href="#/" data-jump="waiting" style="text-decoration:none"><b>${waiting}</b><span>Waiting</span></a><a class="stat${over.length ? " alert" : ""}" href="#/money" style="text-decoration:none"><b>${due.length + over.length}</b><span>${over.length ? `To pay · ${over.length} late` : "To pay"}</span></a></div>`;
+    const count = (k) => upcoming.filter((e) => e.status === k).length;
+    const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), [["past", "Past"], ["all", "All"]]);
+    if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
+    html += `<h2 class="h2">Markets</h2><input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off">
+      <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l, n]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}${n != null ? `<span class="n">${n}</span>` : ""}</button>`).join("")}</div>
+      <div id="listbody" aria-live="polite"></div>`;
+    if (DATA.openApplications && DATA.openApplications.length) {
+      html += `<div id="openapps"><h2 class="h2">Open applications · no date yet</h2>` + DATA.openApplications.map((o) => `<div class="panel">
+        <div class="kv"><span class="ic" aria-hidden="true">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="k">${esc((STATUS[o.status] || { label: o.status }).label)}</p><p class="v"><b>${esc(o.name)}</b><br>${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div></div>
+        ${o.nextStep ? `<div class="kv"><span class="ic" aria-hidden="true">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}</div>`).join("") + `</div>`;
+    }
+    html += footer();
+    show(html);
+    renderListBody();
+    app.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
+      filter = b.dataset.f;
+      app.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+      renderListBody();
+    }));
+    app.querySelectorAll("[data-jump]").forEach((a) => a.addEventListener("click", (ev) => {
+      ev.preventDefault(); const k = a.dataset.jump === "approved" ? "approved" : "pending";
+      const chip = app.querySelector(`.chip[data-f="${k}"]`) || app.querySelector('.chip[data-f="upcoming"]'); chip.click(); chip.scrollIntoView({ block: "center", behavior: "smooth" });
+    }));
+    const q = document.getElementById("q");
+    q.addEventListener("input", debounce(() => { query = q.value.trim(); renderListBody(); }, 160));
+  }
+
+  function renderListBody() {
+    const box = document.getElementById("listbody"); if (!box) return;
+    const today = todayISO();
+    const ql = query.toLowerCase();
+    let list = DATA.events.filter((e) => {
+      const isPast = lastDay(e) < today;
+      if (filter === "past") { if (!isPast) return false; }
+      else if (filter !== "all" && isPast) return false;
+      if (!["upcoming", "past", "all"].includes(filter) && e.status !== filter) return false;
+      if (ql) { const hay = `${e.name} ${e.venue || ""} ${e.address || ""} ${e.notes || ""}`.toLowerCase(); if (!hay.includes(ql)) return false; }
+      return true;
+    });
+    if (filter === "past") list = list.slice().reverse();
     let month = "";
-    html += list.map((e) => {
+    box.innerHTML = list.length ? `<div class="rows">${list.map((e) => {
       const m = fmt(e.date, { month: "long", year: "numeric" });
       const head = m !== month ? `<p class="month">${m}</p>` : ""; month = m;
       return head + rowHTML(e, today);
-    }).join("").replace(/<\/a><p class="month">/g, '</a><p class="month">');
-    if (DATA.openApplications && DATA.openApplications.length && filter !== "past") {
-      html += `<h2 class="h2">Open applications · no date yet</h2>` + DATA.openApplications.map((o) => `<div class="panel">
-        <div class="kv"><span class="ic">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="k">${esc((STATUS[o.status] || { label: o.status }).label)}</p><p class="v"><b>${esc(o.name)}</b><br>${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div></div>
-        ${o.nextStep ? `<div class="kv"><span class="ic">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}</div>`).join("");
-    }
-    html += footer();
-    app.innerHTML = html;
-    app.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => { filter = b.dataset.f; viewList(); }));
-    const q = document.getElementById("q");
-    q.addEventListener("input", () => { query = q.value; const pos = q.selectionStart; viewList(); const nq = document.getElementById("q"); nq.focus(); nq.setSelectionRange(pos, pos); });
+    }).join("")}</div>` : `<p class="empty">No markets match${query ? ` “${esc(query)}”` : ""}.</p>`;
+    const oa = document.getElementById("openapps"); if (oa) oa.hidden = filter === "past";
   }
 
+  const PAYABLE = ["approved", "agreement", "pending", "conditional"];
   function dueItems(today) {
-    return DATA.events.filter((e) => e.payBy && e.payBy >= today && (e.status === "approved" || e.status === "agreement" || e.status === "pending"))
+    return DATA.events.filter((e) => e.payBy && e.payBy >= today && !e.paid && PAYABLE.includes(e.status))
+      .sort((a, b) => a.payBy.localeCompare(b.payBy));
+  }
+  /* pay-by date already passed, still marked unpaid, market still ahead */
+  function overdueItems(today) {
+    return DATA.events.filter((e) => e.payBy && e.payBy < today && !e.paid && lastDay(e) >= today && (e.status === "approved" || e.status === "agreement" || e.status === "conditional"))
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
 
@@ -151,14 +199,14 @@
     }
     const sel = calSel && map[calSel] ? map[calSel] : null;
     const monthEvents = DATA.events.filter((e) => e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth));
-    app.innerHTML = `<div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
+    show(`<div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
       <h2 class="h2">${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
       <div class="grid">${["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="dow">${d}</div>`).join("")}${cells}</div>
-      <div class="legend">${Object.entries(STATUS).map(([k, v]) => `<span class="s-${k}"><i class="dot"></i><em style="color:var(--muted);font-style:normal">${v.label}</em></span>`).join("")}</div>
+      <div class="legend">${Object.entries(STATUS).map(([k, v]) => `<span class="s-${k}"><i class="dot"></i><em>${v.label}</em></span>`).join("")}</div>
       <p class="month">${sel ? fmt(calSel, { weekday: "long", month: "long", day: "numeric" }) : "This month"}</p>
       <div class="list">${(sel || monthEvents).map((e) => rowHTML(e, today)).join("") || '<p class="empty">No markets this month.</p>'}</div>
-      <button class="btn full" id="icsall" style="margin-top:14px">⬇︎ Add all upcoming to my phone calendar (.ics)</button>${footer()}`;
-    app.querySelectorAll(".day[data-d]").forEach((b) => b.addEventListener("click", () => { calSel = calSel === b.dataset.d ? null : b.dataset.d; viewCalendar(); }));
+      <button class="btn full" id="icsall" style="margin-top:16px">⬇︎ Add all upcoming to my phone calendar (.ics)</button>${footer()}`);
+    app.querySelectorAll(".day[data-d]").forEach((b) => b.addEventListener("click", () => { calSel = calSel === b.dataset.d ? null : b.dataset.d; const y = window.scrollY; viewCalendar(); window.scrollTo(0, y); }));
     document.getElementById("prev").onclick = () => { calMonth = shiftMonth(calMonth, -1); calSel = null; viewCalendar(); };
     document.getElementById("nextm").onclick = () => { calMonth = shiftMonth(calMonth, 1); calSel = null; viewCalendar(); };
     document.getElementById("icsall").onclick = () => download("jaysteel-markets.ics", ics(DATA.events.filter((e) => lastDay(e) >= today)), "text/calendar");
@@ -170,12 +218,14 @@
   function viewEvent(id) {
     setTab("list");
     const e = byId(id);
-    if (!e) { app.innerHTML = `<a class="back" href="#/">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`; return; }
+    if (!e) { show(`<a class="back" href="#/">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
     const c = e.contact || {};
-    const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && `<a href="tel:${esc(c.phone.replace(/[^\d+]/g, ""))}">${esc(c.phone)}</a>`].filter(Boolean).join("<br>");
-    const paidLine = (e.status === "approved" || e.status === "agreement") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
-    const pay = [e.fee && `<b>${esc(e.fee)}</b>`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, e.payBy && `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
-    app.innerHTML = `<a class="back" href="#/">‹ All markets</a>
+    const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && esc(c.phone)].filter(Boolean).join("<br>");
+    const paidLine = (e.status === "approved" || e.status === "agreement" || e.status === "conditional") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
+    const overdue = e.payBy && !e.paid && e.payBy < todayISO() && lastDay(e) >= todayISO();
+    const payBy = e.payBy && (overdue ? `<span class="warn-text">Pay-by date passed (${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))})</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
+    const pay = [e.fee && `<b>${esc(e.fee)}</b>${e.feeNote ? " · " + esc(e.feeNote) : ""}`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, payBy, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
+    show(`<a class="back" href="#/">‹ All markets</a>
       <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
       <div class="actions">
         ${e.address ? `<a class="btn primary" href="${maps(e.address)}" target="_blank" rel="noopener">📍 Directions</a><a class="btn" href="${amaps(e.address)}" target="_blank" rel="noopener">🗺️ Apple Maps</a>` : ""}
@@ -188,11 +238,12 @@
         ${kv("☎️", "Contact", contact)}
         ${kv("🧰", "Setup", e.setup && esc(e.setup))}
         ${kv("➡️", "Next step", e.nextStep && esc(e.nextStep))}
+        ${kv("🏷️", "Status", e.approval && esc(e.approval))}
         ${kv("📝", "Notes", e.notes && esc(e.notes))}
       </div>
       ${e.headsUp ? `<div class="panel heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
       <h3 class="h2">Packing checklist</h3><div class="panel" id="pack"></div>
-      <h3 class="h2">Sales &amp; expenses</h3><div class="panel" id="money"></div>${footer()}`;
+      <h3 class="h2">Sales &amp; expenses</h3><div class="panel" id="money"></div>${footer()}`);
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
     renderPack(e); renderTally(e);
     window.scrollTo(0, 0);
@@ -244,17 +295,19 @@
 
   function viewMoney() {
     setTab("money");
-    const today = todayISO(); const due = dueItems(today);
+    const today = todayISO(); const due = dueItems(today), over = overdueItems(today);
     const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
-    app.innerHTML = `<h2 class="h2">Money</h2><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
+    const dueRow = (e, late) => `<a class="${late ? "over" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><b>${late ? "was due" : "by"} ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`;
+    show(`<h2 class="h2">Money</h2><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
+      ${over.length ? `<p class="month">Pay-by date passed</p><div class="due">${over.map((e) => dueRow(e, true)).join("")}</div>` : ""}
       <p class="month">To pay · coming up</p>
-      <div class="due">${due.length ? due.map((e) => `<a href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small style="color:var(--muted)">${esc(e.fee || "")}</small></span><b>by ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
+      <div class="due">${due.length ? due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
       <p class="month">All markets · totals</p>
       <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
-      <div class="panel"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}" style="color:var(--bone);text-decoration:none">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
+      <div class="panel"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
       <div class="actions"><button class="btn primary full" id="csvall">⬇︎ Export all sales &amp; expenses (CSV)</button>
-        <button class="btn small" id="backup">Back up my data</button><label class="btn small" for="restore">Restore backup<input type="file" id="restore" accept="application/json" class="visually-hidden"></label></div>${footer()}`;
+        <button class="btn small" id="backup">Back up my data</button><label class="btn small" for="restore">Restore backup<input type="file" id="restore" accept="application/json" class="visually-hidden"></label></div>${footer()}`);
     document.getElementById("csvall").onclick = () => download(`jaysteel-sales-${today}.csv`, toCSV(DATA.events), "text/csv");
     document.getElementById("backup").onclick = () => {
       const dump = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith("jsj.")) dump[k] = localStorage.getItem(k); }
@@ -267,35 +320,36 @@
     });
   }
 
+  const ICONS = {"store": "<svg viewBox=\"0 0 24 24\"><path d=\"M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/></svg>", "ig": "<svg viewBox=\"0 0 24 24\"><rect x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><circle cx=\"17.2\" cy=\"6.8\" r=\".6\"/></svg>", "mail": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M3.5 7l8.5 6 8.5-6\"/></svg>", "edit": "<svg viewBox=\"0 0 24 24\"><path d=\"M4 20h4L19 9l-4-4L4 16z\"/><path d=\"M13.5 6.5l4 4\"/></svg>"};
   function viewLinks() {
     setTab("links");
     const L = DATA.links || {};
-    const card = (href, i, b, s) => `<a class="linkcard" href="${esc(href)}" target="_blank" rel="noopener"><span class="i" aria-hidden="true">${i}</span><span><b>${b}</b><small>${s}</small></span></a>`;
-    app.innerHTML = `<h2 class="h2">Shop JAY STEEL</h2><p class="sub">Send customers here from the booth, Discord or socials.</p>
-      ${card(L.store || STORE_URL, "🛍️", "Online store", "jaysteeljewelry.github.io")}
-      ${card("https://www.whatsapp.com/catalog/19043232898/", "💬", "WhatsApp catalog", "Browse + order by message")}
-      ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "📸", "Instagram", "@jaysteeljewelry")}
-      <a class="linkcard" href="tel:+19043232898"><span class="i" aria-hidden="true">📞</span><span><b>Call or text</b><small>${esc(L.phone || "(904) 323-2898")}</small></span></a>
-      <p class="promise">Tough as Steel, Styled to Thrill.</p>
-      <p class="fine">Hypoallergenic and non-tarnish jewelry crafted with 18K gold plating over 316L stainless steel, gold-filled, and 925 sterling silver.</p>
+    const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return u; } };
+    const card = (href, i, b, s, ext) => `<a class="linkcard" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}><span class="i" aria-hidden="true">${ICONS[i]}</span><span><b>${b}</b><small>${s}</small></span><span class="arrow" aria-hidden="true">›</span></a>`;
+    const store = L.store || STORE_URL;
+    show(`<h2 class="h2">Shop JAY STEEL</h2><p class="sub">Send customers here from the booth, Discord or socials.</p>
+      ${card(store, "store", "Online store", esc(host(store)), true)}
+      ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
+      ${card("mailto:" + EMAIL, "mail", "Email", EMAIL, false)}
+      <div class="signoff"><picture><source srcset="assets/js-icon.webp" type="image/webp"><img src="assets/js-icon.png" alt="" width="256" height="244" loading="lazy"></picture><p class="wordmark">JAY STEEL JEWELRY</p></div>
       <hr class="gold-rule"><p class="month">Manage the app</p>
-      ${card(EDIT_URL, "✏️", "Edit markets", "Change data/events.json on GitHub — the app + Discord update")}${footer()}`;
+      ${card(EDIT_URL, "edit", "Edit markets", "Change data/events.json on GitHub — the app + Discord update", true)}${footer()}`);
   }
 
   function footer() {
-    return `<hr class="gold-rule"><p class="fine">Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY · Jacksonville, FL</p>`;
+    return `<hr class="gold-rule"><p class="fine">Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY</p>`;
   }
 
 
   /* ---------- opportunities ---------- */
-  let OPP = null, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
+  let OPP = null, oLimit = 25, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
   const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
   function loadOpp() {
     return fetch("data/opportunities.json", { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
   }
   function viewOpp() {
     setTab("opp");
-    if (!OPP) { app.innerHTML = '<p class="loading">Loading opportunities…</p>'; loadOpp().then((d) => { OPP = d; viewOpp(); }).catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load opportunities right now.</p>'; }); return; }
+    if (!OPP) { app.innerHTML = '<div class="skel" aria-label="Loading opportunities"><i></i><i></i><i></i></div>'; loadOpp().then((d) => { OPP = d; if (location.hash.indexOf("opportunities") >= 0) viewOpp(); }).catch(() => { show('<p class="loading">Couldn\'t load opportunities right now. <a href="#/opportunities" onclick="location.reload();return false">Try again</a></p>'); }); return; }
     const today = todayISO(); const weekAgo = new Date(parse(today) - 7 * 86400000).toISOString().slice(0, 10);
     const applied = store.get("applied", {});
     const all = OPP.items.concat(OPP.ongoing || []);
@@ -310,7 +364,7 @@
       const dateBox = i.date ? `<div class="date"><small>${fmt(i.date, { month: "short" }).toUpperCase()}</small><b>${parse(i.date).getUTCDate()}</b><i>${fmt(i.date, { weekday: "short" }).toUpperCase()}</i></div>` : `<div class="date"><small>ANY</small><b>∞</b><i>TIME</i></div>`;
       const tags = [isNew(i) ? '<span class="badge s-approved">New this week</span>' : "", i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : "", `<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span>`, applied[i.id] ? '<span class="badge s-agreement">Applied</span>' : ""].join(" ");
       return `<div class="opp${applied[i.id] ? " past" : ""}">
-        <div class="row" style="border:0;background:none;padding:0">${dateBox}<div class="t"><p class="n">${esc(i.title)}</p>
+        <div class="row">${dateBox}<div class="t"><p class="n">${esc(i.title)}</p>
         <p class="m">${esc([i.time, i.city && i.state ? `${i.city}, ${i.state}` : "", i.county ? i.county + " Co." : ""].filter(Boolean).join(" · "))}</p>
         <p class="m">${esc(i.org || i.source)}${i.when ? " · " + esc(i.when) : ""}</p></div><span></span></div>
         ${i.fee || i.deadline ? `<p class="m" style="margin:8px 0 0">${i.fee ? "💵 " + esc(i.fee) : ""}${i.fee && i.deadline ? " · " : ""}${i.deadline ? "⏰ " + esc(i.deadline) : ""}</p>` : ""}
@@ -326,20 +380,23 @@
         <select id="oco" aria-label="County"><option value="">All counties</option>${counties.map((c) => `<option ${oCounty === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div>
       <div class="chips"><button class="chip" id="ov" aria-pressed="${oVendor}">Vendor-friendly only</button><button class="chip" id="oh" aria-pressed="${oHideApplied}">Hide applied</button></div>`;
     let month = "";
-    html += dated.length ? dated.map((i) => { const m = fmt(i.date, { month: "long", year: "numeric" }); const h = m !== month ? `<p class="month">${m}</p>` : ""; month = m; return h + card(i); }).join("") : '<p class="empty">Nothing dated matches these filters.</p>';
-    if (ongoing.length) html += `<p class="month">Ongoing &amp; annual · apply anytime</p>` + ongoing.map(card).join("");
-    html += `<details class="panel" style="padding:12px 14px;margin-top:16px"><summary style="cursor:pointer;color:var(--gold);font-weight:600;font-size:.82rem">Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
+    html += `<p class="sub" style="margin:2px 0 0">${dated.length} dated · ${ongoing.length} ongoing</p>`;
+    html += dated.length ? dated.slice(0, oLimit).map((i) => { const m = fmt(i.date, { month: "long", year: "numeric" }); const h = m !== month ? `<p class="month">${m}</p>` : ""; month = m; return h + card(i); }).join("") : '<p class="empty">Nothing dated matches these filters.</p>';
+    if (dated.length > oLimit) html += `<button class="btn full more" id="omore">Show ${Math.min(25, dated.length - oLimit)} more · ${dated.length - oLimit} left</button>`;
+    if (ongoing.length) html += `<details class="panel" id="ongo"${oQuery ? " open" : ""}><summary>Ongoing &amp; annual · apply anytime (${ongoing.length})</summary>${ongoing.map(card).join("")}</details>`;
+    html += `<details class="panel" style="margin-top:16px"><summary>Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
       <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + " items" : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
       <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Always confirm details on the organizer's page.</p></details>` + footer();
-    app.innerHTML = html;
-    app.querySelectorAll("[data-ot]").forEach((b) => b.addEventListener("click", () => { oType = b.dataset.ot; viewOpp(); }));
-    document.getElementById("ost").onchange = (e) => { oState = e.target.value; oCounty = ""; viewOpp(); };
-    document.getElementById("oco").onchange = (e) => { oCounty = e.target.value; viewOpp(); };
-    document.getElementById("ov").onclick = () => { oVendor = !oVendor; viewOpp(); };
-    document.getElementById("oh").onclick = () => { oHideApplied = !oHideApplied; viewOpp(); };
+    show(html);
+    const om = document.getElementById("omore"); if (om) om.onclick = () => { const y = window.scrollY; oLimit += 25; viewOpp(); window.scrollTo(0, y); };
+    app.querySelectorAll("[data-ot]").forEach((b) => b.addEventListener("click", () => { oType = b.dataset.ot; oLimit = 25; viewOpp(); }));
+    document.getElementById("ost").onchange = (e) => { oState = e.target.value; oCounty = ""; oLimit = 25; viewOpp(); };
+    document.getElementById("oco").onchange = (e) => { oCounty = e.target.value; oLimit = 25; viewOpp(); };
+    document.getElementById("ov").onclick = () => { oVendor = !oVendor; oLimit = 25; viewOpp(); };
+    document.getElementById("oh").onclick = () => { oHideApplied = !oHideApplied; oLimit = 25; viewOpp(); };
     app.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { const a = store.get("applied", {}); if (a[b.dataset.ap]) delete a[b.dataset.ap]; else a[b.dataset.ap] = todayISO(); store.set("applied", a); const y = window.scrollY; viewOpp(); window.scrollTo(0, y); }));
     const q = document.getElementById("oq");
-    q.addEventListener("input", () => { oQuery = q.value; const pos = q.selectionStart; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); });
+    q.addEventListener("input", debounce(() => { oQuery = q.value; const pos = q.selectionStart; oLimit = 25; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); }, 220));
   }
 
   /* ---------- .ics ---------- */
@@ -378,10 +435,10 @@
     if (h === "links") return viewLinks();
     viewList();
   }
-  window.addEventListener("hashchange", route);
+  window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
   if ("serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); }); }
   fetch("data/events.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); DATA = d; route(); })
-    .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Pull to refresh.</p>'; });
+    .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Check your signal, then pull down to refresh.</p>'; });
 })();
