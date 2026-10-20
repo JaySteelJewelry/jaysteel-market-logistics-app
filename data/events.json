@@ -185,19 +185,24 @@
       "name": "The Northside Market",
       "series": "northside",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-11-07",
       "start": "10:00",
       "end": "14:00",
       "venue": "The Northside Market",
-      "address": "590 Duval Station Rd, Jacksonville, FL",
-      "fee": "Not listed yet",
+      "address": "First Coast High School, 590 Duval Station Rd, Jacksonville, FL (student lot, Starratt Rd side)",
+      "fee": "$40",
+      "payBy": "2026-10-30",
+      "payHow": "$40 non-refundable by Fri Oct 30 — Venmo @Cayla-Kurtz or Cash App $TheNorthsideMarket, business name (JAY STEEL JEWELRY) in the notes. NOT paid yet; spot not reserved until paid.",
       "contact": {
+        "name": "Cayla Kurtz",
         "email": "thenorthsidemarket904@gmail.com"
       },
-      "nextStep": "Waiting on their reply with fee + form.",
+      "setup": "10×10 tent, tables + table coverings required; tent weights encouraged; no electricity. All vehicles parked by 9:45 AM. Space + load-in time sent the day before.",
+      "nextStep": "Approved Oct 20. Reply to confirm (waiting on your OK) and pay $40 by Fri Oct 30.",
       "headsUp": "Same day as Park Street Market on your calendar.",
-      "paid": false
+      "paid": false,
+      "approval": "Approved Oct 20, 12:17 PM (Cayla Kurtz)"
     },
     {
       "id": "bjs-sunday-2026-11-15",
