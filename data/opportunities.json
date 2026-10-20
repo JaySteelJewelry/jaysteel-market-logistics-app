@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T22:22Z",
+ "updated": "2026-10-20T04:52Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -40,7 +40,7 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 1,
+   "items": 0,
    "error": null
   },
   {
@@ -49,9 +49,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://gsu.campuslabs.com/engage/events.rss",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "Georgia State University Calendar",
@@ -69,9 +69,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -356,36 +356,6 @@
  ],
  "items": [
   {
-   "id": "42f14ff9d75d",
-   "title": "After Dark",
-   "date": "2026-10-19",
-   "time": "9:00 PM",
-   "location": "Alpha Epsilon Phi",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "college",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12898286",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "seed-fl-0028",
-   "origin": "seed",
-   "title": "Homecoming Week Vendor Registration (Market Monday, Block Party, Yard Fest, Step Show)",
-   "org": "Edward Waters University",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "college",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://www.tickettailor.com/events/edwardwaterscollege/953274",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-19"
-  },
-  {
    "id": "seed-fl-0008",
    "origin": "seed",
    "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
@@ -460,6 +430,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-10-22"
+  },
+  {
+   "id": "7375d2cf6b17",
+   "title": "2026 Mini 500",
+   "date": "2026-10-23",
+   "time": "5:00 PM",
+   "location": "Peter's Parking Deck",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12540254",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-20"
   },
   {
    "id": "5ba2900637bc",
@@ -600,7 +585,7 @@
    "firstSeen": "2026-10-18"
   },
   {
-   "id": "b5f17027fc21",
+   "id": "bd730a30b915",
    "title": "Atlanta Market Day w/ Student-Made - Oct. 29",
    "date": "2026-10-29",
    "time": "10:00 AM",
@@ -609,10 +594,10 @@
    "county": "Fulton",
    "state": "GA",
    "type": "college",
-   "source": "Georgia State University Calendar",
-   "url": "https://calendar.gsu.edu/event/atlanta-market-day-w-student-made-oct-29",
+   "source": "Georgia State University (Engage)",
+   "url": "https://pin.gsu.edu/event/11770580",
    "vendorMatch": true,
-   "firstSeen": "2026-10-19"
+   "firstSeen": "2026-10-20"
   },
   {
    "id": "350ffb62b60a",
@@ -785,6 +770,21 @@
    "date": "2026-11-05"
   },
   {
+   "id": "ee96288141d3",
+   "title": "Persian-American Resource Society Tabling at GTIA Night Market",
+   "date": "2026-11-05",
+   "time": "6:00 PM",
+   "location": "Tech Green Walkway",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "tabling",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12869696",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-20"
+  },
+  {
    "id": "seed-fl-0201",
    "origin": "seed",
    "title": "Volusia County Fair & Youth Show 2026 – Vendor Space",
@@ -844,6 +844,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-10"
+  },
+  {
+   "id": "493968ad39d9",
+   "title": "Language Expo",
+   "date": "2026-11-12",
+   "time": "11:00 AM",
+   "location": "Dunwoody Student Center 2nd Floor",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University (Engage)",
+   "url": "https://pin.gsu.edu/event/12857906",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-20"
   },
   {
    "id": "c6b9395c4df5",
@@ -1376,6 +1391,20 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://cojspecialevents.formstack.com/forms/jjf2026_foodvendorapplication",
    "fee": "Typically 15% of gross receipts (COJ standard)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0028",
+   "origin": "seed",
+   "title": "Homecoming Week Vendor Registration (Market Monday, Block Party, Yard Fest, Step Show)",
+   "org": "Edward Waters University",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "college",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://www.tickettailor.com/events/edwardwaterscollege/953274",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -1986,6 +2015,9 @@
   }
  ],
  "newThisRun": [
-  "b5f17027fc21"
+  "7375d2cf6b17",
+  "bd730a30b915",
+  "ee96288141d3",
+  "493968ad39d9"
  ]
 }
