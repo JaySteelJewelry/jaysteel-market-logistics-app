@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T17:10Z",
+ "updated": "2026-10-20T21:38Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -39,9 +39,9 @@
    "state": "FL",
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "error": null
   },
   {
    "source": "Georgia State University (Engage)",
@@ -50,7 +50,7 @@
    "county": "Fulton",
    "url": "https://gsu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -69,9 +69,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -109,9 +109,9 @@
    "state": "GA",
    "county": "Hall",
    "url": "https://ung.campuslabs.com/engage/events.rss",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "error": null
   },
   {
    "source": "City of Jacksonville Beach",
@@ -372,6 +372,21 @@
    "date": "2026-10-20"
   },
   {
+   "id": "227688153370",
+   "title": "Fall Experiential Learning Expo",
+   "date": "2026-10-21",
+   "time": "2:00 PM",
+   "location": "Curve, Library South",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University (Engage)",
+   "url": "https://pin.gsu.edu/event/12908740",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-20"
+  },
+  {
    "id": "2a23b3023ac1",
    "title": "Market Wednesday and Wellness: SG Mental Health Week",
    "date": "2026-10-21",
@@ -430,6 +445,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-10-22"
+  },
+  {
+   "id": "7375d2cf6b17",
+   "title": "2026 Mini 500",
+   "date": "2026-10-23",
+   "time": "5:00 PM",
+   "location": "Peter's Parking Deck",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12540254",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-20"
   },
   {
    "id": "5ba2900637bc",
@@ -753,6 +783,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-05"
+  },
+  {
+   "id": "ee96288141d3",
+   "title": "Persian-American Resource Society Tabling at GTIA Night Market",
+   "date": "2026-11-05",
+   "time": "6:00 PM",
+   "location": "Tech Green Walkway",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "tabling",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12869696",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-20"
   },
   {
    "id": "seed-fl-0201",
@@ -1984,5 +2029,9 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "227688153370",
+  "7375d2cf6b17",
+  "ee96288141d3"
+ ]
 }
