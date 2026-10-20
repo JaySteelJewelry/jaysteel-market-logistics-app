@@ -266,3 +266,23 @@ details summary{cursor:pointer;color:var(--accent-text);font-weight:600;font-siz
 .next .count b,.stat b,.date b,.tot b,.h2,.dhead h2,.next .name{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
 .signoff{text-align:center;margin:30px 0 0}.signoff img{width:76px;margin:0 auto 4px;filter:drop-shadow(0 2px 10px rgba(217,168,78,.25))}.signoff .wordmark{margin-top:6px}
 .due a .badge{margin-top:6px}
+
+/* ---------- Apply via Tab (Oct 20 2026) ---------- */
+.applywrap{display:grid;gap:8px;align-content:start}
+.apply-tab{width:100%;letter-spacing:.04em}
+.apply-row{margin:12px 0 0}
+.apply-detail{margin:0 0 16px}
+.apply-detail .apply-tab{min-height:48px;font-size:.9rem}
+.sent-tab{margin:2px 0 0}
+.apply-row .sent-tab,.apply-detail .sent-tab{margin:12px 0 0}
+.panel .apply-tab,.panel .sent-tab{margin-top:10px}
+body.sheet-open{overflow:hidden}
+.sheet-wrap{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55);animation:fade .2s var(--ease)}
+.sheet{width:100%;max-width:520px;background:var(--surface);color:var(--text);border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(0,0,0,.45)}
+.sheet .eyebrow{display:block;margin:0 0 4px;color:var(--accent-text)}
+.sheet h3{font-family:var(--serif);font-size:1.5rem;line-height:1.2;margin:0 0 2px;overflow-wrap:anywhere}
+.sheet .sub{margin:0 0 12px}
+.sheet-note{margin:0 0 16px;padding:12px 14px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--line);font-size:.88rem}
+.sheet .actions{margin:0}
+@media (min-width:640px){.sheet-wrap{align-items:center}.sheet{border-radius:20px;border-bottom:1px solid var(--line)}}
+

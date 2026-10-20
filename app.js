@@ -1,6 +1,7 @@
 /* JAY STEEL JEWELRY · Market Logistics
    Data: data/events.json (edit that one file to add/change markets).
-   Checklists + sales/expense tally are saved on this device (localStorage). */
+   Checklists + sales/expense tally are saved on this device (localStorage).
+   Oct 20 2026: "Apply via Tab" hands an application to Tab over WhatsApp (Tab's number only). */
 (function () {
   "use strict";
   const TZ = "America/New_York";
@@ -79,6 +80,59 @@
   const csvCell = (v) => { v = String(v == null ? "" : v); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
   const byId = (id) => DATA.events.find((e) => e.id === id);
 
+  /* ---------- Apply via Tab (Oct 20 2026) ----------
+     Static site, so the hand-off is a prefilled WhatsApp message to Tab's own number. Tab submits the application and
+     the real status comes back in data/events.json. "⏳ Sent to Tab" is remembered on this device only. */
+  const TAB_WA = "12512765320";
+  const APPLY_OK = ["open", "lead", "not-applied", "not_applied", "notapplied", "unapplied", "idea", "prospect"];
+  const canApplyStatus = (s) => !s || APPLY_OK.includes(String(s).toLowerCase());
+  const canApplyEvent = (e) => !e.paid && canApplyStatus(e.status);
+  const slug = (s) => String(s || "").toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+  const nameKey = (s) => String(s || "").toLowerCase().replace(/\([^)]*\)/g, " ").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\b(the|a|an)\b/g, " ").replace(/\s+/g, " ").trim();
+  /* names of everything already applied to / booked / decided, so a Find card for the same market hides its button */
+  function knownKeys() {
+    const ks = [];
+    (DATA.events || []).forEach((e) => { if (!canApplyEvent(e)) ks.push(nameKey(e.name)); });
+    (DATA.openApplications || []).forEach((o) => { if (!canApplyStatus(o.status)) ks.push(nameKey(o.name)); });
+    return ks.filter((k) => k.length >= 8);
+  }
+  const alreadyKnown = (title, ks) => { const t = nameKey(title); return t.length >= 8 && ks.some((k) => t === k || t.startsWith(k + " ") || k.startsWith(t + " ")); };
+  const sentMap = () => store.get("sentToTab", {});
+  const isSent = (id) => !!sentMap()[id];
+  function applyMsg(x) {
+    return `APPLY ✅ ${x.name} — ${x.dates} — id:${x.id}${x.link ? " — " + x.link : ""}\nLuis sent from the JAY STEEL logistics app.`;
+  }
+  const applyURL = (x) => "https://wa.me/" + TAB_WA + "?text=" + encodeURIComponent(applyMsg(x));
+  const eventDates = (e) => fmt(e.date, { weekday: "short", month: "short", day: "numeric", year: "numeric" }) + (e.endDate ? " – " + fmt(e.endDate, { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : "");
+  const APPLY_REG = {};
+  function applyBtn(x) {
+    APPLY_REG[x.id] = x;
+    if (isSent(x.id)) return `<p class="sent-tab" role="status"><span class="badge s-pending">⏳ Sent to Tab</span></p>`;
+    return `<button type="button" class="btn small primary apply-tab" data-apply="${esc(x.id)}" aria-label="Apply via Tab: ${esc(x.name)}">Apply via Tab</button>`;
+  }
+  function wireApply(root, rerender) {
+    (root || app).querySelectorAll("[data-apply]").forEach((b) => b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); const x = APPLY_REG[b.dataset.apply]; if (x) applySheet(x, b, rerender); }));
+  }
+  function applySheet(x, opener, rerender) {
+    const old = document.getElementById("applysheet"); if (old) old.remove();
+    const wrap = document.createElement("div"); wrap.className = "sheet-wrap"; wrap.id = "applysheet";
+    wrap.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="as-t" aria-describedby="as-d">
+      <p class="eyebrow">Apply via Tab</p><h3 id="as-t">${esc(x.name)}</h3><p class="sub">${esc(x.dates)}</p>
+      <p id="as-d" class="sheet-note">Tab will fill out and submit this application in your name. Fees are never paid automatically.</p>
+      <div class="actions"><button type="button" class="btn" id="as-no">Cancel</button><a class="btn primary" id="as-yes" href="${esc(applyURL(x))}" target="_blank" rel="noopener">Apply</a></div></div>`;
+    document.body.appendChild(wrap); document.body.classList.add("sheet-open");
+    const close = () => { wrap.remove(); document.body.classList.remove("sheet-open"); document.removeEventListener("keydown", onKey); if (opener && document.body.contains(opener)) opener.focus(); };
+    const onKey = (ev) => { if (ev.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+    wrap.addEventListener("click", (ev) => { if (ev.target === wrap) close(); });
+    document.getElementById("as-no").onclick = close;
+    document.getElementById("as-yes").addEventListener("click", () => {
+      const m = sentMap(); m[x.id] = new Date().toISOString(); store.set("sentToTab", m);
+      setTimeout(() => { close(); toast("⏳ Sent to Tab"); const y = window.scrollY; if (rerender) rerender(); window.scrollTo(0, y); }, 60);
+    });
+    document.getElementById("as-yes").focus();
+  }
+
   /* ---------- tally + checklist state ---------- */
   const tally = (id) => store.get("tally." + id, []);
   const totals = (rows) => rows.reduce((t, r) => { if (r.type === "sale") t.sales += r.amount; else t.exp += r.amount; return t; }, { sales: 0, exp: 0 });
@@ -133,11 +187,12 @@
     if (DATA.openApplications && DATA.openApplications.length) {
       html += `<div id="openapps"><h2 class="h2">Open applications · no date yet</h2>` + DATA.openApplications.map((o) => `<div class="panel">
         <div class="kv"><span class="ic" aria-hidden="true">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="k">${esc((STATUS[o.status] || { label: o.status }).label)}</p><p class="v"><b>${esc(o.name)}</b><br>${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div></div>
-        ${o.nextStep ? `<div class="kv"><span class="ic" aria-hidden="true">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}</div>`).join("") + `</div>`;
+        ${o.nextStep ? `<div class="kv"><span class="ic" aria-hidden="true">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}${canApplyStatus(o.status) && !o.paid ? applyBtn({ id: o.id || slug(o.name), name: o.name, dates: o.when || "No date yet", link: o.link || o.url || "" }) : ""}</div>`).join("") + `</div>`;
     }
     html += footer();
     show(html);
     renderListBody();
+    const oaBox = document.getElementById("openapps"); if (oaBox) wireApply(oaBox, viewList);
     app.querySelectorAll(".chip").forEach((b) => b.addEventListener("click", () => {
       filter = b.dataset.f;
       app.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
@@ -168,10 +223,12 @@
     box.innerHTML = list.length ? `<div class="rows">${list.map((e) => {
       const m = fmt(e.date, { month: "long", year: "numeric" });
       const head = m !== month ? `<p class="month">${m}</p>` : ""; month = m;
-      return head + rowHTML(e, today);
+      const past = lastDay(e) < today;
+      return head + (!past && canApplyEvent(e) ? `<div class="applywrap">${rowHTML(e, today)}${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : rowHTML(e, today));
     }).join("")}</div>` : `<p class="empty">No markets match${query ? ` “${esc(query)}”` : ""}.</p>`;
     const oa = document.getElementById("openapps"); if (oa) oa.hidden = !(filter === "nodate" || filter === "all");
     box.hidden = filter === "nodate";
+    wireApply(box, renderListBody);
   }
 
   const PAYABLE = ["approved", "agreement", "pending", "conditional"];
@@ -244,11 +301,12 @@
         ${kv("🏷️", "Status", e.approval && esc(e.approval))}
         ${kv("📝", "Notes", e.notes && esc(e.notes))}
       </div>
+      ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
       ${e.headsUp ? `<div class="panel heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
       <h3 class="h2">Packing checklist</h3><div class="panel" id="pack"></div>
       <h3 class="h2">Sales &amp; expenses</h3><div class="panel" id="money"></div>${footer()}`);
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
-    renderPack(e); renderTally(e);
+    renderPack(e); renderTally(e); wireApply(app, () => viewEvent(id));
     window.scrollTo(0, 0);
   }
 
@@ -362,6 +420,9 @@
     const dated = OPP.items.filter((i) => i.date >= today).filter(match);
     const ongoing = (OPP.ongoing || []).filter(match);
     const isNew = (i) => i.origin !== "seed" && i.firstSeen >= weekAgo;
+    const ks = knownKeys();
+    const oppApply = (i) => !applied[i.id] && !alreadyKnown(i.title, ks) && !alreadyKnown(i.org || "", ks);
+    const oppDates = (i) => i.date ? fmt(i.date, { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : (i.when || "Ongoing · apply anytime");
     const card = (i) => {
       const dateBox = i.date ? `<div class="date"><small>${fmt(i.date, { month: "short" }).toUpperCase()}</small><b>${parse(i.date).getUTCDate()}</b><i>${fmt(i.date, { weekday: "short" }).toUpperCase()}</i></div>` : `<div class="date"><small>ANY</small><b>∞</b><i>TIME</i></div>`;
       const tags = [isNew(i) ? '<span class="badge s-approved">New this week</span>' : "", i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : "", `<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span>`, applied[i.id] ? '<span class="badge s-agreement">Applied</span>' : ""].join(" ");
@@ -371,7 +432,8 @@
         <p class="m">${esc(i.org || i.source)}${i.when ? " · " + esc(i.when) : ""}</p></div><span></span></div>
         ${i.fee || i.deadline ? `<p class="m" style="margin:8px 0 0">${i.fee ? "💵 " + esc(i.fee) : ""}${i.fee && i.deadline ? " · " : ""}${i.deadline ? "⏰ " + esc(i.deadline) : ""}</p>` : ""}
         <div class="tags">${tags}</div>
-        <div class="actions" style="margin:10px 0 0">${i.url ? `<a class="btn small primary" href="${esc(i.url)}" target="_blank" rel="noopener">Apply / details ↗</a>` : '<span></span>'}<button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${!!applied[i.id]}">${applied[i.id] ? "✓ Applied" : "Mark applied"}</button></div></div>`;
+        ${oppApply(i) ? `<div class="apply-row">${applyBtn({ id: i.id, name: i.title, dates: oppDates(i), link: i.url || "" })}</div>` : ""}
+        <div class="actions" style="margin:10px 0 0">${i.url ? `<a class="btn small" href="${esc(i.url)}" target="_blank" rel="noopener">Details ↗</a>` : '<span></span>'}<button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${!!applied[i.id]}">${applied[i.id] ? "✓ Applied" : "Mark applied"}</button></div></div>`;
     };
     const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
     const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
@@ -390,6 +452,7 @@
       <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + " items" : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
       <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Always confirm details on the organizer's page.</p></details>` + footer();
     show(html);
+    wireApply(app, viewOpp);
     const om = document.getElementById("omore"); if (om) om.onclick = () => { const y = window.scrollY; oLimit += 25; viewOpp(); window.scrollTo(0, y); };
     app.querySelectorAll("[data-ot]").forEach((b) => b.addEventListener("click", () => { oType = b.dataset.ot; oLimit = 25; viewOpp(); }));
     document.getElementById("ost").onchange = (e) => { oState = e.target.value; oCounty = ""; oLimit = 25; viewOpp(); };
