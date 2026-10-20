@@ -100,7 +100,7 @@
     const d = parse(e.date);
     return `<a class="row${past ? " past" : ""}" href="#/e/${encodeURIComponent(e.id)}">
       <div class="date"><small>${fmt(e.date, { month: "short" }).toUpperCase()}</small><b>${d.getUTCDate()}</b><i>${fmt(e.date, { weekday: "short" }).toUpperCase()}</i></div>
-      <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))} · ${esc(e.venue || e.address || "")}</p>${badge(e.status)}</div>
+      <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))} · ${esc(e.venue || e.address || "")}</p>${badge(e.status)}${!past && e.payBy && !e.paid && e.payBy < today && ["approved", "agreement", "conditional"].includes(e.status) ? ' <span class="badge s-due">Past due</span>' : ""}</div>
       <span class="chev" aria-hidden="true">›</span></a>`;
   }
 
@@ -223,7 +223,7 @@
     const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && esc(c.phone)].filter(Boolean).join("<br>");
     const paidLine = (e.status === "approved" || e.status === "agreement" || e.status === "conditional") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
     const overdue = e.payBy && !e.paid && e.payBy < todayISO() && lastDay(e) >= todayISO();
-    const payBy = e.payBy && (overdue ? `<span class="warn-text">Pay-by date passed (${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))})</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
+    const payBy = e.payBy && (overdue ? `<span class="badge s-due">Past due</span> <span class="warn-text">was due ${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
     const pay = [e.fee && `<b>${esc(e.fee)}</b>${e.feeNote ? " · " + esc(e.feeNote) : ""}`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, payBy, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
     show(`<a class="back" href="#/">‹ All markets</a>
       <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
@@ -298,11 +298,10 @@
     const today = todayISO(); const due = dueItems(today), over = overdueItems(today);
     const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
-    const dueRow = (e, late) => `<a class="${late ? "over" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><b>${late ? "was due" : "by"} ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`;
+    const dueRow = (e, late) => `<a class="${late ? "over" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small>${late ? '<br><span class="badge s-due">Past due</span>' : ""}</span><b>${late ? "was due" : "by"} ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`;
     show(`<h2 class="h2">Money</h2><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
-      ${over.length ? `<p class="month">Pay-by date passed</p><div class="due">${over.map((e) => dueRow(e, true)).join("")}</div>` : ""}
-      <p class="month">To pay · coming up</p>
-      <div class="due">${due.length ? due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
+      <p class="month">To pay</p>
+      <div class="due">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
       <p class="month">All markets · totals</p>
       <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
       <div class="panel"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>

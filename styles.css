@@ -50,7 +50,7 @@ img{max-width:100%;height:auto;display:block}
 .top{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top)}
 .top::before{content:"";position:absolute;inset:0;background:var(--bar);backdrop-filter:saturate(140%) blur(14px);-webkit-backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line);z-index:-1}
 .top__in{display:flex;align-items:center;gap:12px;max-width:1080px;margin:0 auto;min-height:var(--toph);padding:8px 18px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);min-width:0;flex:1}
+.brand{display:flex;align-items:center;gap:11px;min-height:48px;text-decoration:none;color:var(--text);min-width:0;flex:1}
 .brand img{width:44px;height:auto;filter:drop-shadow(0 2px 8px rgba(217,168,78,.25))}
 .brand__text{display:flex;flex-direction:column;min-width:0}
 .eyebrow{font-size:10px;letter-spacing:.28em;color:var(--accent-text);font-weight:600;white-space:nowrap}
@@ -265,3 +265,4 @@ details summary{cursor:pointer;color:var(--accent-text);font-weight:600;font-siz
 
 .next .count b,.stat b,.date b,.tot b,.h2,.dhead h2,.next .name{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
 .signoff{text-align:center;margin:30px 0 0}.signoff img{width:76px;margin:0 auto 4px;filter:drop-shadow(0 2px 10px rgba(217,168,78,.25))}.signoff .wordmark{margin-top:6px}
+.due a .badge{margin-top:6px}
