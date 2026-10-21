@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T17:13Z",
+ "updated": "2026-10-21T21:44Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -40,7 +40,7 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 1,
+   "items": 0,
    "error": null
   },
   {
@@ -50,7 +50,7 @@
    "county": "Fulton",
    "url": "https://gsu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 2,
    "error": null
   },
   {
@@ -355,36 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "a63ff2a50324",
-   "title": "Chispas Market",
-   "date": "2026-10-21",
-   "time": "12:00 PM",
-   "location": "Plaza of the Americas",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "college",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12911547",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-21"
-  },
-  {
-   "id": "227688153370",
-   "title": "Fall Experiential Learning Expo",
-   "date": "2026-10-21",
-   "time": "2:00 PM",
-   "location": "Curve, Library South",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University (Engage)",
-   "url": "https://pin.gsu.edu/event/12908740",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-20"
-  },
   {
    "id": "2a23b3023ac1",
    "title": "Market Wednesday and Wellness: SG Mental Health Week",
@@ -2073,8 +2043,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "a63ff2a50324",
-  "b8d4aafab6f3"
- ]
+ "newThisRun": []
 }
