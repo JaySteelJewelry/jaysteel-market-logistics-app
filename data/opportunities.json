@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T21:38Z",
+ "updated": "2026-10-21T04:49Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -10,7 +10,7 @@
    "county": "Duval",
    "url": "https://events.unf.edu",
    "ok": true,
-   "items": 4,
+   "items": 5,
    "error": null
   },
   {
@@ -355,22 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "seed-fl-0008",
-   "origin": "seed",
-   "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
-   "org": "Baker County Fair Association (BCFA)",
-   "city": "Macclenny",
-   "county": "Baker",
-   "state": "FL",
-   "type": "county",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://bakercountyfair.com/online-forms/outside-food-merchandise-application/",
-   "deadline": "2026 cycle: exhibit hall paid in full by 2026-09-15; food/merch fee & menu by 2026-10-01",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-20"
-  },
   {
    "id": "227688153370",
    "title": "Fall Experiential Learning Expo",
@@ -983,6 +967,21 @@
    "date": "2026-11-28"
   },
   {
+   "id": "140c77244cd5",
+   "title": "MOCA Mini Market",
+   "date": "2026-11-28",
+   "time": "11:00 AM",
+   "location": "MOCA",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "tabling",
+   "source": "UNF Events",
+   "url": "https://events.unf.edu/event/moca-mini-market-7370",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-21"
+  },
+  {
    "id": "seed-fl-0103",
    "origin": "seed",
    "title": "5th Annual Lightner Museum Holiday Market (Dec 3, 2026)",
@@ -1315,6 +1314,21 @@
   }
  ],
  "ongoing": [
+  {
+   "id": "seed-fl-0008",
+   "origin": "seed",
+   "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
+   "org": "Baker County Fair Association (BCFA)",
+   "city": "Macclenny",
+   "county": "Baker",
+   "state": "FL",
+   "type": "county",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://bakercountyfair.com/online-forms/outside-food-merchandise-application/",
+   "deadline": "2026 cycle: exhibit hall paid in full by 2026-09-15; food/merch fee & menu by 2026-10-01",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
   {
    "id": "seed-fl-0015",
    "origin": "seed",
@@ -2030,8 +2044,6 @@
   }
  ],
  "newThisRun": [
-  "227688153370",
-  "7375d2cf6b17",
-  "ee96288141d3"
+  "140c77244cd5"
  ]
 }
