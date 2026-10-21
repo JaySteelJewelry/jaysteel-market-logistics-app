@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T11:50Z",
+ "updated": "2026-10-21T17:13Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -40,7 +40,7 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null
   },
   {
@@ -70,7 +70,7 @@
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -355,6 +355,21 @@
   }
  ],
  "items": [
+  {
+   "id": "a63ff2a50324",
+   "title": "Chispas Market",
+   "date": "2026-10-21",
+   "time": "12:00 PM",
+   "location": "Plaza of the Americas",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "college",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12911547",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-21"
+  },
   {
    "id": "227688153370",
    "title": "Fall Experiential Learning Expo",
@@ -858,6 +873,21 @@
    "url": "https://pin.gsu.edu/event/12857906",
    "vendorMatch": false,
    "firstSeen": "2026-10-20"
+  },
+  {
+   "id": "b8d4aafab6f3",
+   "title": "404 Fest @ Tech Green",
+   "date": "2026-11-13",
+   "time": "4:30 PM",
+   "location": "Tech Green",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12910072",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-21"
   },
   {
    "id": "c6b9395c4df5",
@@ -2043,5 +2073,8 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "a63ff2a50324",
+  "b8d4aafab6f3"
+ ]
 }
