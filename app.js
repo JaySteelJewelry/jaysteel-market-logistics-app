@@ -1,4 +1,4 @@
-/* JAY STEEL JEWELRY · Market Logistics
+/* JAY STEEL JEWELRY · Market Logistics — "Market Day" redesign (Oct 22 2026)
    Data: data/events.json (edit that one file to add/change markets).
    Checklists + sales/expense tally are saved on this device (localStorage).
    Oct 20 2026: "Apply via Tab" hands an application to Tab over WhatsApp (Tab's number only). */
@@ -13,7 +13,8 @@
     pending: { label: "Pending", icon: "⏳" },
     tentative: { label: "Tentative", icon: "❓" },
     booked: { label: "On my calendar", icon: "📌" },
-    conditional: { label: "Conditional", icon: "❓" }
+    conditional: { label: "Conditional", icon: "❓" },
+    declined: { label: "Declined", icon: "❌" }
   };
   const EMAIL = "jaysteeljewelry@gmail.com";
   const DEFAULT_PACK = [
@@ -24,6 +25,8 @@
     "Receipts / resale certificate copy", "Chair"
   ];
   const app = document.getElementById("app");
+  const ROOT = (window.JSL && window.JSL.root) || "";            /* "../" in the /preview/ copy */
+  const USE_SW = !!(window.JSL && window.JSL.sw);                 /* the preview never registers a service worker */
   let DATA = null, filter = "upcoming", query = "", calMonth = null, calSel = null;
 
   /* ---------- helpers ---------- */
@@ -60,7 +63,7 @@
     const KEY = "jsj-theme", root = document.documentElement, btn = document.getElementById("theme-toggle"), meta = document.getElementById("theme-color");
     const apply = (t) => {
       root.setAttribute("data-theme", t);
-      if (meta) meta.setAttribute("content", t === "light" ? "#F6F4EF" : "#0A0A0A");
+      if (meta) meta.setAttribute("content", t === "light" ? "#F6F4EF" : "#070707");
       if (btn) { const next = t === "light" ? "dark" : "light"; btn.setAttribute("aria-label", `Switch to ${next} mode`); btn.setAttribute("aria-pressed", String(t === "light")); }
     };
     apply(root.getAttribute("data-theme") === "light" ? "light" : "dark");
@@ -151,51 +154,164 @@
     return tpl.map((text) => ({ text, done: false }));
   }
 
+
+  /* ---------- Market Day redesign: time + shared bits ---------- */
+  const IS_APPLE = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const dirURL = (a) => (IS_APPLE ? amaps(a) : maps(a));
+  function nyOffsetMin(ms) {
+    const g = {}; new Intl.DateTimeFormat("en-US", { timeZone: TZ, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" })
+      .formatToParts(new Date(ms)).forEach((p) => { g[p.type] = p.value; });
+    return (Date.UTC(+g.year, +g.month - 1, +g.day, +g.hour % 24, +g.minute, +g.second) - ms) / 60000;
+  }
+  /* a wall-clock time in Jacksonville -> epoch ms (DST-safe) */
+  function nyMs(iso, hm) {
+    const [y, m, d] = iso.split("-").map(Number); const [h, mi] = (hm || "00:00").split(":").map(Number);
+    const guess = Date.UTC(y, m - 1, d, h, mi); let t = guess - nyOffsetMin(guess) * 60000;
+    const o2 = nyOffsetMin(t); t = guess - o2 * 60000; return t;
+  }
+  const ended = (e, now) => { const ld = lastDay(e), today = todayISO(); if (ld > today) return false; if (ld < today) return true; return e.end ? nyMs(ld, e.end) <= now : false; };
+  const started = (e, now) => !!e.start && nyMs(e.date, e.start) <= now;
+  function nextMarket() {
+    const now = Date.now();
+    const live = DATA.events.filter((e) => e.status !== "declined" && !ended(e, now));
+    return live.find((e) => e.status !== "pending" && e.status !== "tentative") || live[0] || null;
+  }
+  const packStat = (id) => { const l = checklist(id); const d = l.filter((i) => i.done).length; return { done: d, total: l.length, pct: l.length ? Math.round((d / l.length) * 100) : 0 }; };
+  const ring = (pct, inner) => `<span class="ring" style="--p:${pct}"><span>${inner}</span></span>`;
+  const sec = (t, extra) => `<div class="sec"><h2>${t}</h2>${extra || ""}</div>`;
+  const I = {
+    pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.1-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.9 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>',
+    bag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+    info: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 7.6v.2"/></svg>',
+    cal: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+    link: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+    map: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg>',
+    cash: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg>',
+    check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>'
+  };
+  const statusPill = (s) => `<span class="pill s-${esc(s)}"><i></i>${esc((STATUS[s] || { label: s }).label)}</span>`;
+  const shortDate = (iso) => fmt(iso, { weekday: "short", month: "short", day: "numeric" });
+
   /* ---------- views ---------- */
   function setTab(name) {
-    document.querySelectorAll(".tabs a").forEach((a) => a.toggleAttribute("aria-current", false));
-    const a = document.querySelector(`.tabs a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
+    document.querySelectorAll(".dock a").forEach((a) => a.toggleAttribute("aria-current", false));
+    const a = document.querySelector(`.dock a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
+    document.body.classList.toggle("booth", name === "booth");
   }
 
+  /* one market on the chain timeline */
   function rowHTML(e, today) {
     const past = lastDay(e) < today;
     const d = parse(e.date);
-    return `<a class="row${past ? " past" : ""}" href="#/e/${encodeURIComponent(e.id)}">
+    const late = !past && e.payBy && !e.paid && e.payBy < today && ["approved", "agreement", "conditional"].includes(e.status);
+    return `<a class="row${past ? " past" : ""} s-${esc(e.status)}" href="#/e/${encodeURIComponent(e.id)}">
       <div class="date"><small>${fmt(e.date, { month: "short" }).toUpperCase()}</small><b>${d.getUTCDate()}</b><i>${fmt(e.date, { weekday: "short" }).toUpperCase()}</i></div>
-      <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))} · ${esc(e.venue || e.address || "")}</p>${badge(e.status)}${!past && e.payBy && !e.paid && e.payBy < today && ["approved", "agreement", "conditional"].includes(e.status) ? ' <span class="badge s-due">Past due</span>' : ""}</div>
+      <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))}${e.endDate ? " · thru " + esc(shortDate(e.endDate)) : ""} · ${esc(e.venue || e.address || "")}</p>
+      <p class="b">${statusPill(e.status)}${e.fee ? `<span class="fee">${esc(e.fee)}</span>` : ""}${e.paid ? '<span class="pill s-paid"><i></i>Paid</span>' : ""}${late ? ' <span class="pill s-due"><i></i>Past due</span>' : ""}</p></div>
       <span class="chev" aria-hidden="true">›</span></a>`;
   }
 
   const UPCOMING_OK = ["approved", "agreement", "booked"];
   const WAITING = ["pending", "tentative", "conditional"];
+
+  /* ===== TODAY: next-market countdown hero ===== */
+  let tick = null;
+  function viewToday() {
+    setTab("today");
+    const today = todayISO(), now = Date.now();
+    const upcoming = DATA.events.filter((e) => lastDay(e) >= today && e.status !== "declined");
+    const next = nextMarket();
+    const approved = upcoming.filter((e) => UPCOMING_OK.includes(e.status)).length;
+    const waiting = upcoming.filter((e) => WAITING.includes(e.status)).length;
+    const due = dueItems(today), over = overdueItems(today);
+    let hero = "";
+    if (next) {
+      const ps = packStat(next.id);
+      const live = started(next, now) && !ended(next, now);
+      const target = next.start ? nyMs(next.date, next.start) : nyMs(next.date, "00:00");
+      const n = daysBetween(today, next.date);
+      hero = `<section class="hero" aria-labelledby="hero-name">
+        <div class="hero__top"><p class="kicker">${live ? '<span class="livedot"></span>Happening now' : n <= 0 ? "Today" : "Next market"}</p>${statusPill(next.status)}</div>
+        <h1 class="hero__name" id="hero-name"><a href="#/e/${encodeURIComponent(next.id)}">${esc(next.name)}</a></h1>
+        <p class="hero__when">${esc(fmt(next.date, { weekday: "long", month: "long", day: "numeric" }))}${next.endDate ? " – " + esc(shortDate(next.endDate)) : ""} · ${esc(timeRange(next))}</p>
+        <p class="hero__where">${esc(next.venue || next.address || "")}</p>
+        ${live || (n <= 0 && !next.start) ? `<div class="clock clock--now" role="timer"><b>${live ? "Open" : "Today"}</b><span>${live ? (next.end ? "until " + esc(t12(next.end)) : "go get 'em") : "start time not set"}</span></div>`
+          : `<div class="clock" id="clock" data-t="${target}" role="timer" aria-live="off">${["Days", "Hrs", "Min", "Sec"].map((u) => `<div><b data-u="${u}">–</b><span>${u}</span></div>`).join("")}</div>
+             ${next.start ? "" : `<p class="clock-note">Start time not set yet — counting to the day.</p>`}`}
+        <div class="hero__acts">
+          ${next.address ? `<a class="act act--gold" href="${esc(dirURL(next.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : `<a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.pin}<span>No address</span></a>`}
+          <a class="act" href="#/pack/${encodeURIComponent(next.id)}">${ring(ps.pct, ps.done)}<span>Pack ${ps.done}/${ps.total}</span></a>
+          <a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.cash}<span>Sales &amp; info</span></a>
+        </div>
+      </section>`;
+    } else hero = `<section class="hero hero--empty"><p class="kicker">Next market</p><h1 class="hero__name">Nothing booked yet</h1><p class="hero__where">Find your next one in the Find tab.</p><div class="hero__acts"><a class="act act--gold" href="#/opportunities">${I.bag}<span>Find markets</span></a></div></section>`;
+
+    const rail = upcoming.filter((e) => !next || e.id !== next.id).filter((e) => !ended(e, now)).slice(0, 8);
+    const railHTML = rail.length ? `<div class="rail" role="list">${rail.map((e) => { const n = daysBetween(today, e.date); return `<a class="tag s-${esc(e.status)}" role="listitem" href="#/e/${encodeURIComponent(e.id)}">
+        <span class="tag__hole" aria-hidden="true"></span><span class="tag__in">${n <= 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days"}</span>
+        <b class="tag__d">${esc(fmt(e.date, { month: "short" }).toUpperCase())} ${parse(e.date).getUTCDate()}</b><span class="tag__n">${esc(e.name)}</span>${statusPill(e.status)}</a>`; }).join("")}</div>` : "";
+
+    const payRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
+    const nOpen = (DATA.openApplications || []).length;
+    let html = `<div class="today">${hero}<div class="today__side">
+      <div class="stats">
+        <a class="stat" href="#/markets" data-jump="approved"><b>${approved}</b><span>Confirmed</span></a>
+        <a class="stat" href="#/markets" data-jump="waiting"><b>${waiting}</b><span>Waiting</span></a>
+        <a class="stat${over.length ? " alert" : ""}" href="#/money"><b>${due.length + over.length}</b><span>${over.length ? `To pay · ${over.length} late` : "To pay"}</span></a>
+      </div>
+      ${over.length || due.length ? sec("Fees to pay", `<a class="more-link" href="#/money">Money ›</a>`) + `<div class="card pays">${over.map((e) => payRow(e, true)).join("") + due.map((e) => payRow(e, false)).join("")}</div>` : ""}
+      ${nOpen ? sec("No date yet") + `<a class="card nodate" href="#/markets" data-jump="nodate"><span><b>${nOpen} open application${nOpen === 1 ? "" : "s"}</b><small>${esc(DATA.openApplications.map((o) => o.name.replace(/\s*\(.*?\)/g, "")).join(" · "))}</small></span><span class="chev" aria-hidden="true">›</span></a>` : ""}
+    </div></div>`;
+    if (railHTML) html += sec("Coming up", `<a class="more-link" href="#/markets">All markets ›</a>`) + railHTML;
+    html += `<div class="quick">
+      <a class="qk" href="#/calendar">${I.cal}<span>Calendar</span></a>
+      <a class="qk" href="#/opportunities">${I.bag}<span>Find markets</span></a>
+      <a class="qk" href="#/links">${I.link}<span>Shop links</span></a>
+    </div>` + footer();
+    show(html);
+    wireJumps();
+    startClock();
+  }
+  function startClock() {
+    clearInterval(tick); const c = document.getElementById("clock"); if (!c) return;
+    const t = +c.dataset.t; const cells = {}; c.querySelectorAll("[data-u]").forEach((b) => { cells[b.dataset.u] = b; });
+    const paint = () => {
+      if (!document.body.contains(c)) { clearInterval(tick); return; }
+      let s = Math.max(0, Math.floor((t - Date.now()) / 1000));
+      if (s === 0) { clearInterval(tick); setTimeout(route, 1000); }
+      const d = Math.floor(s / 86400); s -= d * 86400; const h = Math.floor(s / 3600); s -= h * 3600; const m = Math.floor(s / 60); s -= m * 60;
+      cells.Days.textContent = d; cells.Hrs.textContent = String(h).padStart(2, "0"); cells.Min.textContent = String(m).padStart(2, "0"); cells.Sec.textContent = String(s).padStart(2, "0");
+    };
+    paint(); tick = setInterval(paint, 1000);
+  }
+  /* "Confirmed / Waiting / No date yet" taps open Markets on that filter */
+  function wireJumps() {
+    app.querySelectorAll("[data-jump]").forEach((a) => a.addEventListener("click", (ev) => {
+      ev.preventDefault(); const j = a.dataset.jump;
+      if (j === "nodate") filter = "nodate";
+      else if (j === "approved") filter = DATA.events.some((e) => e.status === "approved" && lastDay(e) >= todayISO()) ? "approved" : "upcoming";
+      else { const k = ["pending", "conditional", "tentative"].find((s) => DATA.events.some((e) => e.status === s && lastDay(e) >= todayISO())); filter = k || "upcoming"; }
+      if (location.hash === "#/markets") viewList(); else location.hash = "#/markets";
+    }));
+  }
+
+  /* ===== MARKETS: the chain timeline ===== */
   function viewList() {
     setTab("list");
     const today = todayISO();
     const upcoming = DATA.events.filter((e) => lastDay(e) >= today);
-    const next = upcoming.find((e) => e.status !== "pending" && e.status !== "tentative") || upcoming[0];
-    const approved = upcoming.filter((e) => UPCOMING_OK.includes(e.status)).length;
-    const waiting = upcoming.filter((e) => WAITING.includes(e.status)).length;
-    const due = dueItems(today), over = overdueItems(today);
-    let html = "";
-    if (next) {
-      const n = daysBetween(today, next.date);
-      html += `<a class="next" href="#/e/${encodeURIComponent(next.id)}"><p class="label">NEXT MARKET</p>
-        <p class="name">${esc(next.name)}</p><p class="meta">${esc(whenText(next))}<br>${esc(next.venue || "")}</p>
-        <div class="count"><b>${n <= 0 ? "Today" : n}</b><small>${n <= 0 ? "" : n === 1 ? "DAY" : "DAYS"}</small></div></a>`;
-    }
-    html += `<div class="stats"><a class="stat" href="#/" data-jump="approved" style="text-decoration:none"><b>${approved}</b><span>Confirmed</span></a><a class="stat" href="#/" data-jump="waiting" style="text-decoration:none"><b>${waiting}</b><span>Waiting</span></a><a class="stat${over.length ? " alert" : ""}" href="#/money" style="text-decoration:none"><b>${due.length + over.length}</b><span>${over.length ? `To pay · ${over.length} late` : "To pay"}</span></a></div>`;
     const count = (k) => upcoming.filter((e) => e.status === k).length;
     const nOpen = (DATA.openApplications || []).length;
-    /* Oct 20: "No date yet" is its own chip, so each chip shows only its own markets (no mixed long scroll) */
     const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), nOpen ? [["nodate", "🗓 No date yet", nOpen]] : [], [["past", "Past"], ["all", "All"]]);
     if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
-    html += `<h2 class="h2">Markets</h2><input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off">
+    let html = `<div class="pagehead"><h1>Markets</h1><div class="seg seg--nav" role="group" aria-label="View"><a href="#/markets" aria-current="page">List</a><a href="#/calendar">Calendar</a></div></div>
+      <div class="searchbox">${'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>'}<input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off"></div>
       <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l, n]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}${n != null ? `<span class="n">${n}</span>` : ""}</button>`).join("")}</div>
       <div id="listbody" aria-live="polite"></div>`;
-    if (DATA.openApplications && DATA.openApplications.length) {
-      html += `<div id="openapps"><h2 class="h2">Open applications · no date yet</h2>` + DATA.openApplications.map((o) => `<div class="panel">
-        <div class="kv"><span class="ic" aria-hidden="true">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="k">${esc((STATUS[o.status] || { label: o.status }).label)}</p><p class="v"><b>${esc(o.name)}</b><br>${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div></div>
-        ${o.nextStep ? `<div class="kv"><span class="ic" aria-hidden="true">➡️</span><div><p class="k">Next step</p><p class="v">${esc(o.nextStep)}</p></div></div>` : ""}${canApplyStatus(o.status) && !o.paid ? applyBtn({ id: o.id || slug(o.name), name: o.name, dates: o.when || "No date yet", link: o.link || o.url || "" }) : ""}</div>`).join("") + `</div>`;
+    if (nOpen) {
+      html += `<div id="openapps">${sec("Open applications · no date yet")}` + DATA.openApplications.map((o) => `<div class="card oa">
+        <div class="oa__h"><span class="oa__ic" aria-hidden="true">${(STATUS[o.status] || {}).icon || "⏳"}</span><div><p class="oa__n">${esc(o.name)}</p><p class="m">${esc(o.when || "")}${o.fee ? " · " + esc(o.fee) : ""}</p></div>${statusPill(o.status)}</div>
+        ${o.nextStep ? `<p class="oa__next"><span>Next step</span>${esc(o.nextStep)}</p>` : ""}${canApplyStatus(o.status) && !o.paid ? applyBtn({ id: o.id || slug(o.name), name: o.name, dates: o.when || "No date yet", link: o.link || o.url || "" }) : ""}</div>`).join("") + `</div>`;
     }
     html += footer();
     show(html);
@@ -206,10 +322,7 @@
       app.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
       renderListBody();
     }));
-    app.querySelectorAll("[data-jump]").forEach((a) => a.addEventListener("click", (ev) => {
-      ev.preventDefault(); const k = a.dataset.jump === "approved" ? "approved" : "pending";
-      const chip = app.querySelector(`.chip[data-f="${k}"]`) || app.querySelector('.chip[data-f="upcoming"]'); chip.click(); chip.scrollIntoView({ block: "center", behavior: "smooth" });
-    }));
+    const pc = app.querySelector('.chip[aria-pressed="true"]'); if (pc && pc.scrollIntoView && filter !== "upcoming") pc.scrollIntoView({ block: "nearest", inline: "center" });
     const q = document.getElementById("q");
     q.addEventListener("input", debounce(() => { query = q.value.trim(); renderListBody(); }, 160));
   }
@@ -228,11 +341,12 @@
     });
     if (filter === "past") list = list.slice().reverse();
     let month = "";
-    box.innerHTML = list.length ? `<div class="rows">${list.map((e) => {
+    box.innerHTML = list.length ? `<div class="chain">${list.map((e) => {
       const m = fmt(e.date, { month: "long", year: "numeric" });
       const head = m !== month ? `<p class="month">${m}</p>` : ""; month = m;
       const past = lastDay(e) < today;
-      return head + (!past && canApplyEvent(e) ? `<div class="applywrap">${rowHTML(e, today)}${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : rowHTML(e, today));
+      const inner = !past && canApplyEvent(e) ? `${rowHTML(e, today)}<div class="applyrow">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : rowHTML(e, today);
+      return head + `<div class="link-item${past ? " is-past" : ""}"><span class="node" aria-hidden="true"></span>${inner}</div>`;
     }).join("")}</div>` : `<p class="empty">No markets match${query ? ` “${esc(query)}”` : ""}.</p>`;
     const oa = document.getElementById("openapps"); if (oa) oa.hidden = !(filter === "nodate" || filter === "all");
     box.hidden = filter === "nodate";
@@ -250,8 +364,9 @@
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
 
+  /* ===== CALENDAR ===== */
   function viewCalendar() {
-    setTab("calendar");
+    setTab("list");
     const today = todayISO();
     if (!calMonth) calMonth = today.slice(0, 7);
     const [y, m] = calMonth.split("-").map(Number);
@@ -262,18 +377,19 @@
     let cells = ""; for (let i = 0; i < startDow; i++) cells += `<div class="day out" aria-hidden="true"></div>`;
     for (let d = 1; d <= daysIn; d++) {
       const iso = `${calMonth}-${String(d).padStart(2, "0")}`; const evs = map[iso] || [];
-      cells += `<button class="day${iso === today ? " today" : ""}${iso === calSel ? " sel" : ""}" data-d="${iso}" aria-label="${fmt(iso, { month: "long", day: "numeric" })}, ${evs.length} market${evs.length === 1 ? "" : "s"}">
+      cells += `<button class="day${iso === today ? " today" : ""}${iso === calSel ? " sel" : ""}${evs.length ? " has" : ""}${iso < today ? " gone" : ""}" data-d="${iso}" aria-label="${fmt(iso, { month: "long", day: "numeric" })}, ${evs.length} market${evs.length === 1 ? "" : "s"}">
         <span class="num">${d}</span><span class="dots">${evs.slice(0, 4).map((e) => `<i class="dot s-${e.status}"></i>`).join("")}</span></button>`;
     }
     const sel = calSel && map[calSel] ? map[calSel] : null;
     const monthEvents = DATA.events.filter((e) => e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth));
-    show(`<div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
-      <h2 class="h2">${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
+    show(`<div class="pagehead"><h1>Markets</h1><div class="seg seg--nav" role="group" aria-label="View"><a href="#/markets">List</a><a href="#/calendar" aria-current="page">Calendar</a></div></div>
+      <div class="card calcard"><div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
+      <h2>${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
       <div class="grid">${["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="dow">${d}</div>`).join("")}${cells}</div>
-      <div class="legend">${Object.entries(STATUS).map(([k, v]) => `<span class="s-${k}"><i class="dot"></i><em>${v.label}</em></span>`).join("")}</div>
+      <div class="legend">${Object.entries(STATUS).map(([k, v]) => `<span class="s-${k}"><i class="dot"></i><em>${v.label}</em></span>`).join("")}</div></div>
       <p class="month">${sel ? fmt(calSel, { weekday: "long", month: "long", day: "numeric" }) : "This month"}</p>
       <div class="list">${(sel || monthEvents).map((e) => rowHTML(e, today)).join("") || '<p class="empty">No markets this month.</p>'}</div>
-      <button class="btn full" id="icsall" style="margin-top:16px">⬇︎ Add all upcoming to my phone calendar (.ics)</button>${footer()}`);
+      <button class="btn full" id="icsall" style="margin-top:16px">${I.cal} Add all upcoming to my phone calendar (.ics)</button>${footer()}`);
     app.querySelectorAll(".day[data-d]").forEach((b) => b.addEventListener("click", () => { calSel = calSel === b.dataset.d ? null : b.dataset.d; const y = window.scrollY; viewCalendar(); window.scrollTo(0, y); }));
     document.getElementById("prev").onclick = () => { calMonth = shiftMonth(calMonth, -1); calSel = null; viewCalendar(); };
     document.getElementById("nextm").onclick = () => { calMonth = shiftMonth(calMonth, 1); calSel = null; viewCalendar(); };
@@ -283,24 +399,34 @@
 
   function kv(ic, k, v) { return v ? `<div class="kv"><span class="ic" aria-hidden="true">${ic}</span><div><p class="k">${k}</p><p class="v">${v}</p></div></div>` : ""; }
 
+  /* ===== ONE MARKET: a hang tag ===== */
   function viewEvent(id) {
     setTab("list");
     const e = byId(id);
-    if (!e) { show(`<a class="back" href="#/">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
+    if (!e) { show(`<a class="back" href="#/markets">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
     const c = e.contact || {};
     const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email)), c.phone && esc(c.phone)].filter(Boolean).join("<br>");
     const paidLine = (e.status === "approved" || e.status === "agreement" || e.status === "conditional") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
     const overdue = e.payBy && !e.paid && e.payBy < todayISO() && lastDay(e) >= todayISO();
-    const payBy = e.payBy && (overdue ? `<span class="badge s-due">Past due</span> <span class="warn-text">was due ${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
+    const payBy = e.payBy && (overdue ? `<span class="pill s-due"><i></i>Past due</span> <span class="warn-text">was due ${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
     const pay = [e.fee && `<b>${esc(e.fee)}</b>${e.feeNote ? " · " + esc(e.feeNote) : ""}`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, payBy, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
-    show(`<a class="back" href="#/">‹ All markets</a>
-      <div class="dhead">${badge(e.status)}<h2>${esc(e.name)}</h2><p class="when">${esc(whenText(e))}</p></div>
-      <div class="actions">
-        ${e.address ? `<a class="btn primary" href="${maps(e.address)}" target="_blank" rel="noopener">📍 Directions</a><a class="btn" href="${amaps(e.address)}" target="_blank" rel="noopener">🗺️ Apple Maps</a>` : ""}
-        <button class="btn" id="ics">🗓️ Add to calendar</button>
-        ${e.link ? `<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">🔗 Event site</a>` : `<a class="btn" href="#/links">🛍️ Store links</a>`}
+    const today = todayISO(), n = daysBetween(today, e.date), past = lastDay(e) < today;
+    const ps = packStat(e.id);
+    show(`<a class="back" href="#/markets">‹ All markets</a>
+      <article class="hangtag s-${esc(e.status)}">
+        <span class="hangtag__hole" aria-hidden="true"></span>
+        <div class="hangtag__top">${statusPill(e.status)}<span class="hangtag__count">${past ? "Past" : n <= 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days"}</span></div>
+        <h1>${esc(e.name)}</h1><p class="when">${esc(whenText(e))}</p>${e.venue ? `<p class="hangtag__venue">${esc(e.venue)}</p>` : ""}
+      </article>
+      <div class="bigacts">
+        ${e.address ? `<a class="act act--gold" href="${maps(e.address)}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a><a class="act" href="${amaps(e.address)}" target="_blank" rel="noopener">${I.map}<span>Apple Maps</span></a>` : ""}
+        <button class="act" id="ics" type="button">${I.cal}<span>Add to calendar</span></button>
+        ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : `<a class="act" href="#/links">${I.bag}<span>Store links</span></a>`}
       </div>
-      <div class="panel">
+      <a class="boothcta" href="#/pack/${encodeURIComponent(e.id)}">${ring(ps.pct, ps.done)}<span><b>Packing checklist</b><small>${ps.done} of ${ps.total} packed · big-button booth mode</small></span><span class="chev" aria-hidden="true">›</span></a>
+      ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
+      ${e.headsUp ? `<div class="card heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
+      <div class="card info">
         ${kv("📍", "Where", `${esc(e.venue || "")}${e.address ? "<br>" + esc(e.address) : ""}`)}
         ${kv("💵", "Fee · how paid", pay)}
         ${kv("☎️", "Contact", contact)}
@@ -309,28 +435,39 @@
         ${kv("🏷️", "Status", e.approval && esc(e.approval))}
         ${kv("📝", "Notes", e.notes && esc(e.notes))}
       </div>
-      ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
-      ${e.headsUp ? `<div class="panel heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
-      <h3 class="h2">Packing checklist</h3><div class="panel" id="pack"></div>
-      <h3 class="h2">Sales &amp; expenses</h3><div class="panel" id="money"></div>${footer()}`);
+      ${sec("Sales &amp; expenses")}<div class="card" id="money"></div>${footer()}`);
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
-    renderPack(e); renderTally(e); wireApply(app, () => viewEvent(id));
+    renderTally(e); wireApply(app, () => viewEvent(id));
     window.scrollTo(0, 0);
   }
 
-  function renderPack(e) {
-    const box = document.getElementById("pack"); const items = checklist(e.id);
-    const done = items.filter((i) => i.done).length; const pct = items.length ? Math.round((done / items.length) * 100) : 0;
-    box.innerHTML = `<div class="progress" aria-hidden="true"><i style="width:${pct}%"></i></div><p class="sub" style="margin:4px 0 6px">${done} of ${items.length} packed</p>
-      <ul class="check">${items.map((it, i) => `<li><input type="checkbox" id="c${i}" data-i="${i}" ${it.done ? "checked" : ""}><label for="c${i}">${esc(it.text)}</label><button class="x" data-del="${i}" aria-label="Remove ${esc(it.text)}">×</button></li>`).join("")}</ul>
-      <form class="addrow" id="addItem"><input id="newItem" placeholder="Add an item…" aria-label="Add a checklist item" maxlength="80"><button class="btn small" type="submit">Add</button></form>
-      <div class="actions" style="margin-bottom:12px"><button class="btn small" id="resetPack">Uncheck all</button><button class="btn small" id="saveTpl">Save as my default list</button></div>`;
-    const save = (list) => { store.set("check." + e.id, list); renderPack(e); };
-    box.querySelectorAll("input[type=checkbox]").forEach((cb) => cb.addEventListener("change", () => { const l = checklist(e.id); l[cb.dataset.i].done = cb.checked; save(l); }));
-    box.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); l.splice(b.dataset.del, 1); save(l); }));
-    document.getElementById("addItem").addEventListener("submit", (ev) => { ev.preventDefault(); const v = document.getElementById("newItem").value.trim(); if (!v) return; const l = checklist(e.id); l.push({ text: v, done: false }); save(l); });
-    document.getElementById("resetPack").onclick = () => { save(checklist(e.id).map((i) => ({ text: i.text, done: false }))); };
+  /* ===== BOOTH MODE: one-handed packing checklist (same saved list as before: jsj.check.<id>) ===== */
+  let packEdit = false, packHide = false;
+  function viewPack(id) {
+    const e = byId(id);
+    if (!e) { setTab("list"); show(`<a class="back" href="#/markets">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
+    setTab("booth");
+    show(`<div class="booth-v"><div class="booth-h"><a class="back" href="#/e/${encodeURIComponent(e.id)}">‹ ${esc(e.name)}</a>
+      <div class="booth-sum" id="bsum"></div></div><ul class="bigcheck" id="pack"></ul>
+      <form class="addrow" id="addItem"><input id="newItem" placeholder="Add an item…" aria-label="Add a checklist item" maxlength="80" autocomplete="off"><button class="btn" type="submit">Add</button></form>
+      <div class="booth-tools"><button class="btn small" id="hidePacked" aria-pressed="${packHide}">Hide packed</button><button class="btn small" id="editPack" aria-pressed="${packEdit}">${packEdit ? "Done editing" : "Edit list"}</button><button class="btn small" id="resetPack">Uncheck all</button><button class="btn small" id="saveTpl">Save as my default list</button></div></div>`);
+    renderPack(e);
+    document.getElementById("addItem").addEventListener("submit", (ev) => { ev.preventDefault(); const inp = document.getElementById("newItem"); const v = inp.value.trim(); if (!v) return; const l = checklist(e.id); l.push({ text: v, done: false }); store.set("check." + e.id, l); inp.value = ""; renderPack(e); });
+    document.getElementById("resetPack").onclick = () => { if (!confirm("Uncheck everything?")) return; store.set("check." + e.id, checklist(e.id).map((i) => ({ text: i.text, done: false }))); renderPack(e); };
     document.getElementById("saveTpl").onclick = () => { store.set("packTemplate", checklist(e.id).map((i) => i.text)); toast("Saved as your default list"); };
+    document.getElementById("editPack").onclick = (ev) => { packEdit = !packEdit; ev.currentTarget.setAttribute("aria-pressed", String(packEdit)); ev.currentTarget.textContent = packEdit ? "Done editing" : "Edit list"; renderPack(e); };
+    document.getElementById("hidePacked").onclick = (ev) => { packHide = !packHide; ev.currentTarget.setAttribute("aria-pressed", String(packHide)); renderPack(e); };
+    window.scrollTo(0, 0);
+  }
+  function renderPack(e) {
+    const box = document.getElementById("pack"), sum = document.getElementById("bsum"); if (!box) return;
+    const items = checklist(e.id); const done = items.filter((i) => i.done).length; const pct = items.length ? Math.round((done / items.length) * 100) : 0;
+    sum.innerHTML = `${ring(pct, pct + "%")}<div><b>${done === items.length && items.length ? "All packed. Go sell." : `${items.length - done} left to pack`}</b><small>${done} of ${items.length} packed · saved on this phone</small></div>`;
+    box.classList.toggle("editing", packEdit);
+    box.innerHTML = items.map((it, i) => (packHide && it.done && !packEdit ? "" : `<li class="${it.done ? "done" : ""}"><button type="button" class="ck" data-i="${i}" aria-pressed="${it.done}"><span class="box" aria-hidden="true">${I.check}</span><span class="tx">${esc(it.text)}</span></button>${packEdit ? `<button type="button" class="x" data-del="${i}" aria-label="Remove ${esc(it.text)}">×</button>` : ""}</li>`)).join("") || '<li class="empty">Everything is packed.</li>';
+    const save = (list) => { store.set("check." + e.id, list); renderPack(e); };
+    box.querySelectorAll(".ck").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); const it = l[b.dataset.i]; it.done = !it.done; if (navigator.vibrate) navigator.vibrate(12); save(l); }));
+    box.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); l.splice(b.dataset.del, 1); save(l); }));
   }
 
   let entryType = "sale";
@@ -367,13 +504,13 @@
     const today = todayISO(); const due = dueItems(today), over = overdueItems(today);
     const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
-    const dueRow = (e, late) => `<a class="${late ? "over" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span>${esc(e.name)}<br><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small>${late ? '<br><span class="badge s-due">Past due</span>' : ""}</span><b>${late ? "was due" : "by"} ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></a>`;
-    show(`<h2 class="h2">Money</h2><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
+    const dueRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
+    show(`<div class="pagehead"><h1>Money</h1></div><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
       <p class="month">To pay</p>
-      <div class="due">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
+      <div class="card pays">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
       <p class="month">All markets · totals</p>
       <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
-      <div class="panel"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
+      <div class="card"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
       <div class="actions"><button class="btn primary full" id="csvall">⬇︎ Export all sales &amp; expenses (CSV)</button>
         <button class="btn small" id="backup">Back up my data</button><label class="btn small" for="restore">Restore backup<input type="file" id="restore" accept="application/json" class="visually-hidden"></label></div>${footer()}`);
     document.getElementById("csvall").onclick = () => download(`jaysteel-sales-${today}.csv`, toCSV(DATA.events), "text/csv");
@@ -395,17 +532,17 @@
     const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return u; } };
     const card = (href, i, b, s, ext) => `<a class="linkcard" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}><span class="i" aria-hidden="true">${ICONS[i]}</span><span><b>${b}</b><small>${s}</small></span><span class="arrow" aria-hidden="true">›</span></a>`;
     const store = L.store || STORE_URL;
-    show(`<h2 class="h2">Shop JAY STEEL</h2><p class="sub">Send customers here from the booth, Discord or socials.</p>
+    show(`<div class="pagehead"><h1>Shop</h1></div><p class="sub">Send customers here from the booth, Discord or socials.</p>
       ${card(store, "store", "Online store", esc(host(store)), true)}
       ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
       ${card("mailto:" + EMAIL, "mail", "Email", EMAIL, false)}
-      <div class="signoff"><picture><source srcset="assets/js-icon.webp" type="image/webp"><img src="assets/js-icon.png" alt="" width="256" height="244" loading="lazy"></picture><p class="wordmark">JAY STEEL JEWELRY</p></div>
-      <hr class="gold-rule"><p class="month">Manage the app</p>
+      <div class="signoff"><picture><source srcset="${ROOT}assets/js-icon.webp" type="image/webp"><img src="${ROOT}assets/js-icon.png" alt="" width="256" height="244" loading="lazy"></picture><p class="wordmark">JAY STEEL JEWELRY</p></div>
+      <p class="month">Manage the app</p>
       ${card(EDIT_URL, "edit", "Edit markets", "Change data/events.json on GitHub — the app + Discord update", true)}${footer()}`);
   }
 
   function footer() {
-    return `<hr class="gold-rule"><p class="fine">Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY</p>`;
+    return `<p class="fine"><span class="fine__rule" aria-hidden="true"></span>Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY</p>`;
   }
 
 
@@ -413,7 +550,7 @@
   let OPP = null, oLimit = 25, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
   const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
   function loadOpp(fresh) {
-    return fetch("data/opportunities.json" + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    return fetch(ROOT + "data/opportunities.json" + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
   }
   function viewOpp() {
     setTab("opp");
@@ -445,8 +582,8 @@
     };
     const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
     const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
-    let html = `<h2 class="h2">Opportunities</h2><p class="sub">Public vendor calls, markets, college market days + city/county events — FL (Nassau → Volusia) and GA (Atlanta, Hall Co.).</p>
-      <input class="search" type="search" id="oq" placeholder="Search opportunities…" value="${esc(oQuery)}" aria-label="Search opportunities">
+    let html = `<div class="pagehead"><h1>Find</h1></div><p class="sub">Public vendor calls, markets, college market days + city/county events — FL (Nassau → Volusia) and GA (Atlanta, Hall Co.).</p>
+      <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search opportunities…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
       <div class="chips" role="group" aria-label="Type">${typeChips.map(([k, l]) => `<button class="chip" data-ot="${k}" aria-pressed="${oType === k}">${l}</button>`).join("")}</div>
       <div class="form" style="padding:0 0 6px"><select id="ost" aria-label="State"><option value="">All states</option><option ${oState === "FL" ? "selected" : ""}>FL</option><option ${oState === "GA" ? "selected" : ""}>GA</option></select>
         <select id="oco" aria-label="County"><option value="">All counties</option>${counties.map((c) => `<option ${oCounty === c ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div>
@@ -501,15 +638,18 @@
   function route() {
     if (!DATA) return;
     const h = location.hash.replace(/^#\/?/, "");
+    if (h !== "" && h !== "markets") clearInterval(tick);
     if (h.startsWith("e/")) return viewEvent(decodeURIComponent(h.slice(2)));
+    if (h.startsWith("pack/")) return viewPack(decodeURIComponent(h.slice(5)));
+    if (h === "markets") return viewList();
     if (h === "calendar") return viewCalendar();
     if (h === "money") return viewMoney();
     if (h === "opportunities") return viewOpp();
     if (h === "links") return viewLinks();
-    viewList();
+    viewToday();
   }
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
-  if ("serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); }); }
+  if (USE_SW && "serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); }); }
   const sortEvents = (d) => { d.events.sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || ""))); return d; };
 
   /* ---------- refresh (Oct 20 2026): ↻ in the header, or pull down at the top of the page ----------
@@ -524,7 +664,7 @@
     try {
       if ("serviceWorker" in navigator) {
         const reg = await navigator.serviceWorker.getRegistration().catch(() => null);
-        if (reg) {
+        if (reg && USE_SW) {
           await reg.update().catch(() => {});
           const w = reg.waiting || reg.installing;
           if (w && hadController) { w.postMessage("skipWaiting"); setTimeout(() => { if (!swReloading) { swReloading = true; location.reload(); } }, 2500); return; }
@@ -532,7 +672,7 @@
       }
       const t = Date.now();
       const [d, o] = await Promise.all([
-        fetch("data/events.json?t=" + t, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+        fetch(ROOT + "data/events.json?t=" + t, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
         loadOpp(true).catch(() => OPP),
       ]);
       DATA = sortEvents(d); if (o) OPP = o; migrateSent();
@@ -553,7 +693,7 @@
     window.addEventListener("touchend", () => { if (y0 == null) return; const go = dy >= GO; reset(); if (go) refreshAll(); }, { passive: true });
   })();
 
-  fetch("data/events.json", { cache: "no-cache" })
+  fetch(ROOT + "data/events.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((d) => { DATA = sortEvents(d); migrateSent(); route(); })
     .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Check your signal, then pull down to refresh.</p>'; });
