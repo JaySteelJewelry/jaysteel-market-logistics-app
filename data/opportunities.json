@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T11:54Z",
+ "updated": "2026-10-22T17:11Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -281,7 +281,7 @@
    "url": "https://www.flowerybranchga.org",
    "ok": false,
    "items": 0,
-   "error": "HTTPError: HTTP Error 404: Not Found"
+   "error": "URLError: <urlopen error _ssl.c:999: The handshake operation timed out>"
   },
   {
    "source": "City of Palm Coast",
