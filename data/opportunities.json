@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T17:11Z",
+ "updated": "2026-10-22T21:36Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 4,
    "error": null
   },
   {
@@ -70,7 +70,7 @@
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 4,
    "error": null
   },
   {
@@ -160,7 +160,7 @@
    "county": "St. Johns",
    "url": "https://www.citystaug.com",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null
   },
   {
@@ -281,7 +281,7 @@
    "url": "https://www.flowerybranchga.org",
    "ok": false,
    "items": 0,
-   "error": "URLError: <urlopen error _ssl.c:999: The handshake operation timed out>"
+   "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
    "source": "City of Palm Coast",
@@ -431,6 +431,21 @@
    "firstSeen": "2026-10-18"
   },
   {
+   "id": "c1a48539da25",
+   "title": "St. Benedict the Moor Blues Festival",
+   "date": "2026-10-23",
+   "time": "04:00 PM - 12:00 PM",
+   "location": "86 M L King AveSt. Augustine, FL 32084",
+   "city": "St. Augustine",
+   "county": "St. Johns",
+   "state": "FL",
+   "type": "city",
+   "source": "City of St. Augustine",
+   "url": "https://www.citystaug.com/Calendar.aspx?EID=2530",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-22"
+  },
+  {
    "id": "7f57c7de8076",
    "title": "5th Annual NFFN Fall Folk Festival",
    "date": "2026-10-24",
@@ -552,6 +567,21 @@
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3527",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "af1623de7560",
+   "title": "Local Business Talk with Pretty Little Things of DeLand",
+   "date": "2026-10-27",
+   "time": "5:30 PM",
+   "location": "Lynn Business Center (LBC) Room 108",
+   "city": "DeLand",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "college",
+   "source": "Stetson University (Engage)",
+   "url": "https://stetson.campuslabs.com/engage/event/12916461",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-22"
   },
   {
    "id": "bd730a30b915",
@@ -934,6 +964,21 @@
    "url": "https://stetson.campuslabs.com/engage/event/12673458",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "80573b318219",
+   "title": "Creative Exchange: Microgrant Student Art Expo",
+   "date": "2026-11-18",
+   "time": "2:00 PM",
+   "location": "Ferst Center for the Arts",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12916320",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-22"
   },
   {
    "id": "seed-fl-0025",
@@ -2028,5 +2073,9 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "c1a48539da25",
+  "af1623de7560",
+  "80573b318219"
+ ]
 }
