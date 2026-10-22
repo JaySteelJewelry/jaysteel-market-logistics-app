@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T21:44Z",
+ "updated": "2026-10-22T04:47Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -10,7 +10,7 @@
    "county": "Duval",
    "url": "https://events.unf.edu",
    "ok": true,
-   "items": 5,
+   "items": 4,
    "error": null
   },
   {
@@ -60,7 +60,7 @@
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
    "ok": true,
-   "items": 1,
+   "items": 2,
    "error": null
   },
   {
@@ -355,21 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "2a23b3023ac1",
-   "title": "Market Wednesday and Wellness: SG Mental Health Week",
-   "date": "2026-10-21",
-   "time": "10:00 AM",
-   "location": "John A. Delaney Student Union",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "college",
-   "source": "UNF Events",
-   "url": "https://events.unf.edu/event/market-wednesday-wellness-sg-mental-health-week",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-18"
-  },
   {
    "id": "f510ff1a933e",
    "title": "FMoPA Photography Social & Networking",
