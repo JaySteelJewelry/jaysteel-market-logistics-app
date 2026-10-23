@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T17:08Z",
+ "updated": "2026-10-23T21:25Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -239,9 +239,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 5,
+   "error": null
   },
   {
    "source": "City of DeLand",
@@ -431,6 +431,36 @@
    "firstSeen": "2026-10-18"
   },
   {
+   "id": "a0fe33dfc648",
+   "title": "Fall Festival *Free admission & Ride Tickets can be purchased on-site",
+   "date": "2026-10-24",
+   "time": "04:00 PM - 08:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3529",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-23"
+  },
+  {
+   "id": "16e5129cd1d5",
+   "title": "Farmers Market",
+   "date": "2026-10-24",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3054",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-23"
+  },
+  {
    "id": "seed-fl-0081",
    "origin": "seed",
    "title": "Fernandina Beach Arts Market (508 Centre St)",
@@ -462,6 +492,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-10-24"
+  },
+  {
+   "id": "a763f2c973b4",
+   "title": "Trunk or Treat & Vendor Market",
+   "date": "2026-10-24",
+   "time": "04:00 PM - 07:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3527",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-23"
   },
   {
    "id": "af1623de7560",
@@ -509,6 +554,21 @@
    "firstSeen": "2026-10-18"
   },
   {
+   "id": "04e7a19e65c6",
+   "title": "Beachside Baptist Fall Festival",
+   "date": "2026-10-30",
+   "time": "06:00 PM - 09:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3534",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-23"
+  },
+  {
    "id": "0da182ef298b",
    "title": "County Halloween Festival",
    "date": "2026-10-30",
@@ -552,6 +612,21 @@
    "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2393",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "76e49ebf98f3",
+   "title": "Farmers Market",
+   "date": "2026-10-31",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3055",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-23"
   },
   {
    "id": "f561c7546a54",
@@ -1997,6 +2072,10 @@
   }
  ],
  "newThisRun": [
-  "375d781862ae"
+  "a0fe33dfc648",
+  "16e5129cd1d5",
+  "a763f2c973b4",
+  "04e7a19e65c6",
+  "76e49ebf98f3"
  ]
 }
