@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T21:36Z",
+ "updated": "2026-10-23T04:50Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null
   },
   {
@@ -60,7 +60,7 @@
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -239,9 +239,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
-   "ok": true,
-   "items": 5,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "City of DeLand",
@@ -356,51 +356,6 @@
  ],
  "items": [
   {
-   "id": "f510ff1a933e",
-   "title": "FMoPA Photography Social & Networking",
-   "date": "2026-10-22",
-   "time": "6:00 PM",
-   "location": "Florida Museum of Photographic Arts",
-   "city": "DeLand",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "college",
-   "source": "Stetson University (Engage)",
-   "url": "https://stetson.campuslabs.com/engage/event/12885682",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "seed-fl-0037",
-   "origin": "seed",
-   "title": "Homecoming & Family Weekend (HCFW) – food trucks / event vendors",
-   "org": "Jacksonville University",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "college",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://www.ju.edu/eventscheduling/",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-22"
-  },
-  {
-   "id": "seed-fl-0017",
-   "origin": "seed",
-   "title": "SJR State 2026 Career Fair (employer tables)",
-   "org": "St. Johns River State College (SJR State)",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "college",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://sjrstate-csm.symplicity.com/events/OPC%20Career%20Fair",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-22"
-  },
-  {
    "id": "7375d2cf6b17",
    "title": "2026 Mini 500",
    "date": "2026-10-23",
@@ -476,36 +431,6 @@
    "firstSeen": "2026-10-18"
   },
   {
-   "id": "a0fe33dfc648",
-   "title": "Fall Festival *Free admission & Ride Tickets can be purchased on-site",
-   "date": "2026-10-24",
-   "time": "04:00 PM - 08:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3529",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "16e5129cd1d5",
-   "title": "Farmers Market",
-   "date": "2026-10-24",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3054",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-18"
-  },
-  {
    "id": "seed-fl-0081",
    "origin": "seed",
    "title": "Fernandina Beach Arts Market (508 Centre St)",
@@ -554,21 +479,6 @@
    "date": "2026-10-24"
   },
   {
-   "id": "a763f2c973b4",
-   "title": "Trunk or Treat & Vendor Market",
-   "date": "2026-10-24",
-   "time": "04:00 PM - 07:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3527",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-18"
-  },
-  {
    "id": "af1623de7560",
    "title": "Local Business Talk with Pretty Little Things of DeLand",
    "date": "2026-10-27",
@@ -614,21 +524,6 @@
    "firstSeen": "2026-10-18"
   },
   {
-   "id": "04e7a19e65c6",
-   "title": "Beachside Baptist Fall Festival",
-   "date": "2026-10-30",
-   "time": "06:00 PM - 09:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3534",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
-  },
-  {
    "id": "0da182ef298b",
    "title": "County Halloween Festival",
    "date": "2026-10-30",
@@ -670,21 +565,6 @@
    "type": "market",
    "source": "City of Jacksonville Beach",
    "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2393",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "76e49ebf98f3",
-   "title": "Farmers Market",
-   "date": "2026-10-31",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3055",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
   },
@@ -888,6 +768,21 @@
    "url": "https://events.unf.edu/event/harder-barter-market",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "6469ecbc96d3",
+   "title": "AI-Enhanced Decision-Making: From Human Judgment to Intelligent",
+   "date": "2026-11-14",
+   "time": "9:00 AM",
+   "location": "Buckhead Center",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University Calendar",
+   "url": "https://calendar.gsu.edu/event/beyond-the-hype-ai-research-meets-real-deployment",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-23"
   },
   {
    "id": "seed-fl-0092",
@@ -1376,6 +1271,20 @@
    "firstSeen": "2026-10-13"
   },
   {
+   "id": "seed-fl-0017",
+   "origin": "seed",
+   "title": "SJR State 2026 Career Fair (employer tables)",
+   "org": "St. Johns River State College (SJR State)",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "college",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://sjrstate-csm.symplicity.com/events/OPC%20Career%20Fair",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0018",
    "origin": "seed",
    "title": "Orange Park Farmers' & Arts Market (1st & 3rd Sundays, Sept–June)",
@@ -1541,6 +1450,20 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "when": "Open daily (Mon–Sat 7am–5pm, Sun 9am–4pm)"
+  },
+  {
+   "id": "seed-fl-0037",
+   "origin": "seed",
+   "title": "Homecoming & Family Weekend (HCFW) – food trucks / event vendors",
+   "org": "Jacksonville University",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "college",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://www.ju.edu/eventscheduling/",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
   },
   {
    "id": "seed-fl-0041",
@@ -2074,8 +1997,6 @@
   }
  ],
  "newThisRun": [
-  "c1a48539da25",
-  "af1623de7560",
-  "80573b318219"
+  "6469ecbc96d3"
  ]
 }
