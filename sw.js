@@ -1,5 +1,5 @@
 /* JAY STEEL Logistics service worker: app shell cached for offline; data is network-first. */
-const CACHE = "jsl-v9"; /* v8 Oct 22 2026: Market Day redesign */
+const CACHE = "jsl-v10"; /* v8 Oct 22 2026: Market Day redesign */
 const SHELL = ["./", "index.html", "styles.css?v=9", "app.js?v=9", "manifest.json", "data/events.json",
   "assets/js-icon.webp", "assets/js-icon.png", "assets/icon-192.png", "assets/fonts/montserrat.woff2", "assets/fonts/cormorant.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
