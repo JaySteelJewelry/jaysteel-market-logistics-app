@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T15:57Z",
+ "updated": "2026-10-24T20:51Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -120,7 +120,7 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 5,
+   "items": 4,
    "error": null
   },
   {
@@ -240,7 +240,7 @@
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
    "ok": true,
-   "items": 7,
+   "items": 6,
    "error": null
   },
   {
@@ -371,21 +371,6 @@
    "firstSeen": "2026-10-18"
   },
   {
-   "id": "8ac8fb02d1ec",
-   "title": "Beaches Green Market",
-   "date": "2026-10-24",
-   "time": "10:00 AM - 02:00 PM",
-   "location": "321 Penman RoadJacksonville Beach, FL 32250",
-   "city": "Jacksonville Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Jacksonville Beach",
-   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2392",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-24"
-  },
-  {
    "id": "a0fe33dfc648",
    "title": "Fall Festival *Free admission & Ride Tickets can be purchased on-site",
    "date": "2026-10-24",
@@ -398,21 +383,6 @@
    "source": "City of New Smyrna Beach",
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3529",
    "vendorMatch": false,
-   "firstSeen": "2026-10-24"
-  },
-  {
-   "id": "16e5129cd1d5",
-   "title": "Farmers Market",
-   "date": "2026-10-24",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3054",
-   "vendorMatch": true,
    "firstSeen": "2026-10-24"
   },
   {
@@ -2116,18 +2086,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "8ac8fb02d1ec",
-  "a0fe33dfc648",
-  "16e5129cd1d5",
-  "a763f2c973b4",
-  "04e7a19e65c6",
-  "7e5b08d35d1a",
-  "76e49ebf98f3",
-  "375d781862ae",
-  "d291c66d2a2d",
-  "63d0e1d96275",
-  "32483336cc60",
-  "02ea4d4fc018"
- ]
+ "newThisRun": []
 }
