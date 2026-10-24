@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T21:25Z",
+ "updated": "2026-10-24T04:38Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -10,7 +10,7 @@
    "county": "Duval",
    "url": "https://events.unf.edu",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null
   },
   {
@@ -70,7 +70,7 @@
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null
   },
   {
@@ -120,7 +120,7 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 3,
+   "items": 5,
    "error": null
   },
   {
@@ -130,7 +130,7 @@
    "county": "Nassau",
    "url": "https://www.fbfl.us",
    "ok": true,
-   "items": 1,
+   "items": 2,
    "error": null
   },
   {
@@ -140,7 +140,7 @@
    "county": "Nassau",
    "url": "https://www.nassaucountyfl.com",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -160,7 +160,7 @@
    "county": "St. Johns",
    "url": "https://www.citystaug.com",
    "ok": true,
-   "items": 1,
+   "items": 0,
    "error": null
   },
   {
@@ -240,7 +240,7 @@
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
    "ok": true,
-   "items": 5,
+   "items": 7,
    "error": null
   },
   {
@@ -355,51 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "7375d2cf6b17",
-   "title": "2026 Mini 500",
-   "date": "2026-10-23",
-   "time": "5:00 PM",
-   "location": "Peter's Parking Deck",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia Tech (Engage)",
-   "url": "https://gatech.campuslabs.com/engage/event/12540254",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-20"
-  },
-  {
-   "id": "5ba2900637bc",
-   "title": "Social Media Expo JAX 2026",
-   "date": "2026-10-23",
-   "time": "9:00 AM",
-   "location": "Building 43, Adam W. Herbert University Center",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "college",
-   "source": "UNF Events",
-   "url": "https://events.unf.edu/event/social-media-expo-jax-2026-5867",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "c1a48539da25",
-   "title": "St. Benedict the Moor Blues Festival",
-   "date": "2026-10-23",
-   "time": "04:00 PM - 12:00 PM",
-   "location": "86 M L King AveSt. Augustine, FL 32084",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "city",
-   "source": "City of St. Augustine",
-   "url": "https://www.citystaug.com/Calendar.aspx?EID=2530",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-22"
-  },
   {
    "id": "7f57c7de8076",
    "title": "5th Annual NFFN Fall Folk Festival",
@@ -783,6 +738,81 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-06"
+  },
+  {
+   "id": "d291c66d2a2d",
+   "title": "Art & Artisan Stroll",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "63d0e1d96275",
+   "title": "Beaches Green Market",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "32483336cc60",
+   "title": "Farmers Market",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3056",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "f4ec1312a94d",
+   "title": "Right Whale Festival",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 03:00 PM",
+   "location": "32 N. Fletcher AveFernandina Beach, FL 32034",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12926",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "02ea4d4fc018",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-07",
+   "time": "12:00 PM - 10:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3118",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-24"
   },
   {
    "id": "seed-fl-0029",
@@ -2072,10 +2102,10 @@
   }
  ],
  "newThisRun": [
-  "a0fe33dfc648",
-  "16e5129cd1d5",
-  "a763f2c973b4",
-  "04e7a19e65c6",
-  "76e49ebf98f3"
+  "d291c66d2a2d",
+  "63d0e1d96275",
+  "32483336cc60",
+  "f4ec1312a94d",
+  "02ea4d4fc018"
  ]
 }
