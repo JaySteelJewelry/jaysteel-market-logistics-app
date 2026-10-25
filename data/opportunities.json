@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T20:51Z",
+ "updated": "2026-10-25T04:42Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -120,7 +120,7 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 4,
+   "items": 5,
    "error": null
   },
   {
@@ -180,7 +180,7 @@
    "county": "Putnam",
    "url": "https://www.palatka-fl.gov",
    "ok": true,
-   "items": 1,
+   "items": 0,
    "error": null
   },
   {
@@ -240,7 +240,7 @@
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
    "ok": true,
-   "items": 6,
+   "items": 4,
    "error": null
   },
   {
@@ -355,84 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "7f57c7de8076",
-   "title": "5th Annual NFFN Fall Folk Festival",
-   "date": "2026-10-24",
-   "time": "11:00 AM - 05:00 PM",
-   "location": "100 Memorial PkwyPalatka, FL 32177",
-   "city": "Palatka",
-   "county": "Putnam",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Palatka",
-   "url": "https://palatka-fl.gov/Calendar.aspx?EID=1304",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "a0fe33dfc648",
-   "title": "Fall Festival *Free admission & Ride Tickets can be purchased on-site",
-   "date": "2026-10-24",
-   "time": "04:00 PM - 08:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3529",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-24"
-  },
-  {
-   "id": "seed-fl-0081",
-   "origin": "seed",
-   "title": "Fernandina Beach Arts Market (508 Centre St)",
-   "org": "Fernandina Beach Market Place, LLC",
-   "city": "Fernandina Beach",
-   "county": "Nassau",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://fernandinabeachartsmarket.com/arts-market-application/",
-   "fee": "One-time $25 application fee once accepted; $10 annual renewal; booth rates on Lease Agreement (not opened)",
-   "deadline": "Rolling",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-24"
-  },
-  {
-   "id": "seed-fl-0038",
-   "origin": "seed",
-   "title": "Jax Night Market (pop-up night markets – Jacksonville / Jax Beach)",
-   "org": "Jax Night Market",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://jaxnightmarket.com/vendor.html",
-   "fee": "Non-food tent $75 (1-day) / $140 (2-day); food tent $150/$250; drink tent $140/$230; food truck $225/$350",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-10-24"
-  },
-  {
-   "id": "a763f2c973b4",
-   "title": "Trunk or Treat & Vendor Market",
-   "date": "2026-10-24",
-   "time": "04:00 PM - 07:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3527",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-24"
-  },
   {
    "id": "af1623de7560",
    "title": "Local Business Talk with Pretty Little Things of DeLand",
@@ -798,6 +720,21 @@
    "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3118",
    "vendorMatch": false,
    "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "844bc04837c3",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-08",
+   "time": "12:00 PM - 08:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3119",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-25"
   },
   {
    "id": "seed-fl-0029",
@@ -1556,6 +1493,21 @@
    "firstSeen": "2026-10-13"
   },
   {
+   "id": "seed-fl-0038",
+   "origin": "seed",
+   "title": "Jax Night Market (pop-up night markets – Jacksonville / Jax Beach)",
+   "org": "Jax Night Market",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://jaxnightmarket.com/vendor.html",
+   "fee": "Non-food tent $75 (1-day) / $140 (2-day); food tent $150/$250; drink tent $140/$230; food truck $225/$350",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0041",
    "origin": "seed",
    "title": "Riverside Arts Market (RAM)",
@@ -1720,6 +1672,22 @@
    "url": "https://www.neflfair.org/inside-vendor-application",
    "fee": "Indoor $400 per 10x10; Outdoor $50 per foot of frontage (min 10 ft)",
    "deadline": "2026 cycle: contract, full payment and COI were due 2026-06-01",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0081",
+   "origin": "seed",
+   "title": "Fernandina Beach Arts Market (508 Centre St)",
+   "org": "Fernandina Beach Market Place, LLC",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://fernandinabeachartsmarket.com/arts-market-application/",
+   "fee": "One-time $25 application fee once accepted; $10 annual renewal; booth rates on Lease Agreement (not opened)",
+   "deadline": "Rolling",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -2086,5 +2054,7 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "844bc04837c3"
+ ]
 }
