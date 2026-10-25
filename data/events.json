@@ -60,11 +60,11 @@
       "name": "Shop Small Business @ Hyatt Place",
       "series": "shop-small-hyatt",
       "kind": "market",
-      "status": "booked",
+      "status": "declined",
       "date": "2026-10-25",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar.",
+      "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
       "paid": false
     },
     {
@@ -279,11 +279,11 @@
       "name": "Shop Small Business @ Hyatt Place",
       "series": "shop-small-hyatt",
       "kind": "market",
-      "status": "booked",
+      "status": "declined",
       "date": "2026-11-22",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar.",
+      "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
       "paid": false
     },
     {
@@ -588,11 +588,11 @@
       "name": "Shop Small Business @ Hyatt Place",
       "series": "shop-small-hyatt",
       "kind": "market",
-      "status": "booked",
+      "status": "declined",
       "date": "2026-12-27",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar.",
+      "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
       "paid": false
     },
     {
@@ -679,11 +679,11 @@
       "name": "Shop Small Business @ Hyatt Place",
       "series": "shop-small-hyatt",
       "kind": "market",
-      "status": "booked",
+      "status": "declined",
       "date": "2027-01-24",
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
-      "notes": "Time not on the calendar.",
+      "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
       "paid": false
     }
   ],
