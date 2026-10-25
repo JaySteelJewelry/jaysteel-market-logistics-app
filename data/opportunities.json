@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T04:42Z",
+ "updated": "2026-10-25T11:31Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -2054,7 +2054,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "844bc04837c3"
- ]
+ "newThisRun": []
 }
