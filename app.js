@@ -247,7 +247,7 @@
     } else hero = `<section class="hero hero--empty"><p class="kicker">Next market</p><h1 class="hero__name">Nothing booked yet</h1><p class="hero__where">Find your next one in the Find tab.</p><div class="hero__acts"><a class="act act--gold" href="#/opportunities">${I.bag}<span>Find markets</span></a></div></section>`;
 
     const rail = upcoming.filter((e) => !next || e.id !== next.id).filter((e) => !ended(e, now)).slice(0, 8);
-    const railHTML = rail.length ? `<div class="rail" role="list">${rail.map((e) => { const n = daysBetween(today, e.date); return `<a class="tag s-${esc(e.status)}" role="listitem" href="#/e/${encodeURIComponent(e.id)}">
+    const railHTML = rail.length ? `<div class="rail">${rail.map((e) => { const n = daysBetween(today, e.date); return `<a class="tag s-${esc(e.status)}" href="#/e/${encodeURIComponent(e.id)}">
         <span class="tag__hole" aria-hidden="true"></span><span class="tag__in">${n <= 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days"}</span>
         <b class="tag__d">${esc(fmt(e.date, { month: "short" }).toUpperCase())} ${parse(e.date).getUTCDate()}</b><span class="tag__n">${esc(e.name)}</span>${statusPill(e.status)}</a>`; }).join("")}</div>` : "";
 
