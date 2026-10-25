@@ -540,8 +540,7 @@
       ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
       ${card("mailto:" + EMAIL, "mail", "Email", EMAIL, false)}
       <div class="signoff"><picture><source srcset="${ROOT}assets/js-icon.webp" type="image/webp"><img src="${ROOT}assets/js-icon.png" alt="" width="256" height="244" loading="lazy"></picture><p class="wordmark">JAY STEEL JEWELRY</p></div>
-      <p class="month">Manage the app</p>
-      ${card(EDIT_URL, "edit", "Edit markets", "Change data/events.json on GitHub — the app + Discord update", true)}${footer()}`);
+      ${footer()}`);
   }
 
   function footer() {
