@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T13:04Z",
+ "updated": "2026-10-26T22:41Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -190,7 +190,7 @@
    "county": "Flagler",
    "url": "https://www.cityofflaglerbeach.com",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null
   },
   {
@@ -630,6 +630,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-06"
+  },
+  {
+   "id": "eb35f1c957a3",
+   "title": "November 2026 First Friday Event",
+   "date": "2026-11-06",
+   "time": "06:00 PM - 09:00 PM",
+   "location": "105 S. 2nd StreetFlagler Beach, FL 32136",
+   "city": "Flagler Beach",
+   "county": "Flagler",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Flagler Beach",
+   "url": "https://www.cityofflaglerbeach.com/Calendar.aspx?EID=4257",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-26"
   },
   {
    "id": "2aec941d98dc",
@@ -2054,5 +2069,7 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "eb35f1c957a3"
+ ]
 }
