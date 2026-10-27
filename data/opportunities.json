@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T12:13Z",
+ "updated": "2026-10-27T18:03Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 4,
    "error": null
   },
   {
@@ -59,9 +59,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
-   "ok": true,
-   "items": 3,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -140,7 +140,7 @@
    "county": "Nassau",
    "url": "https://www.nassaucountyfl.com",
    "ok": true,
-   "items": 3,
+   "items": 4,
    "error": null
   },
   {
@@ -399,6 +399,21 @@
    "url": "https://stetson.campuslabs.com/engage/event/12874869",
    "vendorMatch": false,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "07bb7d2ad83f",
+   "title": "2026 Halloween Festival",
+   "date": "2026-10-30",
+   "time": "05:30 PM - 07:30 PM",
+   "location": "76347 Veterans WayYulee, FL 32097",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "county",
+   "source": "Nassau County",
+   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3296",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-27"
   },
   {
    "id": "04e7a19e65c6",
@@ -752,6 +767,21 @@
    "date": "2026-11-10"
   },
   {
+   "id": "adcc7d931bad",
+   "title": "VetFest",
+   "date": "2026-11-11",
+   "time": "3:00 PM",
+   "location": "Three Daughters Brewery",
+   "city": "DeLand",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "college",
+   "source": "Stetson University (Engage)",
+   "url": "https://stetson.campuslabs.com/engage/event/12928318",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-27"
+  },
+  {
    "id": "493968ad39d9",
    "title": "Language Expo",
    "date": "2026-11-12",
@@ -795,21 +825,6 @@
    "url": "https://events.unf.edu/event/harder-barter-market",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "6469ecbc96d3",
-   "title": "AI-Enhanced Decision-Making: From Human Judgment to Intelligent",
-   "date": "2026-11-14",
-   "time": "9:00 AM",
-   "location": "Buckhead Center",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University Calendar",
-   "url": "https://calendar.gsu.edu/event/beyond-the-hype-ai-research-meets-real-deployment",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-23"
   },
   {
    "id": "seed-fl-0092",
@@ -2054,5 +2069,8 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "07bb7d2ad83f",
+  "adcc7d931bad"
+ ]
 }
