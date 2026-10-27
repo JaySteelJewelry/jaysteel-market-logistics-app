@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T18:03Z",
+ "updated": "2026-10-27T22:15Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null
   },
   {
@@ -59,9 +59,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 3,
+   "error": null
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -767,21 +767,6 @@
    "date": "2026-11-10"
   },
   {
-   "id": "adcc7d931bad",
-   "title": "VetFest",
-   "date": "2026-11-11",
-   "time": "3:00 PM",
-   "location": "Three Daughters Brewery",
-   "city": "DeLand",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "college",
-   "source": "Stetson University (Engage)",
-   "url": "https://stetson.campuslabs.com/engage/event/12928318",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-27"
-  },
-  {
    "id": "493968ad39d9",
    "title": "Language Expo",
    "date": "2026-11-12",
@@ -825,6 +810,21 @@
    "url": "https://events.unf.edu/event/harder-barter-market",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "6469ecbc96d3",
+   "title": "AI-Enhanced Decision-Making: From Human Judgment to Intelligent",
+   "date": "2026-11-14",
+   "time": "9:00 AM",
+   "location": "Buckhead Center",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University Calendar",
+   "url": "https://calendar.gsu.edu/event/beyond-the-hype-ai-research-meets-real-deployment",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-27"
   },
   {
    "id": "seed-fl-0092",
@@ -2070,7 +2070,6 @@
   }
  ],
  "newThisRun": [
-  "07bb7d2ad83f",
-  "adcc7d931bad"
+  "6469ecbc96d3"
  ]
 }
