@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-20",
+  "updated": "2026-10-27",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -432,21 +432,21 @@
       "name": "Putnam's Festival of Lights",
       "series": "putnam",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-12-10",
       "start": "17:00",
       "end": "21:00",
       "venue": "Putnam County Fairgrounds",
       "address": "East Palatka, FL",
-      "fee": "$100 per 10×10",
+      "fee": "$100",
       "payBy": "2026-11-01",
-      "payHow": "Due by Nov 1 if accepted",
+      "payHow": "Invoice coming later this week; pay after receipt.",
       "contact": {
-        "name": "The Putnam County Fair",
-        "email": "info@putnamfairandexpo.com"
+        "name": "Samantha Fairlie, Putnam County Fair",
+        "email": "putfair@gmail.com"
       },
       "setup": "Booth manned all 4 nights (Thu–Sun), 5–9 PM.",
-      "nextStep": "Watch for the acceptance email, then pay $100 by Nov 1.",
+      "nextStep": "Await Samantha Fairlie’s $100 invoice and vendor information later this week; not paid.",
       "endDate": "2026-12-13",
       "paid": false
     },
