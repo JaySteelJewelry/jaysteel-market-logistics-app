@@ -255,13 +255,13 @@
       "name": "Mayport Village Waterfront Market",
       "series": "mayport",
       "kind": "market",
-      "status": "approved",
+      "status": "booked",
       "date": "2026-11-21",
       "start": "10:00",
       "end": "14:00",
       "venue": "Mayport Village",
       "address": "4542 Ocean St, Jacksonville, FL 32233",
-      "fee": "$45 (returning-vendor fee)",
+      "fee": "$45",
       "payBy": "2026-10-18",
       "payHow": "You book + pay on the vendor portal (booth held 10 min while paying)",
       "contact": {
@@ -269,10 +269,11 @@
         "email": "mayportmarket@mayportwaterfrontpartnership.org"
       },
       "setup": "Setup 7:30–9:45 AM, gates close 9:30. 10×10 tent, 30 lb weight per leg, no power/wifi.",
-      "nextStep": "Book + pay Nov 21 on the vendor portal.",
+      "nextStep": "Booked + paid. Space 24, Wave 2: arrive 8:15-8:30 AM.",
       "headsUp": "Park Street Market is on your calendar the same day.",
       "link": "https://market.mayportwaterfrontpartnership.org",
-      "paid": false
+      "paid": true,
+      "notes": "Space 24, Wave 2, arrive 8:15-8:30 (paid Oct 27)"
     },
     {
       "id": "shop-small-hyatt-2026-11-22",
