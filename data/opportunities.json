@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T22:41Z",
+ "updated": "2026-10-27T05:06Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -120,7 +120,7 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 5,
+   "items": 4,
    "error": null
   },
   {
@@ -489,21 +489,6 @@
    "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3282",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "375d781862ae",
-   "title": "Jax Beach Arts Market",
-   "date": "2026-10-31",
-   "time": "10:00 AM - 04:00 PM",
-   "location": "11 1st Street NJacksonville Beach, FL 32250",
-   "city": "Jacksonville Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Jacksonville Beach",
-   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3113",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-24"
   },
   {
    "id": "seed-fl-0026",
@@ -2069,7 +2054,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "eb35f1c957a3"
- ]
+ "newThisRun": []
 }
