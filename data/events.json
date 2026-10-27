@@ -332,6 +332,19 @@
       "approval": "Conditional approval Oct 18, 7:43 AM (Candace)"
     },
     {
+      "id": "fsu-market-wednesday-2026-12-02",
+      "name": "FSU Market Wednesday",
+      "series": "fsu-market-wednesday",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-12-02",
+      "venue": "FSU Student Union – Legacy Walk (Integration Statue), Tallahassee",
+      "address": "75 N Woodward Ave, Tallahassee, FL",
+      "notes": "8 AM–4 PM, setup 7:30, out by 5. Applied Oct 27 via FSU CES Qualtrics form; awaiting CES confirmation. $85 paid online in advance to secure spot.",
+      "paid": false,
+      "fee": "$85"
+    },
+    {
       "id": "first-friday-flagler-2026-12-04",
       "name": "First Friday Flagler Beach (holiday + tree lighting)",
       "series": "first-friday-flagler",
