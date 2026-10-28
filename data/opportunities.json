@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T12:55Z",
+ "updated": "2026-10-28T22:36Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -59,9 +59,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
-   "ok": true,
-   "items": 3,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "HTTPError: HTTP Error 503: Service Unavailable"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -795,21 +795,6 @@
    "url": "https://events.unf.edu/event/harder-barter-market",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "6469ecbc96d3",
-   "title": "AI-Enhanced Decision-Making: From Human Judgment to Intelligent",
-   "date": "2026-11-14",
-   "time": "9:00 AM",
-   "location": "Buckhead Center",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University Calendar",
-   "url": "https://calendar.gsu.edu/event/beyond-the-hype-ai-research-meets-real-deployment",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-28"
   },
   {
    "id": "seed-fl-0092",
@@ -2054,7 +2039,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "6469ecbc96d3"
- ]
+ "newThisRun": []
 }
