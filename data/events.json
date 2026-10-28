@@ -74,8 +74,9 @@
       "kind": "campus",
       "status": "booked",
       "date": "2026-10-28",
-      "start": "08:00",
-      "end": "16:00",
+      "start": "10:00",
+      "end": "15:30",
+      "notes": "Market Day 10 AM-1 PM, then tabling 1-3:30 PM at the UNF green area (Luis, Oct 28).",
       "venue": "University of North Florida",
       "address": "1 UNF Dr, Jacksonville, FL 32224",
       "paid": false
