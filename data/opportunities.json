@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T22:15Z",
+ "updated": "2026-10-28T05:43Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 2,
    "error": null
   },
   {
@@ -59,9 +59,9 @@
    "state": "GA",
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
-   "ok": true,
-   "items": 3,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -355,21 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "af1623de7560",
-   "title": "Local Business Talk with Pretty Little Things of DeLand",
-   "date": "2026-10-27",
-   "time": "5:30 PM",
-   "location": "Lynn Business Center (LBC) Room 108",
-   "city": "DeLand",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "college",
-   "source": "Stetson University (Engage)",
-   "url": "https://stetson.campuslabs.com/engage/event/12916461",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-22"
-  },
   {
    "id": "bd730a30b915",
    "title": "Atlanta Market Day w/ Student-Made - Oct. 29",
@@ -810,21 +795,6 @@
    "url": "https://events.unf.edu/event/harder-barter-market",
    "vendorMatch": true,
    "firstSeen": "2026-10-18"
-  },
-  {
-   "id": "6469ecbc96d3",
-   "title": "AI-Enhanced Decision-Making: From Human Judgment to Intelligent",
-   "date": "2026-11-14",
-   "time": "9:00 AM",
-   "location": "Buckhead Center",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University Calendar",
-   "url": "https://calendar.gsu.edu/event/beyond-the-hype-ai-research-meets-real-deployment",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-27"
   },
   {
    "id": "seed-fl-0092",
@@ -2069,7 +2039,5 @@
    "firstSeen": "2026-10-13"
   }
  ],
- "newThisRun": [
-  "6469ecbc96d3"
- ]
+ "newThisRun": []
 }
