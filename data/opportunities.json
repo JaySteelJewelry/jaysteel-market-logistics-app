@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T05:49Z",
+ "updated": "2026-10-29T13:02Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -139,9 +139,9 @@
    "state": "FL",
    "county": "Nassau",
    "url": "https://www.nassaucountyfl.com",
-   "ok": false,
-   "items": 0,
-   "error": "HTTPError: HTTP Error 522: <none>"
+   "ok": true,
+   "items": 4,
+   "error": null
   },
   {
    "source": "City of Green Cove Springs",
@@ -179,9 +179,9 @@
    "state": "FL",
    "county": "Putnam",
    "url": "https://www.palatka-fl.gov",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "HTTPError: HTTP Error 522: <none>"
+   "error": null
   },
   {
    "source": "City of Flagler Beach",
@@ -386,6 +386,21 @@
    "firstSeen": "2026-10-18"
   },
   {
+   "id": "07bb7d2ad83f",
+   "title": "2026 Halloween Festival",
+   "date": "2026-10-30",
+   "time": "05:30 PM - 07:30 PM",
+   "location": "76347 Veterans WayYulee, FL 32097",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "county",
+   "source": "Nassau County",
+   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3296",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-29"
+  },
+  {
    "id": "04e7a19e65c6",
    "title": "Beachside Baptist Fall Festival",
    "date": "2026-10-30",
@@ -399,6 +414,21 @@
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3534",
    "vendorMatch": false,
    "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "0da182ef298b",
+   "title": "County Halloween Festival",
+   "date": "2026-10-30",
+   "time": "05:30 PM - 07:30 PM",
+   "location": "76437 Veterans WayYulee, FL 32097",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "county",
+   "source": "Nassau County",
+   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3291",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-29"
   },
   {
    "id": "5fb44d904a87",
@@ -444,6 +474,21 @@
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3055",
    "vendorMatch": true,
    "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "f561c7546a54",
+   "title": "Halloween Bash!",
+   "date": "2026-10-31",
+   "time": "10:00 AM - 09:00 PM",
+   "location": "543378 US-1Callahan, FL 32011",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "county",
+   "source": "Nassau County",
+   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3282",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-29"
   },
   {
    "id": "seed-fl-0026",
@@ -2010,6 +2055,8 @@
   }
  ],
  "newThisRun": [
-  "6469ecbc96d3"
+  "07bb7d2ad83f",
+  "0da182ef298b",
+  "f561c7546a54"
  ]
 }
