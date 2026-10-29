@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-27",
+  "updated": "2026-10-29",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -99,9 +99,9 @@
       "name": "Dart Bar King Street Bazaar",
       "series": "dart-bar",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-10-30",
-      "start": "19:00",
+      "start": "18:15",
       "end": "22:00",
       "venue": "Dart Bar & Games",
       "address": "1261 King St, Jacksonville, FL 32204",
@@ -110,11 +110,11 @@
         "name": "Ally Moyer",
         "email": "dartbarjax@gmail.com"
       },
-      "setup": "Setup from 6:15 PM. Alley spaces 10×10 — bring the tent.",
-      "nextStep": "Tab submits the Google Form once your Google login is saved. Watch for the confirmation email from Ally.",
+      "setup": "Setup from 6:15 PM (not earlier), ready by 7. Outdoor spaces ~10×10 uncovered — bring the tent; indoor spaces get tables.",
+      "nextStep": "Reply to Ally to confirm the spot (draft ready, waiting on your OK). Optional: send IG @jaysteeljewelry + product photos.",
       "paid": false,
       "link": "https://docs.google.com/forms/d/e/1FAIpQLSc-EsNbNyjcrG2qCAgfGjbSTtD3F0UsIwY7p6HZ8GNXUOV2vg/viewform",
-      "notes": "Applying — form being submitted. Not approved yet; selected vendors get a separate confirmation email."
+      "notes": "Confirmed details Oct 28; setup 6:15 PM; reply to confirm pending Luis"
     },
     {
       "id": "904-pop-up-2026-11-01",
@@ -337,13 +337,17 @@
       "name": "FSU Market Wednesday",
       "series": "fsu-market-wednesday",
       "kind": "market",
-      "status": "pending",
+      "status": "approved",
       "date": "2026-12-02",
+      "start": "08:00",
+      "end": "16:00",
       "venue": "FSU Student Union – Legacy Walk (Integration Statue), Tallahassee",
       "address": "75 N Woodward Ave, Tallahassee, FL",
-      "notes": "8 AM–4 PM, setup 7:30, out by 5. Applied Oct 27 via FSU CES Qualtrics form; awaiting CES confirmation. $85 paid online in advance to secure spot.",
+      "notes": "Approved Oct 28; buy spot $85 at commerce.cashnet.com/FSUSUMW",
       "paid": false,
-      "fee": "$85"
+      "fee": "$85",
+      "link": "https://commerce.cashnet.com/FSUSUMW",
+      "nextStep": "Buy the tabling spot ($85, first-come first-served, guest checkout) — approval alone does not reserve the date."
     },
     {
       "id": "first-friday-flagler-2026-12-04",
