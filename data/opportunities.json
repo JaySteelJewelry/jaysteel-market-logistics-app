@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T13:02Z",
+ "updated": "2026-10-29T22:46Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -30,7 +30,7 @@
    "county": "Volusia",
    "url": "https://stetson.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 2,
+   "items": 1,
    "error": null
   },
   {
@@ -50,7 +50,7 @@
    "county": "Fulton",
    "url": "https://gsu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -356,7 +356,7 @@
  ],
  "items": [
   {
-   "id": "bd730a30b915",
+   "id": "b5f17027fc21",
    "title": "Atlanta Market Day w/ Student-Made - Oct. 29",
    "date": "2026-10-29",
    "time": "10:00 AM",
@@ -365,25 +365,10 @@
    "county": "Fulton",
    "state": "GA",
    "type": "college",
-   "source": "Georgia State University (Engage)",
-   "url": "https://pin.gsu.edu/event/11770580",
+   "source": "Georgia State University Calendar",
+   "url": "https://calendar.gsu.edu/event/atlanta-market-day-w-student-made-oct-29",
    "vendorMatch": true,
-   "firstSeen": "2026-10-20"
-  },
-  {
-   "id": "350ffb62b60a",
-   "title": "BLSA Beyond Florida: Careers, Markets & Mobility",
-   "date": "2026-10-29",
-   "time": "12:00 PM",
-   "location": "https://teams.microsoft.com/meet/232755598799390?p=iHGitrQTUuJU4XsK3n",
-   "city": "DeLand",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "college",
-   "source": "Stetson University (Engage)",
-   "url": "https://stetson.campuslabs.com/engage/event/12874869",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-18"
+   "firstSeen": "2026-10-29"
   },
   {
    "id": "07bb7d2ad83f",
@@ -554,6 +539,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-05"
+  },
+  {
+   "id": "c2c3f6bbee44",
+   "title": "PantherSWAP Pop-up",
+   "date": "2026-11-05",
+   "time": "2:00 PM",
+   "location": "75 Piedmont Lobby",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University (Engage)",
+   "url": "https://pin.gsu.edu/event/12938124",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-29"
   },
   {
    "id": "ee96288141d3",
@@ -901,6 +901,21 @@
    "url": "https://gatech.campuslabs.com/engage/event/12916320",
    "vendorMatch": false,
    "firstSeen": "2026-10-22"
+  },
+  {
+   "id": "56838450ba31",
+   "title": "RHA PantherSWAP Pop-up!",
+   "date": "2026-11-19",
+   "time": "2:00 PM",
+   "location": "Piedmont Central Connect Room",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "college",
+   "source": "Georgia State University (Engage)",
+   "url": "https://pin.gsu.edu/event/12938159",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-29"
   },
   {
    "id": "seed-fl-0025",
@@ -2055,8 +2070,8 @@
   }
  ],
  "newThisRun": [
-  "07bb7d2ad83f",
-  "0da182ef298b",
-  "f561c7546a54"
+  "b5f17027fc21",
+  "c2c3f6bbee44",
+  "56838450ba31"
  ]
 }
