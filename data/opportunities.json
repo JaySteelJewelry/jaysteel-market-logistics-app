@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T22:46Z",
+ "updated": "2026-10-30T05:50Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -60,7 +60,7 @@
    "county": "Fulton",
    "url": "https://calendar.gsu.edu",
    "ok": true,
-   "items": 3,
+   "items": 2,
    "error": null
   },
   {
@@ -130,7 +130,7 @@
    "county": "Nassau",
    "url": "https://www.fbfl.us",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null
   },
   {
@@ -270,7 +270,7 @@
    "county": "Hall",
    "url": "https://www.hallcounty.org",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null
   },
   {
@@ -355,21 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "b5f17027fc21",
-   "title": "Atlanta Market Day w/ Student-Made - Oct. 29",
-   "date": "2026-10-29",
-   "time": "10:00 AM",
-   "location": "Unity Plaza",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University Calendar",
-   "url": "https://calendar.gsu.edu/event/atlanta-market-day-w-student-made-oct-29",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-29"
-  },
   {
    "id": "07bb7d2ad83f",
    "title": "2026 Halloween Festival",
@@ -780,6 +765,36 @@
    "url": "https://gatech.campuslabs.com/engage/event/12910072",
    "vendorMatch": true,
    "firstSeen": "2026-10-21"
+  },
+  {
+   "id": "0dea433271c2",
+   "title": "Amelia Island Open-International Pétanque Tournament",
+   "date": "2026-11-13",
+   "time": "08:00 AM - 07:00 PM",
+   "location": "123 S Front StFernandina Beach, FL 32034",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12928",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-30"
+  },
+  {
+   "id": "2a70698547ca",
+   "title": "Community Christmas Market",
+   "date": "2026-11-13",
+   "time": "12:00 AM - 11:59 PM",
+   "location": "4175 Nopone RoadGainesville, GA 30506",
+   "city": "Gainesville",
+   "county": "Hall",
+   "state": "GA",
+   "type": "market",
+   "source": "Hall County, GA",
+   "url": "https://www.hallcounty.org/Calendar.aspx?EID=1753",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-30"
   },
   {
    "id": "c6b9395c4df5",
@@ -2070,8 +2085,7 @@
   }
  ],
  "newThisRun": [
-  "b5f17027fc21",
-  "c2c3f6bbee44",
-  "56838450ba31"
+  "0dea433271c2",
+  "2a70698547ca"
  ]
 }
