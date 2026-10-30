@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T12:57Z",
+ "updated": "2026-10-30T22:21Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -119,9 +119,9 @@
    "state": "FL",
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 4,
+   "error": null
   },
   {
    "source": "City of Fernandina Beach",
@@ -129,9 +129,9 @@
    "state": "FL",
    "county": "Nassau",
    "url": "https://www.fbfl.us",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "Nassau County",
@@ -149,9 +149,9 @@
    "state": "FL",
    "county": "Clay",
    "url": "https://www.greencovesprings.com",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of St. Augustine",
@@ -159,9 +159,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.citystaug.com",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 1,
+   "error": null
   },
   {
    "source": "City of St. Augustine Beach",
@@ -169,9 +169,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.staugbch.com",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Palatka",
@@ -189,9 +189,9 @@
    "state": "FL",
    "county": "Flagler",
    "url": "https://www.cityofflaglerbeach.com",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 1,
+   "error": null
   },
   {
    "source": "City of Bunnell",
@@ -209,9 +209,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.codb.us",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Ormond Beach",
@@ -219,9 +219,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.ormondbeach.org",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Port Orange",
@@ -249,9 +249,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.deland.org",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Gainesville, GA",
@@ -399,6 +399,21 @@
    "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3291",
    "vendorMatch": false,
    "firstSeen": "2026-10-29"
+  },
+  {
+   "id": "7e5b08d35d1a",
+   "title": "Beaches Green Market",
+   "date": "2026-10-31",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2393",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-30"
   },
   {
    "id": "76e49ebf98f3",
@@ -572,6 +587,36 @@
    "date": "2026-11-06"
   },
   {
+   "id": "eb35f1c957a3",
+   "title": "November 2026 First Friday Event",
+   "date": "2026-11-06",
+   "time": "06:00 PM - 09:00 PM",
+   "location": "105 S. 2nd StreetFlagler Beach, FL 32136",
+   "city": "Flagler Beach",
+   "county": "Flagler",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Flagler Beach",
+   "url": "https://www.cityofflaglerbeach.com/Calendar.aspx?EID=4257",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-30"
+  },
+  {
+   "id": "2aec941d98dc",
+   "title": "\"St. ARTistine\" Art & Food Festival",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 06:00 PM",
+   "location": "25 W. Castillo DrSt. Augustine, FL 32084",
+   "city": "St. Augustine",
+   "county": "St. Johns",
+   "state": "FL",
+   "type": "city",
+   "source": "City of St. Augustine",
+   "url": "https://www.citystaug.com/Calendar.aspx?EID=2447",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-30"
+  },
+  {
    "id": "d291c66d2a2d",
    "title": "Art & Artisan Stroll",
    "date": "2026-11-07",
@@ -585,6 +630,21 @@
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
    "vendorMatch": true,
    "firstSeen": "2026-10-24"
+  },
+  {
+   "id": "63d0e1d96275",
+   "title": "Beaches Green Market",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-30"
   },
   {
    "id": "32483336cc60",
@@ -602,17 +662,47 @@
    "firstSeen": "2026-10-24"
   },
   {
-   "id": "4b0d89f7c5ba",
+   "id": "f4ec1312a94d",
    "title": "Right Whale Festival",
    "date": "2026-11-07",
-   "time": "10:00 AM - 06:00 PM",
-   "location": "Address: 32 N Fletcher Ave, Fernandina Beach, FL 3Fernandina Beach, FL 32034",
+   "time": "10:00 AM - 03:00 PM",
+   "location": "32 N. Fletcher AveFernandina Beach, FL 32034",
    "city": "Fernandina Beach",
    "county": "Nassau",
    "state": "FL",
-   "type": "county",
-   "source": "Nassau County",
-   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3287",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12926",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-30"
+  },
+  {
+   "id": "02ea4d4fc018",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-07",
+   "time": "12:00 PM - 10:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3118",
+   "vendorMatch": false,
+   "firstSeen": "2026-10-30"
+  },
+  {
+   "id": "844bc04837c3",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-08",
+   "time": "12:00 PM - 08:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3119",
    "vendorMatch": false,
    "firstSeen": "2026-10-30"
   },
@@ -660,6 +750,21 @@
    "url": "https://gatech.campuslabs.com/engage/event/12910072",
    "vendorMatch": true,
    "firstSeen": "2026-10-21"
+  },
+  {
+   "id": "0dea433271c2",
+   "title": "Amelia Island Open-International Pétanque Tournament",
+   "date": "2026-11-13",
+   "time": "08:00 AM - 07:00 PM",
+   "location": "123 S Front StFernandina Beach, FL 32034",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12928",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-30"
   },
   {
    "id": "2a70698547ca",
@@ -1965,6 +2070,13 @@
   }
  ],
  "newThisRun": [
-  "4b0d89f7c5ba"
+  "7e5b08d35d1a",
+  "eb35f1c957a3",
+  "2aec941d98dc",
+  "63d0e1d96275",
+  "f4ec1312a94d",
+  "02ea4d4fc018",
+  "844bc04837c3",
+  "0dea433271c2"
  ]
 }
