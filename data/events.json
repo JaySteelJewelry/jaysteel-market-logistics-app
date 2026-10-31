@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-29",
+  "updated": "2026-10-30",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -286,6 +286,26 @@
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
       "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
+      "paid": false
+    },
+    {
+      "id": "amplified-avondale-2026-11-27",
+      "name": "Amplified Avondale (Art Walk vendors)",
+      "series": "amplified-avondale",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-27",
+      "start": "18:00",
+      "end": "21:30",
+      "venue": "St. Johns Ave, Shoppes of Avondale (north sidewalk)",
+      "address": "St. Johns Ave, Historic Avondale, Jacksonville, FL",
+      "fee": "No fee listed on the application",
+      "contact": {
+        "name": "Amplified Avondale volunteer team",
+        "email": "thenextchapterjax@gmail.com"
+      },
+      "nextStep": "Applied Oct 30 (Google Form, one application for Nov 27, Jan 29, Feb 26). They reply by email in 7-10 business days. Setup 4:00-5:30 PM only; stay until the end; bring own tent/table.",
+      "notes": "Application: https://docs.google.com/forms/d/e/1FAIpQLScJhjIpaoDUoXPSqHCC5djtd0RqN1_8a3SKyPxapnDNHVufyQ/viewform ; applying is not a guaranteed spot.",
       "paid": false
     },
     {
@@ -703,6 +723,46 @@
       "venue": "Hyatt Place Jacksonville / St. Johns Town Center",
       "address": "4742 Town Center Pkwy, Jacksonville, FL",
       "notes": "Time not on the calendar. | Not attending (Luis, Oct 25).",
+      "paid": false
+    },
+    {
+      "id": "amplified-avondale-2027-01-29",
+      "name": "Amplified Avondale (Art Walk vendors)",
+      "series": "amplified-avondale",
+      "kind": "market",
+      "status": "pending",
+      "date": "2027-01-29",
+      "start": "18:00",
+      "end": "21:30",
+      "venue": "St. Johns Ave, Shoppes of Avondale (north sidewalk)",
+      "address": "St. Johns Ave, Historic Avondale, Jacksonville, FL",
+      "fee": "No fee listed on the application",
+      "contact": {
+        "name": "Amplified Avondale volunteer team",
+        "email": "thenextchapterjax@gmail.com"
+      },
+      "nextStep": "Applied Oct 30 (Google Form, one application for Nov 27, Jan 29, Feb 26). They reply by email in 7-10 business days. Setup 4:00-5:30 PM only; stay until the end; bring own tent/table.",
+      "notes": "Application: https://docs.google.com/forms/d/e/1FAIpQLScJhjIpaoDUoXPSqHCC5djtd0RqN1_8a3SKyPxapnDNHVufyQ/viewform ; applying is not a guaranteed spot.",
+      "paid": false
+    },
+    {
+      "id": "amplified-avondale-2027-02-26",
+      "name": "Amplified Avondale (Art Walk vendors)",
+      "series": "amplified-avondale",
+      "kind": "market",
+      "status": "pending",
+      "date": "2027-02-26",
+      "start": "18:00",
+      "end": "21:30",
+      "venue": "St. Johns Ave, Shoppes of Avondale (north sidewalk)",
+      "address": "St. Johns Ave, Historic Avondale, Jacksonville, FL",
+      "fee": "No fee listed on the application",
+      "contact": {
+        "name": "Amplified Avondale volunteer team",
+        "email": "thenextchapterjax@gmail.com"
+      },
+      "nextStep": "Applied Oct 30 (Google Form, one application for Nov 27, Jan 29, Feb 26). They reply by email in 7-10 business days. Setup 4:00-5:30 PM only; stay until the end; bring own tent/table.",
+      "notes": "Application: https://docs.google.com/forms/d/e/1FAIpQLScJhjIpaoDUoXPSqHCC5djtd0RqN1_8a3SKyPxapnDNHVufyQ/viewform ; applying is not a guaranteed spot.",
       "paid": false
     }
   ],
