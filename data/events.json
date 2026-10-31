@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -477,15 +477,16 @@
       "end": "21:00",
       "venue": "Putnam County Fairgrounds",
       "address": "East Palatka, FL",
-      "fee": "$100",
+      "fee": "$102.99",
       "payBy": "2026-11-01",
-      "payHow": "Invoice coming later this week; pay after receipt.",
+      "payHow": "Invoice #1034 ($100 rent + $2.99 card fee) — pay via the QuickBooks \"View and pay\" link in Gmail (Oct 31 email). By check: omit the $2.99, mail to Putnam's FOL.",
       "contact": {
         "name": "Samantha Fairlie, Putnam County Fair",
         "email": "putfair@gmail.com"
       },
-      "setup": "Booth manned all 4 nights (Thu–Sun), 5–9 PM.",
-      "nextStep": "Await Samantha Fairlie’s $100 invoice and vendor information later this week; not paid.",
+      "setup": "Move-in Dec 7 8 AM – Dec 10 3 PM; fully set up by 4 PM Dec 10; vehicles out by 3 PM Dec 10. Booth manned all 4 nights (Thu–Sun), 5–9 PM. Bring own change; no pets; no refunds.",
+      "nextStep": "Pay invoice #1034 ($102.99) and sign + return the Vendor Info & Rules page with payment. Rules sheet says rent due by Nov 1; invoice due date Nov 9.",
+      "notes": "Invoice received Oct 31 ($102.99, due Nov 9 per invoice — rules sheet says rent due by Nov 1), pay via QuickBooks link in Gmail. Invoice #1034. Not paid.",
       "endDate": "2026-12-13",
       "paid": false
     },
