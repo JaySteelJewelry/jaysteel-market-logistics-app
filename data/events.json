@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -206,6 +206,26 @@
       "headsUp": "Same day as Park Street Market on your calendar.",
       "paid": false,
       "approval": "Unconfirmed — group acceptance email Oct 20, 12:17 PM; Cayla asked for a Jotform application Oct 20, 12:22 PM"
+    },
+    {
+      "id": "stetson-cub-tabling-2026-11",
+      "name": "Stetson CUB outside-vendor tabling",
+      "series": "stetson-cub",
+      "kind": "market",
+      "status": "pending",
+      "date": "2026-11-10",
+      "start": "10:00",
+      "end": "14:00",
+      "venue": "Carlton Union Building (CUB), Stetson University",
+      "address": "Stetson University, DeLand, FL",
+      "fee": "Not published yet (asked)",
+      "contact": {
+        "name": "Stetson CUB info desk",
+        "email": "cubinfodesk@stetson.edu"
+      },
+      "nextStep": "Booking email sent Nov 1 asking for weekday dates from the week of Nov 10 (Tue Nov 10 / Thu Nov 12 / Tue Nov 17 preferred), fee and required documents (COI/BTR). Date not confirmed yet; you pick dates once they reply.",
+      "notes": "Requested, not confirmed. ~110 mi from base.",
+      "paid": false
     },
     {
       "id": "bjs-sunday-2026-11-15",
