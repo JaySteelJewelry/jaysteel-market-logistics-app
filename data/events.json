@@ -143,12 +143,14 @@
       "name": "UNF Tabling",
       "series": "unf-tabling",
       "kind": "campus",
-      "status": "booked",
+      "status": "approved",
       "date": "2026-11-03",
-      "venue": "University of North Florida",
+      "venue": "University of North Florida — campus green area",
       "address": "1 UNF Dr, Jacksonville, FL 32224",
-      "paid": false,
-      "notes": "Set up at the UNF campus green area (Luis, Nov 2)."
+      "paid": true,
+      "notes": "Booth setup in the UNF campus green area. Approved + paid (Luis confirmed Nov 2 9:53 PM).",
+      "start": "10:00",
+      "end": "15:30"
     },
     {
       "id": "first-friday-flagler-2026-11-06",
