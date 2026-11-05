@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T06:47Z",
+ "updated": "2026-11-05T19:57Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -90,7 +90,7 @@
    "county": "Cobb",
    "url": "https://calendar.kennesaw.edu",
    "ok": true,
-   "items": 1,
+   "items": 2,
    "error": null
   },
   {
@@ -100,7 +100,7 @@
    "county": "DeKalb",
    "url": "https://calendar.agnesscott.edu",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null
   },
   {
@@ -239,9 +239,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
-   "ok": true,
-   "items": 5,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "source": "City of DeLand",
@@ -463,6 +463,21 @@
    "firstSeen": "2026-11-03"
   },
   {
+   "id": "7e4300413162",
+   "title": "ProBo First Friday",
+   "date": "2026-11-06",
+   "time": "2:00 PM",
+   "location": "Campus Quads Patios & Parking Lots",
+   "city": "Decatur",
+   "county": "DeKalb",
+   "state": "GA",
+   "type": "college",
+   "source": "Agnes Scott College Calendar",
+   "url": "https://calendar.agnesscott.edu/event/probo-first-friday",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-05"
+  },
+  {
    "id": "2aec941d98dc",
    "title": "\"St. ARTistine\" Art & Food Festival",
    "date": "2026-11-07",
@@ -478,21 +493,6 @@
    "firstSeen": "2026-11-03"
   },
   {
-   "id": "d291c66d2a2d",
-   "title": "Art & Artisan Stroll",
-   "date": "2026-11-07",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-24"
-  },
-  {
    "id": "63d0e1d96275",
    "title": "Beaches Green Market",
    "date": "2026-11-07",
@@ -506,21 +506,6 @@
    "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
    "vendorMatch": true,
    "firstSeen": "2026-11-03"
-  },
-  {
-   "id": "32483336cc60",
-   "title": "Farmers Market",
-   "date": "2026-11-07",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3056",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-24"
   },
   {
    "id": "f4ec1312a94d",
@@ -703,21 +688,6 @@
    "firstSeen": "2026-11-03"
   },
   {
-   "id": "6d12d3dba8ed",
-   "title": "BACI'S 6TH ANNUAL WINE FESTIVAL",
-   "date": "2026-11-14",
-   "time": "12:00 PM - 04:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3537",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-31"
-  },
-  {
    "id": "ef1fe15e30b4",
    "title": "Beaches Green Market",
    "date": "2026-11-14",
@@ -777,36 +747,6 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-14"
-  },
-  {
-   "id": "9ce945ca11c2",
-   "title": "Farmers Market",
-   "date": "2026-11-14",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3057",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-31"
-  },
-  {
-   "id": "6732acafbd29",
-   "title": "Flamingo Follies Holiday Art Show",
-   "date": "2026-11-14",
-   "time": "12:00 AM - 11:59 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3542",
-   "vendorMatch": false,
-   "firstSeen": "2026-10-31"
   },
   {
    "id": "1cf34da5710f",
@@ -1038,6 +978,21 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-12-11"
+  },
+  {
+   "id": "bd7a9aeff188",
+   "title": "Community and Professional Education Expo",
+   "date": "2027-01-06",
+   "time": "5:30 PM",
+   "location": "KSU Center",
+   "city": "Kennesaw",
+   "county": "Cobb",
+   "state": "GA",
+   "type": "college",
+   "source": "Kennesaw State Calendar",
+   "url": "https://calendar.kennesaw.edu/event/community-and-professional-education-expo-5863",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-05"
   },
   {
    "id": "seed-fl-0010",
@@ -2097,6 +2052,7 @@
   }
  ],
  "newThisRun": [
-  "ca35d3f480b8"
+  "7e4300413162",
+  "bd7a9aeff188"
  ]
 }
