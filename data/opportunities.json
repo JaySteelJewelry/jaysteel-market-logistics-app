@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T19:47Z",
+ "updated": "2026-11-05T06:47Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -89,9 +89,9 @@
    "state": "GA",
    "county": "Cobb",
    "url": "https://calendar.kennesaw.edu",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 1,
+   "error": null
   },
   {
    "source": "Agnes Scott College Calendar",
@@ -355,55 +355,6 @@
   }
  ],
  "items": [
-  {
-   "id": "seed-fl-0026",
-   "origin": "seed",
-   "title": "First Wednesday Art Walk – Artist/Maker Vendors",
-   "org": "Downtown Vision, Inc. (Downtown Jacksonville BID)",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://www.eventeny.com/events/vendor/?id=2183",
-   "fee": "$45 participation fee per month (RSVP monthly after approval)",
-   "deadline": "2026-09-30 (current Eventeny cycle – passed)",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-11-04"
-  },
-  {
-   "id": "seed-fl-0027",
-   "origin": "seed",
-   "title": "First Wednesday Art Walk – Food Truck & Food/Beverage Vendors",
-   "org": "Downtown Vision, Inc. (Downtown Jacksonville BID)",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://www.eventeny.com/events/vendor/?id=55675",
-   "fee": "$25 annual application fee + $100 once approved + 10% of net sales to Downtown Vision",
-   "deadline": "2026-09-30 (26-27 season application – passed)",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-11-04"
-  },
-  {
-   "id": "seed-fl-0023",
-   "origin": "seed",
-   "title": "Jacksonville Senior Expo 2026 (UNF Adam Herbert University Center)",
-   "org": "City of Jacksonville (Senior Services) – Jacksonville Senior Expo",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "city",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://myactivesenior.com/events/senior-expo-2026-jacksonville-florida/",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-11-04"
-  },
   {
    "id": "seed-fl-0032",
    "origin": "seed",
@@ -1010,6 +961,21 @@
    "firstSeen": "2026-10-18"
   },
   {
+   "id": "ca35d3f480b8",
+   "title": "Fall 2026 Analytics Day",
+   "date": "2026-12-04",
+   "time": "8:30 AM",
+   "location": "KSU Center",
+   "city": "Kennesaw",
+   "county": "Cobb",
+   "state": "GA",
+   "type": "college",
+   "source": "Kennesaw State Calendar",
+   "url": "https://calendar.kennesaw.edu/event/fall-2026-analytics-day",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-05"
+  },
+  {
    "id": "seed-fl-0013",
    "origin": "seed",
    "title": "Christmas on Walnut Street & Christmas Parade (Dec 5, 2026)",
@@ -1405,6 +1371,20 @@
    "firstSeen": "2026-10-13"
   },
   {
+   "id": "seed-fl-0023",
+   "origin": "seed",
+   "title": "Jacksonville Senior Expo 2026 (UNF Adam Herbert University Center)",
+   "org": "City of Jacksonville (Senior Services) – Jacksonville Senior Expo",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://myactivesenior.com/events/senior-expo-2026-jacksonville-florida/",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0024",
    "origin": "seed",
    "title": "Jacksonville Jazz Festival – Food Vendors & Jazz Marketplace",
@@ -1416,6 +1396,38 @@
    "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
    "url": "https://cojspecialevents.formstack.com/forms/jjf2026_foodvendorapplication",
    "fee": "Typically 15% of gross receipts (COJ standard)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0026",
+   "origin": "seed",
+   "title": "First Wednesday Art Walk – Artist/Maker Vendors",
+   "org": "Downtown Vision, Inc. (Downtown Jacksonville BID)",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://www.eventeny.com/events/vendor/?id=2183",
+   "fee": "$45 participation fee per month (RSVP monthly after approval)",
+   "deadline": "2026-09-30 (current Eventeny cycle – passed)",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
+   "id": "seed-fl-0027",
+   "origin": "seed",
+   "title": "First Wednesday Art Walk – Food Truck & Food/Beverage Vendors",
+   "org": "Downtown Vision, Inc. (Downtown Jacksonville BID)",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://www.eventeny.com/events/vendor/?id=55675",
+   "fee": "$25 annual application fee + $100 once approved + 10% of net sales to Downtown Vision",
+   "deadline": "2026-09-30 (26-27 season application – passed)",
    "vendorMatch": true,
    "firstSeen": "2026-10-13"
   },
@@ -2085,6 +2097,6 @@
   }
  ],
  "newThisRun": [
-  "de1ecb2422c6"
+  "ca35d3f480b8"
  ]
 }
