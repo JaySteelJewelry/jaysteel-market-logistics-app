@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T19:57Z",
+ "updated": "2026-11-06T06:47Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
  "sources": [
@@ -50,7 +50,7 @@
    "county": "Fulton",
    "url": "https://gsu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null
   },
   {
@@ -70,7 +70,7 @@
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 2,
    "error": null
   },
   {
@@ -239,9 +239,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 5,
+   "error": null
   },
   {
    "source": "City of DeLand",
@@ -356,68 +356,6 @@
  ],
  "items": [
   {
-   "id": "seed-fl-0032",
-   "origin": "seed",
-   "title": "Greater Jacksonville Agricultural Fair (JAXFAIR) – Inside & Outside Vendors",
-   "org": "Greater Jacksonville Agricultural Fair (Duval County Fair Association)",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "county",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://jacksonvillefair.com/jaxfair-vendor-info/",
-   "fee": "Inside: $400 per 10x10 + $150 deposit; Outside: $100 per front foot (+$50/ft side depth if serving from side) + $150 per",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-11-05"
-  },
-  {
-   "id": "c2c3f6bbee44",
-   "title": "PantherSWAP Pop-up",
-   "date": "2026-11-05",
-   "time": "2:00 PM",
-   "location": "75 Piedmont Lobby",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "college",
-   "source": "Georgia State University (Engage)",
-   "url": "https://pin.gsu.edu/event/12938124",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-29"
-  },
-  {
-   "id": "ee96288141d3",
-   "title": "Persian-American Resource Society Tabling at GTIA Night Market",
-   "date": "2026-11-05",
-   "time": "6:00 PM",
-   "location": "Tech Green Walkway",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "tabling",
-   "source": "Georgia Tech (Engage)",
-   "url": "https://gatech.campuslabs.com/engage/event/12869696",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-20"
-  },
-  {
-   "id": "seed-fl-0201",
-   "origin": "seed",
-   "title": "Volusia County Fair & Youth Show 2026 – Vendor Space",
-   "org": "Volusia County Fair Association",
-   "city": "DeLand",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "county",
-   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
-   "url": "https://nebula.wsimg.com/8607383e3e878839b397288795eee167?AccessKeyId=B0A8D504E992951158C8&disposition=0&alloworigin=1",
-   "fee": "Indoor $700 per 10x8 (electric included); outdoor $1,600 per 20x20",
-   "vendorMatch": true,
-   "firstSeen": "2026-10-13",
-   "date": "2026-11-05"
-  },
-  {
    "id": "seed-fl-0016",
    "origin": "seed",
    "title": "Green Cove Springs Food Truck Friday (1st Fridays, Mar–Nov)",
@@ -493,6 +431,21 @@
    "firstSeen": "2026-11-03"
   },
   {
+   "id": "d291c66d2a2d",
+   "title": "Art & Artisan Stroll",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-06"
+  },
+  {
    "id": "63d0e1d96275",
    "title": "Beaches Green Market",
    "date": "2026-11-07",
@@ -506,6 +459,21 @@
    "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
    "vendorMatch": true,
    "firstSeen": "2026-11-03"
+  },
+  {
+   "id": "32483336cc60",
+   "title": "Farmers Market",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3056",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-06"
   },
   {
    "id": "f4ec1312a94d",
@@ -688,6 +656,21 @@
    "firstSeen": "2026-11-03"
   },
   {
+   "id": "6d12d3dba8ed",
+   "title": "BACI'S 6TH ANNUAL WINE FESTIVAL",
+   "date": "2026-11-14",
+   "time": "12:00 PM - 04:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3537",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-06"
+  },
+  {
    "id": "ef1fe15e30b4",
    "title": "Beaches Green Market",
    "date": "2026-11-14",
@@ -747,6 +730,36 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-14"
+  },
+  {
+   "id": "9ce945ca11c2",
+   "title": "Farmers Market",
+   "date": "2026-11-14",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3057",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-06"
+  },
+  {
+   "id": "6732acafbd29",
+   "title": "Flamingo Follies Holiday Art Show",
+   "date": "2026-11-14",
+   "time": "12:00 AM - 11:59 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3542",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-06"
   },
   {
    "id": "1cf34da5710f",
@@ -1432,6 +1445,21 @@
    "when": "Rolling – by approval"
   },
   {
+   "id": "seed-fl-0032",
+   "origin": "seed",
+   "title": "Greater Jacksonville Agricultural Fair (JAXFAIR) – Inside & Outside Vendors",
+   "org": "Greater Jacksonville Agricultural Fair (Duval County Fair Association)",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "county",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://jacksonvillefair.com/jaxfair-vendor-info/",
+   "fee": "Inside: $400 per 10x10 + $150 deposit; Outside: $100 per front foot (+$50/ft side depth if serving from side) + $150 per",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0033",
    "origin": "seed",
    "title": "JAX Chamber Expo",
@@ -2036,6 +2064,21 @@
    "when": "Weekdays 10:00 AM–2:00 PM during semesters (CUB Tabling, per search listing)"
   },
   {
+   "id": "seed-fl-0201",
+   "origin": "seed",
+   "title": "Volusia County Fair & Youth Show 2026 – Vendor Space",
+   "org": "Volusia County Fair Association",
+   "city": "DeLand",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "county",
+   "source": "JAY STEEL vendor database (public sources, verified Oct 2026)",
+   "url": "https://nebula.wsimg.com/8607383e3e878839b397288795eee167?AccessKeyId=B0A8D504E992951158C8&disposition=0&alloworigin=1",
+   "fee": "Indoor $700 per 10x8 (electric included); outdoor $1,600 per 20x20",
+   "vendorMatch": true,
+   "firstSeen": "2026-10-13"
+  },
+  {
    "id": "seed-fl-0202",
    "origin": "seed",
    "title": "New Smyrna Beach Farmers Market (Saturdays)",
@@ -2052,7 +2095,10 @@
   }
  ],
  "newThisRun": [
-  "7e4300413162",
-  "bd7a9aeff188"
+  "d291c66d2a2d",
+  "32483336cc60",
+  "6d12d3dba8ed",
+  "9ce945ca11c2",
+  "6732acafbd29"
  ]
 }
