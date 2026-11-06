@@ -246,6 +246,20 @@
       "paid": false
     },
     {
+      "id": "unf-market-day-2026-11-11",
+      "name": "UNF Market Day",
+      "series": "unf-market-day",
+      "kind": "campus",
+      "status": "approved",
+      "date": "2026-11-11",
+      "start": "10:00",
+      "end": "13:00",
+      "notes": "Approved + paid (Luis confirmed Nov 6 10:17 AM).",
+      "venue": "University of North Florida — Osprey Plaza",
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": true
+    },
+    {
       "id": "bjs-sunday-2026-11-15",
       "name": "Small Business Sunday Market @ BJ's",
       "series": "bjs-sunday",
