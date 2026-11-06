@@ -567,7 +567,7 @@
       "name": "Eagle Landing Holiday Vendor Market",
       "series": "eagle-landing",
       "kind": "market",
-      "status": "agreement",
+      "status": "approved",
       "date": "2026-12-12",
       "start": "10:00",
       "end": "15:00",
@@ -575,16 +575,17 @@
       "address": "3975 Eagle Landing Pkwy, Orange Park, FL",
       "fee": "$30 (non-resident), non-refundable",
       "payBy": "2026-12-01",
-      "payHow": "Pay day-of or prepay by Dec 1",
+      "payHow": "Pay $30 by Dec 1 (Jessica: \"remit payment by December 1st\")",
       "contact": {
         "name": "Jessica Quesenberry",
         "email": "eventsatel@gmail.com"
       },
       "setup": "Setup 8 AM.",
-      "nextStep": "Wait for their confirmation.",
+      "nextStep": "Pay $30 by Dec 1.",
       "headsUp": "Same day as 904 Pop Up RiversEdge.",
       "showInToPay": true,
-      "paid": false
+      "paid": false,
+      "notes": "Confirmed by Jessica Nov 6; pay $30 by Dec 1"
     },
     {
       "id": "green-room-2026-12-18",
