@@ -825,7 +825,7 @@
       return (a.date || "").localeCompare(b.date || ""); };
     const dated = OPP.items.filter((i) => i.date >= today || (oSeg === "saved" && saved[i.id])).filter(match).sort(sorter);
     const ongoing = (OPP.ongoing || []).filter(match).sort(oSort === "date" ? () => 0 : sorter);
-    const nActive = [oMonth, oFee, oDist, oState, oCounty, oVendor, oHideApplied].filter(Boolean).length;
+    const nActive = [oMonth, oDist, oState, oCounty, oVendor, oHideApplied].filter(Boolean).length;
     const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
     const stChips = [["all", "All"], ["open", "Open"], ["new", "New"], ["applied", "Applied"], ["booked", "Booked"]];
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
