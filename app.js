@@ -332,7 +332,7 @@
   const RX_MONEY = /(💳|^\W*pay\b|\bpay \$|\binvoice\b|\brenew\b|\bowe[sd]?\b|\bbalance due\b)/i;
   const isoNear = (m, d, today) => { const t = parse(today); let best = null; [-1, 0, 1].forEach((k) => { const y = t.getUTCFullYear() + k; const c = new Date(Date.UTC(y, m - 1, d, 12)); if (c.getUTCMonth() !== m - 1) return; if (!best || Math.abs(c - t) < Math.abs(best - t)) best = c; }); return best ? best.toISOString().slice(0, 10) : null; };
   const textDates = (s, today) => { const out = []; String(s || "").replace(RX_D, (all, m1, d1, m2, d2) => { const a1 = isoNear(MON3[m1.slice(0, 3).toLowerCase()], +d1, today); if (a1) out.push(a1); if (d2) { const a2 = isoNear(MON3[(m2 || m1).slice(0, 3).toLowerCase()], +d2, today); if (a2) out.push(a2); } return all; }); return out; };
-  const dueISO = (it) => { if (!it.deadline) return null; if (/^\d{4}-\d{2}-\d{2}$/.test(it.deadline)) return it.deadline; const d = new Date(it.deadline); return isNaN(d) ? String(it.deadline).slice(0, 10) : new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); };
+  const dueISO = (it) => { if (!it.deadline) return null; if (/^\d{4}-\d{2}-\d{2}(T00:00(:00(\.0+)?)?(Z|\+00:00))?$/.test(it.deadline)) return String(it.deadline).slice(0, 10); /* midnight-UTC = a plain date, not the evening before */ const d = new Date(it.deadline); return isNaN(d) ? String(it.deadline).slice(0, 10) : new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); };
   function needState(it, today) {
     const title = it.title || "";
     if (RX_REC.test(title)) return "keep";
