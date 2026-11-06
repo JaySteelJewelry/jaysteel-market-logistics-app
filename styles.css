@@ -526,3 +526,5 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
 .seg--set button{border:0;background:none;color:var(--muted);font-weight:600;font-size:12.5px;padding:8px 10px;border-radius:9px;cursor:pointer;min-height:36px}
 .seg--set button[aria-checked="true"]{background:var(--accent);color:var(--on-accent)}
 @media (max-width:420px){.set-r{flex-wrap:wrap}.set-r .seg--set{width:100%}.seg--set button{flex:1}}
+
+.need--late{border-color:rgb(var(--bad-rgb) / .6);box-shadow:inset 3px 0 0 var(--bad)}

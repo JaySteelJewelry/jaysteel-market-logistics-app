@@ -299,10 +299,10 @@
     const A = ld(K_ANS, {}), a = A[it.id] || { o: [] }, S = ld(K_SENT, {});
     const opts = (it.answer && it.answer.options) || [], multi = !!(it.answer && it.answer.multi);
     const sent = S[it.id] && !A[it.id] ? "✓ Sent to Tab " + new Date(S[it.id]).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: TZ }) : "";
-    return `<article class="need${a.o.length ? " need--on" : ""}" data-id="${esc(it.id)}">
+    return `<article class="need${a.o.length ? " need--on" : ""}${it._st === "overdue" ? " need--late" : ""}" data-id="${esc(it.id)}">
       <div class="need__h"><b>${esc(it.short_title || it.title)}</b>${it.count > 1 ? `<span class="pill">×${it.count}</span>` : ""}</div>
       ${it.why1 || it.why ? `<p class="need__why">${esc(it.why1 || it.why)}</p>` : ""}
-      <div class="need__chips">${dueTxt(it) ? `<span class="pill${it.deadline && new Date(it.deadline) < Date.now() + 3 * 864e5 ? " s-due" : ""}"><i></i>${esc(dueTxt(it))}</span>` : ""}${it.amount ? `<span class="pill">${esc(money(it.amount))}</span>` : ""}</div>
+      <div class="need__chips">${it._st === "overdue" ? `<span class="pill s-due"><i></i>Overdue</span>` : ""}${dueTxt(it) && it._st !== "overdue" ? `<span class="pill${it.deadline && new Date(it.deadline) < Date.now() + 3 * 864e5 ? " s-due" : ""}"><i></i>${esc(dueTxt(it))}</span>` : ""}${it.amount ? `<span class="pill">${esc(money(it.amount))}</span>` : ""}</div>
       ${it.action ? `<details class="need__more"><summary>Details</summary><p>${esc(it.why || "")}</p><p><b>Next:</b> ${esc(it.action)}</p></details>` : ""}
       ${opts.length ? `<div class="need__opts" role="${multi ? "group" : "radiogroup"}" aria-label="Answer">${opts.map((o) => `<button type="button" class="opt" data-o="${esc(o)}" ${multi ? `aria-pressed="${a.o.includes(o)}"` : `role="radio" aria-checked="${a.o.includes(o)}"`}>${esc(o)}</button>`).join("")}</div>` : ""}
       <div class="need__foot"><span class="need__st">${a.o.length ? "Answer saved on this phone" : sent}</span>${it.link ? `<a class="btn small" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.link_label || "Open")}</a>` : ""}</div>
@@ -323,9 +323,34 @@
       }));
     });
   }
+
+  /* auto-clear (Luis Nov 6): re-checked on every open, so stale asks vanish even before the next HQ build.
+     Same rules as files/hq/autoclean.py: past-dated items go; an unpaid fee stays as "Overdue" until its event date passes. */
+  const MON3 = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+  const RX_D = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})(?:\s*[-–]\s*(?:(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+)?(\d{1,2}))?\b/gi;
+  const RX_REC = /\b(weekly|every|monthly|ongoing|(mon|tues|wednes|thurs|fri|satur|sun)days)\b/i;
+  const RX_MONEY = /(💳|^\W*pay\b|\bpay \$|\binvoice\b|\brenew\b|\bowe[sd]?\b|\bbalance due\b)/i;
+  const isoNear = (m, d, today) => { const t = parse(today); let best = null; [-1, 0, 1].forEach((k) => { const y = t.getUTCFullYear() + k; const c = new Date(Date.UTC(y, m - 1, d, 12)); if (c.getUTCMonth() !== m - 1) return; if (!best || Math.abs(c - t) < Math.abs(best - t)) best = c; }); return best ? best.toISOString().slice(0, 10) : null; };
+  const textDates = (s, today) => { const out = []; String(s || "").replace(RX_D, (all, m1, d1, m2, d2) => { const a1 = isoNear(MON3[m1.slice(0, 3).toLowerCase()], +d1, today); if (a1) out.push(a1); if (d2) { const a2 = isoNear(MON3[(m2 || m1).slice(0, 3).toLowerCase()], +d2, today); if (a2) out.push(a2); } return all; }); return out; };
+  const dueISO = (it) => { if (!it.deadline) return null; const d = new Date(it.deadline); return isNaN(d) ? String(it.deadline).slice(0, 10) : new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); };
+  function needState(it, today) {
+    const title = it.title || "";
+    if (RX_REC.test(title)) return "keep";
+    const td = textDates(title, today), due = dueISO(it);
+    if (RX_MONEY.test(title) || RX_MONEY.test(String(it.id || "").replace(/-/g, " "))) {
+      if (td.length) { const e = td.sort().pop(); if (e < today) return "clear"; return due && due < today ? "overdue" : "keep"; }
+      return due && due < today ? "overdue" : "keep";
+    }
+    const ds = td.length ? td : textDates(it.why, today).filter((x) => x >= today);
+    const d = ds.length ? ds.sort().pop() : due;
+    if (!d) return "keep";
+    return d < today ? "clear" : "keep";
+  }
   function paintHQ() {
     const box = document.getElementById("hqbox"); if (!box) return;
-    const nd = HQ.data["needs_you.json"]; const items = ((nd && nd.items) || []).filter((x) => !x.expired);
+    const nd = HQ.data["needs_you.json"], today = todayISO();
+    const items = ((nd && nd.items) || []).filter((x) => !x.expired).map((x) => Object.assign({}, x, { _st: needState(x, today) })).filter((x) => x._st !== "clear")
+      .sort((p, q) => (q._st === "overdue") - (p._st === "overdue"));
     const shown = HQ.showAll ? items : items.slice(0, 5);
     box.innerHTML = items.length ? sec("Needs you", `<span class="more-link">${items.length} open</span>`) + `<div class="needs">${shown.map(needCard).join("")}</div>`
       + (items.length > 5 ? `<button class="btn full" type="button" id="needs-all">${HQ.showAll ? "Show top 5" : "Show all " + items.length}</button>` : "")
