@@ -5,7 +5,7 @@
 (function () {
   "use strict";
   const TZ = "America/New_York";
-  const STORE_URL = "https://jaysteeljewelry.square.site/";
+  const STORE_URL = "https://jaysteeljewelry.github.io/links/";   /* Nov 6 2026: the brand links page (no third-party store link) */
   const EDIT_URL = "https://github.com/JaySteelJewelry/jaysteel-market-logistics-app/edit/main/data/events.json";
   const STATUS = {
     approved: { label: "Approved", icon: "✅" },
@@ -19,7 +19,7 @@
   const EMAIL = "jaysteeljewelry@gmail.com";
   const DEFAULT_PACK = [
     "10×10 tent + 4 weights (30 lb/leg)", "Table(s) + tablecloth", "Jewelry displays, busts + trays", "Mirror",
-    "Inventory: necklaces, bracelets, rings, earrings", "Price tags / price sign", "Square reader + phone charged",
+    "Inventory: necklaces, bracelets, rings, earrings", "Price tags / price sign", "Card reader + phone charged",
     "Power bank + cables", "Cash box + change ($100 in small bills)", "QR code sign (store / IG)",
     "Business cards", "Bags / pouches + gift boxes", "Banner + zip ties", "Polishing cloth", "Water + snacks",
     "Receipts / resale certificate copy", "Chair"
@@ -58,22 +58,31 @@
   const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
   const show = (html) => { app.innerHTML = `<div class="view">${html}</div>`; };
 
-  /* ---------- theme (sun/moon). The <head> script already applied it before first paint. ---------- */
-  (function themeToggle() {
-    const KEY = "jsj-theme", root = document.documentElement, btn = document.getElementById("theme-toggle"), meta = document.getElementById("theme-color");
-    const apply = (t) => {
-      root.setAttribute("data-theme", t);
-      if (meta) meta.setAttribute("content", t === "light" ? "#F6F4EF" : "#070707");
-      if (btn) { const next = t === "light" ? "dark" : "light"; btn.setAttribute("aria-label", `Switch to ${next} mode`); btn.setAttribute("aria-pressed", String(t === "light")); }
+  /* ---------- menu (Nov 6 2026): ☰ opens a slide-in menu; closes on tap outside, Esc, or picking an item ---------- */
+  (function menu() {
+    const btn = document.getElementById("menu-btn"), nav = document.getElementById("menu"), scrim = document.getElementById("menu-scrim"), x = document.getElementById("menu-close");
+    if (!btn || !nav) return;
+    const set = (open) => {
+      btn.setAttribute("aria-expanded", String(open)); nav.setAttribute("aria-hidden", String(!open)); nav.classList.toggle("open", open);
+      scrim.hidden = !open; document.body.classList.toggle("menu-open", open);
+      nav.querySelectorAll("a,button").forEach((el) => { el.tabIndex = open ? 0 : -1; });
+      if (open) { const f = nav.querySelector("[aria-current]") || nav.querySelector("a"); f && f.focus(); } else btn.focus({ preventScroll: true });
     };
-    apply(root.getAttribute("data-theme") === "light" ? "light" : "dark");
-    if (btn) btn.addEventListener("click", () => { const t = root.getAttribute("data-theme") === "light" ? "dark" : "light"; apply(t); try { localStorage.setItem(KEY, t); } catch (_) {} });
-    if (window.matchMedia) {
-      const mq = window.matchMedia("(prefers-color-scheme: light)");
-      const follow = (e) => { let saved = null; try { saved = localStorage.getItem(KEY); } catch (_) {} if (saved !== "light" && saved !== "dark") apply(e.matches ? "light" : "dark"); };
-      if (mq.addEventListener) mq.addEventListener("change", follow); else if (mq.addListener) mq.addListener(follow);
-    }
+    set(false); btn.blur();
+    btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    scrim.addEventListener("click", () => set(false)); x.addEventListener("click", () => set(false));
+    nav.querySelectorAll("a").forEach((l) => l.addEventListener("click", () => set(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("open")) set(false); });
+    const out = document.getElementById("logout");
+    if (out) out.addEventListener("click", () => {
+      if (!confirm("Log out on this device? You'll need the password to open the app again.")) return;
+      try { localStorage.removeItem("jsl-auth"); localStorage.removeItem("jshq_key_v1"); } catch (_) {}
+      location.replace(location.pathname);
+    });
   })();
+
+  /* Nov 6 2026: one dark "Steel" theme (tokens in styles.css :root); the light/dark toggle was retired. */
+  document.documentElement.setAttribute("data-theme", "dark");
 
   function download(name, text, type) {
     const blob = new Blob([text], { type: type || "text/plain" });
@@ -193,9 +202,17 @@
   const shortDate = (iso) => fmt(iso, { weekday: "short", month: "short", day: "numeric" });
 
   /* ---------- views ---------- */
+  /* Nov 6 2026 IA: Markets = List · Find (opportunities); Home = Today · HQ */
+  const subnav = (items, cur) => `<nav class="subnav" aria-label="Sections">${items.map(([h, t, k]) => `<a href="${h}"${k === cur ? ' aria-current="page"' : ""}>${t}</a>`).join("")}</nav>`;
+  const MK_NAV = [["#/markets", "List", "list"], ["#/opportunities", "Find markets", "opp"]];
+  const HOME_NAV = [["#/", "Today", "today"], ["#/hq", "HQ", "hq"]];
+  const TAB_OF = { opp: "list", links: "today", hq: "today", booth: "list" };
+  const TAB_NAME = { today: "Dashboard", list: "My Markets", map: "Market Map", cal: "Calendar", money: "Payments" };
   function setTab(name) {
-    document.querySelectorAll(".dock a").forEach((a) => a.toggleAttribute("aria-current", false));
-    const a = document.querySelector(`.dock a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
+    name = TAB_OF[name] || name;
+    document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
+    const a = document.querySelector(`.menu a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
+    const pn = document.getElementById("page-name"); if (pn) pn.textContent = TAB_NAME[name] || "";
     document.body.classList.toggle("booth", name === "booth");
   }
 
@@ -214,6 +231,57 @@
   const UPCOMING_OK = ["approved", "agreement", "booked"];
   const WAITING = ["pending", "tentative", "conditional"];
 
+
+  /* ===== DASHBOARD · Needs you (Nov 6 2026 merge): HQ's encrypted feed, decrypted on this device with the same password ===== */
+  const HQ_DATA = (window.JSL && window.JSL.hqData) || "../jaysteel-hq/data.enc.json";
+  const HQ_KEY = "jshq_key_v1";
+  const b64u = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const b64s = (u) => { let t = ""; new Uint8Array(u).forEach((x) => { t += String.fromCharCode(x); }); return btoa(t); };
+  let HQD = null;
+  async function hqDecrypt(blob, raw) {
+    const k = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]);
+    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64u(blob.iv) }, k, b64u(blob.ct));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+  async function hqLoad(pw) {
+    const blob = await fetch(HQ_DATA + "?t=" + Date.now(), { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    let saved = null; try { saved = JSON.parse(localStorage.getItem(HQ_KEY) || "null"); } catch (_) {}
+    let raw;
+    if (pw) {
+      const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveBits"]);
+      raw = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: b64u(blob.salt), iterations: blob.iter, hash: "SHA-256" }, base, 256);
+    } else if (saved && saved.salt === blob.salt) raw = b64u(saved.key);
+    else return null;
+    const data = await hqDecrypt(blob, raw);
+    if (pw) try { localStorage.setItem(HQ_KEY, JSON.stringify({ salt: blob.salt, key: b64s(raw) })); } catch (_) {}
+    return (HQD = data);
+  }
+  function paintNeeds(box, data) {
+    const f = data && data.files && data.files["needs_you.json"];
+    const items = (f && !f.missing && f.items) || [];
+    if (!items.length) { box.innerHTML = sec("Needs you") + `<div class="card"><p class="m" style="margin:0">Nothing needs you right now.</p></div>`; return; }
+    const when = (it) => it.deadline_note || (it.deadline ? "by " + new Date(it.deadline).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ }) : "");
+    box.innerHTML = sec("Needs you", `<a class="more-link" href="#/hq">All ${items.length} in HQ ›</a>`) + `<div class="needs">${items.slice(0, 4).map((it) => `<article class="need">
+        <div class="need__h"><b>${esc(it.title)}</b>${when(it) ? `<span class="pill s-due"><i></i>${esc(when(it))}</span>` : ""}</div>
+        ${it.why ? `<p class="need__why">${esc(it.why)}</p>` : ""}
+        <div class="need__acts"><a class="btn small primary" href="#/hq">Answer</a>${it.link ? `<a class="btn small" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.link_label || "Open")}</a>` : ""}</div></article>`).join("")}</div>`;
+  }
+  window.addEventListener("jshq-key", () => { if (document.getElementById("hqbox")) fillNeeds(); });
+  function fillNeeds() {
+    const box = document.getElementById("hqbox"); if (!box) return;
+    if (HQD) paintNeeds(box, HQD);
+    hqLoad().then((d) => {
+      if (d) { const b = document.getElementById("hqbox"); if (b) paintNeeds(b, d); return; }
+      box.innerHTML = sec("Needs you") + `<form class="card unlockhq" id="hqun"><p class="m" style="margin:0 0 10px">Enter your password once on this phone to show HQ items here.</p>
+        <input type="text" name="username" value="jaysteel-logistics" autocomplete="username" hidden>
+        <div class="row2"><input class="search" type="password" id="hqpw" autocomplete="current-password" placeholder="Password" aria-label="Password" required><button class="btn primary" type="submit">Unlock</button></div><p class="m warn-text" id="hqerr"></p></form>`;
+      document.getElementById("hqun").addEventListener("submit", async (ev) => {
+        ev.preventDefault(); const v = document.getElementById("hqpw").value.trim();
+        try { const d2 = await hqLoad(v); if (d2) paintNeeds(document.getElementById("hqbox"), d2); } catch (_) { document.getElementById("hqerr").textContent = "That password didn't open HQ."; }
+      });
+    }).catch(() => { if (!HQD) box.innerHTML = sec("Needs you") + `<div class="card"><p class="m" style="margin:0">HQ items couldn't load. Pull down to refresh.</p></div>`; });
+  }
+
   /* ===== TODAY: next-market countdown hero ===== */
   let tick = null;
   function viewToday() {
@@ -226,7 +294,6 @@
     const due = dueItems(today), over = overdueItems(today);
     let hero = "";
     if (next) {
-      const ps = packStat(next.id);
       const live = started(next, now) && !ended(next, now);
       const target = next.start ? nyMs(next.date, next.start) : nyMs(next.date, "00:00");
       const n = daysBetween(today, next.date);
@@ -240,7 +307,7 @@
              ${next.start ? "" : `<p class="clock-note">Start time not set yet — counting to the day.</p>`}`}
         <div class="hero__acts">
           ${next.address ? `<a class="act act--gold" href="${esc(dirURL(next.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : `<a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.pin}<span>No address</span></a>`}
-          <a class="act" href="#/pack/${encodeURIComponent(next.id)}">${ring(ps.pct, ps.done)}<span>Pack ${ps.done}/${ps.total}</span></a>
+          <a class="act" href="#/map/${encodeURIComponent(next.id)}">${I.map}<span>On the map</span></a>
           <a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.cash}<span>Sales &amp; info</span></a>
         </div>
       </section>`;
@@ -253,7 +320,7 @@
 
     const payRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
     const nOpen = (DATA.openApplications || []).length;
-    let html = `<div class="today">${hero}<div class="today__side">
+    let html = `<div class="pagehead"><h1>Dashboard</h1></div><section id="hqbox" aria-live="polite"></section><div class="today">${hero}<div class="today__side">
       <div class="stats">
         <a class="stat" href="#/markets" data-jump="approved"><b>${approved}</b><span>Confirmed</span></a>
         <a class="stat" href="#/markets" data-jump="waiting"><b>${waiting}</b><span>Waiting</span></a>
@@ -264,13 +331,15 @@
     </div></div>`;
     if (railHTML) html += sec("Coming up", `<a class="more-link" href="#/markets">All markets ›</a>`) + railHTML;
     html += `<div class="quick">
-      <a class="qk" href="#/calendar">${I.cal}<span>Calendar</span></a>
+      <a class="qk" href="#/map">${I.map}<span>Map</span></a>
       <a class="qk" href="#/opportunities">${I.bag}<span>Find markets</span></a>
       <a class="qk" href="#/links">${I.link}<span>Shop links</span></a>
+      <a class="qk" href="#/hq">${I.info}<span>Full HQ</span></a>
     </div>` + footer();
     show(html);
     wireJumps();
     startClock();
+    fillNeeds();
   }
   function startClock() {
     clearInterval(tick); const c = document.getElementById("clock"); if (!c) return;
@@ -304,7 +373,7 @@
     const nOpen = (DATA.openApplications || []).length;
     const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), nOpen ? [["nodate", "🗓 No date yet", nOpen]] : [], [["past", "Past"], ["all", "All"]]);
     if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
-    let html = `<div class="pagehead"><h1>Markets</h1><div class="seg seg--nav" role="group" aria-label="View"><a href="#/markets" aria-current="page">List</a><a href="#/calendar">Calendar</a></div></div>
+    let html = `<div class="pagehead"><h1>My Markets</h1></div>${subnav(MK_NAV, "list")}
       <div class="searchbox">${'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>'}<input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off"></div>
       <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l, n]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}${n != null ? `<span class="n">${n}</span>` : ""}</button>`).join("")}</div>
       <div id="listbody" aria-live="polite"></div>`;
@@ -366,7 +435,7 @@
 
   /* ===== CALENDAR ===== */
   function viewCalendar() {
-    setTab("list");
+    setTab("cal");
     const today = todayISO();
     if (!calMonth) calMonth = today.slice(0, 7);
     const [y, m] = calMonth.split("-").map(Number);
@@ -382,7 +451,7 @@
     }
     const sel = calSel && map[calSel] ? map[calSel] : null;
     const monthEvents = DATA.events.filter((e) => e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth));
-    show(`<div class="pagehead"><h1>Markets</h1><div class="seg seg--nav" role="group" aria-label="View"><a href="#/markets">List</a><a href="#/calendar" aria-current="page">Calendar</a></div></div>
+    show(`<div class="pagehead"><h1>Calendar</h1></div>
       <div class="card calcard"><div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
       <h2>${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
       <div class="grid">${["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="dow">${d}</div>`).join("")}${cells}</div>
@@ -411,7 +480,6 @@
     const payBy = e.payBy && (overdue ? `<span class="pill s-due"><i></i>Past due</span> <span class="warn-text">was due ${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
     const pay = [e.fee && `<b>${esc(e.fee)}</b>${e.feeNote ? " · " + esc(e.feeNote) : ""}`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, payBy, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
     const today = todayISO(), n = daysBetween(today, e.date), past = lastDay(e) < today;
-    const ps = packStat(e.id);
     show(`<a class="back" href="#/markets">‹ All markets</a>
       <article class="hangtag s-${esc(e.status)}">
         <span class="hangtag__hole" aria-hidden="true"></span>
@@ -423,7 +491,6 @@
         <button class="act" id="ics" type="button">${I.cal}<span>Add to calendar</span></button>
         ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : `<a class="act" href="#/links">${I.bag}<span>Store links</span></a>`}
       </div>
-      <a class="boothcta" href="#/pack/${encodeURIComponent(e.id)}">${ring(ps.pct, ps.done)}<span><b>Packing checklist</b><small>${ps.done} of ${ps.total} packed · big-button booth mode</small></span><span class="chev" aria-hidden="true">›</span></a>
       ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
       ${e.headsUp ? `<div class="card heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
       <div class="card info">
@@ -444,34 +511,7 @@
     window.scrollTo(0, 0);
   }
 
-  /* ===== BOOTH MODE: one-handed packing checklist (same saved list as before: jsj.check.<id>) ===== */
-  let packEdit = false, packHide = false;
-  function viewPack(id) {
-    const e = byId(id);
-    if (!e) { setTab("list"); show(`<a class="back" href="#/markets">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
-    setTab("booth");
-    show(`<div class="booth-v"><div class="booth-h"><a class="back" href="#/e/${encodeURIComponent(e.id)}">‹ ${esc(e.name)}</a>
-      <div class="booth-sum" id="bsum"></div></div><ul class="bigcheck" id="pack"></ul>
-      <form class="addrow" id="addItem"><input id="newItem" placeholder="Add an item…" aria-label="Add a checklist item" maxlength="80" autocomplete="off"><button class="btn" type="submit">Add</button></form>
-      <div class="booth-tools"><button class="btn small" id="hidePacked" aria-pressed="${packHide}">Hide packed</button><button class="btn small" id="editPack" aria-pressed="${packEdit}">${packEdit ? "Done editing" : "Edit list"}</button><button class="btn small" id="resetPack">Uncheck all</button><button class="btn small" id="saveTpl">Save as my default list</button></div></div>`);
-    renderPack(e);
-    document.getElementById("addItem").addEventListener("submit", (ev) => { ev.preventDefault(); const inp = document.getElementById("newItem"); const v = inp.value.trim(); if (!v) return; const l = checklist(e.id); l.push({ text: v, done: false }); store.set("check." + e.id, l); inp.value = ""; renderPack(e); });
-    document.getElementById("resetPack").onclick = () => { if (!confirm("Uncheck everything?")) return; store.set("check." + e.id, checklist(e.id).map((i) => ({ text: i.text, done: false }))); renderPack(e); };
-    document.getElementById("saveTpl").onclick = () => { store.set("packTemplate", checklist(e.id).map((i) => i.text)); toast("Saved as your default list"); };
-    document.getElementById("editPack").onclick = (ev) => { packEdit = !packEdit; ev.currentTarget.setAttribute("aria-pressed", String(packEdit)); ev.currentTarget.textContent = packEdit ? "Done editing" : "Edit list"; renderPack(e); };
-    document.getElementById("hidePacked").onclick = (ev) => { packHide = !packHide; ev.currentTarget.setAttribute("aria-pressed", String(packHide)); renderPack(e); };
-    window.scrollTo(0, 0);
-  }
-  function renderPack(e) {
-    const box = document.getElementById("pack"), sum = document.getElementById("bsum"); if (!box) return;
-    const items = checklist(e.id); const done = items.filter((i) => i.done).length; const pct = items.length ? Math.round((done / items.length) * 100) : 0;
-    sum.innerHTML = `${ring(pct, pct + "%")}<div><b>${done === items.length && items.length ? "All packed. Go sell." : `${items.length - done} left to pack`}</b><small>${done} of ${items.length} packed · saved on this phone</small></div>`;
-    box.classList.toggle("editing", packEdit);
-    box.innerHTML = items.map((it, i) => (packHide && it.done && !packEdit ? "" : `<li class="${it.done ? "done" : ""}"><button type="button" class="ck" data-i="${i}" aria-pressed="${it.done}"><span class="box" aria-hidden="true">${I.check}</span><span class="tx">${esc(it.text)}</span></button>${packEdit ? `<button type="button" class="x" data-del="${i}" aria-label="Remove ${esc(it.text)}">×</button>` : ""}</li>`)).join("") || '<li class="empty">Everything is packed.</li>';
-    const save = (list) => { store.set("check." + e.id, list); renderPack(e); };
-    box.querySelectorAll(".ck").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); const it = l[b.dataset.i]; it.done = !it.done; if (navigator.vibrate) navigator.vibrate(12); save(l); }));
-    box.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", () => { const l = checklist(e.id); l.splice(b.dataset.del, 1); save(l); }));
-  }
+  /* Nov 6 2026: the packing checklist / booth mode was removed at Luis's request (saved lists on the phone are left untouched). */
 
   let entryType = "sale";
   function renderTally(e) {
@@ -508,7 +548,7 @@
     const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
     const dueRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
-    show(`<div class="pagehead"><h1>Money</h1></div><p class="sub">Fees to pay, and what each market made. Sales are saved on this phone.</p>
+    show(`<div class="pagehead"><h1>Payments</h1></div><p class="sub">Fees to pay, what's paid, and what each market made. Sales are saved on this phone.</p>
       <p class="month">To pay</p>
       <div class="card pays">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
       <p class="month">All markets · totals</p>
@@ -534,7 +574,7 @@
     const L = DATA.links || {};
     const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return u; } };
     const card = (href, i, b, s, ext) => `<a class="linkcard" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}><span class="i" aria-hidden="true">${ICONS[i]}</span><span><b>${b}</b><small>${s}</small></span><span class="arrow" aria-hidden="true">›</span></a>`;
-    const store = L.store || STORE_URL;
+    const store = STORE_URL;
     show(`<div class="pagehead"><h1>Shop</h1></div><p class="sub">Send customers here from the booth, Discord or socials.</p>
       ${card(store, "store", "Online store", esc(host(store)), true)}
       ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
@@ -649,7 +689,7 @@
     const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
     const stChips = [["all", "All"], ["open", "Open"], ["new", "New"], ["applied", "Applied"], ["booked", "Booked"]];
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
-    let html = `<div class="pagehead"><h1>Find</h1><div class="seg" role="tablist" aria-label="Browse or saved">
+    let html = `<div class="pagehead"><h1>My Markets</h1></div>${subnav(MK_NAV, "opp")}<div class="pagehead pagehead--sub"><h2>Find markets</h2><div class="seg" role="tablist" aria-label="Browse or saved">
         <button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved${nSaved ? " · " + nSaved : ""}</button></div></div>
       ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across NE Florida and Georgia.</p>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
@@ -734,7 +774,7 @@
         ${addr ? `<a class="act" href="${dirURL(addr)}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : ""}
         ${i.date ? `<button class="act" id="ics" type="button">${I.cal}<span>Add to calendar</span></button>` : ""}
       </div>
-      ${ev ? `<a class="boothcta" href="#/e/${encodeURIComponent(ev.id)}"><span class="ring" style="--p:100"><span>✓</span></span><span><b>Already on your calendar</b><small>Open the market for load-in, fees paid &amp; packing list</small></span><span class="chev" aria-hidden="true">›</span></a>` : ""}
+      ${ev ? `<a class="boothcta" href="#/e/${encodeURIComponent(ev.id)}"><span class="ring" style="--p:100"><span>✓</span></span><span><b>Already on your calendar</b><small>Open the market for load-in, fees and directions</small></span><span class="chev" aria-hidden="true">›</span></a>` : ""}
       ${!ev && !isApplied(i.id) && !(d && d.kind === "closed") ? `<div class="apply-detail">${applyBtn({ id: i.id, name: i.title, dates: oppDates(i), link: i.url || "" })}</div>` : ""}
       <div class="card info">
         ${kv("📅", "When", esc([oppDates(i), i.time].filter(Boolean).join(" · ")))}
@@ -749,7 +789,7 @@
         ${kv("🔎", "Found via", esc(i.source + (i.firstSeen ? " · first seen " + fmt(i.firstSeen, { month: "short", day: "numeric" }) : "")))}
       </div>
       <div class="actions" style="margin:14px 0 0"><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}</div>
-      <p class="fine" style="text-align:left;margin-top:14px">Once you're booked it moves to Markets with load-in, fees and the packing checklist. Always confirm details on the organizer's page.</p>${footer()}`);
+      <p class="fine" style="text-align:left;margin-top:14px">Once you're booked it moves to Markets with load-in, fees and directions. Always confirm details on the organizer's page.</p>${footer()}`);
     const rr = () => viewOppDetail(id);
     wireOppCards(app, rr); wireApply(app, rr);
     const ic = document.getElementById("ics");
@@ -781,15 +821,103 @@
     return lines.join("\r\n") + "\r\n";
   }
 
+
+  /* ===== MAP (Nov 6 2026): Leaflet + OpenStreetMap, pins by status; coordinates from assets/geo.json (keyed by address) ===== */
+  let GEO = null, mapFilter = "upcoming", LMAP = null;
+  const loadLeaflet = () => window.L && window.L.map ? Promise.resolve(window.L) : new Promise((res, rej) => {
+    const css = document.createElement("link"); css.rel = "stylesheet"; css.href = ROOT + "assets/vendor/leaflet/leaflet.css"; document.head.appendChild(css);
+    const s = document.createElement("script"); s.src = ROOT + "assets/vendor/leaflet/leaflet.js"; s.onload = () => res(window.L); s.onerror = rej; document.head.appendChild(s);
+  });
+  const loadGeo = () => GEO ? Promise.resolve(GEO) : fetch(ROOT + "assets/geo.json", { cache: "no-cache" }).then((r) => r.json()).then((g) => (GEO = g.places || {}));
+  const stColor = (s) => `var(--st-${["approved", "booked", "agreement", "pending", "tentative", "conditional", "declined", "nodate"].includes(s) ? s : "nodate"})`;
+  const CONFIRMED = ["approved", "agreement", "booked"];
+  function mapItems(f) {
+    const today = todayISO();
+    if (f === "nodate") return (DATA.openApplications || []).map((o, i) => ({ id: null, name: o.name, status: "nodate", date: null, when: o.when || "No date yet", address: o.address, venue: "" }));
+    return DATA.events.filter((e) => {
+      const up = lastDay(e) >= today;
+      if (f === "past") return !up && e.status !== "declined";
+      if (!up || e.status === "declined") return false;
+      if (f === "confirmed") return CONFIRMED.includes(e.status);
+      if (f === "waiting") return WAITING.includes(e.status);
+      return true;
+    }).map((e) => ({ id: e.id, name: e.name, status: e.status, date: e.date, when: shortDate(e.date) + (e.start ? " · " + t12(e.start) : ""), address: e.address, venue: e.venue, fee: e.fee, paid: e.paid }));
+  }
+  function viewMap(focusId) {
+    setTab("map");
+    const today = todayISO();
+    const cnt = (f) => mapItems(f).length;
+    const chips = [["upcoming", "Upcoming"], ["confirmed", "Confirmed"], ["waiting", "Waiting"], ["nodate", "No date yet"], ["past", "Past"]].map(([k, t]) => [k, t, cnt(k)]).filter((c) => c[2] > 0 || c[0] === "upcoming");
+    if (focusId) { const fe = byId(focusId); if (fe) mapFilter = lastDay(fe) < today ? "past" : "upcoming"; }
+    show(`<div class="pagehead"><h1>Market Map</h1></div>
+      <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n}</span></button>`).join("")}</div>
+      <div class="mapwrap"><div id="map" role="region" aria-label="Map of markets"></div></div>
+      <div class="map-legend" aria-hidden="true">${[["approved", "Approved"], ["booked", "On my calendar"], ["agreement", "Agreement"], ["pending", "Pending"], ["tentative", "Tentative / conditional"], ["nodate", "No date yet"]].map(([s, t]) => `<span><i style="background:${stColor(s)}"></i>${t}</span>`).join("")}</div>
+      <div class="places" id="places"><p class="loading">Loading map…</p></div>${footer()}`);
+    app.querySelectorAll("[data-mf]").forEach((b) => b.addEventListener("click", () => { mapFilter = b.dataset.mf; viewMap(); }));
+    Promise.all([loadLeaflet(), loadGeo()]).then(([Lf, geo]) => {
+      const box = document.getElementById("map"); if (!box || !document.body.contains(box)) return;
+      if (LMAP) { try { LMAP.remove(); } catch (_) {} }
+      const m = LMAP = Lf.map(box, { zoomControl: true, attributionControl: true, scrollWheelZoom: false, tap: true });
+      Lf.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }).addTo(m);
+      const groups = new Map(), nogeo = [];
+      mapItems(mapFilter).forEach((it) => {
+        const g = it.address && geo[it.address];
+        if (!g) { nogeo.push(it); return; }
+        const key = g[0].toFixed(4) + "," + g[1].toFixed(4);
+        if (!groups.has(key)) groups.set(key, { ll: [g[0], g[1]], approx: !!g[2], address: it.address, venue: it.venue, items: [] });
+        groups.get(key).items.push(it);
+      });
+      const places = [...groups.values()].sort((x, y) => String(x.items[0].date || "9").localeCompare(String(y.items[0].date || "9")));
+      const markers = [];
+      const popHTML = (p) => {
+        const first = p.items[0];
+        const title = p.items.every((i) => i.name === first.name) ? first.name : (p.venue || first.name);
+        return `<div class="pop"><h3>${esc(title)}</h3><p class="m">${esc(p.venue && p.venue !== title ? p.venue + " · " : "")}${esc(p.address || "")}${p.approx ? " (approx. spot)" : ""}</p>
+          <ul>${p.items.map((i) => `<li>${i.id ? `<a href="#/e/${encodeURIComponent(i.id)}">` : `<a href="#/markets" data-nodate="1">`}<span>${esc(i.when)}${p.items.length > 1 && i.name !== title ? " · " + esc(i.name) : ""}</span>${statusPill(i.status === "nodate" ? "pending" : i.status)}</a></li>`).join("")}</ul>
+          <div class="dir"><a href="${esc(amaps(p.address))}" target="_blank" rel="noopener">Apple Maps</a><a href="${esc(maps(p.address))}" target="_blank" rel="noopener">Google Maps</a></div></div>`;
+      };
+      places.forEach((p, idx) => {
+        const n = p.items.length, s = p.items[0].status;
+        const icon = Lf.divIcon({ className: "", html: `<span class="pin${n > 1 ? " multi" : ""}" style="background:${stColor(s)}">${n > 1 ? n : ""}</span>`, iconSize: n > 1 ? [24, 24] : [18, 18], iconAnchor: n > 1 ? [12, 12] : [9, 9], popupAnchor: [0, -10] });
+        const mk = Lf.marker(p.ll, { icon, title: p.items[0].name, keyboard: true }).addTo(m).bindPopup(popHTML(p), { maxWidth: 300, autoPanPadding: [20, 70] });
+        markers.push(mk); p.idx = idx;
+      });
+      /* frame the home cluster (Jacksonville area); far-off markets stay on the map, one pan away */
+      const med = (k) => { const v = places.map((p) => p.ll[k]).sort((x, y) => x - y); return v[Math.floor(v.length / 2)]; };
+      const core = places.length ? (() => { const c = [med(0), med(1)]; const near = places.filter((p) => Math.abs(p.ll[0] - c[0]) < 0.7 && Math.abs(p.ll[1] - c[1]) < 0.7); return near.length >= Math.max(2, places.length * 0.6) ? near : places; })() : [];
+      if (core.length) m.fitBounds(Lf.latLngBounds(core.map((p) => p.ll)).pad(0.15), { maxZoom: 13 }); else m.setView([30.33, -81.66], 9);
+      if (core.length < places.length) { const far = places.length - core.length; const note = document.createElement("p"); note.className = "m"; note.style.margin = "8px 2px 0"; note.textContent = far + " more farther out (" + places.filter((p) => !core.includes(p)).map((p) => p.address.split(",").slice(-2, -1)[0].trim()).join(", ") + ") — zoom out to see them."; box.parentNode.after(note); }
+      const list = document.getElementById("places");
+      list.innerHTML = (places.length ? places.map((p) => `<button class="place" type="button" data-p="${p.idx}"><span class="dot" style="background:${stColor(p.items[0].status)}"></span><span><b>${esc(p.items[0].name)}</b><small>${esc(p.items[0].when)} · ${esc(p.address || "")}</small></span><span class="cnt">${p.items.length > 1 ? p.items.length + " dates" : ""}</span></button>`).join("") : `<p class="empty">Nothing to show for this filter.</p>`)
+        + (nogeo.length ? `<p class="m" style="margin-top:6px">${nogeo.length} not on the map (no address yet): ${esc(nogeo.map((i) => i.name).join(" · "))}</p>` : "");
+      list.querySelectorAll("[data-p]").forEach((b) => b.addEventListener("click", () => { const mk = markers[+b.dataset.p]; m.setView(mk.getLatLng(), Math.max(m.getZoom(), 13)); mk.openPopup(); box.scrollIntoView({ behavior: "smooth", block: "center" }); }));
+      m.on("popupopen", (ev) => { const el = ev.popup.getElement(); el && el.querySelectorAll("[data-nodate]").forEach((x) => x.addEventListener("click", () => { filter = "nodate"; })); });
+      if (focusId) { const fe = byId(focusId); const g = fe && fe.address && geo[fe.address]; if (g) { const p = places.find((q) => q.items.some((i) => i.id === focusId)); if (p) { m.setView(p.ll, 13); markers[p.idx].openPopup(); } } }
+      setTimeout(() => m.invalidateSize(), 60);
+    }).catch(() => { const l = document.getElementById("places"); if (l) l.innerHTML = `<p class="empty">The map couldn't load. Check your signal, then pull down to refresh.</p>`; });
+  }
+
+  /* ===== HQ (Nov 6 2026 merge): the JAY STEEL HQ dashboard inside the app, same password, same device unlock ===== */
+  const HQ_URL = (window.JSL && window.JSL.hq) || "../jaysteel-hq/";
+  function viewHQ() {
+    setTab("hq");
+    show(`<a class="back" href="#/">‹ Dashboard</a><iframe class="hqframe" src="${esc(HQ_URL)}" title="JAY STEEL HQ" loading="lazy"></iframe>
+      <p class="m" style="text-align:center;margin-top:8px"><a href="${esc(HQ_URL)}" target="_blank" rel="noopener">Open HQ full screen ›</a></p>`);
+  }
+
   /* ---------- router ---------- */
   function route() {
     if (!DATA) return;
     const h = location.hash.replace(/^#\/?/, "");
     if (h !== "" && h !== "markets") clearInterval(tick);
+    if (LMAP && !h.startsWith("map")) { try { LMAP.remove(); } catch (_) {} LMAP = null; }
     if (h.startsWith("e/")) return viewEvent(decodeURIComponent(h.slice(2)));
-    if (h.startsWith("pack/")) return viewPack(decodeURIComponent(h.slice(5)));
+    if (h.startsWith("pack/")) { location.replace("#/e/" + h.slice(5)); return; }   /* Nov 6 2026: packing checklist removed (Luis) */
     if (h === "markets") return viewList();
     if (h === "calendar") return viewCalendar();
+    if (h === "map" || h.startsWith("map/")) return viewMap(h.startsWith("map/") ? decodeURIComponent(h.slice(4)) : null);
+    if (h === "hq") return viewHQ();
     if (h === "money") return viewMoney();
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
     if (h === "opportunities" || h === "saved") return viewOpp();

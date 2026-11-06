@@ -1,12 +1,12 @@
 {
  "name": "JAY STEEL Logistics",
  "short_name": "JS Logistics",
- "description": "JAY STEEL JEWELRY market logistics: markets, calendar, packing lists, sales tally and vendor opportunities.",
+ "description": "JAY STEEL JEWELRY markets and HQ: next market, map, calendar, fees and sales, vendor opportunities.",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
- "background_color": "#0A0A0A",
- "theme_color": "#D9A84E",
+ "background_color": "#0E0F11",
+ "theme_color": "#0E0F11",
  "orientation": "portrait",
  "icons": [
   {

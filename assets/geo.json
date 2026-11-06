@@ -1,0 +1,120 @@
+{
+ "_note": "Map pins for the logistics app, keyed by the exact address string in data/events.json. [lat, lng] or [lat, lng, 1] = approximate spot (city or street level). Add a line when a new address appears; markets without a line are listed under the map. Geocoded Nov 6 2026 from OpenStreetMap Nominatim.",
+ "places": {
+  "1 UNF Dr, Jacksonville, FL 32224": [
+   30.27215,
+   -81.50949
+  ],
+  "10478 San Jose Blvd #4, Jacksonville, FL": [
+   30.18808,
+   -81.62811
+  ],
+  "105 S 2nd St, Flagler Beach, FL": [
+   29.47942,
+   -81.12942
+  ],
+  "1261 King St, Jacksonville, FL 32204": [
+   30.31134,
+   -81.6939
+  ],
+  "15022 Max Leggett Pkwy, Jacksonville, FL": [
+   30.4817,
+   -81.63844
+  ],
+  "228 Third St N, Jacksonville Beach, FL": [
+   30.29071,
+   -81.3926
+  ],
+  "2761 Park St, Jacksonville, FL": [
+   30.30964,
+   -81.6958
+  ],
+  "3975 Eagle Landing Pkwy, Orange Park, FL": [
+   30.1428,
+   -81.819,
+   1
+  ],
+  "4542 Ocean St, Jacksonville, FL 32233": [
+   30.39176,
+   -81.43174
+  ],
+  "4742 Town Center Pkwy, Jacksonville, FL": [
+   30.25682,
+   -81.53036
+  ],
+  "4890 Sweetgrass Pl, Jacksonville, FL": [
+   30.257,
+   -81.4685,
+   1
+  ],
+  "590 Duval Station Rd, Jacksonville, FL": [
+   30.48203,
+   -81.60755
+  ],
+  "75 N Woodward Ave, Tallahassee, FL": [
+   30.44454,
+   -84.2973
+  ],
+  "East Palatka, FL": [
+   29.65238,
+   -81.59959,
+   1
+  ],
+  "First Coast High School, 590 Duval Station Rd, Jacksonville, FL (student lot, Starratt Rd side)": [
+   30.48203,
+   -81.60755
+  ],
+  "Gainesville, FL": [
+   29.65197,
+   -82.32498,
+   1
+  ],
+  "Oakleaf Plantation Clocktower Roundabout, Orange Park, FL": [
+   30.17216,
+   -81.85119,
+   1
+  ],
+  "Park St, Jacksonville, FL 32256": [
+   30.31389,
+   -81.68116,
+   1
+  ],
+  "RiversEdge, Jacksonville, FL": [
+   30.31606,
+   -81.64844,
+   1
+  ],
+  "Seawalk Pavilion, Jacksonville Beach, FL": [
+   30.2928,
+   -81.3906,
+   1
+  ],
+  "St. Johns Ave, Historic Avondale, Jacksonville, FL": [
+   30.293,
+   -81.711,
+   1
+  ],
+  "St. Johns Town Center, Jacksonville, FL": [
+   30.25704,
+   -81.52512
+  ],
+  "Stetson University, DeLand, FL": [
+   29.03653,
+   -81.30054
+  ],
+  "1515 Florida Blvd, Neptune Beach, FL": [
+   30.31627,
+   -81.41388
+  ],
+  "Green Cove Springs, FL": [
+   29.99198,
+   -81.67811,
+   1
+  ],
+  "Wildlight, Yulee, FL": [
+   30.62518,
+   -81.63931,
+   1
+  ]
+ }
+}

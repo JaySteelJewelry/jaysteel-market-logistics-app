@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>JAY STEEL JEWELRY · Markets</title>
-<meta name="description" content="JAY STEEL JEWELRY market logistics: next market countdown, markets, fees, packing list and sales tally.">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#070707" id="theme-color">
+<title>JAY STEEL · Markets &amp; HQ</title>
+<meta name="description" content="JAY STEEL JEWELRY markets and HQ: next market, map, calendar, fees and sales.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0E0F11" id="theme-color">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -17,38 +17,38 @@
 <meta name="apple-mobile-web-app-title" content="JS Logistics">
 <script>
 window.JSL = {"root": "", "sw": true};
-/* Theme before first paint (no flash): saved choice wins, else the phone's setting. Same key as the home page. */
-(function(){try{var s=localStorage.getItem("jsj-theme"),d=document.documentElement;var t=(s==="light"||s==="dark")?s:(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");d.setAttribute("data-theme",t);var m=document.getElementById("theme-color");if(m)m.setAttribute("content",t==="light"?"#F6F4EF":"#070707");}catch(e){}})();
 </script>
 <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Montserrat";src:url("assets/fonts/montserrat.woff2") format("woff2");font-weight:100 900;font-display:swap}@font-face{font-family:"Cormorant Garamond";src:url("assets/fonts/cormorant.woff2") format("woff2");font-weight:300 700;font-display:swap}</style>
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 <a class="skip" href="#app">Skip to content</a>
 <header class="top">
-  <a class="brand" href="#/" aria-label="JAY STEEL JEWELRY, home">
+  <a class="brand" href="#/" aria-label="JAY STEEL, dashboard">
     <picture><source srcset="assets/js-icon.webp" type="image/webp"><img src="assets/js-icon.png" alt="" width="256" height="244"></picture>
-    <span class="brand__text"><span class="brand__word">JAY STEEL JEWELRY</span></span>
+    <span class="brand__text"><span class="brand__word">JAY STEEL</span><span class="brand__sub" id="page-name">Dashboard</span></span>
   </a>
   <div class="top__btns">
-    <button class="iconbtn" id="refresh-btn" type="button" aria-label="Refresh markets and Find" title="Refresh">
+    <button class="iconbtn" id="refresh-btn" type="button" aria-label="Refresh" title="Refresh">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4.5h-4.5"/></svg>
     </button>
-    <button class="iconbtn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" title="Light / dark">
-      <svg class="theme-toggle__sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"/></svg>
-      <svg class="theme-toggle__moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2z"/></svg>
+    <button class="iconbtn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </div>
 </header>
 
-<nav class="dock" aria-label="Sections">
-  <a href="#/" data-tab="today"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.6M9.5 2.8h5"/></svg><span>Today</span></a>
-  <a href="#/markets" data-tab="list"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Markets</span></a>
-  <a href="#/opportunities" data-tab="opp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span>Find</span></a>
-  <a href="#/money" data-tab="money"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/></svg><span>Money</span></a>
-  <a href="#/links" data-tab="links"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Shop</span></a>
+<div class="menu-scrim" id="menu-scrim" hidden></div>
+<nav class="menu" id="menu" aria-label="Menu" aria-hidden="true">
+  <div class="menu__head"><span class="brand__word">MENU</span>
+    <button class="iconbtn" id="menu-close" type="button" aria-label="Close menu"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <a href="#/" data-tab="today"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+  <a href="#/markets" data-tab="list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>My Markets</span></a>
+  <a href="#/map" data-tab="map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg><span>Market Map</span></a>
+  <a href="#/calendar" data-tab="cal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendar</span></a>
+  <a href="#/money" data-tab="money"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/></svg><span>Payments</span></a>
+  <button type="button" class="menu__out" id="logout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10"/></svg><span>Log Out</span></button>
 </nav>
 
 <main id="app" class="wrap" tabindex="-1">
@@ -56,16 +56,17 @@ window.JSL = {"root": "", "sw": true};
 </main>
 
 <noscript><p class="wrap">This app needs JavaScript turned on.</p></noscript>
-<style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#070707;z-index:9999;font-family:Montserrat,system-ui,sans-serif}#gate form{width:min(320px,86vw);text-align:center;color:#eee}#gate img{width:72px;margin-bottom:14px}#gate h1{font-size:15px;letter-spacing:.18em;margin:0 0 18px;font-weight:600}#gate input{width:100%;box-sizing:border-box;padding:14px;border-radius:12px;border:1px solid #444;background:#111;color:#fff;font-size:16px}#gate button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;background:#c9a24a;color:#111;font-weight:700;font-size:15px}#gate p{color:#e66;font-size:13px;min-height:18px;margin:8px 0 0}</style>
+<style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0E0F11;z-index:9999;font-family:Montserrat,system-ui,sans-serif}#gate form{width:min(320px,86vw);text-align:center;color:#ECEEF1}#gate img{width:72px;margin-bottom:14px;filter:grayscale(1) brightness(1.18)}#gate h1{font-size:15px;letter-spacing:.18em;margin:0 0 18px;font-weight:600}#gate input{width:100%;box-sizing:border-box;padding:14px;border-radius:12px;border:1px solid #2A2E33;background:#17191C;color:#ECEEF1;font-size:16px}#gate button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;background:#C9CED6;color:#0E0F11;font-weight:700;font-size:15px}#gate p{color:#E5675A;font-size:13px;min-height:18px;margin:8px 0 0}</style>
 <script>
 (function(){var H="162c8e48e83400fb9cac9947ab71ea63e5e27490040529ddae7283fda6991d64",K="jsl-auth",d=document.documentElement;
-function load(){d.classList.remove("locked");var g=document.getElementById("gate");if(g)g.remove();var s=document.createElement("script");s.src="app.js?v=10";document.body.appendChild(s);if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});}
+function load(){d.classList.remove("locked");var g=document.getElementById("gate");if(g)g.remove();var s=document.createElement("script");s.src="app.js?v=14";document.body.appendChild(s);if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});}
 async function h(t){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
+function hqKey(pw){try{var u=(window.JSL&&window.JSL.hqData)||"../jaysteel-hq/data.enc.json";fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(async function(b){var s=Uint8Array.from(atob(b.salt),function(c){return c.charCodeAt(0)});var k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);var raw=new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt:s,iterations:b.iter,hash:"SHA-256"},k,256));var t="";for(var i=0;i<raw.length;i++)t+=String.fromCharCode(raw[i]);localStorage.setItem("jshq_key_v1",JSON.stringify({salt:b.salt,key:btoa(t)}));window.dispatchEvent(new Event("jshq-key"));}).catch(function(){});}catch(e){}}
 var ok=false;try{ok=localStorage.getItem(K)===H}catch(e){}
 if(ok){document.addEventListener("DOMContentLoaded",load);return;}
 d.classList.add("locked");
-document.addEventListener("DOMContentLoaded",function(){var g=document.createElement("div");g.id="gate";g.innerHTML='<form autocomplete="on"><img src="assets/js-icon.png" alt=""><h1>JAY STEEL JEWELRY</h1><input type="text" name="username" value="jaysteel-logistics" autocomplete="username" style="display:none"><input id="gpw" type="password" name="password" autocomplete="current-password" placeholder="Password" required><button type="submit">Unlock</button><p id="gerr"></p></form>';document.body.appendChild(g);
-g.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();var v=document.getElementById("gpw").value.trim();if(await h(v)===H){try{localStorage.setItem(K,H)}catch(e){}load();}else{document.getElementById("gerr").textContent="Wrong password";}});
+document.addEventListener("DOMContentLoaded",function(){var g=document.createElement("div");g.id="gate";g.innerHTML='<form autocomplete="on"><img src="assets/js-icon.png" alt=""><h1>JAY STEEL</h1><input type="text" name="username" value="jaysteel-logistics" autocomplete="username" style="display:none"><input id="gpw" type="password" name="password" autocomplete="current-password" placeholder="Password" required><button type="submit">Unlock</button><p id="gerr"></p></form>';document.body.appendChild(g);
+g.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();var v=document.getElementById("gpw").value.trim();if(await h(v)===H){try{localStorage.setItem(K,H)}catch(e){}hqKey(v);load();}else{document.getElementById("gerr").textContent="Wrong password";}});
 setTimeout(function(){var i=document.getElementById("gpw");if(i)i.focus()},50);});
 })();
 </script>
