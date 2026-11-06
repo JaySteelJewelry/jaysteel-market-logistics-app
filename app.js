@@ -711,11 +711,27 @@
   let OPP = null, oLimit = 25, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
   const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
   function loadOpp(fresh) {
-    return fetch(ROOT + "data/opportunities.json" + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+    const get = (f) => fetch(ROOT + "data/" + f + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" });
+    return Promise.all([get("opportunities.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+      get("opportunities_vetted.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)]).then(([d, v]) => mergeVetted(d, v));
+  }
+  /* Nov 6 2026: data/opportunities_vetted.json = events Tab's daily pipeline read on the organizer's own page (search 5:30, publish 5:50 AM ET).
+     A vetted copy replaces the unverified row of the same event (same name + date); new ones are added. */
+  function mergeVetted(d, v) {
+    if (!v || !d) return d;
+    d.ongoing = d.ongoing || [];
+    const k = (i) => nameKey(i.title) + "|" + (i.date || "");
+    const idx = new Map(); d.items.concat(d.ongoing).forEach((i) => { if (!idx.has(k(i))) idx.set(k(i), i); });
+    const put = (x, list) => { const hit = idx.get(k(x));
+      if (hit) { const keep = { id: hit.id, origin: hit.origin, firstSeen: hit.firstSeen }; Object.assign(hit, x, keep); if (hit.notes) hit.notes = String(hit.notes).replace(/^Unverified\.\s*/, ""); }
+      else { list.push(x); idx.set(k(x), x); } };
+    (v.items || []).forEach((x) => put(x, d.items)); (v.ongoing || []).forEach((x) => put(x, d.ongoing));
+    d.items.sort((a, b) => (a.date || "").localeCompare(b.date || "") || String(a.title).localeCompare(String(b.title)));
+    d.vettedUpdated = v.updated; return d;
   }
   /* ===== FIND v9 (Oct 24 2026): search + filters, better cards, ⭐ saved shortlist, one-lead detail page.
      Everything reads data/opportunities.json (+ events.json for "already booked"); saved list lives on this phone (jsj.savedOpp). ===== */
-  let oMonth = "", oFee = "", oDist = "", oStatus = "all", oSort = "date", oSeg = "browse";
+  let oFeeMax = null, oMonth = "", oFee = "", oDist = "", oStatus = "all", oSort = "date", oSeg = "browse";
   const BASE_MI = { /* rough driving miles from base (Southside Jax) — approximations, shown with "~" */
     "jacksonville": 0, "atlantic beach": 14, "neptune beach": 14, "jacksonville beach": 13, "ponte vedra beach": 20, "ponte vedra": 22,
     "orange park": 18, "fleming island": 24, "green cove springs": 32, "middleburg": 30, "yulee": 30, "fernandina beach": 40, "callahan": 35,
@@ -771,7 +787,7 @@
       <div class="row">${dateBox}<a class="t" href="#/o/${encodeURIComponent(i.id)}"><p class="n">${esc(pub(i.title))}</p>
         <p class="m">${esc(where)}</p>
         <p class="m">${esc([i.time, n != null && n >= 0 ? (n === 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days") : ""].filter(Boolean).join(" · ") || (i.org || i.source))}</p></a>${starBtn(i)}</div>
-      <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || String(i.fee).slice(0, 24))}</span>` : '<span class="fee">💵 Fee not listed</span>'}${i.verified === false ? '<span class="badge s-pending">Unverified</span>' : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
+      <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || String(i.fee).slice(0, 24))}</span>` : '<span class="fee">💵 Fee not listed</span>'}${i.verified === false ? '<span class="badge s-pending">Unverified</span>' : i.verified === true ? '<span class="badge s-approved">✓ Verified</span>' : ""}${i.score != null ? `<span class="badge" title="Scout score">${esc(String(i.score))}/100</span>` : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
       <div class="actions"><a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button></div>
     </article>`;
   }
@@ -795,13 +811,16 @@
     const counties = [...new Set(all.filter((i) => !oState || i.state === oState).map((i) => i.county).filter(Boolean))].sort();
     const months = [...new Set(OPP.items.filter((i) => i.date >= today).map((i) => i.date.slice(0, 7)))].sort();
     const feeOk = (i) => { if (!oFee) return true; const n = feeNum(i); if (oFee === "unknown") return n == null; if (n == null) return false;
-      return oFee === "free" ? n === 0 : oFee === "u50" ? n >= 0 && n <= 50 : oFee === "u100" ? n >= 0 && n <= 100 : oFee === "o100" ? n > 100 : oFee === "pct" ? n < 0 : true; };
+      const cap = oFee === "custom" ? oFeeMax : /^u\d+$/.test(oFee) ? Number(oFee.slice(1)) : null; if (cap != null) return n >= 0 && n <= cap;
+      return oFee === "free" ? n === 0 : oFee === "o100" ? n > 100 : oFee === "pct" ? n < 0 : true; };
     const distOk = (i) => { if (!oDist) return true; const m = miles(i); return m != null && m <= Number(oDist); };
     const statusOk = (i) => { if (oStatus === "all") return true; const s = oppStatus(i, today).k; return oStatus === "open" ? (s === "open" || s === "new") : oStatus === s; };
     const match = (i) => (oSeg !== "saved" || saved[i.id]) && (oType === "all" || i.type === oType) && (!oState || i.state === oState) && (!oCounty || i.county === oCounty)
       && (!oVendor || i.vendorMatch) && (!oHideApplied || !isApplied(i.id)) && (!oMonth || (i.date || "").slice(0, 7) === oMonth) && feeOk(i) && distOk(i) && statusOk(i)
       && (!oQuery || `${i.title} ${i.org || ""} ${i.city || ""} ${i.county || ""} ${i.source} ${i.fee || ""}`.toLowerCase().includes(oQuery.toLowerCase()));
-    const sorter = (a, b) => { if (oSort === "dist") { const x = miles(a), y = miles(b); return (x == null ? 9999 : x) - (y == null ? 9999 : y) || (a.date || "").localeCompare(b.date || ""); }
+    const sorter = (a, b) => { if (oSort === "fee") { const fx = (i) => { const n = feeNum(i); return n == null || n < 0 ? 1e9 : n; }; return fx(a) - fx(b) || (a.date || "").localeCompare(b.date || ""); }
+      if (oSort === "score") return (b.score == null ? -1 : b.score) - (a.score == null ? -1 : a.score) || (a.date || "").localeCompare(b.date || "");
+      if (oSort === "dist") { const x = miles(a), y = miles(b); return (x == null ? 9999 : x) - (y == null ? 9999 : y) || (a.date || "").localeCompare(b.date || ""); }
       if (oSort === "deadline") { const x = dl(a, today), y = dl(b, today); const kx = x && x.iso && x.kind !== "closed" ? x.iso : "9999", ky = y && y.iso && y.kind !== "closed" ? y.iso : "9999"; return kx.localeCompare(ky) || (a.date || "").localeCompare(b.date || ""); }
       return (a.date || "").localeCompare(b.date || ""); };
     const dated = OPP.items.filter((i) => i.date >= today || (oSeg === "saved" && saved[i.id])).filter(match).sort(sorter);
@@ -816,13 +835,12 @@
       ${oSeg === "saved" || oState === "FL" ? "" : `<a class="gaguide" href="#/ga-guide"><span>🎓</span><span><b>Georgia campus vendor days</b><small>How to apply: GA sales tax, insurance, approvals + email template</small></span><span aria-hidden="true">›</span></a>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
       <div class="chips" role="group" aria-label="Status">${stChips.map(([k, l]) => `<button class="chip" data-os="${k}" aria-pressed="${oStatus === k}">${l}</button>`).join("")}</div>
-      <details class="filters"${nActive ? " open" : ""}><summary><span>Filters${nActive ? ` <b class="fcount">${nActive}</b>` : ""}</span><span class="fsort">${oSort === "date" ? "Soonest first" : oSort === "deadline" ? "Deadline first" : "Closest first"}</span></summary>
+      <div class="qrow">${sel("ofe", "Max fee", [["", "Any fee"], ["free", "Free"], ["u25", "≤ $25"], ["u50", "≤ $50"], ["u100", "≤ $100"], ["u150", "≤ $150"], ["custom", oFeeMax != null ? "≤ $" + oFeeMax + " (custom)" : "Custom max…"], ["o100", "Over $100"], ["pct", "% of sales"], ["unknown", "Not listed"]], oFee)}${sel("oso", "Sort", [["date", "Soonest first"], ["fee", "Fee: low → high"], ["dist", "Closest first"], ["score", "Score: high → low"], ["deadline", "Deadline first"]], oSort)}</div>
+      <details class="filters"${nActive ? " open" : ""}><summary><span>Filters${nActive ? ` <b class="fcount">${nActive}</b>` : ""}</span></summary>
         <div class="chips" role="group" aria-label="Type">${typeChips.map(([k, l]) => `<button class="chip" data-ot="${k}" aria-pressed="${oType === k}">${l}</button>`).join("")}</div>
         <div class="fgrid">
           ${sel("odi", "Distance", [["", "Any distance"], ["25", "Within 25 mi"], ["50", "Within 50 mi"], ["75", "Within 75 mi"], ["120", "Within 120 mi"]], oDist)}
           ${sel("omo", "Month", [["", "Any month"]].concat(months.map((m) => [m, fmt(m + "-01", { month: "long", year: "numeric" })])), oMonth)}
-          ${sel("ofe", "Fee", [["", "Any fee"], ["free", "Free"], ["u50", "Up to $50"], ["u100", "Up to $100"], ["o100", "Over $100"], ["pct", "% of sales"], ["unknown", "Not listed"]], oFee)}
-          ${sel("oso", "Sort", [["date", "Soonest first"], ["deadline", "Deadline first"], ["dist", "Closest first"]], oSort)}
           ${sel("ost", "State", [["", "All states"], ["FL", "FL"], ["GA", "GA"]], oState)}
           ${sel("oco", "County", [["", "All counties"]].concat(counties.map((c) => [c, c])), oCounty)}
         </div>
@@ -854,11 +872,13 @@
     on("oco", "onchange", (e) => { oCounty = e.target.value; oLimit = 25; viewOpp(); });
     on("odi", "onchange", (e) => { oDist = e.target.value; oLimit = 25; viewOpp(); });
     on("omo", "onchange", (e) => { oMonth = e.target.value; oLimit = 25; viewOpp(); });
-    on("ofe", "onchange", (e) => { oFee = e.target.value; oLimit = 25; viewOpp(); });
+    on("ofe", "onchange", (e) => { let v = e.target.value;
+      if (v === "custom") { const ans = prompt("Max vendor fee ($)", oFeeMax != null ? String(oFeeMax) : "75"); const n = ans == null ? NaN : Number(String(ans).replace(/[^\d.]/g, "")); if (ans != null && String(ans).trim() !== "" && isFinite(n)) oFeeMax = n; else v = oFee; }
+      oFee = v; oLimit = 25; viewOpp(); });
     on("oso", "onchange", (e) => { oSort = e.target.value; oLimit = 25; viewOpp(); });
     on("ov", "onclick", () => { oVendor = !oVendor; oLimit = 25; viewOpp(); });
     on("oh", "onclick", () => { oHideApplied = !oHideApplied; oLimit = 25; viewOpp(); });
-    on("oclr", "onclick", () => { oMonth = oFee = oDist = oState = oCounty = ""; oVendor = oHideApplied = false; oLimit = 25; viewOpp(); });
+    on("oclr", "onclick", () => { oFeeMax = null; oMonth = oFee = oDist = oState = oCounty = ""; oVendor = oHideApplied = false; oLimit = 25; viewOpp(); });
     const q = document.getElementById("oq");
     q.addEventListener("input", debounce(() => { oQuery = q.value; const pos = q.selectionStart; oLimit = 25; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); }, 220));
   }
@@ -929,6 +949,8 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         ${kv("📝", "About", esc(pub(pick("description", "notes"))))}
         ${kv("✉️", "Contact", contact)}
         ${kv("🏷️", "Type", esc([(TYPE_LABEL[i.type] || i.type), i.vendorMatch ? "vendor-friendly" : ""].filter(Boolean).join(" · ")))}
+        ${kv("✅", "Verified", i.verified === true ? esc("Read on the organizer's page" + (i.verifiedAt ? " · " + fmt(i.verifiedAt, { month: "short", day: "numeric" }) : "")) : "")}
+        ${kv("⭐", "Score", i.score != null ? `<b>${esc(String(i.score))}/100</b>${i.scoreWhy ? `<br><span class="sub">${esc(i.scoreWhy)}</span>` : ""}` : "")}
         ${kv("🔎", "Found via", esc(i.source + (i.firstSeen ? " · first seen " + fmt(i.firstSeen, { month: "short", day: "numeric" }) : "")))}
       </div>
       <div class="actions" style="margin:14px 0 0"><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}</div>

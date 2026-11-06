@@ -554,3 +554,5 @@ body{overscroll-behavior-y:contain}
 .rbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .rnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#C9CED6;color:#0E0F11;font:700 13px/1 system-ui,sans-serif;border:2px solid #0E0F11;box-shadow:0 1px 4px rgba(0,0,0,.5)}
 .rnum.base{background:#0E0F11;color:#C9CED6;border-color:#C9CED6}.rnum.sm{width:22px;height:22px;font-size:12px;flex:none;border-width:1px}
+/* Nov 6 2026: Find markets quick row (Max fee + Sort) */
+.qrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}
