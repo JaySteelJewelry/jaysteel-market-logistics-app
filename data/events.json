@@ -530,7 +530,7 @@
       "venue": "Putnam County Fairgrounds",
       "address": "East Palatka, FL",
       "fee": "$102.99",
-      "payBy": "2026-11-01",
+      "payBy": "2026-11-09",
       "payHow": "Invoice #1034 ($100 rent + $2.99 card fee) — pay via the QuickBooks \"View and pay\" link in Gmail (Oct 31 email). By check: omit the $2.99, mail to Putnam's FOL.",
       "contact": {
         "name": "Samantha Fairlie, Putnam County Fair",
@@ -540,7 +540,8 @@
       "nextStep": "Pay invoice #1034 ($102.99) and sign + return the Vendor Info & Rules page with payment. Rules sheet says rent due by Nov 1; invoice due date Nov 9.",
       "notes": "Invoice received Oct 31 ($102.99, due Nov 9 per invoice — rules sheet says rent due by Nov 1), pay via QuickBooks link in Gmail. Invoice #1034. Not paid.",
       "endDate": "2026-12-13",
-      "paid": false
+      "paid": false,
+      "hideFromToPay": true
     },
     {
       "id": "904-pop-up-2026-12-12",
