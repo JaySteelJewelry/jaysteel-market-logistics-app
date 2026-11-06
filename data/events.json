@@ -574,18 +574,18 @@
       "venue": "Village Green, Eagle Landing",
       "address": "3975 Eagle Landing Pkwy, Orange Park, FL",
       "fee": "$30 (non-resident), non-refundable",
-      "payBy": "2026-12-01",
-      "payHow": "Pay $30 by Dec 1 (Jessica: \"remit payment by December 1st\")",
+      "payBy": "2026-12-12",
+      "payHow": "In person at check-in on Dec 12 ($30, cash/card per organizer)",
       "contact": {
         "name": "Jessica Quesenberry",
         "email": "eventsatel@gmail.com"
       },
       "setup": "Setup 8 AM.",
-      "nextStep": "Pay $30 by Dec 1.",
+      "nextStep": "Pay $30 in person at check-in Dec 12.",
       "headsUp": "Same day as 904 Pop Up RiversEdge.",
       "showInToPay": true,
       "paid": false,
-      "notes": "Confirmed by Jessica Nov 6; pay $30 by Dec 1"
+      "notes": "Confirmed by Jessica Nov 6; Luis will pay $30 in person on the day (Dec 12); Jessica emailed Nov 6"
     },
     {
       "id": "green-room-2026-12-18",
