@@ -535,7 +535,9 @@
   /* To pay (Nov 6 2026, Luis: "this should not be here"): only CONFIRMED markets (approved / booked) that are not paid,
      never one he asked to hide (hideFromToPay). Conditional / pending / agreement-sent = not confirmed yet = don't pay. */
   const PAYABLE = ["approved", "booked"];
-  const toPay = (e) => !!e.payBy && e.paid !== true && !e.hideFromToPay && PAYABLE.includes(e.status);
+  /* showInToPay (Nov 6 2026, Luis: "i didnt tell you to take eagle landing off"): listed even before it is confirmed.
+     Paid and hideFromToPay still win. */
+  const toPay = (e) => !!e.payBy && e.paid !== true && !e.hideFromToPay && (PAYABLE.includes(e.status) || e.showInToPay === true);
   function dueItems(today) {
     return DATA.events.filter((e) => toPay(e) && e.payBy >= today)
       .sort((a, b) => a.payBy.localeCompare(b.payBy));

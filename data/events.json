@@ -583,6 +583,7 @@
       "setup": "Setup 8 AM.",
       "nextStep": "Wait for their confirmation.",
       "headsUp": "Same day as 904 Pop Up RiversEdge.",
+      "showInToPay": true,
       "paid": false
     },
     {
