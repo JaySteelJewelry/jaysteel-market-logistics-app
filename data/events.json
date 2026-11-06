@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-11-01",
+  "updated": "2026-11-06",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -209,6 +209,21 @@
       "headsUp": "Same day as Park Street Market on your calendar.",
       "paid": false,
       "approval": "Unconfirmed — group acceptance email Oct 20, 12:17 PM; Cayla asked for a Jotform application Oct 20, 12:22 PM"
+    },
+    {
+      "id": "jbcc-riverside-fall-2026-11-08",
+      "name": "Riverside Fall Market (Jacksonville Business Connections)",
+      "series": "jbcc",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-08",
+      "start": "11:00",
+      "end": "15:00",
+      "venue": "Riverside Artist Square (under the Fuller Warren Bridge)",
+      "address": "725 Riverside Ave, Jacksonville, FL 32204",
+      "notes": "Registered + paid $70 Nov 6 (includes City of Jax fee). Bring own tent, tables, chairs. Day-of-event email ~1 week before.",
+      "link": "https://www.jacksonvillebusinessconnections.com/events/riverside-fall-market",
+      "paid": true
     },
     {
       "id": "stetson-cub-tabling-2026-11",
