@@ -220,7 +220,7 @@
   function rowHTML(e, today) {
     const past = lastDay(e) < today;
     const d = parse(e.date);
-    const late = !past && e.payBy && !e.paid && e.payBy < today && ["approved", "agreement", "conditional"].includes(e.status);
+    const late = !past && toPay(e) && e.payBy < today;
     return `<a class="row${past ? " past" : ""} s-${esc(e.status)}" href="#/e/${encodeURIComponent(e.id)}">
       <div class="date"><small>${fmt(e.date, { month: "short" }).toUpperCase()}</small><b>${d.getUTCDate()}</b><i>${fmt(e.date, { weekday: "short" }).toUpperCase()}</i></div>
       <div class="t"><p class="n">${esc(e.name)}</p><p class="m">${esc(timeRange(e))}${e.endDate ? " · thru " + esc(shortDate(e.endDate)) : ""} · ${esc(e.venue || e.address || "")}</p>
@@ -532,14 +532,17 @@
     wireApply(box, renderListBody);
   }
 
-  const PAYABLE = ["approved", "agreement", "pending", "conditional"];
+  /* To pay (Nov 6 2026, Luis: "this should not be here"): only CONFIRMED markets (approved / booked) that are not paid,
+     never one he asked to hide (hideFromToPay). Conditional / pending / agreement-sent = not confirmed yet = don't pay. */
+  const PAYABLE = ["approved", "booked"];
+  const toPay = (e) => !!e.payBy && e.paid !== true && !e.hideFromToPay && PAYABLE.includes(e.status);
   function dueItems(today) {
-    return DATA.events.filter((e) => e.payBy && e.payBy >= today && !e.paid && PAYABLE.includes(e.status))
+    return DATA.events.filter((e) => toPay(e) && e.payBy >= today)
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
   /* pay-by date already passed, still marked unpaid, market still ahead */
   function overdueItems(today) {
-    return DATA.events.filter((e) => e.payBy && e.payBy < today && !e.paid && lastDay(e) >= today && (e.status === "approved" || e.status === "agreement" || e.status === "conditional"))
+    return DATA.events.filter((e) => toPay(e) && e.payBy < today && lastDay(e) >= today)
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
 
@@ -586,7 +589,7 @@
     const c = e.contact || {};
     const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email))].filter(Boolean).join("<br>");
     const paidLine = (e.status === "approved" || e.status === "agreement" || e.status === "conditional") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
-    const overdue = e.payBy && !e.paid && e.payBy < todayISO() && lastDay(e) >= todayISO();
+    const overdue = toPay(e) && e.payBy < todayISO() && lastDay(e) >= todayISO();
     const payBy = e.payBy && (overdue ? `<span class="pill s-due"><i></i>Past due</span> <span class="warn-text">was due ${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</span>` : `Pay by <b>${esc(fmt(e.payBy, { weekday: "short", month: "short", day: "numeric" }))}</b>`);
     const pay = [e.fee && `<b>${esc(e.fee)}</b>${e.feeNote ? " · " + esc(e.feeNote) : ""}`, paidLine, e.booth && `Booth <b>${esc(e.booth)}</b>`, payBy, e.payHow && esc(e.payHow)].filter(Boolean).join("<br>");
     const today = todayISO(), n = daysBetween(today, e.date), past = lastDay(e) < today;
@@ -1133,7 +1136,7 @@
 
   /* ---------- refresh (Oct 20 2026): ↻ in the header, or pull down at the top of the page ----------
      Re-fetches events.json + the Find feed past every cache, and loads a new app version if one is waiting. */
-  let refreshing = false, swReloading = false;
+  let refreshing = false, swReloading = false, lastEventsTxt = null, lastOppTxt = null, ptrPulling = false;
   const hadController = "serviceWorker" in navigator && !!navigator.serviceWorker.controller;
   if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("controllerchange", () => { if (refreshing && hadController && !swReloading) { swReloading = true; location.reload(); } });
   const rbtn = document.getElementById("refresh-btn");
@@ -1150,39 +1153,48 @@
         }
       }
       const t = Date.now();
-      const [d, o] = await Promise.all([
-        fetch(ROOT + "data/events.json?t=" + t, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+      const [txt, o] = await Promise.all([
+        fetch(ROOT + "data/events.json?t=" + t, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); }),
         loadOpp(true).catch(() => OPP),
       ]);
-      DATA = sortEvents(d); if (o) OPP = o; migrateSent();
+      const oTxt = o ? JSON.stringify(o) : lastOppTxt;
+      const changed = txt !== lastEventsTxt || oTxt !== lastOppTxt; lastEventsTxt = txt; lastOppTxt = oTxt;
+      DATA = sortEvents(JSON.parse(txt)); if (o) OPP = o; migrateSent();
       HQ.at = 0; if (HQ.key) await hqLoad().catch(() => {});   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
-      const y = window.scrollY; route(); window.scrollTo(0, y);
+      /* a quiet (automatic) refresh never redraws under a finger: skip while typing or a sheet/menu is open, or when nothing changed */
+      const busyUI = document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (document.activeElement && /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName));
+      if (!silent || (changed && !busyUI) || ptrPulling) { const y = window.scrollY; route(); window.scrollTo(0, y); }
       if (!silent) toast("Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }));
-    } catch (_) { if (!silent) toast("Couldn't refresh. Check your signal"); }
+    } catch (_) { if (!silent || ptrPulling) toast("Couldn't refresh. Check your signal"); }
     finally { if (!swReloading) { refreshing = false; if (rbtn) { rbtn.classList.remove("spin"); rbtn.removeAttribute("aria-busy"); } } }
   }
   if (rbtn) rbtn.addEventListener("click", () => refreshAll());
   /* back in the foreground after a minute or more: refresh quietly */
   let hiddenAt = 0;
-  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") hiddenAt = Date.now(); else if (hiddenAt && Date.now() - hiddenAt > 60000) refreshAll(true); });
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") hiddenAt = Date.now(); else if (hiddenAt && Date.now() - hiddenAt > 15000) refreshAll(true); });
+  window.addEventListener("pageshow", (e) => { if (e.persisted) refreshAll(true); });
+  /* while open: check for new info every 4 minutes (quiet; redraws only if the data changed) */
+  setInterval(() => { if (document.visibilityState === "visible") refreshAll(true); }, 4 * 60 * 1000);
   (function pullToRefresh() {
     const ind = document.createElement("div"); ind.className = "ptr"; ind.setAttribute("aria-hidden", "true");
     ind.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/></svg>'; document.body.appendChild(ind);
-    const MAX = 90, GO = 70; let y0 = null, x0 = 0, dy = 0;
-    const paint = () => { const p = Math.min(dy, MAX); ind.style.opacity = String(Math.min(1, p / GO)); ind.style.transform = `translateY(${p - 20}px) rotate(${p * 3}deg)`; ind.classList.toggle("ready", dy >= GO); };
+    const MAX = 110, GO = 70; let y0 = null, x0 = 0, dy = 0;   /* GO = finger travel in px (was 70 after 0.6 damping = ~117 px; too far) */
+    const paint = () => { const p = Math.min(dy, MAX); ind.style.opacity = String(Math.min(1, p / GO)); ind.style.transform = `translateY(${p * 0.8 - 30}px) rotate(${p * 3}deg)`; ind.classList.toggle("ready", dy >= GO); };
     const reset = () => { y0 = null; dy = 0; ind.style.transition = "opacity .2s, transform .2s"; ind.style.opacity = "0"; ind.style.transform = "translateY(-20px)"; ind.classList.remove("ready"); };
-    window.addEventListener("touchstart", (e) => { if (window.scrollY > 0 || refreshing || document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (e.target.closest && e.target.closest("#map")) || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; dy = 0; ind.style.transition = "none"; }, { passive: true });
-    window.addEventListener("touchmove", (e) => { if (y0 == null) return; const d = e.touches[0].clientY - y0, dx = Math.abs(e.touches[0].clientX - x0); if (window.scrollY > 0 || d < 0 || dx > Math.abs(d)) { if (dy) reset(); else y0 = null; return; } dy = d * 0.6; paint(); }, { passive: true });
+    window.addEventListener("touchstart", (e) => { if (window.scrollY > 2 || refreshing || document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (e.target.closest && e.target.closest("#map")) || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; dy = 0; ind.style.transition = "none"; }, { passive: true });
+    window.addEventListener("touchmove", (e) => { if (y0 == null) return; const d = e.touches[0].clientY - y0, dx = Math.abs(e.touches[0].clientX - x0); if (window.scrollY > 2 || d < 0 || dx > Math.abs(d)) { if (dy) reset(); else y0 = null; return; } dy = d; paint(); }, { passive: true });
+    window.addEventListener("touchcancel", () => { if (y0 != null) reset(); }, { passive: true });
     window.addEventListener("touchend", async () => {
       if (y0 == null) return; const go = dy >= GO;
       if (!go) { reset(); return; }
       y0 = null; ind.style.transition = "transform .2s"; ind.style.transform = "translateY(30px)"; ind.style.opacity = "1"; ind.classList.add("spin");
-      try { await refreshAll(true); } finally { ind.classList.remove("spin"); reset(); }
+      ptrPulling = true;
+      try { await refreshAll(true); if (!swReloading) toast("Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })); } finally { ptrPulling = false; ind.classList.remove("spin"); reset(); }
     }, { passive: true });
   })();
 
   fetch(ROOT + "data/events.json", { cache: "no-cache" })
-    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then((d) => { DATA = sortEvents(d); migrateSent(); route(); })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then((txt) => { lastEventsTxt = txt; DATA = sortEvents(JSON.parse(txt)); migrateSent(); route(); })
     .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Check your signal, then pull down to refresh.</p>'; });
 })();
