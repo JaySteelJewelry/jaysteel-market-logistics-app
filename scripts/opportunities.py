@@ -231,6 +231,8 @@ def main():
     ongoing = []
     for it in seed.get("items", []):
         if it.get("date") and it["date"] < now:
+            if str(it.get("id", "")).startswith(("fl6-", "ga-")) and (it.get("end_date") or it["date"]) < now:
+                continue  # Nov 2026 statewide/GA one-off dates: drop once past instead of turning ongoing
             it = dict(it); it.pop("date")
         it["firstSeen"] = prev.get(it["id"]) or it.get("firstSeen") or now
         (uniq if it.get("date") else ongoing).append(it)
@@ -239,7 +241,7 @@ def main():
     out = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "refresh": "every 6 hours (GitHub Actions), not live",
-        "coverage": "NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) + Georgia (Atlanta area, Flowery Branch / Hall County)",
+        "coverage": "Florida statewide (all 67 counties as found) + Georgia campus vendor days + Atlanta / Hall County",
         "sources": report, "items": uniq, "ongoing": ongoing, "newThisRun": new_ids,
     }
     with open(OUT, "w") as f:

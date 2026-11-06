@@ -1,0 +1,63 @@
+{
+ "title": "How to apply to Georgia campus vendor days",
+ "updated": "2026-11-06",
+ "intro": "Georgia schools that let community sellers in mostly do it through a student-life office: a market day, a tabling fair, or a homecoming/holiday market. Here is what they ask for and how to get approved fast.",
+ "sections": [
+  {
+   "h": "1. Get a Georgia sales tax number first",
+   "p": [
+    "Georgia says anyone who is a \"dealer\" (selling goods in Georgia) must register for a sales and use tax number and certificate of registration (O.C.G.A. § 48-8-59). Your Florida resale certificate does not cover Georgia.",
+    "Register online in the Georgia Tax Center (GTC) — choose \"Register a New Business\" and add Sales & Use Tax. Georgia DOR says the account number usually arrives by email within about 15 minutes.",
+    "Collect Georgia sales tax at the booth (4% state plus the local county rate) and file in GTC for each period you sell. Keep the certificate with you at the table; Georgia says it must be displayed.",
+    "Georgia's out-of-state exception covers convention and trade-show activity only — campus market days are not on that list, so register."
+   ],
+   "links": [
+    [
+     "Georgia Tax Center (GTC)",
+     "https://gtc.dor.ga.gov/"
+    ],
+    [
+     "GA DOR: tax registration",
+     "https://dor.georgia.gov/tax-registration"
+    ],
+    [
+     "GA DOR: out-of-state sellers",
+     "https://dor.georgia.gov/taxes/sales-use-tax/out-state-sellers"
+    ]
+   ]
+  },
+  {
+   "h": "2. Insurance (COI)",
+   "p": [
+    "Georgia public schools (University System of Georgia) commonly ask for general liability of at least $1,000,000 per occurrence, with the school or the \"Board of Regents of the University System of Georgia\" named as additional insured. Georgia Tech calls this its Tier II insurance.",
+    "Ask your insurer for a certificate for each school, with that school's exact name as certificate holder / additional insured. It is usually free and quick.",
+    "Private colleges and technical colleges vary; some only ask for a business license."
+   ]
+  },
+  {
+   "h": "3. Business license",
+   "p": [
+    "Many schools (Clark Atlanta, Georgia Tech) ask for a business license. Bring your current local business tax receipt; renew it if it has lapsed."
+   ]
+  },
+  {
+   "h": "4. How approval works",
+   "p": [
+    "Apply through the student-life / student-center office form on the school's page (links in each listing). Some list dates per semester (Georgia Southern Browses, Valdosta Third Thursdays); others are weekly (Clark Atlanta Market Thursdays, Spelman Market Friday, Georgia State Market Days).",
+    "Typical lead time: 1–2 weeks for a single market day; 6+ weeks for Georgia Tech activations; homecoming markets close a month or more before the event.",
+    "Payment: some take card online; Clark Atlanta takes cashier's check or money order only. No school logo items, no food unless you have food permits.",
+    "Some schools only allow outside sellers with a campus sponsor (UGA, Mercer). Those are marked \"restricted\"."
+   ]
+  },
+  {
+   "h": "5. Checklist before you send",
+   "p": [
+    "Georgia sales tax certificate (GTC) · COI naming the school · business license · 3 real photos of the table and pieces · 10x10 tent, table and weights (or a 6-ft table where they provide one) · the dates you want."
+   ]
+  }
+ ],
+ "template": {
+  "subject": "Vendor application: JAY STEEL JEWELRY — [market name, date]",
+  "body": "Hello [office/coordinator name],\n\nI'd like to apply for a vendor space at [market name] on [date(s)].\n\nBusiness: JAY STEEL JEWELRY\nOwner: Luis Alva\nEmail: jaysteeljewelry@gmail.com\nPhone: (904) 323-2898\nInstagram: https://www.instagram.com/jaysteeljewelry/\nLinks: https://jaysteeljewelry.github.io/links/\n\nWhat we sell: Hypoallergenic and non-tarnish jewelry crafted with 18K gold plating over 316L stainless steel, gold-filled, and 925 sterling silver (necklaces, bracelets, earrings, rings). Price points are student-friendly.\n\nSpace: one table (or 10x10 with our own tent and weights). No electricity needed.\nDocuments: Georgia sales tax certificate, certificate of insurance ($1M general liability, naming [school] as additional insured) and business license, sent on request or attached.\n\nPlease let me know the fee, the next steps and the load-in time.\n\nThank you,\nLuis Alva\nJAY STEEL JEWELRY\n(904) 323-2898"
+ }
+}

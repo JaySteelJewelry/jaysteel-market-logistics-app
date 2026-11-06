@@ -719,7 +719,9 @@
     "orange park": 18, "fleming island": 24, "green cove springs": 32, "middleburg": 30, "yulee": 30, "fernandina beach": 40, "callahan": 35,
     "macclenny": 37, "hilliard": 45, "st. augustine (world golf village)": 27, "st. augustine": 37, "st. augustine beach": 42, "palatka": 55,
     "east palatka": 52, "palm coast": 60, "bunnell": 68, "flagler beach": 70, "ormond beach": 85, "daytona beach": 92, "port orange": 98,
-    "deland": 105, "new smyrna beach": 105, "gainesville": 75, "atlanta": 345, "kennesaw": 365, "flowery branch": 360, "gainesville, ga": 365 };
+    "deland": 105, "new smyrna beach": 105, "gainesville": 75, "atlanta": 345, "kennesaw": 365, "flowery branch": 360, "gainesville, ga": 365,
+    /* Nov 6 2026: Georgia campus towns (rough driving miles, shown with "~") */
+    "waycross, ga": 75, "brunswick, ga": 70, "douglas, ga": 110, "valdosta, ga": 130, "savannah, ga": 140, "statesboro, ga": 190, "swainsboro, ga": 205, "albany, ga": 205, "macon, ga": 235, "fort valley, ga": 250, "augusta, ga": 245, "milledgeville, ga": 255, "sandersville, ga": 230, "columbus, ga": 290, "morrow, ga": 335, "decatur, ga": 345, "marietta, ga": 360, "athens, ga": 360, "cartersville, ga": 385, "carrollton, ga": 395, "mount berry, ga": 405, "clarkesville, ga": 405, "dahlonega, ga": 410, "dalton, ga": 435 };
   const miles = (i) => { const c = String(i.city || "").toLowerCase().trim(); if (!c) return null;
     if (i.state === "GA" && BASE_MI[c + ", ga"] != null) return BASE_MI[c + ", ga"];
     if (BASE_MI[c] != null) return BASE_MI[c];
@@ -767,7 +769,7 @@
       <div class="row">${dateBox}<a class="t" href="#/o/${encodeURIComponent(i.id)}"><p class="n">${esc(pub(i.title))}</p>
         <p class="m">${esc(where)}</p>
         <p class="m">${esc([i.time, n != null && n >= 0 ? (n === 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days") : ""].filter(Boolean).join(" · ") || (i.org || i.source))}</p></a>${starBtn(i)}</div>
-      <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || "Fee listed")}</span>` : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
+      <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || String(i.fee).slice(0, 24))}</span>` : '<span class="fee">💵 Fee not listed</span>'}${i.verified === false ? '<span class="badge s-pending">Unverified</span>' : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
       <div class="actions"><a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button></div>
     </article>`;
   }
@@ -808,7 +810,8 @@
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
     let html = `<div class="pagehead"><h1>Find markets</h1><div class="seg" role="tablist" aria-label="Browse or saved">
         <button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved${nSaved ? " · " + nSaved : ""}</button></div></div>
-      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across NE Florida and Georgia.</p>`}
+      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across Florida and Georgia campuses.</p>`}
+      ${oSeg === "saved" || oState === "FL" ? "" : `<a class="gaguide" href="#/ga-guide"><span>🎓</span><span><b>Georgia campus vendor days</b><small>How to apply: GA sales tax, insurance, approvals + email template</small></span><span aria-hidden="true">›</span></a>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
       <div class="chips" role="group" aria-label="Status">${stChips.map(([k, l]) => `<button class="chip" data-os="${k}" aria-pressed="${oStatus === k}">${l}</button>`).join("")}</div>
       <details class="filters"${nActive ? " open" : ""}><summary><span>Filters${nActive ? ` <b class="fcount">${nActive}</b>` : ""}</span><span class="fsort">${oSort === "date" ? "Soonest first" : oSort === "deadline" ? "Deadline first" : "Closest first"}</span></summary>
@@ -858,6 +861,26 @@
     q.addEventListener("input", debounce(() => { oQuery = q.value; const pos = q.selectionStart; oLimit = 25; viewOpp(); const nq = document.getElementById("oq"); nq.focus(); nq.setSelectionRange(pos, pos); }, 220));
   }
 
+  /* ===== Nov 6 2026: Georgia campus vendor-day guide (lives inside Find markets, no menu item). Reads data/ga_guide.json. ===== */
+  let GAG = null;
+  function viewGaGuide() {
+    setTab("opp");
+    const back = `<a class="back" href="#/opportunities">‹ Find</a>`;
+    if (!GAG) { app.innerHTML = '<div class="skel"><i></i><i></i></div>';
+      fetch(ROOT + "data/ga_guide.json", { cache: "no-cache" }).then((r) => r.json()).then((g) => { GAG = g; if (location.hash === "#/ga-guide") viewGaGuide(); }).catch(() => show(back + '<p class="empty">Couldn\'t load the guide right now.</p>')); return; }
+    const on = (id, ev, fn) => { const el = document.getElementById(id); if (el) el[ev] = fn; };
+    const g = GAG, t = g.template || {};
+    const nGA = OPP ? oppAll().filter((i) => i.state === "GA" && i.type === "college").length : 0;
+    show(`${back}<div class="pagehead"><h1>${esc(g.title)}</h1></div><p class="sub">${esc(g.intro)}</p>
+      ${(g.sections || []).map((s) => `<div class="card guide"><h2>${esc(s.h)}</h2>${s.p.map((p) => `<p>${esc(p)}</p>`).join("")}${(s.links || []).map(([l, u]) => `<a class="glink" href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} ›</a>`).join("")}</div>`).join("")}
+      <div class="card guide"><h2>Email / application template</h2><p class="sub">Fill the [brackets], then send from your Gmail.</p><pre class="tmpl" id="tmpl">Subject: ${esc(t.subject || "")}
+
+${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Copy template</button></div>
+      <a class="btn primary full" href="#/opportunities" id="gaList">See Georgia campus listings${nGA ? " (" + nGA + ")" : ""} ›</a>${footer()}`);
+    on("tcopy", "onclick", () => { const txt = document.getElementById("tmpl").textContent; (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast("Template copied")).catch(() => toast("Long-press the text to copy")); });
+    on("gaList", "onclick", () => { oState = "GA"; oCounty = ""; oType = "college"; oLimit = 25; });
+  }
+
   /* ===== ONE LEAD: details page (fees, booth, deadline, requirements, contact, apply) ===== */
   const t24 = (s) => { const m = String(s || "").match(/(\d{1,2}):(\d\d)\s*([AP]M)/i); if (!m) return ""; let h = Number(m[1]) % 12; if (/p/i.test(m[3])) h += 12; return String(h).padStart(2, "0") + ":" + m[2]; };
   function viewOppDetail(id) {
@@ -893,6 +916,7 @@
       </div>
       ${ev ? `<a class="boothcta" href="#/e/${encodeURIComponent(ev.id)}"><span class="ring" style="--p:100"><span>✓</span></span><span><b>Already on your calendar</b><small>Open the market for load-in, fees and directions</small></span><span class="chev" aria-hidden="true">›</span></a>` : ""}
       ${!ev && !isApplied(i.id) && !(d && d.kind === "closed") ? `<div class="apply-detail">${applyBtn({ id: i.id, name: i.title, dates: oppDates(i), link: i.url || "" })}</div>` : ""}
+      ${i.guide === "ga" || (i.state === "GA" && i.type === "college") ? `<a class="gaguide" href="#/ga-guide"><span>🎓</span><span><b>How to apply in Georgia</b><small>Sales tax number, insurance, approvals + email template</small></span><span aria-hidden="true">›</span></a>` : ""}${i.verified === false ? `<p class="sub">Unverified lead — confirm dates and fee on the organizer page before applying.</p>` : ""}
       <div class="card info">
         ${kv("📅", "When", esc([oppDates(i), i.time].filter(Boolean).join(" · ")))}
         ${kv("📍", "Where", where)}
@@ -1126,6 +1150,7 @@
     if (h === "settings") return viewSettings();
     if (h === "money") return viewMoney();
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
+    if (h === "ga-guide") return viewGaGuide();
     if (h === "opportunities" || h === "saved") return viewOpp();
     if (h === "links") return viewLinks();
     viewToday();
