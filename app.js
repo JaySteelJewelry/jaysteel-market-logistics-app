@@ -204,10 +204,10 @@
   /* ---------- views ---------- */
   /* Nov 6 2026 IA: Markets = List · Find (opportunities); Home = Today · HQ */
   const subnav = (items, cur) => `<nav class="subnav" aria-label="Sections">${items.map(([h, t, k]) => `<a href="${h}"${k === cur ? ' aria-current="page"' : ""}>${t}</a>`).join("")}</nav>`;
-  const MK_NAV = [["#/markets", "List", "list"], ["#/opportunities", "Find markets", "opp"]];
-  const HOME_NAV = [["#/", "Today", "today"], ["#/hq", "HQ", "hq"]];
-  const TAB_OF = { opp: "list", links: "today", hq: "today", booth: "list" };
-  const TAB_NAME = { today: "Dashboard", list: "My Markets", map: "Market Map", cal: "Calendar", money: "Payments", settings: "Settings" };
+  /* Nov 6 2026 IA fix (Luis: "links and tabs repeatedly are redundant"): ONE map, each thing in exactly one place.
+     ☰ Dashboard · Markets · Find markets · Map · Calendar · Payments · Shop & Links · Settings · Log Out. No sub-tabs. */
+  const TAB_OF = { hq: "today", booth: "list" };
+  const TAB_NAME = { today: "Dashboard", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", links: "Shop & Links", settings: "Settings" };
   function setTab(name) {
     name = TAB_OF[name] || name;
     document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
@@ -359,13 +359,18 @@
     wireNeeds(box, items);
     const all = document.getElementById("needs-all"); if (all) all.onclick = () => { HQ.showAll = !HQ.showAll; paintHQ(); };
     const team = document.getElementById("hqteam"); if (team) team.innerHTML = teamHTML();
+    const fol = document.getElementById("hqfol"); if (fol) fol.innerHTML = followersHTML();
+  }
+  /* Followers now live on Shop & Links (plain numbers, no repeat links); Tab's team lives in Settings. Never a store-platform row. */
+  function followersHTML() {
+    const stt = ((HQ.data["stats.json"] || {}).accounts || []).filter((s) => !/square/i.test(String(s.platform || "") + String(s.url || "")));
+    return stt.length ? sec("Followers") + `<div class="fol">${stt.map((s) => `<div class="fol__i"><small>${esc(s.platform)}</small><b>${s.followers == null ? "—" : esc(s.followers)}</b>${s.followers_delta ? `<span class="m">${s.followers_delta > 0 ? "+" : ""}${esc(s.followers_delta)} this week</span>` : ""}</div>`).join("")}</div>` : "";
   }
   function teamHTML() {
-    const ag = (HQ.data["agents.json"] || {}).agents || [], stt = (HQ.data["stats.json"] || {}).accounts || [];
-    if (!ag.length && !stt.length) return "";
+    const ag = (HQ.data["agents.json"] || {}).agents || [];
+    if (!ag.length) return "";
     const dot = (h) => `<span class="hdot h-${esc(h || "none")}"></span>`;
-    return (stt.length ? sec("Followers") + `<div class="fol">${stt.map((s) => `<a class="fol__i" href="${esc(s.url || "#")}" target="_blank" rel="noopener"><small>${esc(s.platform)}</small><b>${s.followers == null ? "—" : esc(s.followers)}</b>${s.followers_delta ? `<span class="m">${s.followers_delta > 0 ? "+" : ""}${esc(s.followers_delta)} this week</span>` : ""}</a>`).join("")}</div>` : "")
-      + (ag.length ? sec("Tab's team") + `<div class="card team">${ag.map((x) => `<details class="team__r"><summary>${dot(x.health || (x.on ? "green" : "off"))}<span><b>${esc(x.name)}</b><small>${esc(x.cadence || "")}</small></span></summary><p class="m">${esc(x.what || "")}${x.health_why ? " · " + esc(x.health_why) : ""}${x.next_run ? " · next " + esc(new Date(x.next_run).toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: TZ })) : ""}</p></details>`).join("")}</div>` : "");
+    return (ag.length ? `<h2 class="set-h">Tab's team</h2>` + `<div class="card team">${ag.map((x) => `<details class="team__r"><summary>${dot(x.health || (x.on ? "green" : "off"))}<span><b>${esc(x.name)}</b><small>${esc(x.cadence || "")}</small></span></summary><p class="m">${esc(x.what || "")}${x.health_why ? " · " + esc(x.health_why) : ""}${x.next_run ? " · next " + esc(new Date(x.next_run).toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: TZ })) : ""}</p></details>`).join("")}</div>` : "");
   }
   function hqUnlockForm(box, after) {
     box.innerHTML = sec("Needs you") + `<form class="card unlockhq" id="hqun"><p class="m" style="margin:0 0 10px">Enter your password once on this phone to show HQ here.</p>
@@ -427,36 +432,21 @@
              ${next.start ? "" : `<p class="clock-note">Start time not set yet — counting to the day.</p>`}`}
         <div class="hero__acts">
           ${next.address ? `<a class="act act--gold" href="${esc(dirURL(next.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : `<a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.pin}<span>No address</span></a>`}
-          <a class="act" href="#/map/${encodeURIComponent(next.id)}">${I.map}<span>On the map</span></a>
-          <a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.cash}<span>Sales &amp; info</span></a>
+          <a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.info}<span>Details</span></a>
         </div>
       </section>`;
-    } else hero = `<section class="hero hero--empty"><p class="kicker">Next market</p><h1 class="hero__name">Nothing booked yet</h1><p class="hero__where">Find your next one in the Find tab.</p><div class="hero__acts"><a class="act act--gold" href="#/opportunities">${I.bag}<span>Find markets</span></a></div></section>`;
+    } else hero = `<section class="hero hero--empty"><p class="kicker">Next market</p><h1 class="hero__name">Nothing booked yet</h1><p class="hero__where">Open ☰ › Find markets to look for the next one.</p></section>`;
 
-    const rail = upcoming.filter((e) => !next || e.id !== next.id).filter((e) => !ended(e, now)).slice(0, 8);
-    const railHTML = rail.length ? `<div class="rail">${rail.map((e) => { const n = daysBetween(today, e.date); return `<a class="tag s-${esc(e.status)}" href="#/e/${encodeURIComponent(e.id)}">
-        <span class="tag__hole" aria-hidden="true"></span><span class="tag__in">${n <= 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days"}</span>
-        <b class="tag__d">${esc(fmt(e.date, { month: "short" }).toUpperCase())} ${parse(e.date).getUTCDate()}</b><span class="tag__n">${esc(e.name)}</span>${statusPill(e.status)}</a>`; }).join("")}</div>` : "";
-
-    const payRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
-    const nOpen = (DATA.openApplications || []).length;
-    let html = `<div class="pagehead"><h1>Dashboard</h1></div><section id="hqbox" aria-live="polite"></section><div class="today">${hero}<div class="today__side">
-      <div class="stats">
-        <a class="stat" href="#/markets" data-jump="approved"><b>${approved}</b><span>Confirmed</span></a>
-        <a class="stat" href="#/markets" data-jump="waiting"><b>${waiting}</b><span>Waiting</span></a>
-        <a class="stat${over.length ? " alert" : ""}" href="#/money"><b>${due.length + over.length}</b><span>${over.length ? `To pay · ${over.length} late` : "To pay"}</span></a>
-      </div>
-      ${over.length || due.length ? sec("Fees to pay", `<a class="more-link" href="#/money">Money ›</a>`) + `<div class="card pays">${over.map((e) => payRow(e, true)).join("") + due.map((e) => payRow(e, false)).join("")}</div>` : ""}
-      ${nOpen ? sec("No date yet") + `<a class="card nodate" href="#/markets" data-jump="nodate"><span><b>${nOpen} open application${nOpen === 1 ? "" : "s"}</b><small>${esc(DATA.openApplications.map((o) => o.name.replace(/\s*\(.*?\)/g, "")).join(" · "))}</small></span><span class="chev" aria-hidden="true">›</span></a>` : ""}
-    </div></div>`;
-    if (railHTML) html += sec("Coming up", `<a class="more-link" href="#/markets">All markets ›</a>`) + railHTML;
-    html += `<div class="quick">
-      <a class="qk" href="#/map">${I.map}<span>Map</span></a>
-      <a class="qk" href="#/opportunities">${I.bag}<span>Find markets</span></a>
-      <a class="qk" href="#/links">${I.link}<span>Shop links</span></a>
-    </div><section id="hqteam"></section>` + footer();
+    /* money due: one summary line; the full list lives on Payments only */
+    const owe = over.concat(due);
+    const feeNum = (s) => { const m = String(s || "").replace(/,/g, "").match(/\$\s*(\d+(?:\.\d+)?)/); return m ? Number(m[1]) : null; };
+    const sum = owe.reduce((a, e) => { const n = feeNum(e.fee); return n == null ? a : a + n; }, 0);
+    const nextDue = owe.slice().sort((p, q) => String(p.payBy).localeCompare(String(q.payBy)))[0];
+    const moneyHTML = sec("Money due") + (owe.length
+      ? `<a class="card nodate${over.length ? " late" : ""}" href="#/money"><span><b>${owe.length} fee${owe.length === 1 ? "" : "s"} to pay${sum ? " · " + money(sum) : ""}${over.length ? ` · ${over.length} late` : ""}</b><small>Next: ${esc(nextDue.name)} · ${over.includes(nextDue) ? "was due" : "pay by"} ${esc(fmt(nextDue.payBy, { month: "short", day: "numeric" }))}</small></span><span class="chev" aria-hidden="true">›</span></a>`
+      : `<div class="card"><p class="m" style="margin:0">Nothing due right now.</p></div>`);
+    let html = `<div class="pagehead"><h1>Dashboard</h1></div><section id="hqbox" aria-live="polite"></section><div class="today">${hero}<div class="today__side">${moneyHTML}</div></div>` + footer();
     show(html);
-    wireJumps();
     startClock();
     fillNeeds();
   }
@@ -490,9 +480,10 @@
     const upcoming = DATA.events.filter((e) => lastDay(e) >= today);
     const count = (k) => upcoming.filter((e) => e.status === k).length;
     const nOpen = (DATA.openApplications || []).length;
-    const chips = [["upcoming", "Upcoming", upcoming.length]].concat(Object.keys(STATUS).map((k) => [k, `${STATUS[k].icon} ${STATUS[k].label}`, count(k)]).filter((c) => c[2] > 0), nOpen ? [["nodate", "🗓 No date yet", nOpen]] : [], [["past", "Past"], ["all", "All"]]);
+    const nPast = DATA.events.filter((e) => lastDay(e) < today).length;
+    const chips = [["upcoming", "Upcoming", upcoming.length], ["past", "Past", nPast]].concat(nOpen ? [["nodate", "No date yet", nOpen]] : []);
     if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
-    let html = `<div class="pagehead"><h1>My Markets</h1></div>${subnav(MK_NAV, "list")}
+    let html = `<div class="pagehead"><h1>Markets</h1></div>
       <div class="searchbox">${'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>'}<input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off"></div>
       <div class="chips" role="group" aria-label="Filter by status">${chips.map(([k, l, n]) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${l}${n != null ? `<span class="n">${n}</span>` : ""}</button>`).join("")}</div>
       <div id="listbody" aria-live="polite"></div>`;
@@ -536,7 +527,7 @@
       const inner = !past && canApplyEvent(e) ? `${rowHTML(e, today)}<div class="applyrow">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : rowHTML(e, today);
       return head + `<div class="link-item${past ? " is-past" : ""}"><span class="node" aria-hidden="true"></span>${inner}</div>`;
     }).join("")}</div>` : `<p class="empty">No markets match${query ? ` “${esc(query)}”` : ""}.</p>`;
-    const oa = document.getElementById("openapps"); if (oa) oa.hidden = !(filter === "nodate" || filter === "all");
+    const oa = document.getElementById("openapps"); if (oa) oa.hidden = filter !== "nodate";
     box.hidden = filter === "nodate";
     wireApply(box, renderListBody);
   }
@@ -606,9 +597,9 @@
         <h1>${esc(e.name)}</h1><p class="when">${esc(whenText(e))}</p>${e.venue ? `<p class="hangtag__venue">${esc(e.venue)}</p>` : ""}
       </article>
       <div class="bigacts">
-        ${e.address ? `<a class="act act--gold" href="${maps(e.address)}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a><a class="act" href="${amaps(e.address)}" target="_blank" rel="noopener">${I.map}<span>Apple Maps</span></a>` : ""}
+        ${e.address ? `<a class="act act--gold" href="${esc(dirURL(e.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : ""}
         <button class="act" id="ics" type="button">${I.cal}<span>Add to calendar</span></button>
-        ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : `<a class="act" href="#/links">${I.bag}<span>Store links</span></a>`}
+        ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : ""}
       </div>
       ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
       ${e.headsUp ? `<div class="card heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
@@ -668,7 +659,6 @@
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
     const dueRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
     show(`<div class="pagehead"><h1>Payments</h1></div><p class="sub">Fees to pay, what's paid, and what each market made. Sales are saved on this phone.</p>
-      <div id="rembox"></div>
       <p class="month">To pay</p>
       <div class="card pays">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
       ${(() => { const pd = DATA.events.filter((e) => e.paid && lastDay(e) >= today); return pd.length ? `<p class="month">Paid</p><div class="card pays">${pd.map((e) => `<a class="payrow" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}</small></span><span class="payrow__d"><span class="pill s-paid"><i></i>Paid</span><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b></span></a>`).join("")}</div>` : ""; })()}
@@ -696,12 +686,15 @@
     const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return u; } };
     const card = (href, i, b, s, ext) => `<a class="linkcard" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}><span class="i" aria-hidden="true">${ICONS[i]}</span><span><b>${b}</b><small>${s}</small></span><span class="arrow" aria-hidden="true">›</span></a>`;
     const store = STORE_URL;
-    show(`<div class="pagehead"><h1>Shop</h1></div><p class="sub">Send customers here from the booth, Discord or socials.</p>
-      ${card(store, "store", "Online store", esc(host(store)), true)}
+    /* Nov 6 2026 (Luis): the online store isn't open until inventory is loaded, so this points at the links page. */
+    show(`<div class="pagehead"><h1>Shop &amp; Links</h1></div><p class="sub">Send customers here from the booth, Discord or socials.</p>
+      ${card(store, "store", "Shop &amp; links", "jaysteeljewelry.github.io/links", true)}
       ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
       ${card("mailto:" + EMAIL, "mail", "Email", EMAIL, false)}
+      <section id="hqfol"></section>
       <div class="signoff"><picture><source srcset="${ROOT}assets/js-icon.webp" type="image/webp"><img src="${ROOT}assets/js-icon.png" alt="" width="256" height="244" loading="lazy"></picture><p class="wordmark">JAY STEEL JEWELRY</p></div>
       ${footer()}`);
+    withHQ(() => { const f = document.getElementById("hqfol"); if (f) f.innerHTML = followersHTML(); });
   }
 
   function footer() {
@@ -810,7 +803,7 @@
     const typeChips = [["all", "All"]].concat(Object.entries(TYPE_LABEL));
     const stChips = [["all", "All"], ["open", "Open"], ["new", "New"], ["applied", "Applied"], ["booked", "Booked"]];
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
-    let html = `<div class="pagehead"><h1>My Markets</h1></div>${subnav(MK_NAV, "opp")}<div class="pagehead pagehead--sub"><h2>Find markets</h2><div class="seg" role="tablist" aria-label="Browse or saved">
+    let html = `<div class="pagehead"><h1>Find markets</h1><div class="seg" role="tablist" aria-label="Browse or saved">
         <button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved${nSaved ? " · " + nSaved : ""}</button></div></div>
       ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across NE Florida and Georgia.</p>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
@@ -970,7 +963,7 @@
     const cnt = (f) => mapItems(f).length;
     const chips = [["upcoming", "Upcoming"], ["confirmed", "Confirmed"], ["waiting", "Waiting"], ["nodate", "No date yet"], ["past", "Past"]].map(([k, t]) => [k, t, cnt(k)]).filter((c) => c[2] > 0 || c[0] === "upcoming");
     if (focusId) { const fe = byId(focusId); if (fe) mapFilter = lastDay(fe) < today ? "past" : "upcoming"; }
-    show(`<div class="pagehead"><h1>Market Map</h1></div>
+    show(`<div class="pagehead"><h1>Map</h1></div>
       <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n}</span></button>`).join("")}</div>
       <div class="mapwrap"><div id="map" role="region" aria-label="Map of markets"></div></div>
       <div class="map-legend" aria-hidden="true">${[["approved", "Approved"], ["booked", "On my calendar"], ["agreement", "Agreement"], ["pending", "Pending"], ["tentative", "Tentative / conditional"], ["nodate", "No date yet"]].map(([s, t]) => `<span><i style="background:${stColor(s)}"></i>${t}</span>`).join("")}</div>
@@ -1064,17 +1057,16 @@
       <p class="set-note">These send your choice to Tab on the same signed channel as HQ answers. Tab confirms on the next update.</p>
       <div id="rembox"></div>
       <div id="briefbox"></div>
+      <section id="hqteam"></section>
       <h2 class="set-h">Data</h2>
       <div class="card set">
-        <div class="set-r"><span><b>Market list updated</b><small>${esc(synced)} · HQ ${HQ.at ? "synced " + new Date(HQ.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) : "not loaded yet"}</small></span><button class="btn small" type="button" id="set-refresh">Refresh now</button></div>
+        <div class="set-r"><span><b>Market list updated</b><small>${esc(synced)} · HQ ${HQ.at ? "synced " + new Date(HQ.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) : "not loaded yet"}</small></span><span class="m">Pull down to refresh</span></div>
         <div class="set-r"><span><b>Export markets</b><small>All ${DATA.events.length} markets</small></span><span class="set-btns"><button class="btn small" type="button" id="x-csv">CSV</button><button class="btn small" type="button" id="x-json">JSON</button></span></div>
-        <div class="set-r"><span><b>Export calendar</b><small>.ics file for Apple / Google Calendar</small></span><button class="btn small" type="button" id="x-ics">.ics</button></div>
       </div>
       <h2 class="set-h">Security</h2>
       <div class="card set">
         <div class="set-r"><span><b>App password</b><small>It also unlocks HQ's encrypted data, so Tab changes it on its side and re-encrypts everything.</small></span><a class="btn small" href="https://wa.me/${TAB_WA}?text=${encodeURIComponent("Tab, please change my JAY STEEL app password.")}" target="_blank" rel="noopener">Ask Tab</a></div>
         <div class="set-r"><span><b>Auto-lock</b><small>Ask for the password after this long idle</small></span>${seg("lock", [["0", "Off"], ["5", "5 min"], ["15", "15 min"], ["60", "1 hr"]])}</div>
-        <div class="set-r"><span><b>Log out on this device</b></span><button class="btn small" type="button" id="set-logout">Log Out</button></div>
       </div>
       <h2 class="set-h">Connect · AI agents</h2>
       <p class="set-note">Read-only links an assistant or another app can use. Items marked public can be read by anyone with the link. HQ data stays encrypted and isn't listed here.</p>
@@ -1083,26 +1075,23 @@
         ${copyRow("Markets feed (JSON)", APP_URL + "data/events.json", "Every market: date, status, fee, paid, venue, address", "public")}
         ${copyRow("Markets schema", APP_URL + "data/events.schema.json", "JSON Schema for the markets feed", "public")}
         ${copyRow("Calendar feed (.ics)", APP_URL + "data/markets.ics", "Subscribe in Apple or Google Calendar", "public")}
-        ${copyRow("Vendor opportunities (JSON)", APP_URL + "data/opportunities.json", "Leads shown under My Markets › Find markets", "public")}
+        ${copyRow("Vendor opportunities (JSON)", APP_URL + "data/opportunities.json", "Leads shown under ☰ › Find markets", "public")}
         ${copyRow("Map spots (JSON)", APP_URL + "assets/geo.json", "Pin coordinates for each market address", "public")}
         ${ro("Google Calendar", "Markets on your calendar, kept in sync by Tab")}
         ${ro("Discord", "Market cards in your Discord, updated by Tab")}
         ${ro("Booker email", "Tab reads organizer email and updates statuses here")}
       </div>
       <h2 class="set-h">About</h2>
-      <div class="card set"><div class="set-r"><span><b>JAY STEEL · Markets &amp; HQ</b><small>Version 15 · Nov 6, 2026 · Built for JAY STEEL JEWELRY</small></span></div></div>
+      <div class="card set"><div class="set-r"><span><b>JAY STEEL · Markets &amp; HQ</b><small>Version 16 · Nov 6, 2026 · Built for JAY STEEL JEWELRY</small></span></div></div>
       ${footer()}`);
     app.querySelectorAll("[data-set]").forEach((b) => b.addEventListener("click", () => {
       const cur = SETS(); cur[b.dataset.set] = b.dataset.set === "lock" ? +b.dataset.v : b.dataset.v; sv(K_SETTINGS, cur); applySettings();
       app.querySelectorAll(`[data-set="${b.dataset.set}"]`).forEach((x) => x.setAttribute("aria-checked", String(x === b)));
     }));
     app.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast("Copied"); } catch (_) { prompt("Copy this link:", b.dataset.copy); } }));
-    document.getElementById("set-refresh").onclick = () => refreshAll();
     document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
     document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
-    document.getElementById("x-ics").onclick = () => download("jaysteel-markets.ics", ics(DATA.events.filter((e) => e.status !== "declined")), "text/calendar");
-    document.getElementById("set-logout").onclick = () => document.getElementById("logout").click();
-    withHQ(() => { paintRem(); paintBrief(); });
+    withHQ(() => { paintRem(); paintBrief(); const t = document.getElementById("hqteam"); if (t) t.innerHTML = teamHTML(); });
   }
   function paintBrief() {
     const box = document.getElementById("briefbox"); if (!box || !HQ.key) return;
@@ -1132,7 +1121,7 @@
     if (h === "map" || h.startsWith("map/")) return viewMap(h.startsWith("map/") ? decodeURIComponent(h.slice(4)) : null);
     if (h === "hq" || h === "needs") { location.replace("#/"); return; }
     if (h === "settings") return viewSettings();
-    if (h === "money") { viewMoney(); withHQ(paintRem); return; }
+    if (h === "money") return viewMoney();
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
     if (h === "opportunities" || h === "saved") return viewOpp();
     if (h === "links") return viewLinks();
