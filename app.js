@@ -332,7 +332,7 @@
   const RX_MONEY = /(💳|^\W*pay\b|\bpay \$|\binvoice\b|\brenew\b|\bowe[sd]?\b|\bbalance due\b)/i;
   const isoNear = (m, d, today) => { const t = parse(today); let best = null; [-1, 0, 1].forEach((k) => { const y = t.getUTCFullYear() + k; const c = new Date(Date.UTC(y, m - 1, d, 12)); if (c.getUTCMonth() !== m - 1) return; if (!best || Math.abs(c - t) < Math.abs(best - t)) best = c; }); return best ? best.toISOString().slice(0, 10) : null; };
   const textDates = (s, today) => { const out = []; String(s || "").replace(RX_D, (all, m1, d1, m2, d2) => { const a1 = isoNear(MON3[m1.slice(0, 3).toLowerCase()], +d1, today); if (a1) out.push(a1); if (d2) { const a2 = isoNear(MON3[(m2 || m1).slice(0, 3).toLowerCase()], +d2, today); if (a2) out.push(a2); } return all; }); return out; };
-  const dueISO = (it) => { if (!it.deadline) return null; const d = new Date(it.deadline); return isNaN(d) ? String(it.deadline).slice(0, 10) : new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); };
+  const dueISO = (it) => { if (!it.deadline) return null; if (/^\d{4}-\d{2}-\d{2}$/.test(it.deadline)) return it.deadline; const d = new Date(it.deadline); return isNaN(d) ? String(it.deadline).slice(0, 10) : new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d); };
   function needState(it, today) {
     const title = it.title || "";
     if (RX_REC.test(title)) return "keep";
@@ -341,6 +341,7 @@
       if (td.length) { const e = td.sort().pop(); if (e < today) return "clear"; return due && due < today ? "overdue" : "keep"; }
       return due && due < today ? "overdue" : "keep";
     }
+    if (due && due < today) return "clear";   /* a passed answer/apply-by date makes the ask stale */
     const ds = td.length ? td : textDates(it.why, today).filter((x) => x >= today);
     const d = ds.length ? ds.sort().pop() : due;
     if (!d) return "keep";
@@ -1147,7 +1148,7 @@
   const hadController = "serviceWorker" in navigator && !!navigator.serviceWorker.controller;
   if ("serviceWorker" in navigator) navigator.serviceWorker.addEventListener("controllerchange", () => { if (refreshing && hadController && !swReloading) { swReloading = true; location.reload(); } });
   const rbtn = document.getElementById("refresh-btn");
-  async function refreshAll() {
+  async function refreshAll(silent) {
     if (refreshing) return; refreshing = true;
     if (rbtn) { rbtn.classList.add("spin"); rbtn.setAttribute("aria-busy", "true"); }
     try {
@@ -1165,21 +1166,30 @@
         loadOpp(true).catch(() => OPP),
       ]);
       DATA = sortEvents(d); if (o) OPP = o; migrateSent();
+      HQ.at = 0; if (HQ.key) await hqLoad().catch(() => {});   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
       const y = window.scrollY; route(); window.scrollTo(0, y);
-      toast("Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }));
-    } catch (_) { toast("Couldn't refresh. Check your signal"); }
+      if (!silent) toast("Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }));
+    } catch (_) { if (!silent) toast("Couldn't refresh. Check your signal"); }
     finally { if (!swReloading) { refreshing = false; if (rbtn) { rbtn.classList.remove("spin"); rbtn.removeAttribute("aria-busy"); } } }
   }
-  if (rbtn) rbtn.addEventListener("click", refreshAll);
+  if (rbtn) rbtn.addEventListener("click", () => refreshAll());
+  /* back in the foreground after a minute or more: refresh quietly */
+  let hiddenAt = 0;
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") hiddenAt = Date.now(); else if (hiddenAt && Date.now() - hiddenAt > 60000) refreshAll(true); });
   (function pullToRefresh() {
     const ind = document.createElement("div"); ind.className = "ptr"; ind.setAttribute("aria-hidden", "true");
-    ind.innerHTML = rbtn ? rbtn.querySelector("svg").outerHTML : "↻"; document.body.appendChild(ind);
+    ind.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/></svg>'; document.body.appendChild(ind);
     const MAX = 90, GO = 70; let y0 = null, x0 = 0, dy = 0;
     const paint = () => { const p = Math.min(dy, MAX); ind.style.opacity = String(Math.min(1, p / GO)); ind.style.transform = `translateY(${p - 20}px) rotate(${p * 3}deg)`; ind.classList.toggle("ready", dy >= GO); };
     const reset = () => { y0 = null; dy = 0; ind.style.transition = "opacity .2s, transform .2s"; ind.style.opacity = "0"; ind.style.transform = "translateY(-20px)"; ind.classList.remove("ready"); };
-    window.addEventListener("touchstart", (e) => { if (window.scrollY > 0 || refreshing || document.body.classList.contains("sheet-open") || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; dy = 0; ind.style.transition = "none"; }, { passive: true });
+    window.addEventListener("touchstart", (e) => { if (window.scrollY > 0 || refreshing || document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (e.target.closest && e.target.closest("#map")) || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; dy = 0; ind.style.transition = "none"; }, { passive: true });
     window.addEventListener("touchmove", (e) => { if (y0 == null) return; const d = e.touches[0].clientY - y0, dx = Math.abs(e.touches[0].clientX - x0); if (window.scrollY > 0 || d < 0 || dx > Math.abs(d)) { if (dy) reset(); else y0 = null; return; } dy = d * 0.6; paint(); }, { passive: true });
-    window.addEventListener("touchend", () => { if (y0 == null) return; const go = dy >= GO; reset(); if (go) refreshAll(); }, { passive: true });
+    window.addEventListener("touchend", async () => {
+      if (y0 == null) return; const go = dy >= GO;
+      if (!go) { reset(); return; }
+      y0 = null; ind.style.transition = "transform .2s"; ind.style.transform = "translateY(30px)"; ind.style.opacity = "1"; ind.classList.add("spin");
+      try { await refreshAll(true); } finally { ind.classList.remove("spin"); reset(); }
+    }, { passive: true });
   })();
 
   fetch(ROOT + "data/events.json", { cache: "no-cache" })
