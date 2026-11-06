@@ -294,7 +294,7 @@
       catch (e) { const s2 = document.querySelector(`.need[data-id="${CSS.escape(id)}"] .need__st`); if (s2) s2.innerHTML = `Couldn't reach Tab. Saved here · <a href="${esc(waURL(L))}" target="_blank" rel="noopener">send on WhatsApp</a>`; }
     }, 3000);
   }
-  const dueTxt = (it) => it.deadline_note || (it.deadline ? "Due " + new Date(it.deadline).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ }) : "");
+  const dueTxt = (it) => { if (it.deadline_note) return it.deadline_note; if (!it.deadline) return ""; const d = new Date(dueISO(it) + "T12:00:00Z"); return isNaN(d) ? "" : "Due " + d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); }; /* same ET day as auto-clear (a midnight-UTC deadline is that date) */
   function needCard(it) {
     const A = ld(K_ANS, {}), a = A[it.id] || { o: [] }, S = ld(K_SENT, {});
     const opts = (it.answer && it.answer.options) || [], multi = !!(it.answer && it.answer.multi);
