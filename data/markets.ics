@@ -289,8 +289,8 @@ DTSTART;TZID=America/New_York:20261212T100000
 DTEND;TZID=America/New_York:20261212T150000
 SUMMARY:Eagle Landing Holiday Vendor Market
 LOCATION:3975 Eagle Landing Pkwy\, Orange Park\, FL
-DESCRIPTION:Status: agreement\nFee: $30 (non-resident)\, non-refundable\nSe
- tup: Setup 8 AM.
+DESCRIPTION:Status: approved\nFee: $30 (non-resident)\, non-refundable\nSet
+ up: Setup 8 AM.
 END:VEVENT
 BEGIN:VEVENT
 UID:green-room-2026-12-18@jaysteel-markets
