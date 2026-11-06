@@ -541,3 +541,16 @@ body{overscroll-behavior-y:contain}
 .card.guide h2{font-size:16px;margin:0 0 8px;color:#C9CED6}.card.guide p{margin:0 0 8px;line-height:1.45;color:#ECEEF1}
 .card.guide .glink{display:block;margin-top:6px;color:#C9CED6}
 .tmpl{white-space:pre-wrap;word-break:break-word;background:#0E0F11;border:1px solid #2A2E33;border-radius:10px;padding:10px;font-size:12.5px;color:#ECEEF1;max-height:360px;overflow:auto}
+
+/* Nov 6 2026: route planner on the Map */
+.route{margin:10px 0;background:#17191C;border:1px solid #2A2E33;border-radius:14px;padding:10px 12px}
+.route summary{display:flex;align-items:baseline;gap:10px;cursor:pointer;list-style:none;color:#ECEEF1;font-weight:600}
+.route summary::-webkit-details-marker{display:none}.route summary small{color:#9AA1AB;font-weight:400;font-size:12px}
+.route .chips{margin:10px 0 6px}.route .fgrid{margin:6px 0}.route input[type=date]{width:100%;background:#0E0F11;color:#ECEEF1;border:1px solid #2A2E33;border-radius:10px;padding:8px}
+.rchk{display:flex;align-items:center;gap:8px;margin:8px 2px;color:#ECEEF1;font-size:14px}.rchk input{width:18px;height:18px;accent-color:#C9CED6}
+#rout{margin-top:10px;display:grid;gap:8px}.rsum{margin:2px 2px 4px;color:#ECEEF1}
+.rstop{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:#1F2226;border:1px solid #2A2E33;color:#ECEEF1;text-decoration:none}
+.rstop b{display:block;font-size:14px}.rstop small{display:block;color:#9AA1AB;font-size:12px}.rstop .leg{color:#C9CED6;margin-top:2px}
+.rbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.rnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#C9CED6;color:#0E0F11;font:700 13px/1 system-ui,sans-serif;border:2px solid #0E0F11;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+.rnum.base{background:#0E0F11;color:#C9CED6;border-color:#C9CED6}.rnum.sm{width:22px;height:22px;font-size:12px;flex:none;border-width:1px}

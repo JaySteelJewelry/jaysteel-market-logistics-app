@@ -976,6 +976,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
   const CONFIRMED = ["approved", "agreement", "booked"];
   function mapItems(f) {
     const today = todayISO();
+    if (f === "gacampus") return OPP ? oppAll().filter((i) => i.state === "GA" && i.type === "college" && (!i.date || i.date >= today)).map((i) => ({ id: null, oid: i.id, name: pub(i.title), status: "tentative", date: i.date || null, when: i.date ? shortDate(i.date) : (i.when || "Ongoing"), address: i.city + ", GA", venue: i.org, ll: cityLL(i.city, "GA") })) : [];
     if (f === "nodate") return (DATA.openApplications || []).map((o, i) => ({ id: null, name: o.name, status: "nodate", date: null, when: o.when || "No date yet", address: o.address, venue: "" }));
     return DATA.events.filter((e) => {
       const up = lastDay(e) >= today;
@@ -986,26 +987,124 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       return true;
     }).map((e) => ({ id: e.id, name: e.name, status: e.status, date: e.date, when: shortDate(e.date) + (e.start ? " · " + t12(e.start) : ""), address: e.address, venue: e.venue, fee: e.fee, paid: e.paid }));
   }
+
+  /* ===== Nov 6 2026: route planner on the Map (Luis: "add a map to map out and ... create a sort of route when scheduling events").
+     Pick dates -> numbered stops in date/time order (same-day untimed stops: nearest next), drive miles/time from the public OSRM
+     demo router (no key), straight-line estimate when it doesn't answer, one tap to Google / Apple Maps with every stop. ===== */
+  const BASE_LL = [30.2766, -81.5838]; /* base: Southside Jacksonville (32216), approximate */
+  let CITYGEO = null, routeLayer = null, RT = null;
+  const loadCityGeo = () => CITYGEO ? Promise.resolve(CITYGEO) : fetch(ROOT + "assets/city_geo.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : {})).catch(() => ({})).then((g) => (CITYGEO = g || {}));
+  const cityLL = (city, st) => CITYGEO && CITYGEO[String(city || "").replace(/\s*\(.*\)$/, "").trim() + ", " + st];
+  const hav = (a, b) => { const r = Math.PI / 180, dl = (b[0] - a[0]) * r, dn = (b[1] - a[1]) * r; const x = Math.sin(dl / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dn / 2) ** 2; return 2 * 3958.8 * Math.asin(Math.sqrt(x)); };
+  const plusDays = (iso, n) => new Date(parse(iso).getTime() + n * 86400000).toISOString().slice(0, 10);
+  const llq = (p) => p[0].toFixed(5) + "," + p[1].toFixed(5);
+  function routeStops(from, to, inclSaved, geo, startLL) {
+    const out = [];
+    DATA.events.forEach((e) => {
+      if (e.status === "declined" || !e.date || e.date > to || lastDay(e) < from) return;
+      const g = e.address && geo[e.address]; if (!g) return;
+      out.push({ name: e.name, date: e.date < from ? from : e.date, start: e.start || "", ll: [g[0], g[1]], addr: e.address, href: "#/e/" + encodeURIComponent(e.id), approx: !!g[2] });
+    });
+    if (inclSaved && OPP) { const sv = savedMap(); oppAll().forEach((i) => {
+      if (!sv[i.id] || !i.date || i.date > to || (i.end_date || i.date) < from) return;
+      const g = cityLL(i.city, i.state); if (!g) return;
+      out.push({ name: pub(i.title), date: i.date < from ? from : i.date, start: t24(i.time) || "", ll: g, addr: i.city + ", " + i.state, href: "#/o/" + encodeURIComponent(i.id), approx: true, lead: true });
+    }); }
+    const days = [...new Set(out.map((s) => s.date))].sort(), ordered = [];
+    let cur = startLL;
+    days.forEach((d) => {
+      const day = out.filter((s) => s.date === d), timed = day.filter((s) => s.start).sort((a, b) => a.start.localeCompare(b.start)), rest = day.filter((s) => !s.start);
+      timed.forEach((s) => { ordered.push(s); cur = s.ll; });
+      while (rest.length) { let k = 0; if (cur) rest.forEach((s, j) => { if (hav(cur, s.ll) < hav(cur, rest[k].ll)) k = j; }); const s = rest.splice(k, 1)[0]; ordered.push(s); cur = s.ll; }
+    });
+    return ordered;
+  }
+  function osrm(pts) {
+    if (pts.length < 2 || pts.length > 25) return Promise.reject(new Error("n"));
+    const ctl = new AbortController(); setTimeout(() => ctl.abort(), 9000);
+    return fetch("https://router.project-osrm.org/route/v1/driving/" + pts.map((p) => p[1].toFixed(5) + "," + p[0].toFixed(5)).join(";") + "?overview=full&geometries=geojson", { signal: ctl.signal })
+      .then((r) => r.json()).then((d) => { if (!d || d.code !== "Ok" || !d.routes || !d.routes[0]) throw new Error("osrm"); return d.routes[0]; });
+  }
+  const miT = (m) => Math.round(m / 1609.34) + " mi", hmT = (s) => { const h = Math.floor(s / 3600), mm = Math.round((s % 3600) / 60); return h ? h + " h " + mm + " min" : mm + " min"; };
+  function routePanelHTML() {
+    const r = RT || {};
+    return `<details class="route" id="rt"${RT ? " open" : ""}><summary><span>🧭 Plan a route</span><small>Pick dates — numbered stops + drive times</small></summary>
+      <div class="chips" role="group" aria-label="Dates"><button class="chip" type="button" data-rq="wknd">This weekend</button><button class="chip" type="button" data-rq="7">Next 7 days</button><button class="chip" type="button" data-rq="30">Next 30 days</button></div>
+      <div class="fgrid"><label class="fsel"><span>From</span><input type="date" id="rfrom" value="${esc(r.from || "")}"></label><label class="fsel"><span>To</span><input type="date" id="rto" value="${esc(r.to || "")}"></label></div>
+      <label class="rchk"><input type="checkbox" id="rbase"${r.base === false ? "" : " checked"}> Start from base (Southside Jax)</label>
+      <label class="rchk"><input type="checkbox" id="rsaved"${r.saved ? " checked" : ""}> Add my ★ saved Find-markets leads</label>
+      <button class="btn primary full" id="rgo" type="button">Show route</button><div id="rout" aria-live="polite"></div></details>`;
+  }
+  function wireRoute(m, Lf, geo) {
+    const today = todayISO(), get = (id) => document.getElementById(id);
+    app.querySelectorAll("[data-rq]").forEach((b) => b.addEventListener("click", () => {
+      const q = b.dataset.rq; let f = today, t;
+      if (q === "wknd") { const dow = parse(today).getUTCDay(); f = dow === 0 ? today : dow === 6 ? today : plusDays(today, 6 - dow); t = dow === 0 ? today : plusDays(f, dow === 6 ? 1 : 1); }
+      else t = plusDays(today, Number(q) - 1);
+      get("rfrom").value = f; get("rto").value = t; run();
+    }));
+    const run = () => {
+      const from = get("rfrom").value || today, to = get("rto").value || plusDays(from, 6);
+      RT = { from, to: to < from ? from : to, base: get("rbase").checked, saved: get("rsaved").checked };
+      const go = () => drawRoute(m, Lf, geo);
+      if (RT.saved && !OPP) loadOpp().then((d) => { OPP = d; return loadCityGeo(); }).then(go).catch(go); else loadCityGeo().then(go);
+    };
+    on2("rgo", "onclick", run);
+    if (RT) loadCityGeo().then(() => drawRoute(m, Lf, geo));
+  }
+  const on2 = (id, ev, fn) => { const el = document.getElementById(id); if (el) el[ev] = fn; };
+  function drawRoute(m, Lf, geo) {
+    const out = document.getElementById("rout"); if (!out || !RT) return;
+    if (routeLayer) { try { m.removeLayer(routeLayer); } catch (_) {} routeLayer = null; }
+    const stops = routeStops(RT.from, RT.to, RT.saved, geo, RT.base ? BASE_LL : null);
+    if (!stops.length) { out.innerHTML = `<p class="empty">No markets with an address between ${esc(shortDate(RT.from))} and ${esc(shortDate(RT.to))}.${RT.saved ? "" : " Tick “saved leads” to add ones you starred in Find markets."}</p>`; return; }
+    const pts = (RT.base ? [BASE_LL] : []).concat(stops.map((s) => s.ll));
+    const lay = routeLayer = Lf.layerGroup().addTo(m);
+    const line = Lf.polyline(pts, { color: "#C9CED6", weight: 3, opacity: 0.75, dashArray: "6 7" }).addTo(lay);
+    if (RT.base) Lf.marker(BASE_LL, { icon: Lf.divIcon({ className: "", html: '<span class="rnum base">⌂</span>', iconSize: [26, 26], iconAnchor: [13, 13] }), title: "Base" }).addTo(lay);
+    stops.forEach((s, k) => Lf.marker(s.ll, { zIndexOffset: 1000, title: s.name, icon: Lf.divIcon({ className: "", html: `<span class="rnum">${k + 1}</span>`, iconSize: [26, 26], iconAnchor: [13, 13], popupAnchor: [0, -12] }) }).addTo(lay)
+      .bindPopup(`<div class="pop"><h3>${k + 1}. ${esc(s.name)}</h3><p class="m">${esc(shortDate(s.date))}${s.start ? " · " + esc(t12(s.start)) : ""} · ${esc(s.addr)}${s.approx ? " (approx.)" : ""}</p><div class="dir"><a href="${s.href}">Open</a></div></div>`, { maxWidth: 280 }));
+    m.fitBounds(Lf.latLngBounds(pts).pad(0.2), { maxZoom: 12 });
+    const gUrl = "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=" + llq(pts[0]) + "&destination=" + llq(pts[pts.length - 1]) + (pts.length > 2 ? "&waypoints=" + pts.slice(1, -1).slice(0, 9).map(llq).join("%7C") : "");
+    const aUrl = "https://maps.apple.com/?dirflg=d&saddr=" + llq(pts[0]) + "&daddr=" + pts.slice(1).map(llq).join("+to:");
+    const render = (legs, real) => {
+      let tm = 0, tt = 0;
+      const rows = stops.map((s, k) => { const L = legs[RT.base ? k : k - 1]; if (L) { tm += L.d; tt += L.t || 0; }
+        const leg = L ? `<small class="leg">${real ? "" : "~"}${miT(L.d)}${L.t ? " · " + (real ? "" : "~") + hmT(L.t) : ""} from ${k === 0 ? "base" : "stop " + k}</small>` : "";
+        return `<a class="rstop" href="${s.href}"><span class="rnum sm">${k + 1}</span><span><b>${esc(s.name)}</b><small>${esc(shortDate(s.date))}${s.start ? " · " + esc(t12(s.start)) : ""} · ${esc(s.addr)}${s.lead ? " · ★ lead" : ""}</small>${leg}</span></a>`; }).join("");
+      out.innerHTML = `<p class="rsum"><b>${stops.length} stop${stops.length === 1 ? "" : "s"}</b> · ${real ? "" : "~"}${miT(tm)}${tt ? " · " + (real ? "" : "~") + hmT(tt) + " driving" : ""}${real ? "" : " <span class=\"sub\">(straight-line estimate)</span>"}</p>${rows}
+        <div class="rbtns"><a class="btn small" href="${esc(gUrl)}" target="_blank" rel="noopener">Open in Google Maps</a><a class="btn small" href="${esc(aUrl)}" target="_blank" rel="noopener">Open in Apple Maps</a></div>${pts.length > 11 ? '<p class="sub">Google Maps takes the first 10 stops.</p>' : ""}`;
+    };
+    const est = []; for (let k = 1; k < pts.length; k++) est.push({ d: hav(pts[k - 1], pts[k]) * 1.25 * 1609.34, t: hav(pts[k - 1], pts[k]) * 1.25 / 45 * 3600 });
+    render(est, false);
+    osrm(pts).then((rt) => {
+      if (routeLayer !== lay) return;
+      try { lay.removeLayer(line); Lf.geoJSON(rt.geometry, { style: { color: "#C9CED6", weight: 4, opacity: 0.85 } }).addTo(lay); } catch (_) {}
+      render(rt.legs.map((L) => ({ d: L.distance, t: L.duration })), true);
+    }).catch(() => {});
+  }
   function viewMap(focusId) {
     setTab("map");
     const today = todayISO();
     const cnt = (f) => mapItems(f).length;
-    const chips = [["upcoming", "Upcoming"], ["confirmed", "Confirmed"], ["waiting", "Waiting"], ["nodate", "No date yet"], ["past", "Past"]].map(([k, t]) => [k, t, cnt(k)]).filter((c) => c[2] > 0 || c[0] === "upcoming");
+    const chips = [["upcoming", "Upcoming"], ["confirmed", "Confirmed"], ["waiting", "Waiting"], ["nodate", "No date yet"], ["past", "Past"], ["gacampus", "GA campuses"]].map(([k, t]) => [k, t, cnt(k)]).filter((c) => c[2] > 0 || c[0] === "upcoming" || c[0] === "gacampus");
+    if (!OPP) loadOpp().then((d) => { OPP = d; }).catch(() => {});
     if (focusId) { const fe = byId(focusId); if (fe) mapFilter = lastDay(fe) < today ? "past" : "upcoming"; }
     show(`<div class="pagehead"><h1>Map</h1></div>
-      <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n}</span></button>`).join("")}</div>
+      <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n || (k === "gacampus" ? "" : n)}</span></button>`).join("")}</div>
+      ${routePanelHTML()}
       <div class="mapwrap"><div id="map" role="region" aria-label="Map of markets"></div></div>
       <div class="map-legend" aria-hidden="true">${[["approved", "Approved"], ["booked", "On my calendar"], ["agreement", "Agreement"], ["pending", "Pending"], ["tentative", "Tentative / conditional"], ["nodate", "No date yet"]].map(([s, t]) => `<span><i style="background:${stColor(s)}"></i>${t}</span>`).join("")}</div>
       <div class="places" id="places"><p class="loading">Loading map…</p></div>${footer()}`);
     app.querySelectorAll("[data-mf]").forEach((b) => b.addEventListener("click", () => { mapFilter = b.dataset.mf; viewMap(); }));
-    Promise.all([loadLeaflet(), loadGeo()]).then(([Lf, geo]) => {
+    Promise.all([loadLeaflet(), loadGeo(), loadCityGeo(), mapFilter === "gacampus" && !OPP ? loadOpp().then((d) => { OPP = d; }).catch(() => {}) : null]).then(([Lf, geo]) => {
       const box = document.getElementById("map"); if (!box || !document.body.contains(box)) return;
       if (LMAP) { try { LMAP.remove(); } catch (_) {} }
       const m = LMAP = Lf.map(box, { zoomControl: true, attributionControl: true, scrollWheelZoom: false, tap: true });
       Lf.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }).addTo(m);
       const groups = new Map(), nogeo = [];
       mapItems(mapFilter).forEach((it) => {
-        const g = it.address && geo[it.address];
+        const g = it.ll || (it.address && geo[it.address]);
         if (!g) { nogeo.push(it); return; }
         const key = g[0].toFixed(4) + "," + g[1].toFixed(4);
         if (!groups.has(key)) groups.set(key, { ll: [g[0], g[1]], approx: !!g[2], address: it.address, venue: it.venue, items: [] });
@@ -1017,7 +1116,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         const first = p.items[0];
         const title = p.items.every((i) => i.name === first.name) ? first.name : (p.venue || first.name);
         return `<div class="pop"><h3>${esc(title)}</h3><p class="m">${esc(p.venue && p.venue !== title ? p.venue + " · " : "")}${esc(p.address || "")}${p.approx ? " (approx. spot)" : ""}</p>
-          <ul>${p.items.map((i) => `<li>${i.id ? `<a href="#/e/${encodeURIComponent(i.id)}">` : `<a href="#/markets" data-nodate="1">`}<span>${esc(i.when)}${p.items.length > 1 && i.name !== title ? " · " + esc(i.name) : ""}</span>${statusPill(i.status === "nodate" ? "pending" : i.status)}</a></li>`).join("")}</ul>
+          <ul>${p.items.map((i) => `<li>${i.oid ? `<a href="#/o/${encodeURIComponent(i.oid)}">` : i.id ? `<a href="#/e/${encodeURIComponent(i.id)}">` : `<a href="#/markets" data-nodate="1">`}<span>${esc(i.when)}${p.items.length > 1 && i.name !== title ? " · " + esc(i.name) : ""}</span>${statusPill(i.status === "nodate" ? "pending" : i.status)}</a></li>`).join("")}</ul>
           <div class="dir"><a href="${esc(amaps(p.address))}" target="_blank" rel="noopener">Apple Maps</a><a href="${esc(maps(p.address))}" target="_blank" rel="noopener">Google Maps</a></div></div>`;
       };
       places.forEach((p, idx) => {
@@ -1035,6 +1134,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       list.innerHTML = (places.length ? places.map((p) => `<button class="place" type="button" data-p="${p.idx}"><span class="dot" style="background:${stColor(p.items[0].status)}"></span><span><b>${esc(p.items[0].name)}</b><small>${esc(p.items[0].when)} · ${esc(p.address || "")}</small></span><span class="cnt">${p.items.length > 1 ? p.items.length + " dates" : ""}</span></button>`).join("") : `<p class="empty">Nothing to show for this filter.</p>`)
         + (nogeo.length ? `<p class="m" style="margin-top:6px">${nogeo.length} not on the map (no address yet): ${esc(nogeo.map((i) => i.name).join(" · "))}</p>` : "");
       list.querySelectorAll("[data-p]").forEach((b) => b.addEventListener("click", () => { const mk = markers[+b.dataset.p]; m.setView(mk.getLatLng(), Math.max(m.getZoom(), 13)); mk.openPopup(); box.scrollIntoView({ behavior: "smooth", block: "center" }); }));
+      wireRoute(m, Lf, geo);
       m.on("popupopen", (ev) => { const el = ev.popup.getElement(); el && el.querySelectorAll("[data-nodate]").forEach((x) => x.addEventListener("click", () => { filter = "nodate"; })); });
       setTimeout(() => {
         m.invalidateSize();
