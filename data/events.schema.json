@@ -1,0 +1,193 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/events.schema.json",
+ "title": "JAY STEEL JEWELRY markets (data/events.json)",
+ "type": "object",
+ "required": [
+  "events"
+ ],
+ "properties": {
+  "business": {
+   "type": "string"
+  },
+  "updated": {
+   "type": "string",
+   "format": "date"
+  },
+  "timezone": {
+   "type": "string",
+   "description": "All dates/times are local to this zone (America/New_York)."
+  },
+  "links": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   }
+  },
+  "statusLegend": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "string"
+   }
+  },
+  "events": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/event"
+   }
+  },
+  "openApplications": {
+   "type": "array",
+   "description": "Applications sent with no date yet.",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string"
+     },
+     "when": {
+      "type": "string"
+     },
+     "address": {
+      "type": "string"
+     },
+     "fee": {
+      "type": "string"
+     },
+     "nextStep": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   }
+  }
+ },
+ "$defs": {
+  "event": {
+   "type": "object",
+   "required": [
+    "id",
+    "name",
+    "status",
+    "date"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": "Stable id, usually <series>-<YYYY-MM-DD>."
+    },
+    "name": {
+     "type": "string"
+    },
+    "series": {
+     "type": "string"
+    },
+    "kind": {
+     "type": "string",
+     "examples": [
+      "market",
+      "campus",
+      "festival"
+     ]
+    },
+    "status": {
+     "type": "string",
+     "enum": [
+      "approved",
+      "agreement",
+      "pending",
+      "tentative",
+      "booked",
+      "conditional",
+      "declined"
+     ],
+     "description": "approved = accepted; agreement = agreement sent; pending = applied, waiting; tentative/conditional = not final; booked = on the calendar; declined = not going (hidden in the app)."
+    },
+    "date": {
+     "type": "string",
+     "format": "date"
+    },
+    "endDate": {
+     "type": "string",
+     "format": "date",
+     "description": "Last day of a multi-day event."
+    },
+    "start": {
+     "type": "string",
+     "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "end": {
+     "type": "string",
+     "pattern": "^\\d{2}:\\d{2}$"
+    },
+    "venue": {
+     "type": "string"
+    },
+    "address": {
+     "type": "string",
+     "description": "Exact key into assets/geo.json for the map pin."
+    },
+    "fee": {
+     "type": [
+      "integer",
+      "number",
+      "string"
+     ]
+    },
+    "feeNote": {
+     "type": "string"
+    },
+    "paid": {
+     "type": "boolean"
+    },
+    "payBy": {
+     "type": "string",
+     "format": "date"
+    },
+    "payHow": {
+     "type": "string"
+    },
+    "setup": {
+     "type": "string",
+     "description": "Load-in / setup info."
+    },
+    "headsUp": {
+     "type": "string"
+    },
+    "nextStep": {
+     "type": "string"
+    },
+    "approval": {
+     "type": "string"
+    },
+    "notes": {
+     "type": "string"
+    },
+    "link": {
+     "type": "string",
+     "format": "uri"
+    },
+    "contact": {
+     "type": "object",
+     "properties": {
+      "name": {
+       "type": "string"
+      },
+      "email": {
+       "type": "string"
+      },
+      "phone": {
+       "type": "string"
+      }
+     }
+    }
+   },
+   "additionalProperties": true
+  }
+ }
+}

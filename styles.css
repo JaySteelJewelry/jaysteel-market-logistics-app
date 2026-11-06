@@ -499,3 +499,30 @@ body.menu-open{overflow:hidden}
 .tog{width:46px;height:28px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .2s}
 .tog::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--text);transition:transform .2s}
 .swrow[aria-checked="true"] .tog{background:var(--ok)}.swrow[aria-checked="true"] .tog::after{transform:translateX(18px)}
+
+/* Light theme (Settings › Appearance): steel-gray light; same token names, no gold/navy/cream */
+[data-theme="light"]{color-scheme:light;
+  --bg:#E9ECEF;--bg-rgb:233 236 239;--bg-2:#E1E5E9;--card:#F3F4F6;--card-2:#F3F4F6;--raised:#E6E9ED;--line:#CDD2D8;--line-2:#CDD2D8;--glass:rgb(233 236 239 / .9);
+  --text:#1B1E22;--muted:#565D66;--faint:#626973;--accent:#3A4048;--accent-hi:#2A2F35;--accent-rgb:58 64 72;--accent-ink:#2F353C;--on-accent:#F3F4F6;
+  --ok:#25804F;--ok-rgb:37 128 79;--bad:#B3261E;--bad-rgb:179 38 30;--warn:#9A6200;--warn-rgb:154 98 0;--hi-rgb:0 0 0;--neutral-rgb:86 93 102;
+  --st-approved:#25804F;--st-booked:#3E8E68;--st-agreement:#5A626C;--st-pending:#A86A00;--st-tentative:#B0582A;--st-conditional:#B0582A;--st-declined:#B3261E;--st-nodate:#6B727B;
+  --shadow:0 10px 24px -18px rgb(0 0 0 / .35)}
+[data-theme="light"] .leaflet-tile-pane{filter:grayscale(1) contrast(.95)}
+[data-theme="light"] .brand img,[data-theme="light"] .signoff img{filter:grayscale(1) brightness(.55)}
+[data-theme="light"] .tog::after{background:#fff}
+html.text-lg{font-size:112%}html.text-lg body{font-size:17px}
+html.calm *,html.calm *::before,html.calm *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+/* settings */
+.set-h{margin:24px 2px 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.set-note{margin:-2px 2px 8px;color:var(--muted);font-size:12.5px}
+.set{padding:2px 16px}
+.set-r,.conn{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.set>:last-child{border-bottom:0}
+.set-r>span:first-child,.conn>div{min-width:0;flex:1}
+.set-r b,.conn b{display:block;font-size:14.5px}.set-r small,.conn small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.conn code{display:block;font-size:11px;color:var(--faint);margin-top:4px;overflow-wrap:anywhere}
+.set-btns{display:flex;gap:6px}
+.seg--set{display:flex;flex:none;gap:2px;padding:3px;border-radius:12px;background:var(--raised);border:1px solid var(--line)}
+.seg--set button{border:0;background:none;color:var(--muted);font-weight:600;font-size:12.5px;padding:8px 10px;border-radius:9px;cursor:pointer;min-height:36px}
+.seg--set button[aria-checked="true"]{background:var(--accent);color:var(--on-accent)}
+@media (max-width:420px){.set-r{flex-wrap:wrap}.set-r .seg--set{width:100%}.seg--set button{flex:1}}

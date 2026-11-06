@@ -82,7 +82,7 @@
   })();
 
   /* Nov 6 2026: one dark "Steel" theme (tokens in styles.css :root); the light/dark toggle was retired. */
-  document.documentElement.setAttribute("data-theme", "dark");
+
 
   function download(name, text, type) {
     const blob = new Blob([text], { type: type || "text/plain" });
@@ -207,7 +207,7 @@
   const MK_NAV = [["#/markets", "List", "list"], ["#/opportunities", "Find markets", "opp"]];
   const HOME_NAV = [["#/", "Today", "today"], ["#/hq", "HQ", "hq"]];
   const TAB_OF = { opp: "list", links: "today", hq: "today", booth: "list" };
-  const TAB_NAME = { today: "Dashboard", list: "My Markets", map: "Market Map", cal: "Calendar", money: "Payments" };
+  const TAB_NAME = { today: "Dashboard", list: "My Markets", map: "Market Map", cal: "Calendar", money: "Payments", settings: "Settings" };
   function setTab(name) {
     name = TAB_OF[name] || name;
     document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
@@ -996,6 +996,103 @@
   }
 
 
+
+  /* ===== SETTINGS (Nov 6 2026) — saved on this device (localStorage "jsl-settings") ===== */
+  const K_SETTINGS = "jsl-settings", K_BRIEF = "jsl-brief-pending";
+  const SETS = () => Object.assign({ theme: "dark", text: "normal", motion: "full", lock: 0 }, ld(K_SETTINGS, {}));
+  function applySettings() {
+    const s = SETS(), d = document.documentElement;
+    const light = s.theme === "light" || (s.theme === "system" && window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches);
+    d.setAttribute("data-theme", light ? "light" : "dark");
+    d.classList.toggle("text-lg", s.text === "large"); d.classList.toggle("calm", s.motion === "reduce");
+    const m = document.getElementById("theme-color"); if (m) m.setAttribute("content", light ? "#E9ECEF" : "#0E0F11");
+  }
+  if (window.matchMedia) { const mq = matchMedia("(prefers-color-scheme: light)"); (mq.addEventListener ? mq.addEventListener("change", applySettings) : mq.addListener && mq.addListener(applySettings)); }
+  applySettings();
+  /* auto-lock: after N idle minutes this device forgets the unlock and shows the password screen again */
+  const K_SEEN = "jsl-last-active";
+  function lockNow() { try { localStorage.removeItem("jsl-auth"); localStorage.removeItem(HQ_KEY); } catch (_) {} location.replace(location.pathname); }
+  function idleCheck() { const n = +SETS().lock; if (!n) return; const t = +ld(K_SEEN, 0); if (t && Date.now() - t > n * 60000) lockNow(); }
+  idleCheck();
+  ["click", "keydown", "touchstart"].forEach((ev) => window.addEventListener(ev, () => sv(K_SEEN, Date.now()), { passive: true }));
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") idleCheck(); else sv(K_SEEN, Date.now()); });
+  setInterval(idleCheck, 30000); sv(K_SEEN, Date.now());
+  const APP_URL = "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/";
+  const marketsCSV = () => { const cols = ["id", "name", "status", "date", "endDate", "start", "end", "venue", "address", "fee", "paid", "payBy", "link"]; const q = (v) => { const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }; return [cols.join(",")].concat(DATA.events.map((e) => cols.map((c) => q(e[c])).join(","))).join("\n") + "\n"; };
+  function viewSettings() {
+    setTab("settings");
+    const s = SETS();
+    const seg = (key, opts) => `<div class="seg seg--set" role="radiogroup" aria-label="${esc(key)}">${opts.map(([v, t]) => `<button type="button" role="radio" data-set="${key}" data-v="${v}" aria-checked="${String(s[key]) === String(v)}">${t}</button>`).join("")}</div>`;
+    const copyRow = (t, url, what, tag) => `<div class="conn"><div><b>${esc(t)}${tag ? ` <span class="pill">${esc(tag)}</span>` : ""}</b><small>${esc(what)}</small><code>${esc(url)}</code></div><button class="btn small" type="button" data-copy="${esc(url)}">Copy</button></div>`;
+    const ro = (t, what) => `<div class="conn"><div><b>${esc(t)}</b><small>${esc(what)}</small></div><span class="pill s-approved"><i></i>Connected via Tab</span></div>`;
+    const synced = DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "—";
+    const bp = ld(K_BRIEF, null);
+    show(`<div class="pagehead"><h1>Settings</h1></div>
+      <h2 class="set-h">Appearance</h2>
+      <div class="card set">
+        <div class="set-r"><span><b>Theme</b><small>Dark steel is the default</small></span>${seg("theme", [["dark", "Dark"], ["light", "Light"], ["system", "Match phone"]])}</div>
+        <div class="set-r"><span><b>Text size</b></span>${seg("text", [["normal", "Normal"], ["large", "Large"]])}</div>
+        <div class="set-r"><span><b>Motion</b><small>Turn off animations</small></span>${seg("motion", [["full", "On"], ["reduce", "Reduced"]])}</div>
+      </div>
+      <h2 class="set-h">Notifications</h2>
+      <p class="set-note">These send your choice to Tab on the same signed channel as HQ answers. Tab confirms on the next update.</p>
+      <div id="rembox"></div>
+      <div id="briefbox"></div>
+      <h2 class="set-h">Data</h2>
+      <div class="card set">
+        <div class="set-r"><span><b>Market list updated</b><small>${esc(synced)} · HQ ${HQ.at ? "synced " + new Date(HQ.at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) : "not loaded yet"}</small></span><button class="btn small" type="button" id="set-refresh">Refresh now</button></div>
+        <div class="set-r"><span><b>Export markets</b><small>All ${DATA.events.length} markets</small></span><span class="set-btns"><button class="btn small" type="button" id="x-csv">CSV</button><button class="btn small" type="button" id="x-json">JSON</button></span></div>
+        <div class="set-r"><span><b>Export calendar</b><small>.ics file for Apple / Google Calendar</small></span><button class="btn small" type="button" id="x-ics">.ics</button></div>
+      </div>
+      <h2 class="set-h">Security</h2>
+      <div class="card set">
+        <div class="set-r"><span><b>App password</b><small>It also unlocks HQ's encrypted data, so Tab changes it on its side and re-encrypts everything.</small></span><a class="btn small" href="https://wa.me/${TAB_WA}?text=${encodeURIComponent("Tab, please change my JAY STEEL app password.")}" target="_blank" rel="noopener">Ask Tab</a></div>
+        <div class="set-r"><span><b>Auto-lock</b><small>Ask for the password after this long idle</small></span>${seg("lock", [["0", "Off"], ["5", "5 min"], ["15", "15 min"], ["60", "1 hr"]])}</div>
+        <div class="set-r"><span><b>Log out on this device</b></span><button class="btn small" type="button" id="set-logout">Log Out</button></div>
+      </div>
+      <h2 class="set-h">Connect · AI agents</h2>
+      <p class="set-note">Read-only links an assistant or another app can use. Items marked public can be read by anyone with the link. HQ data stays encrypted and isn't listed here.</p>
+      <div class="card set">
+        ${copyRow("Guide for AI agents", APP_URL + "agents.md", "What each file is, its fields and statuses, and how to read them", "public")}
+        ${copyRow("Markets feed (JSON)", APP_URL + "data/events.json", "Every market: date, status, fee, paid, venue, address", "public")}
+        ${copyRow("Markets schema", APP_URL + "data/events.schema.json", "JSON Schema for the markets feed", "public")}
+        ${copyRow("Calendar feed (.ics)", APP_URL + "data/markets.ics", "Subscribe in Apple or Google Calendar", "public")}
+        ${copyRow("Vendor opportunities (JSON)", APP_URL + "data/opportunities.json", "Leads shown under My Markets › Find markets", "public")}
+        ${copyRow("Map spots (JSON)", APP_URL + "assets/geo.json", "Pin coordinates for each market address", "public")}
+        ${ro("Google Calendar", "Markets on your calendar, kept in sync by Tab")}
+        ${ro("Discord", "Market cards in your Discord, updated by Tab")}
+        ${ro("Booker email", "Tab reads organizer email and updates statuses here")}
+      </div>
+      <h2 class="set-h">About</h2>
+      <div class="card set"><div class="set-r"><span><b>JAY STEEL · Markets &amp; HQ</b><small>Version 15 · Nov 6, 2026 · Built for JAY STEEL JEWELRY</small></span></div></div>
+      ${footer()}`);
+    app.querySelectorAll("[data-set]").forEach((b) => b.addEventListener("click", () => {
+      const cur = SETS(); cur[b.dataset.set] = b.dataset.set === "lock" ? +b.dataset.v : b.dataset.v; sv(K_SETTINGS, cur); applySettings();
+      app.querySelectorAll(`[data-set="${b.dataset.set}"]`).forEach((x) => x.setAttribute("aria-checked", String(x === b)));
+    }));
+    app.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast("Copied"); } catch (_) { prompt("Copy this link:", b.dataset.copy); } }));
+    document.getElementById("set-refresh").onclick = () => refreshAll();
+    document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
+    document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
+    document.getElementById("x-ics").onclick = () => download("jaysteel-markets.ics", ics(DATA.events.filter((e) => e.status !== "declined")), "text/calendar");
+    document.getElementById("set-logout").onclick = () => document.getElementById("logout").click();
+    withHQ(() => { paintRem(); paintBrief(); });
+  }
+  function paintBrief() {
+    const box = document.getElementById("briefbox"); if (!box || !HQ.key) return;
+    const ag = ((HQ.data["agents.json"] || {}).agents || []).find((x) => x.key === "morning-brief");
+    let P = ld(K_BRIEF, null); const live = ag ? ag.on !== false : true;
+    if (P && (Date.now() - P.at > 12 * 36e5 || (P.to === "ON") === live)) { try { localStorage.removeItem(K_BRIEF); } catch (_) {} P = null; }
+    const on = P ? P.to === "ON" : live;
+    box.innerHTML = `<button type="button" class="swrow" role="switch" aria-checked="${on}" id="briefsw"><span><b>Daily brief</b><small>${P ? (on ? "Turning on… Tab confirms on the next update" : "Turning off… Tab confirms on the next update") : on ? "WhatsApp summary at 6:30 AM" : "Off. No morning summary"}</small></span><span class="tog" aria-hidden="true"></span></button>`;
+    document.getElementById("briefsw").onclick = async (ev) => {
+      const to = on ? "OFF" : "ON"; ev.currentTarget.disabled = true;
+      try { await hqPost(["HQ automation: Daily brief \u2192 " + to], ["automation-daily-brief"]); sv(K_BRIEF, { to, at: Date.now() }); toast("✓ Sent to Tab: daily brief " + to.toLowerCase()); }
+      catch (_) { toast("Couldn't reach Tab. Try again"); }
+      paintBrief();
+    };
+  }
+
   /* ---------- router ---------- */
   function route() {
     if (!DATA) return;
@@ -1008,6 +1105,7 @@
     if (h === "calendar") return viewCalendar();
     if (h === "map" || h.startsWith("map/")) return viewMap(h.startsWith("map/") ? decodeURIComponent(h.slice(4)) : null);
     if (h === "hq" || h === "needs") { location.replace("#/"); return; }
+    if (h === "settings") return viewSettings();
     if (h === "money") { viewMoney(); withHQ(paintRem); return; }
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
     if (h === "opportunities" || h === "saved") return viewOpp();
