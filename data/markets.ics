@@ -106,6 +106,18 @@ DESCRIPTION:Status: conditional\nFee: $40\nSetup: 10×10 tent\, tables + ta
  icles parked by 9:45 AM. Space + load-in time sent the day before.
 END:VEVENT
 BEGIN:VEVENT
+UID:jbcc-riverside-fall-2026-11-08@jaysteel-markets
+DTSTAMP:20261108T000000Z
+DTSTART;TZID=America/New_York:20261108T110000
+DTEND;TZID=America/New_York:20261108T150000
+SUMMARY:Riverside Fall Market (Jacksonville Business Connections)
+LOCATION:725 Riverside Ave\, Jacksonville\, FL 32204
+DESCRIPTION:Status: booked\nPaid\nhttps://www.jacksonvillebusinessconnectio
+ ns.com/events/riverside-fall-market
+URL:https://www.jacksonvillebusinessconnections.com/events/riverside-fall-m
+ arket
+END:VEVENT
+BEGIN:VEVENT
 UID:stetson-cub-tabling-2026-11@jaysteel-markets
 DTSTAMP:20261110T000000Z
 DTSTART;TZID=America/New_York:20261110T100000
@@ -113,6 +125,15 @@ DTEND;TZID=America/New_York:20261110T140000
 SUMMARY:Stetson CUB outside-vendor tabling
 LOCATION:Stetson University\, DeLand\, FL
 DESCRIPTION:Status: pending\nFee: Not published yet (asked)
+END:VEVENT
+BEGIN:VEVENT
+UID:unf-market-day-2026-11-11@jaysteel-markets
+DTSTAMP:20261111T000000Z
+DTSTART;TZID=America/New_York:20261111T100000
+DTEND;TZID=America/New_York:20261111T130000
+SUMMARY:UNF Market Day
+LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
+DESCRIPTION:Status: approved\nPaid
 END:VEVENT
 BEGIN:VEVENT
 UID:bjs-sunday-2026-11-15@jaysteel-markets
