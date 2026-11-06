@@ -232,54 +232,148 @@
   const WAITING = ["pending", "tentative", "conditional"];
 
 
-  /* ===== DASHBOARD · Needs you (Nov 6 2026 merge): HQ's encrypted feed, decrypted on this device with the same password ===== */
-  const HQ_DATA = (window.JSL && window.JSL.hqData) || "../jaysteel-hq/data.enc.json";
-  const HQ_KEY = "jshq_key_v1";
+  /* ===== HQ inside the app (Nov 6 2026 merge) =====
+     Data: JAY STEEL HQ's encrypted files (gzip + AES-256-GCM, key = PBKDF2-SHA256(password, salt, 600k)), still built by
+     files/hq/build.py into the jaysteel-hq repo. Decrypted only on this device; the derived key (never the password) is kept
+     in this browser like HQ's "Remember this device". Answers + the Payment reminders switch go on HQ's same signed channel. */
+  const HQ_DIR = (window.JSL && window.JSL.hqDir) || "../jaysteel-hq/preview/data/";
+  const HQ_KEY = "jshq_key_v1", K_ANS = "jshq2_answers_v1", K_SENT = "jshq_answers_sent_v1", K_REM = "jshq3_rem_pending_v1";
+  const INBOX = "https://formsubmit.co/ajax/porchlight+hq@mail.tab.bot";   /* Tab's WhatsApp (TAB_WA above) is the fallback */
   const b64u = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
   const b64s = (u) => { let t = ""; new Uint8Array(u).forEach((x) => { t += String.fromCharCode(x); }); return btoa(t); };
-  let HQD = null;
-  async function hqDecrypt(blob, raw) {
+  const hex = (b) => Array.from(new Uint8Array(b)).map((x) => x.toString(16).padStart(2, "0")).join("");
+  const ld = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (_) { return d; } };
+  const sv = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const HQ = { key: null, data: {}, at: 0, showAll: false };
+  async function hqOpen(blob, raw) {
     const k = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]);
-    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64u(blob.iv) }, k, b64u(blob.ct));
+    let pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64u(blob.iv) }, k, b64u(blob.ct));
+    if (blob.z === "gzip") pt = await new Response(new Blob([pt]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
     return JSON.parse(new TextDecoder().decode(pt));
   }
+  const hqBlob = (n) => fetch(HQ_DIR + n + "?t=" + Date.now(), { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
   async function hqLoad(pw) {
-    const blob = await fetch(HQ_DATA + "?t=" + Date.now(), { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
-    let saved = null; try { saved = JSON.parse(localStorage.getItem(HQ_KEY) || "null"); } catch (_) {}
-    let raw;
+    const first = await hqBlob("needs_you.json");
+    let raw = null;
     if (pw) {
       const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveBits"]);
-      raw = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: b64u(blob.salt), iterations: blob.iter, hash: "SHA-256" }, base, 256);
-    } else if (saved && saved.salt === blob.salt) raw = b64u(saved.key);
-    else return null;
-    const data = await hqDecrypt(blob, raw);
-    if (pw) try { localStorage.setItem(HQ_KEY, JSON.stringify({ salt: blob.salt, key: b64s(raw) })); } catch (_) {}
-    return (HQD = data);
+      raw = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: b64u(first.salt), iterations: first.iter, hash: "SHA-256" }, base, 256);
+    } else { const s = ld(HQ_KEY, null); if (s && s.salt === first.salt) raw = b64u(s.key).buffer; }
+    if (!raw) return null;
+    const needs = await hqOpen(first, raw);   /* throws on a wrong key */
+    if (pw) sv(HQ_KEY, { salt: first.salt, key: b64s(raw) });
+    HQ.key = raw; HQ.data["needs_you.json"] = needs;
+    await Promise.all(["schedule.json", "agents.json", "stats.json"].map((n) => hqBlob(n).then((b) => hqOpen(b, raw)).then((d) => { HQ.data[n] = d; }).catch(() => {})));
+    HQ.at = Date.now();
+    return HQ.data;
   }
-  function paintNeeds(box, data) {
-    const f = data && data.files && data.files["needs_you.json"];
-    const items = (f && !f.missing && f.items) || [];
-    if (!items.length) { box.innerHTML = sec("Needs you") + `<div class="card"><p class="m" style="margin:0">Nothing needs you right now.</p></div>`; return; }
-    const when = (it) => it.deadline_note || (it.deadline ? "by " + new Date(it.deadline).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ }) : "");
-    box.innerHTML = sec("Needs you", `<a class="more-link" href="#/hq">All ${items.length} in HQ ›</a>`) + `<div class="needs">${items.slice(0, 4).map((it) => `<article class="need">
-        <div class="need__h"><b>${esc(it.title)}</b>${when(it) ? `<span class="pill s-due"><i></i>${esc(when(it))}</span>` : ""}</div>
-        ${it.why ? `<p class="need__why">${esc(it.why)}</p>` : ""}
-        <div class="need__acts"><a class="btn small primary" href="#/hq">Answer</a>${it.link ? `<a class="btn small" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.link_label || "Open")}</a>` : ""}</div></article>`).join("")}</div>`;
+  async function hqPost(lines, ids) {
+    const k = await crypto.subtle.importKey("raw", HQ.key, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+    const tok = hex(await crypto.subtle.sign("HMAC", k, new TextEncoder().encode("jshq-inbox-v1")));
+    const k2 = await crypto.subtle.importKey("raw", new TextEncoder().encode(tok), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+    const sig = hex(await crypto.subtle.sign("HMAC", k2, new TextEncoder().encode(lines.join("\n"))));
+    const body = { _subject: "HQ answer" + (ids.length > 1 ? "s (" + ids.length + ")" : "") + ": " + ids.join(", ").slice(0, 120), message: lines.join("\n") + "\n\n" + ids.length + " answer(s) tapped in HQ at " + new Date().toISOString() + "\nsig: " + sig, _template: "box", _captcha: "false" };
+    const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 60000);
+    try {
+      const r = await fetch(INBOX, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(body), signal: ctl.signal, keepalive: true, referrerPolicy: "origin", credentials: "omit" });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || String(j.success) !== "true") throw new Error(j.message || "HTTP " + r.status);
+    } finally { clearTimeout(tm); }
+    const S = ld(K_SENT, {}), now = Date.now(); ids.forEach((id) => { S[id] = now; }); sv(K_SENT, S);
   }
-  window.addEventListener("jshq-key", () => { if (document.getElementById("hqbox")) fillNeeds(); });
-  function fillNeeds() {
+  const waURL = (lines) => "https://wa.me/" + TAB_WA + "?text=" + encodeURIComponent(lines.join("\n"));
+  const ansLine = (id, a) => "HQ " + id + " \u2014 " + a.t + ": " + a.o.join(" + ") + (a.n ? " \u2014 " + a.n : "");
+  const sendTimers = {};
+  function queueSend(id) {
+    clearTimeout(sendTimers[id]);
+    const st = document.querySelector(`.need[data-id="${CSS.escape(id)}"] .need__st`); if (st) st.textContent = "Sending to Tab in 3 s… tap again to change";
+    sendTimers[id] = setTimeout(async () => {
+      const A = ld(K_ANS, {}), a = A[id]; if (!a || !a.o.length) return;
+      const L = [ansLine(id, a)];
+      try { await hqPost(L, [id]); delete A[id]; sv(K_ANS, A); toast("✓ Sent to Tab"); paintHQ(); }
+      catch (e) { const s2 = document.querySelector(`.need[data-id="${CSS.escape(id)}"] .need__st`); if (s2) s2.innerHTML = `Couldn't reach Tab. Saved here · <a href="${esc(waURL(L))}" target="_blank" rel="noopener">send on WhatsApp</a>`; }
+    }, 3000);
+  }
+  const dueTxt = (it) => it.deadline_note || (it.deadline ? "Due " + new Date(it.deadline).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ }) : "");
+  function needCard(it) {
+    const A = ld(K_ANS, {}), a = A[it.id] || { o: [] }, S = ld(K_SENT, {});
+    const opts = (it.answer && it.answer.options) || [], multi = !!(it.answer && it.answer.multi);
+    const sent = S[it.id] && !A[it.id] ? "✓ Sent to Tab " + new Date(S[it.id]).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: TZ }) : "";
+    return `<article class="need${a.o.length ? " need--on" : ""}" data-id="${esc(it.id)}">
+      <div class="need__h"><b>${esc(it.short_title || it.title)}</b>${it.count > 1 ? `<span class="pill">×${it.count}</span>` : ""}</div>
+      ${it.why1 || it.why ? `<p class="need__why">${esc(it.why1 || it.why)}</p>` : ""}
+      <div class="need__chips">${dueTxt(it) ? `<span class="pill${it.deadline && new Date(it.deadline) < Date.now() + 3 * 864e5 ? " s-due" : ""}"><i></i>${esc(dueTxt(it))}</span>` : ""}${it.amount ? `<span class="pill">${esc(money(it.amount))}</span>` : ""}</div>
+      ${it.action ? `<details class="need__more"><summary>Details</summary><p>${esc(it.why || "")}</p><p><b>Next:</b> ${esc(it.action)}</p></details>` : ""}
+      ${opts.length ? `<div class="need__opts" role="${multi ? "group" : "radiogroup"}" aria-label="Answer">${opts.map((o) => `<button type="button" class="opt" data-o="${esc(o)}" ${multi ? `aria-pressed="${a.o.includes(o)}"` : `role="radio" aria-checked="${a.o.includes(o)}"`}>${esc(o)}</button>`).join("")}</div>` : ""}
+      <div class="need__foot"><span class="need__st">${a.o.length ? "Answer saved on this phone" : sent}</span>${it.link ? `<a class="btn small" href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.link_label || "Open")}</a>` : ""}</div>
+    </article>`;
+  }
+  function wireNeeds(box, items) {
+    box.querySelectorAll(".need").forEach((c) => {
+      const id = c.dataset.id, it = items.find((x) => x.id === id); if (!it) return;
+      const multi = !!(it.answer && it.answer.multi);
+      c.querySelectorAll(".opt").forEach((b) => b.addEventListener("click", () => {
+        const A = ld(K_ANS, {}), cur = A[id] || { t: it.short_title || it.title, o: [] }; const o = b.dataset.o;
+        if (multi) cur.o = cur.o.includes(o) ? cur.o.filter((x) => x !== o) : cur.o.concat(o); else cur.o = cur.o[0] === o ? [] : [o];
+        cur.t = it.short_title || it.title;
+        if (cur.o.length) A[id] = cur; else delete A[id]; sv(K_ANS, A);
+        c.querySelectorAll(".opt").forEach((x) => { const on = cur.o.includes(x.dataset.o); x.setAttribute(multi ? "aria-pressed" : "aria-checked", String(on)); });
+        c.classList.toggle("need--on", cur.o.length > 0);
+        if (cur.o.length) queueSend(id); else { clearTimeout(sendTimers[id]); c.querySelector(".need__st").textContent = ""; }
+      }));
+    });
+  }
+  function paintHQ() {
     const box = document.getElementById("hqbox"); if (!box) return;
-    if (HQD) paintNeeds(box, HQD);
-    hqLoad().then((d) => {
-      if (d) { const b = document.getElementById("hqbox"); if (b) paintNeeds(b, d); return; }
-      box.innerHTML = sec("Needs you") + `<form class="card unlockhq" id="hqun"><p class="m" style="margin:0 0 10px">Enter your password once on this phone to show HQ items here.</p>
-        <input type="text" name="username" value="jaysteel-logistics" autocomplete="username" hidden>
-        <div class="row2"><input class="search" type="password" id="hqpw" autocomplete="current-password" placeholder="Password" aria-label="Password" required><button class="btn primary" type="submit">Unlock</button></div><p class="m warn-text" id="hqerr"></p></form>`;
-      document.getElementById("hqun").addEventListener("submit", async (ev) => {
-        ev.preventDefault(); const v = document.getElementById("hqpw").value.trim();
-        try { const d2 = await hqLoad(v); if (d2) paintNeeds(document.getElementById("hqbox"), d2); } catch (_) { document.getElementById("hqerr").textContent = "That password didn't open HQ."; }
-      });
-    }).catch(() => { if (!HQD) box.innerHTML = sec("Needs you") + `<div class="card"><p class="m" style="margin:0">HQ items couldn't load. Pull down to refresh.</p></div>`; });
+    const nd = HQ.data["needs_you.json"]; const items = ((nd && nd.items) || []).filter((x) => !x.expired);
+    const shown = HQ.showAll ? items : items.slice(0, 5);
+    box.innerHTML = items.length ? sec("Needs you", `<span class="more-link">${items.length} open</span>`) + `<div class="needs">${shown.map(needCard).join("")}</div>`
+      + (items.length > 5 ? `<button class="btn full" type="button" id="needs-all">${HQ.showAll ? "Show top 5" : "Show all " + items.length}</button>` : "")
+      : sec("Needs you") + `<div class="card"><p class="m" style="margin:0">Nothing needs you right now.</p></div>`;
+    wireNeeds(box, items);
+    const all = document.getElementById("needs-all"); if (all) all.onclick = () => { HQ.showAll = !HQ.showAll; paintHQ(); };
+    const team = document.getElementById("hqteam"); if (team) team.innerHTML = teamHTML();
+  }
+  function teamHTML() {
+    const ag = (HQ.data["agents.json"] || {}).agents || [], stt = (HQ.data["stats.json"] || {}).accounts || [];
+    if (!ag.length && !stt.length) return "";
+    const dot = (h) => `<span class="hdot h-${esc(h || "none")}"></span>`;
+    return (stt.length ? sec("Followers") + `<div class="fol">${stt.map((s) => `<a class="fol__i" href="${esc(s.url || "#")}" target="_blank" rel="noopener"><small>${esc(s.platform)}</small><b>${s.followers == null ? "—" : esc(s.followers)}</b>${s.followers_delta ? `<span class="m">${s.followers_delta > 0 ? "+" : ""}${esc(s.followers_delta)} this week</span>` : ""}</a>`).join("")}</div>` : "")
+      + (ag.length ? sec("Tab's team") + `<div class="card team">${ag.map((x) => `<details class="team__r"><summary>${dot(x.health || (x.on ? "green" : "off"))}<span><b>${esc(x.name)}</b><small>${esc(x.cadence || "")}</small></span></summary><p class="m">${esc(x.what || "")}${x.health_why ? " · " + esc(x.health_why) : ""}${x.next_run ? " · next " + esc(new Date(x.next_run).toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: TZ })) : ""}</p></details>`).join("")}</div>` : "");
+  }
+  function hqUnlockForm(box, after) {
+    box.innerHTML = sec("Needs you") + `<form class="card unlockhq" id="hqun"><p class="m" style="margin:0 0 10px">Enter your password once on this phone to show HQ here.</p>
+      <input type="text" name="username" value="jaysteel-logistics" autocomplete="username" hidden>
+      <div class="row2"><input class="search" type="password" id="hqpw" autocomplete="current-password" placeholder="Password" aria-label="Password" required><button class="btn primary" type="submit">Unlock</button></div><p class="m warn-text" id="hqerr"></p></form>`;
+    document.getElementById("hqun").addEventListener("submit", async (ev) => {
+      ev.preventDefault(); const v = document.getElementById("hqpw").value.trim();
+      try { if (await hqLoad(v)) after(); } catch (_) { document.getElementById("hqerr").textContent = "That password didn't open HQ."; }
+    });
+  }
+  function withHQ(paint) {
+    if (HQ.key && Date.now() - HQ.at < 5 * 60000) { paint(); return; }
+    if (HQ.key) paint();
+    hqLoad().then((d) => { if (d) paint(); else { const b = document.getElementById("hqbox"); if (b) hqUnlockForm(b, paint); } })
+      .catch(() => { const b = document.getElementById("hqbox"); if (b && !HQ.key) b.innerHTML = sec("Needs you") + `<div class="card"><p class="m" style="margin:0">HQ couldn't load. Pull down to refresh.</p></div>`; });
+  }
+  window.addEventListener("jshq-key", () => { HQ.at = 0; if (document.getElementById("hqbox")) withHQ(paintHQ); });
+  const fillNeeds = () => withHQ(paintHQ);
+  /* Payments: HQ's Payment reminders switch (same signed channel; "turning on/off…" until the next HQ build confirms) */
+  function remState() {
+    const d = HQ.data["schedule.json"], r = d && d.reminders; const on = r ? !!r.on : ((d && d.items) || []).some((x) => x.kind === "reminder");
+    let P = ld(K_REM, null); if (P && (Date.now() - P.at > 12 * 36e5 || (P.to === "ON") === on)) { try { localStorage.removeItem(K_REM); } catch (_) {} P = null; }
+    return { on: P ? P.to === "ON" : on, pending: !!P, next: r && r.next };
+  }
+  function paintRem() {
+    const box = document.getElementById("rembox"); if (!box || !HQ.key) return;
+    const s = remState();
+    box.innerHTML = `<button type="button" class="swrow" role="switch" aria-checked="${s.on}" id="remsw"><span><b>Payment reminders</b><small>${s.pending ? (s.on ? "Turning on… Tab confirms on the next update" : "Turning off… Tab confirms on the next update") : s.on ? "WhatsApp nudge 3 days before a fee is due" + (s.next ? " · next " + esc(new Date(s.next).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ })) : "") : "Off. Tab won't nudge you before fees are due"}</small></span><span class="tog" aria-hidden="true"></span></button>`;
+    document.getElementById("remsw").onclick = async (ev) => {
+      const b = ev.currentTarget, to = s.on ? "OFF" : "ON", L = ["HQ automation: Payment reminders \u2192 " + to]; b.disabled = true;
+      try { await hqPost(L, ["automation-payment-reminders"]); sv(K_REM, { to, at: Date.now() }); toast("✓ Sent to Tab: reminders " + to.toLowerCase()); }
+      catch (_) { toast("Couldn't reach Tab. Try again"); }
+      paintRem();
+    };
   }
 
   /* ===== TODAY: next-market countdown hero ===== */
@@ -334,8 +428,7 @@
       <a class="qk" href="#/map">${I.map}<span>Map</span></a>
       <a class="qk" href="#/opportunities">${I.bag}<span>Find markets</span></a>
       <a class="qk" href="#/links">${I.link}<span>Shop links</span></a>
-      <a class="qk" href="#/hq">${I.info}<span>Full HQ</span></a>
-    </div>` + footer();
+    </div><section id="hqteam"></section>` + footer();
     show(html);
     wireJumps();
     startClock();
@@ -549,8 +642,10 @@
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
     const dueRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
     show(`<div class="pagehead"><h1>Payments</h1></div><p class="sub">Fees to pay, what's paid, and what each market made. Sales are saved on this phone.</p>
+      <div id="rembox"></div>
       <p class="month">To pay</p>
       <div class="card pays">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
+      ${(() => { const pd = DATA.events.filter((e) => e.paid && lastDay(e) >= today); return pd.length ? `<p class="month">Paid</p><div class="card pays">${pd.map((e) => `<a class="payrow" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}</small></span><span class="payrow__d"><span class="pill s-paid"><i></i>Paid</span><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b></span></a>`).join("")}</div>` : ""; })()}
       <p class="month">All markets · totals</p>
       <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
       <div class="card"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
@@ -893,18 +988,13 @@
         + (nogeo.length ? `<p class="m" style="margin-top:6px">${nogeo.length} not on the map (no address yet): ${esc(nogeo.map((i) => i.name).join(" · "))}</p>` : "");
       list.querySelectorAll("[data-p]").forEach((b) => b.addEventListener("click", () => { const mk = markers[+b.dataset.p]; m.setView(mk.getLatLng(), Math.max(m.getZoom(), 13)); mk.openPopup(); box.scrollIntoView({ behavior: "smooth", block: "center" }); }));
       m.on("popupopen", (ev) => { const el = ev.popup.getElement(); el && el.querySelectorAll("[data-nodate]").forEach((x) => x.addEventListener("click", () => { filter = "nodate"; })); });
-      if (focusId) { const fe = byId(focusId); const g = fe && fe.address && geo[fe.address]; if (g) { const p = places.find((q) => q.items.some((i) => i.id === focusId)); if (p) { m.setView(p.ll, 13); markers[p.idx].openPopup(); } } }
-      setTimeout(() => m.invalidateSize(), 60);
+      setTimeout(() => {
+        m.invalidateSize();
+        if (focusId) { const p = places.find((q) => q.items.some((i) => i.id === focusId)); if (p) { m.setView(p.ll, 13, { animate: false }); setTimeout(() => markers[p.idx].openPopup(), 120); } }
+      }, 60);
     }).catch(() => { const l = document.getElementById("places"); if (l) l.innerHTML = `<p class="empty">The map couldn't load. Check your signal, then pull down to refresh.</p>`; });
   }
 
-  /* ===== HQ (Nov 6 2026 merge): the JAY STEEL HQ dashboard inside the app, same password, same device unlock ===== */
-  const HQ_URL = (window.JSL && window.JSL.hq) || "../jaysteel-hq/";
-  function viewHQ() {
-    setTab("hq");
-    show(`<a class="back" href="#/">‹ Dashboard</a><iframe class="hqframe" src="${esc(HQ_URL)}" title="JAY STEEL HQ" loading="lazy"></iframe>
-      <p class="m" style="text-align:center;margin-top:8px"><a href="${esc(HQ_URL)}" target="_blank" rel="noopener">Open HQ full screen ›</a></p>`);
-  }
 
   /* ---------- router ---------- */
   function route() {
@@ -917,8 +1007,8 @@
     if (h === "markets") return viewList();
     if (h === "calendar") return viewCalendar();
     if (h === "map" || h.startsWith("map/")) return viewMap(h.startsWith("map/") ? decodeURIComponent(h.slice(4)) : null);
-    if (h === "hq") return viewHQ();
-    if (h === "money") return viewMoney();
+    if (h === "hq" || h === "needs") { location.replace("#/"); return; }
+    if (h === "money") { viewMoney(); withHQ(paintRem); return; }
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
     if (h === "opportunities" || h === "saved") return viewOpp();
     if (h === "links") return viewLinks();
