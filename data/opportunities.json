@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T05:59Z",
+ "updated": "2026-11-07T13:02Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found) + Georgia campus vendor days + Atlanta / Hall County",
  "sources": [
@@ -119,9 +119,9 @@
    "state": "FL",
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 5,
+   "error": null
   },
   {
    "source": "City of Fernandina Beach",
@@ -129,9 +129,9 @@
    "state": "FL",
    "county": "Nassau",
    "url": "https://www.fbfl.us",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "Nassau County",
@@ -149,9 +149,9 @@
    "state": "FL",
    "county": "Clay",
    "url": "https://www.greencovesprings.com",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 1,
+   "error": null
   },
   {
    "source": "City of St. Augustine",
@@ -159,9 +159,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.citystaug.com",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 2,
+   "error": null
   },
   {
    "source": "City of St. Augustine Beach",
@@ -169,9 +169,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.staugbch.com",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Palatka",
@@ -189,9 +189,9 @@
    "state": "FL",
    "county": "Flagler",
    "url": "https://www.cityofflaglerbeach.com",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Bunnell",
@@ -209,9 +209,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.codb.us",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Ormond Beach",
@@ -219,9 +219,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.ormondbeach.org",
-   "ok": false,
-   "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "ok": true,
+   "items": 1,
+   "error": null
   },
   {
    "source": "City of Port Orange",
@@ -239,9 +239,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
-   "ok": false,
-   "items": 0,
-   "error": "TimeoutError: The read operation timed out"
+   "ok": true,
+   "items": 7,
+   "error": null
   },
   {
    "source": "City of DeLand",
@@ -249,9 +249,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.deland.org",
-   "ok": false,
+   "ok": true,
    "items": 0,
-   "error": "URLError: <urlopen error timed out>"
+   "error": null
   },
   {
    "source": "City of Gainesville, GA",
@@ -356,6 +356,21 @@
  ],
  "items": [
   {
+   "id": "2aec941d98dc",
+   "title": "\"St. ARTistine\" Art & Food Festival",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 06:00 PM",
+   "location": "25 W. Castillo DrSt. Augustine, FL 32084",
+   "city": "St. Augustine",
+   "county": "St. Johns",
+   "state": "FL",
+   "type": "city",
+   "source": "City of St. Augustine",
+   "url": "https://www.citystaug.com/Calendar.aspx?EID=2447",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
+  },
+  {
    "id": "fl6-f127b25408",
    "origin": "seed",
    "title": "59th Annual Sebring Arts & Crafts Festival",
@@ -374,6 +389,21 @@
    "fee": "From $125",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-07 to 2026-11-07; location: Circle Park, Historic Downtown Sebring, 100 Circle Park Drive, Sebring, FL 33870 | organizer/official page read Nov 6: https://visitsebring.com/event/sebring-arts-crafts-festival/ (\"59th Annual Sebring Arts & Crafts Festival | Visit Sebring\")"
+  },
+  {
+   "id": "d291c66d2a2d",
+   "title": "Art & Artisan Stroll",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-d2f7fa7a9c",
@@ -436,6 +466,21 @@
    "end_date": "2026-11-08",
    "category": "festival/event",
    "notes": "Unverified. FairsAndFestivals listing; venue: Barberville Pioneer Settlement; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Barberville Fall Country Jamboree will be held on November 7-8, 2026. This event will feature live music, living history demonstrations, storytelling,... | organizer/official page read Nov 6: https://www.pioneersettle"
+  },
+  {
+   "id": "63d0e1d96275",
+   "title": "Beaches Green Market",
+   "date": "2026-11-07",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-4f3b93cc36",
@@ -671,6 +716,21 @@
    "fee": "$30",
    "category": "hosted",
    "notes": "Unverified. VendorsMap listing (Hosted ); runs 2026-11-07 to 2026-11-07; location: 23700 North Buckhill Road, Howey-in-the-Hills, FL 34737"
+  },
+  {
+   "id": "32483336cc60",
+   "title": "Farmers Market",
+   "date": "2026-11-07",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3056",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-010629db44",
@@ -1314,17 +1374,17 @@
    "notes": "FairsAndFestivals listing; venue: Charlotte County Fairgrounds; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. Port Charlotte Fall Gun Show will be held on November 7-8, 2026. Come explore over 130 tables featuring a wide range... | organizer/official page read Nov 6: https://2guysshows.com/ (\"Explore 2 Guys Gun Shows - Sarasota &amp; More!\")"
   },
   {
-   "id": "4b0d89f7c5ba",
+   "id": "f4ec1312a94d",
    "title": "Right Whale Festival",
    "date": "2026-11-07",
-   "time": "10:00 AM - 06:00 PM",
-   "location": "Address: 32 N Fletcher Ave, Fernandina Beach, FL 3Fernandina Beach, FL 32034",
+   "time": "10:00 AM - 03:00 PM",
+   "location": "32 N. Fletcher AveFernandina Beach, FL 32034",
    "city": "Fernandina Beach",
    "county": "Nassau",
    "state": "FL",
-   "type": "county",
-   "source": "Nassau County",
-   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3287",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12926",
    "vendorMatch": false,
    "firstSeen": "2026-11-07"
   },
@@ -1404,6 +1464,21 @@
    "date": "2026-11-07",
    "category": "craft fair",
    "notes": "FairsAndFestivals listing; venue: Historic Downtown Sebring; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Sebring Arts and Crafts Festival will be held on November 7, 2026. It will include over 70 talented visuals and performing... | organizer/official page read Nov 6: https://visitsebring.com/event/sebring-arts-crafts-festiva"
+  },
+  {
+   "id": "02ea4d4fc018",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-07",
+   "time": "12:00 PM - 10:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3118",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-c70f53c659",
@@ -1798,6 +1873,21 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: American Legion Post 111; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Seminole Heights Sunday Morning Fall Market will be held on November 8th, 2026. You will find a wide range of fresh... | organizer/official page read Nov 6: https://www.tampabaymarkets.com/seminole-heights-sunday-market (\"Seminole Heights Sun"
   },
   {
+   "id": "844bc04837c3",
+   "title": "Super Girl Surf Festival",
+   "date": "2026-11-08",
+   "time": "12:00 PM - 08:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3119",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
+  },
+  {
    "id": "fl6-10616103be",
    "origin": "seed",
    "title": "Vero Beach Fall Art in the Park",
@@ -2128,6 +2218,21 @@
    "url": "https://gatech.campuslabs.com/engage/event/12910072",
    "vendorMatch": true,
    "firstSeen": "2026-10-21"
+  },
+  {
+   "id": "0dea433271c2",
+   "title": "Amelia Island Open-International Pétanque Tournament",
+   "date": "2026-11-13",
+   "time": "08:00 AM - 07:00 PM",
+   "location": "123 S Front StFernandina Beach, FL 32034",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Fernandina Beach",
+   "url": "https://www.fbfl.us/Calendar.aspx?EID=12928",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-4875a73b52",
@@ -2498,6 +2603,21 @@
    "firstSeen": "2026-11-03"
   },
   {
+   "id": "6d12d3dba8ed",
+   "title": "BACI'S 6TH ANNUAL WINE FESTIVAL",
+   "date": "2026-11-14",
+   "time": "12:00 PM - 04:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3537",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
+  },
+  {
    "id": "fl6-c1bb433559",
    "origin": "seed",
    "title": "Bartow Holiday Antique Market",
@@ -2535,6 +2655,21 @@
    "category": "craft fair",
    "contact_email": "mainstreetbartow@verizon.net",
    "notes": "Unverified. FairsAndFestivals listing; venue: Along Main Street Bartow; vendor types allowed: Art, Craft; organizer site/contact/fee are paywalled on that listing. Bartow Honey Bee Craft Fair will be held on November 14th, 2026. It will feature unique crafts, open car show, bee... | organizer/official page read Nov 6: https://visitcentralflorida.org/events/honey-bee-festival-craft-fair/ (\"Honey Bee Festival -"
+  },
+  {
+   "id": "ef1fe15e30b4",
+   "title": "Beaches Green Market",
+   "date": "2026-11-14",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2395",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-30a92cf132",
@@ -2838,6 +2973,51 @@
    "vendorMatch": true,
    "firstSeen": "2026-10-13",
    "date": "2026-11-14"
+  },
+  {
+   "id": "9ce945ca11c2",
+   "title": "Farmers Market",
+   "date": "2026-11-14",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3057",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
+  },
+  {
+   "id": "6732acafbd29",
+   "title": "Flamingo Follies Holiday Art Show",
+   "date": "2026-11-14",
+   "time": "12:00 AM - 11:59 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3542",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
+  },
+  {
+   "id": "1cf34da5710f",
+   "title": "Florida Key Lime Pie Festival",
+   "date": "2026-11-14",
+   "time": "10:00 AM - 06:00 PM",
+   "location": "25 W. Castillo DrSt. Augustine, FL 32084",
+   "city": "St. Augustine",
+   "county": "St. Johns",
+   "state": "FL",
+   "type": "city",
+   "source": "City of St. Augustine",
+   "url": "https://www.citystaug.com/Calendar.aspx?EID=2472",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-4324323b9b",
@@ -4623,6 +4803,36 @@
    "notes": "FairsAndFestivals listing; venue: 800 22nd St S; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. The Annual 1000 Turkey Giveaway will be held on November 21st, 2026. There will be vendors and local businesses, job fair,... | organizer/official page read Nov 6: https://www.saturdayshoppes.com/event/11-21-26/ (\"3rd Annual 1000 Turk"
   },
   {
+   "id": "1792c217cc82",
+   "title": "Beaches Green Market",
+   "date": "2026-11-21",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "321 Penman RoadJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2396",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
+  },
+  {
+   "id": "4161617ae77f",
+   "title": "Beachside Baptist Craft Fair",
+   "date": "2026-11-21",
+   "time": "08:00 AM - 01:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3535",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
+  },
+  {
    "id": "fl6-791dbaea3f",
    "origin": "seed",
    "title": "Blessed Sacrament Fall Flea Market",
@@ -4878,6 +5088,21 @@
    "fee": "$50 (from organizer page; check tier)",
    "category": "craft fair",
    "notes": "FairsAndFestivals listing; venue: Downtown; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. The Early Elf Art Market will be held on November 21-22, 2026. There will be an array of crafters from across... | organizer/official page read Nov 6: https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market (\"Nov 21-22, 2026"
+  },
+  {
+   "id": "654b71295dff",
+   "title": "Farmers Market",
+   "date": "2026-11-21",
+   "time": "07:00 AM - 12:00 PM",
+   "location": "New Smyrna Beach, FL 32168",
+   "city": "New Smyrna Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "market",
+   "source": "City of New Smyrna Beach",
+   "url": "https://cityofnsb.com/Calendar.aspx?EID=3058",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-5dde359765",
@@ -5494,6 +5719,21 @@
    "notes": "organizer/official page read Nov 6; The Christmas Market St. Augustine 2026 - St. Augustine, FL | Oldcity.com | St. Augustine 2026, holiday-themed market, vendors, November 21 – December 24, 2026. Cost: $5.00 per Adult. Questions? Call 904-770-0075. Phone ..."
   },
   {
+   "id": "d245f02bdd9c",
+   "title": "The Dance Factory Presents: Our 26th Holiday Showcase — The Nutty Nutcracker",
+   "date": "2026-11-21",
+   "time": "05:00 PM - 11:59 PM",
+   "location": "399 N. US1Ormond Beach, FL 32174",
+   "city": "Ormond Beach",
+   "county": "Volusia",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Ormond Beach",
+   "url": "https://www.ormondbeach.org/Calendar.aspx?EID=8655",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-07"
+  },
+  {
    "id": "fl6-f7f9d85189",
    "origin": "seed",
    "title": "The Early Elf Art Market",
@@ -5513,6 +5753,21 @@
    "fee": "$50 (from organizer page; check tier)",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: Downtown Tarpon Springs, along E. Court St., Tarpon Springs, FL 34689 | organizer/official page read Nov 6: https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market (\"Nov 21-22, 2026 - Early Elf Art Market - TARPON SPRINGS\")"
+  },
+  {
+   "id": "b01b2e65cf96",
+   "title": "Third Saturday Market in the Park",
+   "date": "2026-11-21",
+   "time": "10:00 AM - 02:00 PM",
+   "location": "City Hall 321 Walnut StreetGreen Cove Springs, FL 32043",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Green Cove Springs",
+   "url": "https://www.greencovesprings.com/Calendar.aspx?EID=1685",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-e92fc64479",
@@ -28442,6 +28697,23 @@
   }
  ],
  "newThisRun": [
-  "4b0d89f7c5ba"
+  "2aec941d98dc",
+  "d291c66d2a2d",
+  "63d0e1d96275",
+  "32483336cc60",
+  "f4ec1312a94d",
+  "02ea4d4fc018",
+  "844bc04837c3",
+  "0dea433271c2",
+  "6d12d3dba8ed",
+  "ef1fe15e30b4",
+  "9ce945ca11c2",
+  "6732acafbd29",
+  "1cf34da5710f",
+  "1792c217cc82",
+  "4161617ae77f",
+  "654b71295dff",
+  "d245f02bdd9c",
+  "b01b2e65cf96"
  ]
 }
