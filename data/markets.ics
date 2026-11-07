@@ -91,7 +91,7 @@ DTSTART;TZID=America/New_York:20261107T100000
 DTEND;TZID=America/New_York:20261107T160000
 SUMMARY:Park Street Market
 LOCATION:2761 Park St\, Jacksonville\, FL
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:northside-2026-11-07@jaysteel-markets
@@ -161,7 +161,7 @@ DTSTART;TZID=America/New_York:20261121T090000
 DTEND;TZID=America/New_York:20261121T150000
 SUMMARY:Park Street Market
 LOCATION:Park St\, Jacksonville\, FL 32256
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:mayport-2026-11-21@jaysteel-markets
@@ -230,7 +230,7 @@ DTSTART;TZID=America/New_York:20261205T100000
 DTEND;TZID=America/New_York:20261205T160000
 SUMMARY:Park Street Market
 LOCATION:2761 Park St\, Jacksonville\, FL
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:northside-2026-12-05@jaysteel-markets
@@ -308,7 +308,7 @@ DTSTART;TZID=America/New_York:20261219T090000
 DTEND;TZID=America/New_York:20261219T150000
 SUMMARY:Park Street Market
 LOCATION:Park St\, Jacksonville\, FL 32256
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:mayport-2026-12-19@jaysteel-markets
@@ -348,7 +348,7 @@ DTSTART;TZID=America/New_York:20270102T100000
 DTEND;TZID=America/New_York:20270102T160000
 SUMMARY:Park Street Market
 LOCATION:2761 Park St\, Jacksonville\, FL
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:green-room-2027-01-15@jaysteel-markets
@@ -366,7 +366,7 @@ DTSTART;TZID=America/New_York:20270116T090000
 DTEND;TZID=America/New_York:20270116T150000
 SUMMARY:Park Street Market
 LOCATION:Park St\, Jacksonville\, FL 32256
-DESCRIPTION:Status: booked
+DESCRIPTION:Status: tentative
 END:VEVENT
 BEGIN:VEVENT
 UID:mayport-2027-01-16@jaysteel-markets
