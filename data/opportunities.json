@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T13:02Z",
+ "updated": "2026-11-07T21:51Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found) + Georgia campus vendor days + Atlanta / Hall County",
  "sources": [
@@ -120,7 +120,7 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 5,
+   "items": 4,
    "error": null
   },
   {
@@ -240,7 +240,7 @@
    "county": "Volusia",
    "url": "https://www.cityofnsb.com",
    "ok": true,
-   "items": 7,
+   "items": 5,
    "error": null
   },
   {
@@ -391,21 +391,6 @@
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-07 to 2026-11-07; location: Circle Park, Historic Downtown Sebring, 100 Circle Park Drive, Sebring, FL 33870 | organizer/official page read Nov 6: https://visitsebring.com/event/sebring-arts-crafts-festival/ (\"59th Annual Sebring Arts & Crafts Festival | Visit Sebring\")"
   },
   {
-   "id": "d291c66d2a2d",
-   "title": "Art & Artisan Stroll",
-   "date": "2026-11-07",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3135",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-07"
-  },
-  {
    "id": "fl6-d2f7fa7a9c",
    "origin": "seed",
    "title": "Art Harvest",
@@ -466,21 +451,6 @@
    "end_date": "2026-11-08",
    "category": "festival/event",
    "notes": "Unverified. FairsAndFestivals listing; venue: Barberville Pioneer Settlement; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Barberville Fall Country Jamboree will be held on November 7-8, 2026. This event will feature live music, living history demonstrations, storytelling,... | organizer/official page read Nov 6: https://www.pioneersettle"
-  },
-  {
-   "id": "63d0e1d96275",
-   "title": "Beaches Green Market",
-   "date": "2026-11-07",
-   "time": "10:00 AM - 02:00 PM",
-   "location": "321 Penman RoadJacksonville Beach, FL 32250",
-   "city": "Jacksonville Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Jacksonville Beach",
-   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2394",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-4f3b93cc36",
@@ -716,21 +686,6 @@
    "fee": "$30",
    "category": "hosted",
    "notes": "Unverified. VendorsMap listing (Hosted ); runs 2026-11-07 to 2026-11-07; location: 23700 North Buckhill Road, Howey-in-the-Hills, FL 34737"
-  },
-  {
-   "id": "32483336cc60",
-   "title": "Farmers Market",
-   "date": "2026-11-07",
-   "time": "07:00 AM - 12:00 PM",
-   "location": "New Smyrna Beach, FL 32168",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3056",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-07"
   },
   {
    "id": "fl6-010629db44",
@@ -28696,24 +28651,5 @@
    "when": "Yearly (Apr)"
   }
  ],
- "newThisRun": [
-  "2aec941d98dc",
-  "d291c66d2a2d",
-  "63d0e1d96275",
-  "32483336cc60",
-  "f4ec1312a94d",
-  "02ea4d4fc018",
-  "844bc04837c3",
-  "0dea433271c2",
-  "6d12d3dba8ed",
-  "ef1fe15e30b4",
-  "9ce945ca11c2",
-  "6732acafbd29",
-  "1cf34da5710f",
-  "1792c217cc82",
-  "4161617ae77f",
-  "654b71295dff",
-  "d245f02bdd9c",
-  "b01b2e65cf96"
- ]
+ "newThisRun": []
 }
