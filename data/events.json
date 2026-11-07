@@ -178,12 +178,13 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2026-11-07",
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
       "address": "2761 Park St, Jacksonville, FL",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
@@ -294,13 +295,14 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2026-11-21",
       "start": "09:00",
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
       "headsUp": "Same day as Mayport Waterfront Market.",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
@@ -447,12 +449,13 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2026-12-05",
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
       "address": "2761 Park St, Jacksonville, FL",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
@@ -607,13 +610,14 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2026-12-19",
       "start": "09:00",
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
       "headsUp": "Same day as Mayport Waterfront Market.",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
@@ -695,12 +699,13 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2027-01-02",
       "start": "10:00",
       "end": "16:00",
       "venue": "Park Street Market",
       "address": "2761 Park St, Jacksonville, FL",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
@@ -723,13 +728,14 @@
       "name": "Park Street Market",
       "series": "park-street",
       "kind": "market",
-      "status": "booked",
+      "status": "tentative",
       "date": "2027-01-16",
       "start": "09:00",
       "end": "15:00",
       "venue": "Park Street Market",
       "address": "Park St, Jacksonville, FL 32256",
       "headsUp": "Same day as Mayport Waterfront Market.",
+      "nextStep": "Reminder only — not booked. Apply if you want it.",
       "paid": false
     },
     {
