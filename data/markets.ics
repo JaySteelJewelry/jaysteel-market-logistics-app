@@ -146,15 +146,6 @@ DESCRIPTION:Status: booked\nhttps://smallbizsundaymarkets.com
 URL:https://smallbizsundaymarkets.com
 END:VEVENT
 BEGIN:VEVENT
-UID:green-room-2026-11-20@jaysteel-markets
-DTSTAMP:20261120T000000Z
-DTSTART;TZID=America/New_York:20261120T160000
-DTEND;TZID=America/New_York:20261120T200000
-SUMMARY:Green Room Brewing × Pot & Knot
-LOCATION:228 Third St N\, Jacksonville Beach\, FL
-DESCRIPTION:Status: pending\nFee: $35
-END:VEVENT
-BEGIN:VEVENT
 UID:park-street-3rd-2026-11-21@jaysteel-markets
 DTSTAMP:20261121T000000Z
 DTSTART;TZID=America/New_York:20261121T090000
@@ -293,15 +284,6 @@ DESCRIPTION:Status: approved\nFee: $30 (non-resident)\, non-refundable\nSet
  up: Setup 8 AM.
 END:VEVENT
 BEGIN:VEVENT
-UID:green-room-2026-12-18@jaysteel-markets
-DTSTAMP:20261218T000000Z
-DTSTART;TZID=America/New_York:20261218T160000
-DTEND;TZID=America/New_York:20261218T200000
-SUMMARY:Green Room Brewing × Pot & Knot
-LOCATION:228 Third St N\, Jacksonville Beach\, FL
-DESCRIPTION:Status: pending\nFee: $35
-END:VEVENT
-BEGIN:VEVENT
 UID:park-street-3rd-2026-12-19@jaysteel-markets
 DTSTAMP:20261219T000000Z
 DTSTART;TZID=America/New_York:20261219T090000
@@ -349,15 +331,6 @@ DTEND;TZID=America/New_York:20270102T160000
 SUMMARY:Park Street Market
 LOCATION:2761 Park St\, Jacksonville\, FL
 DESCRIPTION:Status: tentative
-END:VEVENT
-BEGIN:VEVENT
-UID:green-room-2027-01-15@jaysteel-markets
-DTSTAMP:20270115T000000Z
-DTSTART;TZID=America/New_York:20270115T160000
-DTEND;TZID=America/New_York:20270115T200000
-SUMMARY:Green Room Brewing × Pot & Knot
-LOCATION:228 Third St N\, Jacksonville Beach\, FL
-DESCRIPTION:Status: pending\nFee: $35
 END:VEVENT
 BEGIN:VEVENT
 UID:park-street-3rd-2027-01-16@jaysteel-markets
