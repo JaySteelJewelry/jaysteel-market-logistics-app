@@ -252,19 +252,6 @@ LOCATION:10478 San Jose Blvd #4\, Jacksonville\, FL
 DESCRIPTION:Status: conditional\nFee: $35
 END:VEVENT
 BEGIN:VEVENT
-UID:putnam-2026-12-10@jaysteel-markets
-DTSTAMP:20261210T000000Z
-DTSTART;TZID=America/New_York:20261210T170000
-DTEND;TZID=America/New_York:20261210T210000
-RRULE:FREQ=DAILY;COUNT=4
-SUMMARY:Putnam's Festival of Lights
-LOCATION:East Palatka\, FL
-DESCRIPTION:Status: approved\nFee: $102.99\nSetup: Move-in Dec 7 8 AM – D
- ec 10 3 PM\; fully set up by 4 PM Dec 10\; vehicles out by 3 PM Dec 10. Bo
- oth manned all 4 nights (Thu–Sun)\, 5–9 PM. Bring own change\; no pets
- \; no refunds.
-END:VEVENT
-BEGIN:VEVENT
 UID:904-pop-up-2026-12-12@jaysteel-markets
 DTSTAMP:20261212T000000Z
 DTSTART;VALUE=DATE:20261212
