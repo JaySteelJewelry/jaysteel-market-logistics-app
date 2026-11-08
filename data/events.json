@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -280,15 +280,16 @@
       "name": "Green Room Brewing × Pot & Knot",
       "series": "green-room",
       "kind": "market",
-      "status": "pending",
+      "status": "declined",
       "date": "2026-11-20",
       "start": "16:00",
       "end": "20:00",
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet.",
-      "paid": false
+      "notes": "Cancelled by organizer Tara Nov 7 2026 (all Green Room markets ended); nothing paid",
+      "paid": false,
+      "showInToPay": false
     },
     {
       "id": "park-street-3rd-2026-11-21",
@@ -595,15 +596,16 @@
       "name": "Green Room Brewing × Pot & Knot",
       "series": "green-room",
       "kind": "market",
-      "status": "pending",
+      "status": "declined",
       "date": "2026-12-18",
       "start": "16:00",
       "end": "20:00",
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet.",
-      "paid": false
+      "notes": "Cancelled by organizer Tara Nov 7 2026 (all Green Room markets ended); nothing paid",
+      "paid": false,
+      "showInToPay": false
     },
     {
       "id": "park-street-3rd-2026-12-19",
@@ -713,15 +715,16 @@
       "name": "Green Room Brewing × Pot & Knot",
       "series": "green-room",
       "kind": "market",
-      "status": "pending",
+      "status": "declined",
       "date": "2027-01-15",
       "start": "16:00",
       "end": "20:00",
       "venue": "Green Room Brewing",
       "address": "228 Third St N, Jacksonville Beach, FL",
       "fee": "$35",
-      "notes": "Applied, not accepted yet.",
-      "paid": false
+      "notes": "Cancelled by organizer Tara Nov 7 2026 (all Green Room markets ended); nothing paid",
+      "paid": false,
+      "showInToPay": false
     },
     {
       "id": "park-street-3rd-2027-01-16",
