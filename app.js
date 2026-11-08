@@ -207,7 +207,7 @@
   /* Nov 6 2026 IA fix (Luis: "links and tabs repeatedly are redundant"): ONE map, each thing in exactly one place.
      ☰ Dashboard · Markets · Find markets · Map · Calendar · Payments · Shop & Links · Settings · Log Out. No sub-tabs. */
   const TAB_OF = { hq: "today", booth: "list" };
-  const TAB_NAME = { today: "Dashboard", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", links: "Shop & Links", settings: "Settings" };
+  const TAB_NAME = { today: "Dashboard", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", products: "Products", links: "Shop & Links", settings: "Settings" };
   function setTab(name) {
     name = TAB_OF[name] || name;
     document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
@@ -1259,6 +1259,18 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     };
   }
 
+  /* ---------- Products (Nov 7 2026, Luis: supplier importer like ProductUpload.ai / DSers) ----------
+     Lives in products.js (+ products.css), loaded on first visit; its data is the encrypted data/products.enc.json. Revert: delete these lines. */
+  let prdLoading = null;
+  function viewProducts(h) {
+    setTab("products");
+    if (window.JSLProducts) return window.JSLProducts.render(h);
+    show('<div class="skel" aria-label="Loading products"><i></i><i></i><i></i></div>');
+    if (!prdLoading) prdLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "products.js?v=1"; s.onload = ok; s.onerror = no; document.body.appendChild(s); });
+    prdLoading.then(() => { if (location.hash.indexOf("#/products") === 0) window.JSLProducts.render(location.hash.replace(/^#\/?/, "")); })
+      .catch(() => { prdLoading = null; show('<p class="empty">Couldn\'t load Products. Check your signal, then pull down to refresh.</p>'); });
+  }
+
   /* ---------- router ---------- */
   function route() {
     if (!DATA) return;
@@ -1277,6 +1289,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     if (h === "ga-guide") return viewGaGuide();
     if (h === "opportunities" || h === "saved") return viewOpp();
     if (h === "links") return viewLinks();
+    if (h === "products" || h.startsWith("products/")) return viewProducts(h);
     viewToday();
   }
   window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
@@ -1309,7 +1322,8 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       const oTxt = o ? JSON.stringify(o) : lastOppTxt;
       const changed = txt !== lastEventsTxt || oTxt !== lastOppTxt; lastEventsTxt = txt; lastOppTxt = oTxt;
       DATA = sortEvents(JSON.parse(txt)); if (o) OPP = o; migrateSent();
-      HQ.at = 0; if (HQ.key) await hqLoad().catch(() => {});   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
+      HQ.at = 0; if (HQ.key) await hqLoad().catch(() => {});
+      if (window.JSLProducts && location.hash.indexOf("#/products") === 0) await window.JSLProducts.reload().catch(() => {});   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
       /* a quiet (automatic) refresh never redraws under a finger: skip while typing or a sheet/menu is open, or when nothing changed */
       const busyUI = document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (document.activeElement && /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName));
       if (!silent || (changed && !busyUI) || ptrPulling) { const y = window.scrollY; route(); window.scrollTo(0, y); }
