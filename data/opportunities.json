@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T13:25Z",
+ "updated": "2026-11-08T22:06Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found) + Georgia campus vendor days + Atlanta / Hall County",
  "sources": [
@@ -27723,14 +27723,5 @@
    "when": "Yearly (Apr)"
   }
  ],
- "newThisRun": [
-  "844bc04837c3",
-  "0dea433271c2",
-  "ef1fe15e30b4",
-  "1cf34da5710f",
-  "1792c217cc82",
-  "d245f02bdd9c",
-  "b01b2e65cf96",
-  "fa17132dc3d0"
- ]
+ "newThisRun": []
 }
