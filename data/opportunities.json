@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T16:14Z",
+ "updated": "2026-11-09T16:16Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -45,7 +45,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "Nassau County",
@@ -78,7 +78,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of St. Augustine",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Palatka",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Bunnell",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Port Orange",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of DeLand",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "City of Palm Coast",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 22,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "Volusia County",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 26,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 17,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 528,
    "error": null,
-   "lastOk": "2026-11-09T16:14Z"
+   "lastOk": "2026-11-09T16:16Z"
   }
  ],
  "items": [
@@ -27152,13 +27152,5 @@
    "notes": "| page read Nov 6"
   }
  ],
- "newThisRun": [
-  "0dea433271c2",
-  "ef1fe15e30b4",
-  "1cf34da5710f",
-  "1792c217cc82",
-  "d245f02bdd9c",
-  "b01b2e65cf96",
-  "fa17132dc3d0"
- ]
+ "newThisRun": []
 }
