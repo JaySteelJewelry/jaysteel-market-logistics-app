@@ -861,7 +861,7 @@
     }
     const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
     html += `<details class="panel" style="margin-top:16px"><summary>Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
-      <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + (s.items === 1 ? " item" : " items") : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
+      <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + (s.items === 1 ? " item" : " items") : "no matching events right now") + (s.stale && s.lastOk ? " · kept from last read " + esc(new Date(s.lastOk).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })) + " (site slow this scan)" : "") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
       <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Miles are rough driving estimates. Always confirm details on the organizer's page.</p></details>` + footer(oppDay());
     show(html);
     const rr = () => viewOpp();

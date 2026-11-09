@@ -67,7 +67,7 @@ NOPE = re.compile(r"\b(career|job|internship|graduate school|study abroad|grad|m
 TABLING = re.compile(r"\btabling\b|\btable\b", re.I)
 TAG = re.compile(r"<[^>]+>")
 
-def fetch(url, timeout=25, data=None, headers=None, tries=3):
+def fetch(url, timeout=30, data=None, headers=None, tries=3):
     """Browser-like GET (or POST when data is given), 3 tries with backoff; 4xx other than 429 fail at once."""
     import time, urllib.error
     last = None
@@ -292,20 +292,47 @@ def run(src):
         return src, [], f"{type(e).__name__}: {str(e)[:160]}"
 
 def main():
-    prev = {}
+    prev, prev_doc = {}, {}
     if os.path.exists(OUT):
         try:
-            for it in json.load(open(OUT)).get("items", []):
+            prev_doc = json.load(open(OUT))
+            for it in prev_doc.get("items", []):
                 prev[it["id"]] = it.get("firstSeen")
         except Exception:
             pass
+    prev_rows = {r.get("source"): r for r in prev_doc.get("sources", [])}
+    prev_items = {}
+    for it in prev_doc.get("items", []):
+        prev_items.setdefault(it.get("source"), []).append(it)
+    now_utc = datetime.now(timezone.utc)
     seed = json.load(open(SEED)) if os.path.exists(SEED) else {"items": []}
     items, report = [], []
-    with cf.ThreadPoolExecutor(12) as ex:
-        for src, got, err in ex.map(run, SOURCES):
-            report.append({"source": src[0], "type": src[3], "state": src[6], "county": src[5], "url": src[2],
-                           "ok": err is None, "items": len(got), "error": err})
-            items.extend(x for x in got if x)
+    # City/county CivicPlus sites share one host network that throttles bursts from one IP (GitHub runners saw
+    # timeouts on ~1 run in 4 since Nov 1), so they run 3 at a time; everything else runs in parallel.
+    civic = [s for s in SOURCES if s[1] == "civic"]; other = [s for s in SOURCES if s[1] != "civic"]
+    with cf.ThreadPoolExecutor(8) as ex, cf.ThreadPoolExecutor(3) as exc:
+        futs = [ex.submit(run, s) for s in other] + [exc.submit(run, s) for s in civic]
+        results = {r[0][0]: r for r in (f.result() for f in futs)}
+    for s in SOURCES:
+        src, got, err = results[s[0]]
+        row = {"source": src[0], "type": src[3], "state": src[6], "county": src[5], "url": src[2],
+               "ok": err is None, "items": len(got), "error": err}
+        if err is None:
+            row["lastOk"] = now_utc.strftime("%Y-%m-%dT%H:%MZ")
+        else:
+            # Last-good fallback: a site that didn't answer this scan keeps its last good read for up to 3 days,
+            # shown as "kept from last read" instead of a red X. Older than that, the error shows.
+            pr = prev_rows.get(src[0]) or {}
+            last = pr.get("lastOk") or (prev_doc.get("updated") if pr.get("ok") else None)
+            try:
+                age = now_utc - datetime.strptime(last, "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc) if last else None
+            except Exception:
+                age = None
+            if age is not None and age <= timedelta(days=3):
+                got = [dict(x) for x in prev_items.get(src[0], []) if x.get("date", "") >= TODAY.isoformat()]
+                row.update({"ok": True, "stale": True, "lastOk": last, "items": len(got), "error": None, "note": err})
+        report.append(row)
+        items.extend(x for x in got if x)
     now = TODAY.isoformat()
     seen, uniq = set(), []
     for it in sorted(items, key=lambda x: (x["date"], x["title"])):
