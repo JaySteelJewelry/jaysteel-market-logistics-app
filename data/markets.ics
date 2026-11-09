@@ -133,7 +133,7 @@ DTSTART;TZID=America/New_York:20261115T110000
 DTEND;TZID=America/New_York:20261115T170000
 SUMMARY:Small Business Sunday Market @ BJ's
 LOCATION:15022 Max Leggett Pkwy\, Jacksonville\, FL
-DESCRIPTION:Status: booked\nhttps://smallbizsundaymarkets.com
+DESCRIPTION:Status: tentative\nhttps://smallbizsundaymarkets.com
 URL:https://smallbizsundaymarkets.com
 END:VEVENT
 BEGIN:VEVENT
