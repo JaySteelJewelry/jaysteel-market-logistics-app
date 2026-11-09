@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-09T04:12:46Z",
+ "updated": "2026-11-09T04:12:58Z",
  "pages": [
   {
-   "slug": "bracelet-stack-set",
-   "pid": "p_feee62be",
-   "name": "5-Piece Bracelet Stack",
-   "category": "Bracelets",
-   "price_from": 11.99,
-   "thumb": "pp/bracelet-stack-set/img/1.jpg",
+   "slug": "necklace-earring-gift-set",
+   "pid": "p_f45ff8f4",
+   "name": "Necklace + Earring Gift Set",
+   "category": "Gift Sets",
+   "price_from": 12.99,
+   "thumb": "pp/necklace-earring-gift-set/img/1.jpg",
    "reel": true,
-   "built_at": "2026-11-09T04:12:41Z",
+   "built_at": "2026-11-09T04:12:54Z",
    "published_url": null,
    "published_at": null
   }
