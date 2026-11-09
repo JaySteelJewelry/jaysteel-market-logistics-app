@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T04:13:22Z",
+ "updated": "2026-11-09T04:13:47Z",
  "pages": [
   {
    "slug": "gold-figaro-chain",
@@ -14,6 +14,18 @@
    "published_at": null
   },
   {
+   "slug": "gold-rope-chain",
+   "pid": "p_45c5d767",
+   "name": "Gold Rope Chain",
+   "category": "Chains",
+   "price_from": 8.99,
+   "thumb": "pp/gold-rope-chain/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:13:05Z",
+   "published_url": null,
+   "published_at": null
+  },
+  {
    "slug": "necklace-earring-gift-set",
    "pid": "p_f45ff8f4",
    "name": "Necklace + Earring Gift Set",
@@ -22,6 +34,42 @@
    "thumb": "pp/necklace-earring-gift-set/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:12:54Z",
+   "published_url": null,
+   "published_at": null
+  },
+  {
+   "slug": "bracelet-stack-set",
+   "pid": "p_feee62be",
+   "name": "5-Piece Bracelet Stack",
+   "category": "Bracelets",
+   "price_from": 11.99,
+   "thumb": "pp/bracelet-stack-set/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:12:41Z",
+   "published_url": null,
+   "published_at": null
+  },
+  {
+   "slug": "chunky-hoop-earrings",
+   "pid": "p_837c0528",
+   "name": "Chunky Hoop Earrings",
+   "category": "Earrings",
+   "price_from": 12.99,
+   "thumb": "pp/chunky-hoop-earrings/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:12:28Z",
+   "published_url": null,
+   "published_at": null
+  },
+  {
+   "slug": "gold-cuban-chain",
+   "pid": "p_65af7586",
+   "name": "Gold Cuban Chain",
+   "category": "Chains",
+   "price_from": 9.99,
+   "thumb": "pp/gold-cuban-chain/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:11:55Z",
    "published_url": null,
    "published_at": null
   }
