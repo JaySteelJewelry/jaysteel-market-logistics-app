@@ -9,7 +9,7 @@ const STORE = "https://jaysteeljewelry.github.io/links/";
 const MARK = "https://jaysteeljewelry.github.io/assets/mark-steel.png";
 const STATE = "data/discord.json";
 const TZ = "America/New_York";
-const ICON = { approved: "✅", agreement: "📝", pending: "⏳", tentative: "❓", booked: "📌" };
+const ICON = { approved: "✅", agreement: "📝", pending: "⏳", tentative: "🔔", conditional: "❓", booked: "📌" };
 
 const data = JSON.parse(fs.readFileSync("data/events.json", "utf8"));
 const state = fs.existsSync(STATE) ? JSON.parse(fs.readFileSync(STATE, "utf8")) : {};
@@ -31,7 +31,7 @@ const due = data.events.filter((e) => e.payBy && e.payBy >= today && ["approved"
   .map((e) => `• **${d(e.payBy, { month: "short", day: "numeric" })}** — ${e.name}: ${e.fee || "fee TBD"}${e.status === "pending" ? " *(if accepted)*" : ""}`).join("\n");
 
 const count = (s) => up.filter((e) => e.status === s).length;
-const board = `✅ ${count("approved")} approved · 📝 ${count("agreement")} agreement · ⏳ ${count("pending")} pending · ❓ ${count("tentative")} tentative · 📌 ${count("booked")} on calendar`;
+const board = `✅ ${count("approved")} approved · 📝 ${count("agreement")} agreement · ⏳ ${count("pending")} pending · ❓ ${count("conditional")} conditional · 🔔 ${count("tentative")} reminders · 📌 ${count("booked")} on calendar`;
 
 const fields = [];
 if (due) fields.push({ name: "💵 To pay", value: due.slice(0, 1024) });
