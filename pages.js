@@ -38,6 +38,7 @@
       <div class="seg full prd-seg pg-seg" role="tablist" aria-label="Products sections">${b("products", "Products")}${b("review", "Review")}${b("pricing", "Pricing")}${b("orders", "Orders")}${b("research", "Research")}${b("pages", "Pages")}</div>`;
   }
   function wireHead() {
+    const on = document.querySelector('.pg-seg [aria-selected="true"]'), bar = document.querySelector(".pg-seg"); if (on && bar) { const a = on.getBoundingClientRect(), c = bar.getBoundingClientRect(); bar.scrollLeft += a.left - c.left - (bar.clientWidth - a.width) / 2; }
     document.querySelectorAll(".pg-seg [data-go]").forEach((x) => x.addEventListener("click", () => { const g = x.dataset.go; location.hash = g === "products" ? "#/products" : "#/products/" + g; }));
   }
 
