@@ -1262,8 +1262,14 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
   /* ---------- Products (Nov 7 2026, Luis: supplier importer like ProductUpload.ai / DSers) ----------
      Lives in products.js (+ products.css), loaded on first visit; its data is the encrypted data/products.enc.json. Revert: delete these lines. */
   let prdLoading = null;
+  /* Research (Nov 9 2026, Luis: "put this into my app" + "add images next to the items"): research.js + research.css, data/research.enc.json,
+     at Products → Research (#/products/research). Revert: delete the lines marked "research". */
+  let rsLoading = null;   /* research */
+  const rsLoad = () => rsLoading || (rsLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "research.js?v=1"; s.onload = ok; s.onerror = () => { rsLoading = null; no(); }; document.body.appendChild(s); }));   /* research */
   function viewProducts(h) {
     setTab("products");
+    if (h.indexOf("products/research") === 0) { if (window.JSLResearch) return window.JSLResearch.render(h); show('<div class="skel" aria-label="Loading research"><i></i><i></i><i></i></div>'); return rsLoad().then(() => { if (location.hash.indexOf("#/products/research") === 0) window.JSLResearch.render(h); }).catch(() => show('<p class="empty">Couldn\'t load Research. Check your signal, then pull down to refresh.</p>')); }   /* research */
+    rsLoad().catch(() => {});   /* research: adds the Research button to the Products bar */
     if (window.JSLProducts) return window.JSLProducts.render(h);
     show('<div class="skel" aria-label="Loading products"><i></i><i></i><i></i></div>');
     if (!prdLoading) prdLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "products.js?v=1"; s.onload = ok; s.onerror = no; document.body.appendChild(s); });
@@ -1323,7 +1329,8 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       const changed = txt !== lastEventsTxt || oTxt !== lastOppTxt; lastEventsTxt = txt; lastOppTxt = oTxt;
       DATA = sortEvents(JSON.parse(txt)); if (o) OPP = o; migrateSent();
       HQ.at = 0; if (HQ.key) await hqLoad().catch(() => {});
-      if (window.JSLProducts && location.hash.indexOf("#/products") === 0) await window.JSLProducts.reload().catch(() => {});   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
+      if (window.JSLProducts && location.hash.indexOf("#/products") === 0) await window.JSLProducts.reload().catch(() => {});
+      if (window.JSLResearch && location.hash.indexOf("#/products/research") === 0) await window.JSLResearch.reload().catch(() => {});   /* research */   /* fresh HQ asks too; auto-clear re-runs as screens re-render */
       /* a quiet (automatic) refresh never redraws under a finger: skip while typing or a sheet/menu is open, or when nothing changed */
       const busyUI = document.body.classList.contains("sheet-open") || document.body.classList.contains("menu-open") || (document.activeElement && /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName));
       if (!silent || (changed && !busyUI) || ptrPulling) { const y = window.scrollY; route(); window.scrollTo(0, y); }
