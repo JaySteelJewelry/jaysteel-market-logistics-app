@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-09T04:19:47Z",
+ "updated": "2026-11-09T04:19:54Z",
  "pages": [
+  {
+   "slug": "bracelet-stack-set",
+   "pid": "p_feee62be",
+   "name": "5-Piece Bracelet Stack",
+   "category": "Bracelets",
+   "price_from": 11.99,
+   "thumb": "pp/bracelet-stack-set/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:19:54Z",
+   "published_url": null,
+   "published_at": null
+  },
   {
    "slug": "chunky-hoop-earrings",
    "pid": "p_837c0528",
@@ -58,18 +70,6 @@
    "thumb": "pp/necklace-earring-gift-set/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:12:54Z",
-   "published_url": null,
-   "published_at": null
-  },
-  {
-   "slug": "bracelet-stack-set",
-   "pid": "p_feee62be",
-   "name": "5-Piece Bracelet Stack",
-   "category": "Bracelets",
-   "price_from": 11.99,
-   "thumb": "pp/bracelet-stack-set/img/1.jpg",
-   "reel": true,
-   "built_at": "2026-11-09T04:12:41Z",
    "published_url": null,
    "published_at": null
   }
