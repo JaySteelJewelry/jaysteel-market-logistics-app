@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-09T04:20:01Z",
+ "updated": "2026-11-09T04:20:08Z",
  "pages": [
+  {
+   "slug": "gold-rope-chain",
+   "pid": "p_45c5d767",
+   "name": "Gold Rope Chain",
+   "category": "Chains",
+   "price_from": 8.99,
+   "thumb": "pp/gold-rope-chain/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:20:08Z",
+   "published_url": null,
+   "published_at": null
+  },
   {
    "slug": "necklace-earring-gift-set",
    "pid": "p_f45ff8f4",
@@ -58,18 +70,6 @@
    "thumb": "pp/gold-figaro-chain/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:13:18Z",
-   "published_url": null,
-   "published_at": null
-  },
-  {
-   "slug": "gold-rope-chain",
-   "pid": "p_45c5d767",
-   "name": "Gold Rope Chain",
-   "category": "Chains",
-   "price_from": 8.99,
-   "thumb": "pp/gold-rope-chain/img/1.jpg",
-   "reel": true,
-   "built_at": "2026-11-09T04:13:05Z",
    "published_url": null,
    "published_at": null
   }
