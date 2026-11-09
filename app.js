@@ -1269,7 +1269,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
   /* Product pages (Nov 9 2026, Luis: "generate real product sites with any product link i paste"): pages.js + pages.css, pp/<slug>/ previews,
      at Products → Pages (#/products/pages, #/products/page/<slug>). Revert: delete the lines marked "pages". */
   let pgLoading = null;   /* pages */
-  const pgLoad = () => pgLoading || (pgLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "pages.js?v=1"; s.onload = ok; s.onerror = () => { pgLoading = null; no(); }; document.body.appendChild(s); }));   /* pages */
+  const pgLoad = () => pgLoading || (pgLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "pages.js?v=2"; s.onload = ok; s.onerror = () => { pgLoading = null; no(); }; document.body.appendChild(s); }));   /* pages */
   function viewProducts(h) {
     setTab("products");
     if (h.indexOf("products/page") === 0) { if (window.JSLPages) return window.JSLPages.render(h); show('<div class="skel" aria-label="Loading pages"><i></i><i></i><i></i></div>'); return pgLoad().then(() => { if (location.hash.indexOf("#/products/page") === 0) window.JSLPages.render(location.hash); }).catch(() => show('<p class="empty">Couldn\'t load product pages. Check your signal, then pull down to refresh.</p>')); }   /* pages */

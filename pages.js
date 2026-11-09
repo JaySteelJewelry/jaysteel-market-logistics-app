@@ -9,7 +9,7 @@
   const ROOT = (window.JSL && window.JSL.root) || "";
   const TAB_WA = "12512765320", PUB = "https://jaysteeljewelry.github.io/p/";
   const app = document.getElementById("app");
-  if (!document.getElementById("pg-css")) { const l = document.createElement("link"); l.id = "pg-css"; l.rel = "stylesheet"; l.href = ROOT + "pages.css?v=1"; document.head.appendChild(l); }
+  if (!document.getElementById("pg-css")) { const l = document.createElement("link"); l.id = "pg-css"; l.rel = "stylesheet"; l.href = ROOT + "pages.css?v=2"; document.head.appendChild(l); }
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const toast = (m) => { const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); };
   const wa = (text) => "https://wa.me/" + TAB_WA + "?text=" + encodeURIComponent(text);
@@ -35,10 +35,10 @@
   function head() {
     const b = (k, label) => `<button type="button" role="tab" data-go="${k}" aria-selected="${k === "pages"}">${label}</button>`;
     return `<div class="pagehead"><h1>Products</h1></div>
-      <div class="seg full prd-seg pg-seg" role="tablist" aria-label="Products sections">${b("products", "Products")}${b("review", "Review")}${b("pricing", "Pricing")}${b("orders", "Orders")}${b("research", "Research")}${b("pages", "Pages")}</div>`;
+      <div class="seg full prd-seg pg-seg" style="overflow-x:auto" role="tablist" aria-label="Products sections">${b("products", "Products")}${b("review", "Review")}${b("pricing", "Pricing")}${b("orders", "Orders")}${b("research", "Research")}${b("pages", "Pages")}</div>`;
   }
   function wireHead() {
-    const on = document.querySelector('.pg-seg [aria-selected="true"]'), bar = document.querySelector(".pg-seg"); if (on && bar) { const a = on.getBoundingClientRect(), c = bar.getBoundingClientRect(); bar.scrollLeft += a.left - c.left - (bar.clientWidth - a.width) / 2; }
+    const on = document.querySelector('.pg-seg [aria-selected="true"]'), bar = document.querySelector(".pg-seg"); const fit = () => { if (on && bar && on.isConnected) { const a = on.getBoundingClientRect(), c = bar.getBoundingClientRect(); bar.scrollLeft += a.left - c.left - (bar.clientWidth - a.width) / 2; } }; fit(); setTimeout(fit, 350);
     document.querySelectorAll(".pg-seg [data-go]").forEach((x) => x.addEventListener("click", () => { const g = x.dataset.go; location.hash = g === "products" ? "#/products" : "#/products/" + g; }));
   }
 
