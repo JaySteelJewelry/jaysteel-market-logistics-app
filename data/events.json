@@ -589,6 +589,23 @@
       "notes": "Confirmed by Jessica Nov 6; Luis will pay $30 in person on the day (Dec 12); Jessica emailed Nov 6"
     },
     {
+      "id": "holly-jolly-2026-12-13",
+      "name": "Jacksonville Holly Jolly Community Event (Jacksonville Business Connections)",
+      "series": "jbcc",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-12-13",
+      "start": "11:00",
+      "end": "15:00",
+      "venue": "Riverwalk Artist Square (under the bridge), Riverside",
+      "address": "725 Riverside Ave, Jacksonville, FL 32204",
+      "fee": 65,
+      "nextStep": "Watch for the Day of Event email (~Dec 6) with setup/arrival time.",
+      "showInToPay": false,
+      "notes": "Luis registered + paid $65 Nov 9 (Stripe receipt). Bring own tent, tables, chairs. Day-of-event email ~1 week before.",
+      "paid": true
+    },
+    {
       "id": "green-room-2026-12-18",
       "name": "Green Room Brewing × Pot & Knot",
       "series": "green-room",
