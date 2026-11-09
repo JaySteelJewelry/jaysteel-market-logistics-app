@@ -118,15 +118,6 @@ URL:https://www.jacksonvillebusinessconnections.com/events/riverside-fall-m
  arket
 END:VEVENT
 BEGIN:VEVENT
-UID:stetson-cub-tabling-2026-11@jaysteel-markets
-DTSTAMP:20261110T000000Z
-DTSTART;TZID=America/New_York:20261110T100000
-DTEND;TZID=America/New_York:20261110T140000
-SUMMARY:Stetson CUB outside-vendor tabling
-LOCATION:Stetson University\, DeLand\, FL
-DESCRIPTION:Status: pending\nFee: Not published yet (asked)
-END:VEVENT
-BEGIN:VEVENT
 UID:unf-market-day-2026-11-11@jaysteel-markets
 DTSTAMP:20261111T000000Z
 DTSTART;TZID=America/New_York:20261111T100000
