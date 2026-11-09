@@ -262,6 +262,16 @@ DESCRIPTION:Status: approved\nFee: $30 (non-resident)\, non-refundable\nSet
  up: Setup 8 AM.
 END:VEVENT
 BEGIN:VEVENT
+UID:holly-jolly-2026-12-13@jaysteel-markets
+DTSTAMP:20261213T000000Z
+DTSTART;TZID=America/New_York:20261213T110000
+DTEND;TZID=America/New_York:20261213T150000
+SUMMARY:Jacksonville Holly Jolly Community Event (Jacksonville Business Con
+ nections)
+LOCATION:725 Riverside Ave\, Jacksonville\, FL 32204
+DESCRIPTION:Status: booked\nFee: 65\nPaid
+END:VEVENT
+BEGIN:VEVENT
 UID:park-street-3rd-2026-12-19@jaysteel-markets
 DTSTAMP:20261219T000000Z
 DTSTART;TZID=America/New_York:20261219T090000
