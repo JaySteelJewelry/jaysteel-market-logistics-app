@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T16:16Z",
+ "updated": "2026-11-09T22:22Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -43,9 +43,9 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 1,
+   "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "Nassau County",
@@ -78,7 +78,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of St. Augustine",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Palatka",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Bunnell",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Port Orange",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of DeLand",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "City of Palm Coast",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 22,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "Volusia County",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 26,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 17,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 528,
    "error": null,
-   "lastOk": "2026-11-09T16:16Z"
+   "lastOk": "2026-11-09T22:22Z"
   }
  ],
  "items": [
@@ -1071,7 +1071,7 @@
    "state": "FL",
    "type": "city",
    "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3537",
+   "url": "https://fl-newsmyrnabeach2.civicplus.com/Calendar.aspx?EID=3537",
    "vendorMatch": false,
    "firstSeen": "2026-11-07"
   },
@@ -1488,7 +1488,7 @@
    "state": "FL",
    "type": "market",
    "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3057",
+   "url": "https://fl-newsmyrnabeach2.civicplus.com/Calendar.aspx?EID=3057",
    "vendorMatch": true,
    "firstSeen": "2026-11-07"
   },
@@ -1503,7 +1503,7 @@
    "state": "FL",
    "type": "city",
    "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3542",
+   "url": "https://fl-newsmyrnabeach2.civicplus.com/Calendar.aspx?EID=3542",
    "vendorMatch": false,
    "firstSeen": "2026-11-07"
   },
@@ -3019,6 +3019,21 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Tuffy's Music Box and Lounge; vendor types allowed: Music, Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. “Sanford Holiday Hump Day Market and Hangout will be held on November 18th, 2026. It will feature a group of local..."
   },
   {
+   "id": "f2d9033d0c58",
+   "title": "MGC Neo Market",
+   "date": "2026-11-19",
+   "time": "4:00 PM",
+   "location": "Turlington",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12965820",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-09"
+  },
+  {
    "id": "fl6-8aa6388e60",
    "origin": "seed",
    "title": "North Beaches Holiday Art Walk",
@@ -3318,7 +3333,7 @@
    "state": "FL",
    "type": "city",
    "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3535",
+   "url": "https://fl-newsmyrnabeach2.civicplus.com/Calendar.aspx?EID=3535",
    "vendorMatch": true,
    "firstSeen": "2026-11-07"
   },
@@ -3590,7 +3605,7 @@
    "state": "FL",
    "type": "market",
    "source": "City of New Smyrna Beach",
-   "url": "https://cityofnsb.com/Calendar.aspx?EID=3058",
+   "url": "https://fl-newsmyrnabeach2.civicplus.com/Calendar.aspx?EID=3058",
    "vendorMatch": true,
    "firstSeen": "2026-11-07"
   },
@@ -27152,5 +27167,7 @@
    "notes": "| page read Nov 6"
   }
  ],
- "newThisRun": []
+ "newThisRun": [
+  "f2d9033d0c58"
+ ]
 }
