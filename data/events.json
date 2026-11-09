@@ -1,6 +1,6 @@
 {
   "business": "JAY STEEL JEWELRY",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "timezone": "America/New_York",
   "links": {
     "store": "https://jaysteeljewelry.square.site/",
@@ -231,7 +231,7 @@
       "name": "Stetson CUB outside-vendor tabling",
       "series": "stetson-cub",
       "kind": "market",
-      "status": "pending",
+      "status": "declined",
       "date": "2026-11-10",
       "start": "10:00",
       "end": "14:00",
@@ -242,8 +242,8 @@
         "name": "Stetson CUB info desk",
         "email": "cubinfodesk@stetson.edu"
       },
-      "nextStep": "Booking email sent Nov 1 asking for weekday dates from the week of Nov 10 (Tue Nov 10 / Thu Nov 12 / Tue Nov 17 preferred), fee and required documents (COI/BTR). Date not confirmed yet; you pick dates once they reply.",
-      "notes": "Requested, not confirmed. ~110 mi from base.",
+      "nextStep": "Removed by Luis Nov 9. Nov 1 booking email to cubinfodesk@stetson.edu is still open (no reply); nothing sent to withdraw it.",
+      "notes": "Luis removed Nov 9 10:44 AM (not doing it). Requested, not confirmed. ~110 mi from base.",
       "paid": false
     },
     {
