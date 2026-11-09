@@ -18,9 +18,9 @@ TODAY = datetime.now(TZ).date()
 HORIZON = TODAY + timedelta(days=200)
 OUT = "data/opportunities.json"
 SEED = "data/opportunities_seed.json"
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
-HEADERS = {"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
-           "Accept-Language": "en-US,en;q=0.9"}
+# Nov 9 2026: an honest bot UA on purpose. A Chrome-style UA from GitHub's runners made the CivicPlus city sites time out (WAF tarpit).
+UA = "Mozilla/5.0 (compatible; JaySteelLogistics/1.0; +https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/)"
+HEADERS = {"User-Agent": UA, "Accept": "*/*", "Accept-Language": "en-US,en;q=0.9"}
 VETTED = "data/opportunities_vetted.json"
 
 # name, kind, url, type, city, county, state
