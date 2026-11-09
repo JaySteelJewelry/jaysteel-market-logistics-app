@@ -5,7 +5,8 @@ import fs from "node:fs";
 const HOOK = process.env.DISCORD_WEBHOOK_URL;
 if (!HOOK) { console.log("DISCORD_WEBHOOK_URL secret is not set — nothing posted."); process.exit(0); }
 const APP = "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/";
-const STORE = "https://jaysteeljewelry.github.io/";
+const STORE = "https://jaysteeljewelry.github.io/links/";
+const MARK = "https://jaysteeljewelry.github.io/assets/mark-steel.png";
 const STATE = "data/discord.json";
 const TZ = "America/New_York";
 const ICON = { approved: "✅", agreement: "📝", pending: "⏳", tentative: "❓", booked: "📌" };
@@ -16,7 +17,7 @@ const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", 
 const d = (iso, o) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", Object.assign({ timeZone: "UTC" }, o));
 const t12 = (t) => { if (!t) return ""; let [h, m] = t.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return m ? `${h}:${String(m).padStart(2, "0")} ${ap}` : `${h} ${ap}`; };
 const last = (e) => e.endDate || e.date;
-const up = data.events.filter((e) => last(e) >= today).sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || "")));
+const up = data.events.filter((e) => last(e) >= today && e.status !== "declined").sort((a, b) => (a.date + (a.start || "")).localeCompare(b.date + (b.start || "")));
 const link = (e) => `${APP}#/e/${encodeURIComponent(e.id)}`;
 
 const next = up.slice(0, 8).map((e) => {
@@ -39,17 +40,18 @@ fields.push({ name: "📊 Board", value: board });
 const payload = {
   username: "JAY STEEL Logistics",
   embeds: [{
-    title: "🧭 Market Logistics — next up",
+    title: "🧭 Next up — market logistics",
     url: APP,
-    color: 0xD9A84E,
+    color: 0xC9CED6,
+    thumbnail: { url: MARK },
     description: next.slice(0, 4000),
     fields,
-    footer: { text: "Updates daily 7 AM + whenever markets change · Tough as Steel, Styled to Thrill." },
+    footer: { text: "📌 START HERE · live from the logistics app · refreshes on every market change + each morning" },
     timestamp: new Date().toISOString()
   }],
   components: [{ type: 1, components: [
     { type: 2, style: 5, label: "Open logistics app", emoji: { name: "🧭" }, url: APP },
-    { type: 2, style: 5, label: "Shop JAY STEEL", emoji: { name: "🛍️" }, url: STORE }
+    { type: 2, style: 5, label: "Shop + links", emoji: { name: "🛍️" }, url: STORE }
   ] }],
   allowed_mentions: { parse: [] }
 };

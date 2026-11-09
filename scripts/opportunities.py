@@ -266,7 +266,7 @@ def post_discord(out, had_previous):
         lines.append(f"• **{d}** — [{it['title'][:80]}]({it['url']}) · {it['city']}, {it['state']}")
     body = {"username": "JAY STEEL Logistics", "allowed_mentions": {"parse": []},
             "embeds": [{"title": f"🔎 {len(new)} new vendor opportunit{'y' if len(new) == 1 else 'ies'}", "url": app,
-                        "color": 0xE91E63, "description": "\n".join(lines)[:4000],
+                        "color": 0xC9CED6, "description": "\n".join(lines)[:4000],
                         "footer": {"text": "Found by the Opportunities scan · every 6 h · tap the title to apply"}}]}
     req = urllib.request.Request(hook.split("?")[0], data=json.dumps(body).encode(), method="POST",
                                  headers={"content-type": "application/json", "User-Agent": UA})
