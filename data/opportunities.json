@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T15:47Z",
+ "updated": "2026-11-09T15:57Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found)",
  "sources": [
@@ -49,9 +49,9 @@
    "state": "FL",
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
-   "ok": true,
-   "items": 2,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Fernandina Beach",
@@ -59,9 +59,9 @@
    "state": "FL",
    "county": "Nassau",
    "url": "https://www.fbfl.us",
-   "ok": true,
-   "items": 1,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "Nassau County",
@@ -79,9 +79,9 @@
    "state": "FL",
    "county": "Clay",
    "url": "https://www.greencovesprings.com",
-   "ok": true,
-   "items": 1,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of St. Augustine",
@@ -89,9 +89,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.citystaug.com",
-   "ok": true,
-   "items": 1,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -99,9 +99,9 @@
    "state": "FL",
    "county": "St. Johns",
    "url": "https://www.staugbch.com",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Palatka",
@@ -119,9 +119,9 @@
    "state": "FL",
    "county": "Flagler",
    "url": "https://www.cityofflaglerbeach.com",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Bunnell",
@@ -139,9 +139,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.codb.us",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Ormond Beach",
@@ -149,9 +149,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.ormondbeach.org",
-   "ok": true,
-   "items": 2,
-   "error": null
+   "ok": false,
+   "items": 0,
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Port Orange",
@@ -179,9 +179,9 @@
    "state": "FL",
    "county": "Volusia",
    "url": "https://www.deland.org",
-   "ok": true,
+   "ok": false,
    "items": 0,
-   "error": null
+   "error": "URLError: <urlopen error timed out>"
   },
   {
    "source": "City of Palm Coast",
@@ -654,21 +654,6 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Downtown Wellen Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Wellen Park Holiday Night Market will be held on November 12th, 2026. It will host an array of independent artists and... | organizer/official page read Nov 6: https://wellenpark.com/night-market/ (\"Downtown Wellen Night Market - Venice, FL | Wel"
   },
   {
-   "id": "0dea433271c2",
-   "title": "Amelia Island Open-International Pétanque Tournament",
-   "date": "2026-11-13",
-   "time": "08:00 AM - 07:00 PM",
-   "location": "123 S Front StFernandina Beach, FL 32034",
-   "city": "Fernandina Beach",
-   "county": "Nassau",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Fernandina Beach",
-   "url": "https://www.fbfl.us/Calendar.aspx?EID=12928",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-08"
-  },
-  {
    "id": "fl6-4875a73b52",
    "origin": "seed",
    "title": "Christmas Market",
@@ -1091,21 +1076,6 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Along Main Street Bartow; vendor types allowed: Art, Craft; organizer site/contact/fee are paywalled on that listing. Bartow Honey Bee Craft Fair will be held on November 14th, 2026. It will feature unique crafts, open car show, bee... | organizer/official page read Nov 6: https://visitcentralflorida.org/events/honey-bee-festival-craft-fair/ (\"Honey Bee Festival -"
   },
   {
-   "id": "ef1fe15e30b4",
-   "title": "Beaches Green Market",
-   "date": "2026-11-14",
-   "time": "10:00 AM - 02:00 PM",
-   "location": "321 Penman RoadJacksonville Beach, FL 32250",
-   "city": "Jacksonville Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Jacksonville Beach",
-   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2395",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-08"
-  },
-  {
    "id": "fl6-30a92cf132",
    "origin": "seed",
    "title": "Brevard Children's Business Fair",
@@ -1482,21 +1452,6 @@
    "url": "https://cityofnsb.com/Calendar.aspx?EID=3542",
    "vendorMatch": false,
    "firstSeen": "2026-11-07"
-  },
-  {
-   "id": "1cf34da5710f",
-   "title": "Florida Key Lime Pie Festival",
-   "date": "2026-11-14",
-   "time": "10:00 AM - 06:00 PM",
-   "location": "25 W. Castillo DrSt. Augustine, FL 32084",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "city",
-   "source": "City of St. Augustine",
-   "url": "https://www.citystaug.com/Calendar.aspx?EID=2472",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-08"
   },
   {
    "id": "fl6-4324323b9b",
@@ -3269,21 +3224,6 @@
    "notes": "FairsAndFestivals listing; venue: 800 22nd St S; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. The Annual 1000 Turkey Giveaway will be held on November 21st, 2026. There will be vendors and local businesses, job fair,... | organizer/official page read Nov 6: https://www.saturdayshoppes.com/event/11-21-26/ (\"3rd Annual 1000 Turk"
   },
   {
-   "id": "1792c217cc82",
-   "title": "Beaches Green Market",
-   "date": "2026-11-21",
-   "time": "10:00 AM - 02:00 PM",
-   "location": "321 Penman RoadJacksonville Beach, FL 32250",
-   "city": "Jacksonville Beach",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Jacksonville Beach",
-   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=2396",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-08"
-  },
-  {
    "id": "4161617ae77f",
    "title": "Beachside Baptist Craft Fair",
    "date": "2026-11-21",
@@ -4200,21 +4140,6 @@
    "notes": "organizer/official page read Nov 6; The Christmas Market St. Augustine 2026 - St. Augustine, FL | Oldcity.com | St. Augustine 2026, holiday-themed market, vendors, November 21 – December 24, 2026. Cost: $5.00 per Adult. Questions? Call 904-770-0075. Phone ..."
   },
   {
-   "id": "d245f02bdd9c",
-   "title": "The Dance Factory Presents: Our 26th Holiday Showcase — The Nutty Nutcracker",
-   "date": "2026-11-21",
-   "time": "05:00 PM - 11:59 PM",
-   "location": "399 N. US1Ormond Beach, FL 32174",
-   "city": "Ormond Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Ormond Beach",
-   "url": "https://www.ormondbeach.org/Calendar.aspx?EID=8655",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-08"
-  },
-  {
    "id": "fl6-f7f9d85189",
    "origin": "seed",
    "title": "The Early Elf Art Market",
@@ -4234,21 +4159,6 @@
    "fee": "$50 (from organizer page; check tier)",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: Downtown Tarpon Springs, along E. Court St., Tarpon Springs, FL 34689 | organizer/official page read Nov 6: https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market (\"Nov 21-22, 2026 - Early Elf Art Market - TARPON SPRINGS\")"
-  },
-  {
-   "id": "b01b2e65cf96",
-   "title": "Third Saturday Market in the Park",
-   "date": "2026-11-21",
-   "time": "10:00 AM - 02:00 PM",
-   "location": "City Hall 321 Walnut StreetGreen Cove Springs, FL 32043",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "market",
-   "source": "City of Green Cove Springs",
-   "url": "https://www.greencovesprings.com/Calendar.aspx?EID=1685",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-08"
   },
   {
    "id": "fl6-e92fc64479",
@@ -4503,21 +4413,6 @@
    "date": "2026-11-22",
    "category": "holiday market/fair",
    "notes": "Unverified. FairsAndFestivals listing; venue: Lakeside Village; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Lakeside Village Holiday Makers Market will be held on November 22nd, 2026. It will host a great selection of skilled artisans... | organizer/official page read Nov 6: https://shoplakesidevillage.com/events/makers-market/ (\"Makers Market | Lakeside V"
-  },
-  {
-   "id": "fa17132dc3d0",
-   "title": "Late Night Catechism Christmas",
-   "date": "2026-11-22",
-   "time": "03:30 PM - 11:59 PM",
-   "location": "399 N. US1Ormond Beach, FL 32174",
-   "city": "Ormond Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Ormond Beach",
-   "url": "https://www.ormondbeach.org/Calendar.aspx?EID=8642",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-08"
   },
   {
    "id": "fl6-4bb11e199a",
@@ -27128,75 +27023,5 @@
    "notes": "| page read Nov 6"
   }
  ],
- "newThisRun": [
-  "2f98c75aa508",
-  "e0fce4de6038",
-  "0799dfc1899a",
-  "89625df7d461",
-  "c6fda3d14bef",
-  "040f79a3f5f0",
-  "a5f9edd5954c",
-  "be4cb6b59eca",
-  "2378fa333cee",
-  "81d7dc9574ff",
-  "446a7b765b1b",
-  "22d428ea42fe",
-  "449ac99aae58",
-  "6278bf51cb4b",
-  "b50ad3515f06",
-  "9bbb0fbfdbb7",
-  "3a74ed404bdf",
-  "f4ffd46bbdcd",
-  "e6c998dc1e04",
-  "87c2a75779ff",
-  "2f5e27cbf4ad",
-  "34402266ff3f",
-  "5f186bc08365",
-  "7977161d85c5",
-  "ce90dbab40ed",
-  "2b6cb977a5ed",
-  "18ee5d56bcce",
-  "a8f94f122432",
-  "a796e9c81396",
-  "a5561428e4e7",
-  "aa8fef88e633",
-  "79f48e23ebd6",
-  "5b0fc0ba05ef",
-  "831149156454",
-  "f25290a9bbb5",
-  "74c2e7acce69",
-  "dc846bf2fc8e",
-  "9b277a7b244b",
-  "190e92b8a389",
-  "31bba00b9b31",
-  "9ef2de925a3d",
-  "aa2678ff570a",
-  "1dc64e9db272",
-  "13308d977f86",
-  "d6575e59ebf4",
-  "37aa0d8800c2",
-  "e2295e3bc5f6",
-  "ba04ee3e7086",
-  "a4cfd0ce1bf4",
-  "d8caaccb8c7f",
-  "d71e0a3cfce4",
-  "e83e46de1498",
-  "bb9d99f0d1b0",
-  "7486821320c3",
-  "63a62472a566",
-  "f4a52f081d7d",
-  "d989da66764f",
-  "0ed463592889",
-  "0d688f3d4f74",
-  "c1f4c970f3e0",
-  "b947203231b6",
-  "86d49f5ccca3",
-  "b81997c76362",
-  "496e9ff35c00",
-  "1d8bd7ec4e53",
-  "2521f6072bca",
-  "b0b6e1d9c5dd",
-  "b7c9360598b7",
-  "32be331a5af7"
- ]
+ "newThisRun": []
 }
