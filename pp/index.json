@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-09T04:19:39Z",
+ "updated": "2026-11-09T04:19:47Z",
  "pages": [
+  {
+   "slug": "chunky-hoop-earrings",
+   "pid": "p_837c0528",
+   "name": "Chunky Hoop Earrings",
+   "category": "Earrings",
+   "price_from": 12.99,
+   "thumb": "pp/chunky-hoop-earrings/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:19:47Z",
+   "published_url": null,
+   "published_at": null
+  },
   {
    "slug": "gold-cuban-chain",
    "pid": "p_65af7586",
@@ -58,18 +70,6 @@
    "thumb": "pp/bracelet-stack-set/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:12:41Z",
-   "published_url": null,
-   "published_at": null
-  },
-  {
-   "slug": "chunky-hoop-earrings",
-   "pid": "p_837c0528",
-   "name": "Chunky Hoop Earrings",
-   "category": "Earrings",
-   "price_from": 12.99,
-   "thumb": "pp/chunky-hoop-earrings/img/1.jpg",
-   "reel": true,
-   "built_at": "2026-11-09T04:12:28Z",
    "published_url": null,
    "published_at": null
   }
