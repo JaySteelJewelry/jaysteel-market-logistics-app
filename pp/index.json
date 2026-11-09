@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-09T04:12:32Z",
+ "updated": "2026-11-09T04:12:46Z",
  "pages": [
   {
-   "slug": "chunky-hoop-earrings",
-   "pid": "p_837c0528",
-   "name": "Chunky Hoop Earrings",
-   "category": "Earrings",
-   "price_from": 12.99,
-   "thumb": "pp/chunky-hoop-earrings/img/1.jpg",
+   "slug": "bracelet-stack-set",
+   "pid": "p_feee62be",
+   "name": "5-Piece Bracelet Stack",
+   "category": "Bracelets",
+   "price_from": 11.99,
+   "thumb": "pp/bracelet-stack-set/img/1.jpg",
    "reel": true,
-   "built_at": "2026-11-09T04:12:28Z",
+   "built_at": "2026-11-09T04:12:41Z",
    "published_url": null,
    "published_at": null
   }
