@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-09T04:13:47Z",
+ "updated": "2026-11-09T04:19:39Z",
  "pages": [
+  {
+   "slug": "gold-cuban-chain",
+   "pid": "p_65af7586",
+   "name": "Gold Cuban Chain",
+   "category": "Chains",
+   "price_from": 9.99,
+   "thumb": "pp/gold-cuban-chain/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:19:39Z",
+   "published_url": null,
+   "published_at": null
+  },
   {
    "slug": "gold-figaro-chain",
    "pid": "p_2f597921",
@@ -58,18 +70,6 @@
    "thumb": "pp/chunky-hoop-earrings/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:12:28Z",
-   "published_url": null,
-   "published_at": null
-  },
-  {
-   "slug": "gold-cuban-chain",
-   "pid": "p_65af7586",
-   "name": "Gold Cuban Chain",
-   "category": "Chains",
-   "price_from": 9.99,
-   "thumb": "pp/gold-cuban-chain/img/1.jpg",
-   "reel": true,
-   "built_at": "2026-11-09T04:11:55Z",
    "published_url": null,
    "published_at": null
   }
