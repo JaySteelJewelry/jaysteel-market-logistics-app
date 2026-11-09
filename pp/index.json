@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-09T04:20:08Z",
+ "updated": "2026-11-09T04:20:16Z",
  "pages": [
+  {
+   "slug": "gold-figaro-chain",
+   "pid": "p_2f597921",
+   "name": "Gold Figaro Chain",
+   "category": "Chains",
+   "price_from": 7.99,
+   "thumb": "pp/gold-figaro-chain/img/1.jpg",
+   "reel": true,
+   "built_at": "2026-11-09T04:20:16Z",
+   "published_url": null,
+   "published_at": null
+  },
   {
    "slug": "gold-rope-chain",
    "pid": "p_45c5d767",
@@ -58,18 +70,6 @@
    "thumb": "pp/gold-cuban-chain/img/1.jpg",
    "reel": true,
    "built_at": "2026-11-09T04:19:39Z",
-   "published_url": null,
-   "published_at": null
-  },
-  {
-   "slug": "gold-figaro-chain",
-   "pid": "p_2f597921",
-   "name": "Gold Figaro Chain",
-   "category": "Chains",
-   "price_from": 7.99,
-   "thumb": "pp/gold-figaro-chain/img/1.jpg",
-   "reel": true,
-   "built_at": "2026-11-09T04:13:18Z",
    "published_url": null,
    "published_at": null
   }
