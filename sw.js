@@ -7,6 +7,7 @@ self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) =
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== "GET" || url.origin !== location.origin) return;
+  if (url.pathname.indexOf("/pp/") !== -1) return;   /* pages: product page previews (video range requests) go straight to the network */
   const isData = url.pathname.endsWith(".json") || url.pathname.endsWith(".js") || url.pathname.endsWith(".css") || url.pathname.endsWith("/") || url.pathname.endsWith(".html");
   if (isData) {
     // network first, fall back to cache (so edits show up right away, offline still works)
