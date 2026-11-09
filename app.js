@@ -702,8 +702,12 @@
     withHQ(() => { const f = document.getElementById("hqfol"); if (f) f.innerHTML = followersHTML(); });
   }
 
-  function footer() {
-    return `<p class="fine"><span class="fine__rule" aria-hidden="true"></span>Updated ${esc(DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY</p>`;
+  /* Nov 9 2026: Find markets footer shows the newest scan/vetted date (ET), not the events-file date */
+  const oppDay = () => { const t = [OPP && OPP.updated, OPP && OPP.vettedUpdated].filter(Boolean).map((s) => new Date(s.replace(/([+-]\d\d)(\d\d)$/, "$1:$2"))).filter((x) => !isNaN(x)).sort((x, y) => y - x)[0];
+    return t ? t.toLocaleDateString("en-CA", { timeZone: "America/New_York" }) : null; };
+  function footer(when) {
+    const u = when || DATA.updated;
+    return `<p class="fine"><span class="fine__rule" aria-hidden="true"></span>Updated ${esc(u ? fmt(u, { month: "short", day: "numeric", year: "numeric" }) : "")} · JAY STEEL JEWELRY</p>`;
   }
 
 
@@ -718,7 +722,9 @@
   /* Nov 6 2026: data/opportunities_vetted.json = events Tab's daily pipeline read on the organizer's own page (search 5:30, publish 5:50 AM ET).
      A vetted copy replaces the unverified row of the same event (same name + date); new ones are added. */
   function mergeVetted(d, v) {
+    if (d) { const fl = (i) => !i.state || i.state === "FL"; d.items = (d.items || []).filter(fl); d.ongoing = (d.ongoing || []).filter(fl); d.sources = (d.sources || []).filter(fl); } /* Nov 9 2026: Florida only */
     if (!v || !d) return d;
+    v = { ...v, items: (v.items || []).filter((i) => !i.state || i.state === "FL"), ongoing: (v.ongoing || []).filter((i) => !i.state || i.state === "FL") };
     d.ongoing = d.ongoing || [];
     const k = (i) => nameKey(i.title) + "|" + (i.date || "");
     const idx = new Map(); d.items.concat(d.ongoing).forEach((i) => { if (!idx.has(k(i))) idx.set(k(i), i); });
@@ -831,8 +837,7 @@
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
     let html = `<div class="pagehead"><h1>Find markets</h1><div class="seg" role="tablist" aria-label="Browse or saved">
         <button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved${nSaved ? " · " + nSaved : ""}</button></div></div>
-      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across Florida and Georgia campuses.</p>`}
-      ${oSeg === "saved" || oState === "FL" ? "" : `<a class="gaguide" href="#/ga-guide"><span>🎓</span><span><b>Georgia campus vendor days</b><small>How to apply: GA sales tax, insurance, approvals + email template</small></span><span aria-hidden="true">›</span></a>`}
+      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across Florida.</p>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
       <div class="chips" role="group" aria-label="Status">${stChips.map(([k, l]) => `<button class="chip" data-os="${k}" aria-pressed="${oStatus === k}">${l}</button>`).join("")}</div>
       <div class="qrow">${sel("ofe", "Max fee", [["", "Any fee"], ["free", "Free"], ["u25", "≤ $25"], ["u50", "≤ $50"], ["u100", "≤ $100"], ["u150", "≤ $150"], ["custom", oFeeMax != null ? "≤ $" + oFeeMax + " (custom)" : "Custom max…"], ["o100", "Over $100"], ["pct", "% of sales"], ["unknown", "Not listed"]], oFee)}${sel("oso", "Sort", [["date", "Soonest first"], ["fee", "Fee: low → high"], ["dist", "Closest first"], ["score", "Score: high → low"], ["deadline", "Deadline first"]], oSort)}</div>
@@ -841,7 +846,7 @@
         <div class="fgrid">
           ${sel("odi", "Distance", [["", "Any distance"], ["25", "Within 25 mi"], ["50", "Within 50 mi"], ["75", "Within 75 mi"], ["120", "Within 120 mi"]], oDist)}
           ${sel("omo", "Month", [["", "Any month"]].concat(months.map((m) => [m, fmt(m + "-01", { month: "long", year: "numeric" })])), oMonth)}
-          ${sel("ost", "State", [["", "All states"], ["FL", "FL"], ["GA", "GA"]], oState)}
+          
           ${sel("oco", "County", [["", "All counties"]].concat(counties.map((c) => [c, c])), oCounty)}
         </div>
         <div class="chips"><button class="chip" id="ov" aria-pressed="${oVendor}">Vendor-friendly only</button><button class="chip" id="oh" aria-pressed="${oHideApplied}">Hide applied</button>${nActive ? '<button class="chip" id="oclr">Clear filters</button>' : ""}</div>
@@ -856,8 +861,8 @@
     }
     const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
     html += `<details class="panel" style="margin-top:16px"><summary>Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
-      <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + " items" : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
-      <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Miles are rough driving estimates. Always confirm details on the organizer's page.</p></details>` + footer();
+      <ul class="ledger" style="margin-top:8px">${OPP.sources.map((s) => `<li><span>${esc(s.source)}<small>${s.ok ? (s.items ? s.items + (s.items === 1 ? " item" : " items") : "no matching events right now") : "couldn't read: " + esc((s.error || "").split(":")[0])}</small></span><b class="${s.ok ? "pos" : "neg"}">${s.ok ? "✓" : "✕"}</b><span></span></li>`).join("")}</ul>
+      <p class="fine" style="text-align:left">Refreshes every 6 hours — not live. Miles are rough driving estimates. Always confirm details on the organizer's page.</p></details>` + footer(oppDay());
     show(html);
     const rr = () => viewOpp();
     wireOppCards(app, rr);

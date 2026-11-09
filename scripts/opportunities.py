@@ -18,7 +18,10 @@ TODAY = datetime.now(TZ).date()
 HORIZON = TODAY + timedelta(days=200)
 OUT = "data/opportunities.json"
 SEED = "data/opportunities_seed.json"
-UA = "Mozilla/5.0 (compatible; JaySteelLogistics/1.0; +https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/)"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+HEADERS = {"User-Agent": UA, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
+           "Accept-Language": "en-US,en;q=0.9"}
+VETTED = "data/opportunities_vetted.json"
 
 # name, kind, url, type, city, county, state
 SOURCES = [
@@ -27,16 +30,9 @@ SOURCES = [
     ("FSCJ Events", "localist", "https://events.fscj.edu", "college", "Jacksonville", "Duval", "FL"),
     ("Stetson University (Engage)", "engage", "https://stetson.campuslabs.com/engage/events.rss", "college", "DeLand", "Volusia", "FL"),
     ("University of Florida (Engage)", "engage", "https://ufl.campuslabs.com/engage/events.rss", "college", "Gainesville", "Alachua", "FL"),
-    ("Georgia State University (Engage)", "engage", "https://gsu.campuslabs.com/engage/events.rss", "college", "Atlanta", "Fulton", "GA"),
-    ("Georgia State University Calendar", "localist", "https://calendar.gsu.edu", "college", "Atlanta", "Fulton", "GA"),
-    ("Georgia Tech (Engage)", "engage", "https://gatech.campuslabs.com/engage/events.rss", "college", "Atlanta", "Fulton", "GA"),
-    ("Kennesaw State (Engage)", "engage", "https://kennesaw.campuslabs.com/engage/events.rss", "college", "Kennesaw", "Cobb", "GA"),
-    ("Kennesaw State Calendar", "localist", "https://calendar.kennesaw.edu", "college", "Kennesaw", "Cobb", "GA"),
-    ("Agnes Scott College Calendar", "localist", "https://calendar.agnesscott.edu", "college", "Decatur", "DeKalb", "GA"),
-    ("University of North Georgia (Engage)", "engage", "https://ung.campuslabs.com/engage/events.rss", "college", "Gainesville / Oakwood", "Hall", "GA"),
     # Tried 2026-10-18 with no public feed found (add one here if they publish it):
-    # JU, Flagler College, Edward Waters, Embry-Riddle, Bethune-Cookman, Daytona State, Emory, Morehouse,
-    # Spelman, Clark Atlanta, Morris Brown, SCAD Atlanta, Atlanta Technical, Georgia Gwinnett, Brenau, Lanier Tech.
+    # JU, Flagler College, Edward Waters, Embry-Riddle, Bethune-Cookman, Daytona State.
+    # Nov 9 2026: Georgia sources removed (Luis works Florida only).
     # --- cities & counties (CivicPlus calendar RSS) ---
     ("City of Jacksonville Beach", "civic", "https://www.jacksonvillebeach.org", "city", "Jacksonville Beach", "Duval", "FL"),
     ("City of Fernandina Beach", "civic", "https://www.fbfl.us", "city", "Fernandina Beach", "Nassau", "FL"),
@@ -52,17 +48,17 @@ SOURCES = [
     ("City of Port Orange", "civic", "https://www.port-orange.org", "city", "Port Orange", "Volusia", "FL"),
     ("City of New Smyrna Beach", "civic", "https://www.cityofnsb.com", "city", "New Smyrna Beach", "Volusia", "FL"),
     ("City of DeLand", "civic", "https://www.deland.org", "city", "DeLand", "Volusia", "FL"),
-    ("City of Gainesville, GA", "civic", "https://www.gainesville.org", "city", "Gainesville", "Hall", "GA"),
-    ("Hall County, GA", "civic", "https://www.hallcounty.org", "county", "Gainesville", "Hall", "GA"),
-    ("City of Flowery Branch", "civic", "https://www.flowerybranchga.org", "city", "Flowery Branch", "Hall", "GA"),
-    ("City of Palm Coast", "civic", "https://www.palmcoast.gov", "city", "Palm Coast", "Flagler", "FL"),
-    ("Clay County", "civic", "https://www.claycountygov.com", "county", "Green Cove Springs", "Clay", "FL"),
-    ("Volusia County", "civic", "https://www.volusia.org", "county", "DeLand", "Volusia", "FL"),
-    # --- marketplaces (often block automated reads; reported if so) ---
-    ("Eventbrite: vendor events near Jacksonville", "eventbrite", "https://www.eventbrite.com/d/fl--jacksonville/vendor/", "market", "Jacksonville", "Duval", "FL"),
-    ("Eventbrite: vendor events near Daytona Beach", "eventbrite", "https://www.eventbrite.com/d/fl--daytona-beach/vendor/", "market", "Daytona Beach", "Volusia", "FL"),
-    ("Eventbrite: vendor events near Atlanta", "eventbrite", "https://www.eventbrite.com/d/ga--atlanta/vendor/", "market", "Atlanta", "Fulton", "GA"),
-    ("VendorsMap: Jacksonville", "jsonld", "https://vendorsmap.com/events/florida/jacksonville", "market", "Jacksonville", "Duval", "FL"),
+    # Nov 9 2026: Palm Coast left CivicPlus (own site: /events + /CityCalendar JSON); claycountygov.com blocks all
+    # scripts (Akamai 403), so Clay comes from the county tourism calendar; Volusia's calendar feed is eventfeed.php.
+    ("City of Palm Coast", "palmcoast", "https://www.palmcoast.gov", "city", "Palm Coast", "Flagler", "FL"),
+    ("Clay County (Explore Clay)", "tribe", "https://exploreclay.com", "county", "Green Cove Springs", "Clay", "FL"),
+    ("Volusia County", "rss", "https://www.volusia.org/resources/eventfeed.php", "county", "DeLand", "Volusia", "FL"),
+    # --- marketplaces ---
+    # Nov 9 2026: Eventbrite's search pages answer every script with a human-verification wall (405), so they are
+    # dropped here; Eventbrite events still arrive through Tab's daily vetted pipeline (web search + organizer page check).
+    ("VendorsMap: Jacksonville", "jsonld", "https://vendorsmap.com/cities/jacksonville-fl", "market", "Jacksonville", "Duval", "FL"),
+    ("VendorsMap: St. Augustine", "jsonld", "https://vendorsmap.com/cities/st-augustine", "market", "St. Augustine", "St. Johns", "FL"),
+    ("Verified by Tab (organizer pages, statewide)", "vetted", VETTED, "market", "", "", "FL"),
 ]
 
 OPP = re.compile(r"\b(vendors?|market\s?(?:day|place)?s?|marketplace|bazaar|pop[- ]?ups?|flea|craft(?:s| fair| show)?|artisans?|makers?|expo|tabling|festival|fest|holiday (?:shop|market|fair|bazaar)|small business|art (?:walk|show|fair)|first friday|christmas|tree lighting|parade|night market|block party|showcase|fair)\b", re.I)
@@ -71,10 +67,22 @@ NOPE = re.compile(r"\b(career|job|internship|graduate school|study abroad|grad|m
 TABLING = re.compile(r"\btabling\b|\btable\b", re.I)
 TAG = re.compile(r"<[^>]+>")
 
-def fetch(url, timeout=25):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
+def fetch(url, timeout=25, data=None, headers=None, tries=3):
+    """Browser-like GET (or POST when data is given), 3 tries with backoff; 4xx other than 429 fail at once."""
+    import time, urllib.error
+    last = None
+    for n in range(tries):
+        req = urllib.request.Request(url, data=data, headers={**HEADERS, **(headers or {})}, method="POST" if data is not None else "GET")
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode(r.headers.get_content_charset() or "utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code < 500 and e.code != 429: raise
+        except Exception as e:
+            last = e
+        time.sleep(2 * (n + 1))
+    raise last
 
 def clean(s):
     return re.sub(r"\s+", " ", html.unescape(TAG.sub(" ", s or ""))).strip()
@@ -195,8 +203,86 @@ def p_jsonld(src):
         if x: out.append(x)
     return out
 
+def p_rss(src):
+    """Plain RSS 2.0 calendar feed whose pubDate is the event start (Volusia's eventfeed.php)."""
+    txt = fetch(src[2])
+    if "\u00e2\u0080" in txt:  # Volusia labels its UTF-8 feed ISO-8859-1
+        txt = txt.encode("latin-1", "replace").decode("utf-8", "replace")
+    out = []
+    for blk in re.findall(r"<item>(.*?)</item>", txt, re.S):
+        g = lambda tag: (re.search(rf"<{tag}>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</{tag}>", blk, re.S) or [None, ""])[1]
+        title = clean(g("title")); desc = clean(g("description"))[:600]
+        if not title or not keep(title, desc, src[3]):
+            continue
+        try:
+            dt = parsedate_to_datetime(g("pubDate").strip()).astimezone(TZ)
+        except Exception:
+            continue
+        link = g("link").strip().replace("//about-us", "/about-us").replace("http://", "https://")
+        x = mk(src, title, dt.date(), link or src[2], None, None, desc)
+        if x: out.append(x)
+    return out
+
+def p_tribe(src):
+    """WordPress 'The Events Calendar' REST API (/wp-json/tribe/events/v1/events)."""
+    out = []
+    for page in range(1, 6):
+        j = json.loads(fetch(f"{src[2].rstrip('/')}/wp-json/tribe/events/v1/events?per_page=50&page={page}"
+                             f"&start_date={TODAY.isoformat()}&end_date={HORIZON.isoformat()}", headers={"Accept": "application/json"}))
+        for e in j.get("events", []):
+            title = clean(e.get("title")); desc = clean(e.get("description"))[:600]
+            if not keep(title, desc, src[3]):
+                continue
+            try:
+                d = datetime.fromisoformat(e["start_date"]).date()
+            except Exception:
+                continue
+            v = e.get("venue") if isinstance(e.get("venue"), dict) else {}
+            t = None if e.get("all_day") else datetime.fromisoformat(e["start_date"]).strftime("%-I:%M %p")
+            x = mk(src, title, d, e.get("url") or src[2], t, clean(v.get("venue")), desc)
+            if x:
+                if v.get("city"): x["city"] = clean(v["city"])
+                out.append(x)
+        if page >= (j.get("total_pages") or 1):
+            break
+    return out
+
+def p_palmcoast(src):
+    """City of Palm Coast's own site (left CivicPlus in 2026): the /events list page + the CityCalendar JSON."""
+    out = []
+    page = fetch(src[2] + "/events")
+    for m in re.finditer(r'<h1><a[^>]+href="([^"]+)"[^>]*>(.*?)</a></h1>\s*<strong>([A-Z][a-z]+), (\d{1,2}) (\d{4}) (\d{1,2}:\d\d [AP]M)', page):
+        href, title = m.group(1), clean(m.group(2))
+        if not keep(title, "", src[3]): continue
+        d = datetime.strptime(f"{m.group(3)} {m.group(4)} {m.group(5)}", "%B %d %Y").date()
+        x = mk(src, title, d, src[2] + href if href.startswith("/") else href, m.group(6).lstrip("0"), None, "")
+        if x: out.append(x)
+    raw = fetch(f"{src[2]}/CityCalendar/Home/CalEvent?start={TODAY.isoformat()}&end={HORIZON.isoformat()}&_showAll=true",
+                data=b'{"_showAll":true}', headers={"Accept": "application/json", "Content-Type": "application/json"})
+    cal = json.loads(raw)
+    while isinstance(cal, str): cal = json.loads(cal)
+    for e in cal or []:
+        title = clean(e.get("title")); desc = clean(e.get("body"))[:600]
+        if (e.get("raw") or {}).get("IsCityMeeting") or (e.get("raw") or {}).get("IsCancelled"): continue
+        if not keep(title, desc, src[3]): continue
+        try:
+            dt = datetime.fromisoformat(e["start"][:19])
+        except Exception:
+            continue
+        x = mk(src, title, dt.date(), src[2] + (e.get("url") or "/CityCalendar"), dt.strftime("%-I:%M %p"), clean(e.get("location")), desc)
+        if x: out.append(x)
+    return out
+
+def p_vetted(src):
+    """Row for Tab's daily vetted pipeline (data/opportunities_vetted.json, merged into Find markets by the app).
+    Counted here so the panel shows it; its items are NOT copied into opportunities.json (the app merges them)."""
+    v = json.load(open(src[2]))
+    n = sum(1 for i in (v.get("items") or []) + (v.get("ongoing") or []) if (i.get("state") or "FL") == "FL")
+    return [None] * n
+
 p_eventbrite = p_jsonld
-PARSERS = {"engage": p_engage, "localist": p_localist, "civic": p_civic, "eventbrite": p_eventbrite, "jsonld": p_jsonld}
+PARSERS = {"engage": p_engage, "localist": p_localist, "civic": p_civic, "eventbrite": p_eventbrite, "jsonld": p_jsonld,
+           "rss": p_rss, "tribe": p_tribe, "palmcoast": p_palmcoast, "vetted": p_vetted}
 
 def run(src):
     try:
@@ -219,7 +305,7 @@ def main():
         for src, got, err in ex.map(run, SOURCES):
             report.append({"source": src[0], "type": src[3], "state": src[6], "county": src[5], "url": src[2],
                            "ok": err is None, "items": len(got), "error": err})
-            items.extend(got)
+            items.extend(x for x in got if x)
     now = TODAY.isoformat()
     seen, uniq = set(), []
     for it in sorted(items, key=lambda x: (x["date"], x["title"])):
@@ -230,6 +316,8 @@ def main():
         uniq.append(it)
     ongoing = []
     for it in seed.get("items", []):
+        if (it.get("state") or "FL") != "FL":
+            continue  # Nov 9 2026: Florida only
         if it.get("date") and it["date"] < now:
             if str(it.get("id", "")).startswith(("fl6-", "ga-")) and (it.get("end_date") or it["date"]) < now:
                 continue  # Nov 2026 statewide/GA one-off dates: drop once past instead of turning ongoing
@@ -241,7 +329,7 @@ def main():
     out = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "refresh": "every 6 hours (GitHub Actions), not live",
-        "coverage": "Florida statewide (all 67 counties as found) + Georgia campus vendor days + Atlanta / Hall County",
+        "coverage": "Florida statewide (all 67 counties as found)",
         "sources": report, "items": uniq, "ongoing": ongoing, "newThisRun": new_ids,
     }
     with open(OUT, "w") as f:
