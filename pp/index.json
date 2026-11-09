@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-09T04:13:10Z",
+ "updated": "2026-11-09T04:13:22Z",
  "pages": [
   {
-   "slug": "gold-rope-chain",
-   "pid": "p_45c5d767",
-   "name": "Gold Rope Chain",
+   "slug": "gold-figaro-chain",
+   "pid": "p_2f597921",
+   "name": "Gold Figaro Chain",
    "category": "Chains",
-   "price_from": 8.99,
-   "thumb": "pp/gold-rope-chain/img/1.jpg",
+   "price_from": 7.99,
+   "thumb": "pp/gold-figaro-chain/img/1.jpg",
    "reel": true,
-   "built_at": "2026-11-09T04:13:05Z",
+   "built_at": "2026-11-09T04:13:18Z",
    "published_url": null,
    "published_at": null
   },
