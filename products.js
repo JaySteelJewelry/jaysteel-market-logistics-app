@@ -10,7 +10,7 @@
   const TAB_WA = "12512765320";
   const KEY_STORE = "jshq_key_v1", ST_KEY = "jsp.state.v1";
   const app = document.getElementById("app");
-  if (!document.getElementById("prd-css")) { const l = document.createElement("link"); l.id = "prd-css"; l.rel = "stylesheet"; l.href = ROOT + "products.css?v=1"; document.head.appendChild(l); }
+  if (!document.getElementById("prd-css")) { const l = document.createElement("link"); l.id = "prd-css"; l.rel = "stylesheet"; l.href = ROOT + "products.css?v=2"; document.head.appendChild(l); }
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const toast = (m) => { const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); };
   const b64u = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
@@ -19,6 +19,10 @@
   const usd = (n) => (n == null || isNaN(n) ? "—" : "$" + Number(n).toFixed(2));
   const wa = (text) => "https://wa.me/" + TAB_WA + "?text=" + encodeURIComponent(text);
   const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return ""; } };
+  /* photos (Nov 9 2026, Luis: "i dont have images along with items"): the variant's own supplier photo when the catalog has one, else the product's main photo */
+  const imgOf = (p, key) => { if (!p) return ""; const v = key && (p.variants || []).find((x) => ((x.options || []).join("|") || "default") === key); return (v && v.image) || (p.images && p.images[0]) || ""; };
+  const thumb = (u, cls) => `<span class="prd-thumb${cls ? " " + cls : ""}">${u ? `<img src="${esc(u)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : ""}</span>`;
+  if (app && !app.dataset.prdImgErr) { app.dataset.prdImgErr = "1"; app.addEventListener("error", (e) => { const t = e.target; if (t && t.tagName === "IMG" && t.parentNode && t.parentNode.classList && t.parentNode.classList.contains("prd-thumb")) t.remove(); }, true); }
 
   /* ---------- local state (this device) ---------- */
   const S = (() => { try { return Object.assign({ sel: {}, ov: {}, rule: {}, rules: [], useRw: {}, status: {}, dec: {}, sentDec: {}, track: {}, undo: [], hidden: {}, defRule: null }, JSON.parse(localStorage.getItem(ST_KEY) || "{}")); } catch (_) { return { sel: {}, ov: {}, rule: {}, rules: [], useRw: {}, status: {}, dec: {}, sentDec: {}, track: {}, undo: [], hidden: {}, defRule: null }; } })();
@@ -179,7 +183,12 @@
 
   /* ---------- views ---------- */
   let seg = "products", q = "", supF = "", onlySel = false, limit = 40;
-  const show = (html) => { app.innerHTML = `<div class="view prd">${html}</div>`; };
+  const show = (html) => { app.innerHTML = `<div class="view prd">${html}</div>`; fitBar(); };
+  /* sticky section bar sits right under the app's top bar; the selected tab is scrolled into view so it never hides off-screen */
+  function fitBar() {
+    const top = document.querySelector(".top"); if (top) document.documentElement.style.setProperty("--prd-top", Math.round(top.getBoundingClientRect().height) + "px");
+    requestAnimationFrame(() => { const b = document.querySelector('.prd-seg [aria-selected="true"]'); if (b) { const bar = b.parentNode; bar.scrollLeft = Math.max(0, b.offsetLeft - (bar.clientWidth - b.offsetWidth) / 2); } });
+  }
   function setTab() {
     document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
     const a = document.querySelector('.menu a[data-tab="products"]'); if (a) a.setAttribute("aria-current", "page");
@@ -192,12 +201,12 @@
     const nP = visible().length, nR = pendingChanges().length, nO = (CAT.orders || []).length;
     const b = (k, t) => `<button type="button" role="tab" data-seg="${k}" aria-selected="${seg === k}">${t}</button>`;
     return `<div class="pagehead"><h1>Products</h1></div>
+      <div class="seg full prd-seg" role="tablist" aria-label="Products sections">${b("products", "Products" + (nP ? `<i class="prd-n">${nP}</i>` : ""))}${b("review", "Review" + (nR ? `<i class="prd-n prd-n--hot">${nR}</i>` : ""))}${b("pricing", "Pricing")}${b("orders", "Orders" + (nO ? `<i class="prd-n">${nO}</i>` : ""))}</div>
       ${seg !== "products" ? "" : `<form class="card prd-import" id="pimp" autocomplete="off">
         <label for="purl"><b>Import from a supplier</b><small>Paste a store, collection or product link, or a CSV / Google Sheet link</small></label>
         <div class="prd-import__row"><input id="purl" type="url" inputmode="url" placeholder="https://supplier.com/collections/necklaces" required><button class="btn primary" type="submit">Import</button></div>
         <p class="prd-fine">Works with Shopify stores, Trendsi, NewFrescos, WooCommerce and most product pages${CAT.sources_note ? " · " + esc(CAT.sources_note) : ""}. Tab imports it and it shows up here.</p>
-      </form>`}
-      <div class="seg full prd-seg" role="tablist" aria-label="Products sections">${b("products", "Products" + (nP ? `<i class="prd-n">${nP}</i>` : ""))}${b("review", "Review" + (nR ? `<i class="prd-n prd-n--hot">${nR}</i>` : ""))}${b("pricing", "Pricing")}${b("orders", "Orders" + (nO ? `<i class="prd-n">${nO}</i>` : ""))}</div>`;
+      </form>`}`;
   }
   function wireHead() {
     if ($("pimp")) $("pimp").addEventListener("submit", (e) => { e.preventDefault(); const u = $("purl").value.trim(); if (!/^https?:\/\//i.test(u)) return toast("Paste a full link (https://…)");
@@ -214,10 +223,10 @@
     return `<div class="prd-row${S.sel[p.id] ? " is-sel" : ""}${oos ? " is-oos" : ""}">
       <label class="prd-ck"><input type="checkbox" data-sel="${esc(p.id)}"${S.sel[p.id] ? " checked" : ""} aria-label="Select ${esc(title(p))}"><span aria-hidden="true"></span></label>
       <a class="prd-row__a" href="#/products/p/${encodeURIComponent(p.id)}">
-        <span class="prd-thumb">${p.images && p.images[0] ? `<img src="${esc(p.images[0])}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}</span>
+        ${thumb(imgOf(p))}
         <span class="prd-row__t"><b>${esc(title(p))}</b>
           <small>${esc(p.source.supplier || host(p.source.url))}${opt ? " · " + esc(opt) : nv > 1 ? " · " + nv + " variants" : ""}${oos ? " · <em>out of stock</em>" : ""}${alt && alt.length ? " · " + alt.length + " other suppliers" : ""}</small>
-          <span class="prd-money"><b>${prices.length ? (lo === hi ? usd(lo) : usd(lo) + "–" + usd(hi)) : "—"}</b>${e.compare_at ? `<s>${usd(e.compare_at)}</s>` : ""}<i>cost ${usd(e.cost)}${m != null ? " · " + m + "% margin" : ""}</i></span></span>
+          <span class="prd-money"><b>${prices.length ? (lo === hi ? usd(lo) : usd(lo) + "–" + usd(hi)) : "—"}</b>${e.compare_at ? `<s>${usd(e.compare_at)}</s>` : ""}<i>cost ${usd(e.cost)}${m != null ? " · " + m + "%" : ""}</i></span></span>
         <span class="chev" aria-hidden="true">›</span></a></div>`;
   }
 
@@ -255,7 +264,7 @@
   const ruleText = (r) => (r.basis === "landed" ? "(cost + shipping)" : "cost") + " × " + r.mult + (+r.add ? " + $" + r.add : "") + (r.ending && r.ending !== "none" ? ", ends " + r.ending : "") + (r.compare === "mult" ? ", compare-at × " + r.compare_mult : r.compare === "supplier" ? ", compare-at = supplier MSRP" : ", no compare-at") + (+r.min ? ", min $" + r.min : "");
   function ruleSheet(ps, rer) {
     const cur = S.defRule || CAT.default_rule || rules()[0].id;
-    const prev = (rid) => { const r = ruleBy(rid); let n = 0; const rows = []; ps.forEach((p) => p.variants.forEach((v) => { const e = eff(p, v); const [np, nc] = priceWith(r, e.cost, shipOf(p), v.supplier_compare_at); if (np !== e.price || nc !== e.compare_at) n++; if (rows.length < 6) rows.push(`<tr><td>${esc(title(p).slice(0, 38))}${p.variants.length > 1 ? " <small>" + esc((v.options || []).join(" / ")) + "</small>" : ""}</td><td>${usd(e.cost)}</td><td>${usd(e.price)}</td><td><b>${usd(np)}</b>${nc ? `<small> / ${usd(nc)}</small>` : ""}</td></tr>`); })); return `<p class="sheet-note">${esc(ruleText(r))}</p><table class="prd-tbl"><thead><tr><th>Product</th><th>Cost</th><th>Now</th><th>New</th></tr></thead><tbody>${rows.join("")}</tbody></table><p class="prd-fine">${n} price${n === 1 ? "" : "s"} change across ${ps.length} product${ps.length === 1 ? "" : "s"}. Undo puts them back.</p>`; };
+    const prev = (rid) => { const r = ruleBy(rid); let n = 0; const rows = []; ps.forEach((p) => p.variants.forEach((v) => { const e = eff(p, v); const [np, nc] = priceWith(r, e.cost, shipOf(p), v.supplier_compare_at); if (np !== e.price || nc !== e.compare_at) n++; if (rows.length < 6) rows.push(`<tr><td><span class="prd-tcell">${thumb(imgOf(p, vk(v)), "prd-thumb--xs")}<span>${esc(title(p).slice(0, 38))}${p.variants.length > 1 ? " <small>" + esc((v.options || []).join(" / ")) + "</small>" : ""}</span></span></td><td>${usd(e.cost)}</td><td>${usd(e.price)}</td><td><b>${usd(np)}</b>${nc ? `<small> / ${usd(nc)}</small>` : ""}</td></tr>`); })); return `<p class="sheet-note">${esc(ruleText(r))}</p><table class="prd-tbl"><thead><tr><th>Product</th><th>Cost</th><th>Now</th><th>New</th></tr></thead><tbody>${rows.join("")}</tbody></table><p class="prd-fine">${n} price${n === 1 ? "" : "s"} change across ${ps.length} product${ps.length === 1 ? "" : "s"}. Undo puts them back.</p>`; };
     sheet(`<p class="eyebrow">Bulk price</p><h3>${ps.length} product${ps.length === 1 ? "" : "s"}</h3>
       <select id="rsel" aria-label="Pricing rule">${ruleOptions(cur)}</select><div id="rprev">${prev(cur)}</div>
       <div class="actions"><button class="btn" type="button" data-close>Cancel</button><button class="btn primary" id="rgo" type="button">Apply</button></div>`, (w, close) => {
@@ -291,7 +300,7 @@
     const rw = p.rewrite || {}, useRw = S.useRw[p.id] !== false && !!p.rewrite, r = ruleBy(S.rule[p.id] || p.rule);
     const alts = (CAT.alternatives || {})[p.id] || [];
     const opts = p.options || [];
-    const vrow = (v, i) => { const e = eff(p, v); const m = margin(e.price, e.cost); return `<tr${v.available === false ? ' class="oos"' : ""}><td>${opts.length ? esc((v.options || []).join(" / ")) : "—"}<small>${esc(skuOf(p, i, v))}</small></td><td>${usd(e.cost)}${v.supplier_compare_at ? `<small>MSRP ${usd(v.supplier_compare_at)}</small>` : ""}</td>
+    const vrow = (v, i) => { const e = eff(p, v); const m = margin(e.price, e.cost); return `<tr${v.available === false ? ' class="oos"' : ""}><td><span class="prd-tcell">${thumb(v.image || (p.images || [])[0], "prd-thumb--xs")}<span>${opts.length ? esc((v.options || []).join(" / ")) : "—"}<small>${esc(skuOf(p, i, v))}</small></span></span></td><td>${usd(e.cost)}${v.supplier_compare_at ? `<small>MSRP ${usd(v.supplier_compare_at)}</small>` : ""}</td>
       <td><input class="prd-in" type="number" step="0.01" min="0" inputmode="decimal" data-vp="${i}" value="${e.price != null ? e.price.toFixed(2) : ""}" aria-label="Price"></td><td><input class="prd-in" type="number" step="0.01" min="0" inputmode="decimal" data-vc="${i}" value="${e.compare_at ? e.compare_at.toFixed(2) : ""}" aria-label="Compare-at price"></td>
       <td>${v.available === false ? "Out" : v.stock != null ? v.stock : "✓"}<small>${m != null ? m + "%" : ""}</small></td></tr>`; };
     show(`<a class="back" href="#/products">‹ Products</a>
@@ -323,16 +332,24 @@
     ch.forEach((c) => { (byP[c.pid] = byP[c.pid] || []).push(c); });
     const prod = (id) => (CAT.products || []).find((p) => p.id === id);
     const line = (c) => {
-      const what = c.field === "cost" ? `Cost ${usd(c.old)} → <b>${usd(c.new)}</b>${c.proposed ? ` · price ${usd(c.proposed.old_price)} → <b>${usd(c.proposed.price)}</b>${c.proposed.compare_at ? " / " + usd(c.proposed.compare_at) : ""}` : ""}`
-        : c.field === "available" ? (c.new ? "Back in stock" : "<b>Out of stock</b> at supplier") : c.field === "stock" ? `Stock ${esc(c.old)} → <b>${esc(c.new)}</b>` : c.field === "listing" ? "<b>Supplier removed this listing</b>" : c.new === "added" ? "New variant at supplier" : "<b>Variant removed</b> at supplier";
       const pp = prod(c.pid), vl = c.vkey && c.vkey !== "default" ? c.vkey.split("|").map((x, k) => (pp && pp.options && pp.options[k] ? pp.options[k].name + " " : "") + x).join(" / ") : "";
-      return `<li class="prd-ch ${c.field === "cost" && c.new > c.old ? "up" : c.field === "cost" ? "down" : ""}"><span>${vl ? `<small>${esc(vl)}</small>` : ""}${what}<small>${esc(new Date(c.at).toLocaleDateString("en-US", { month: "short", day: "numeric" }))}</small></span>
-        <span class="prd-ch__b"><button class="btn small primary" data-ap="${esc(c.id)}" type="button">Apply</button><button class="btn small" data-ig="${esc(c.id)}" type="button">Ignore</button></span></li>`;
+      const dir = c.field === "cost" && c.new > c.old ? "up" : c.field === "cost" ? "down" : "";
+      const L = (k, v) => `<p class="prd-ch__l"><span>${k}</span><span>${v}</span></p>`;
+      let rows = "";
+      if (c.field === "cost") {
+        rows = L("Cost", `${usd(c.old)} → <b class="prd-nv">${usd(c.new)}</b>`);
+        if (c.proposed) { const pr = c.proposed, same = pr.old_price === pr.price;
+          rows += L("Price", `${same ? `<b>${usd(pr.price)}</b>` : `${usd(pr.old_price)} → <b>${usd(pr.price)}</b>`}${pr.compare_at ? ` <span class="prd-ch__cmp">/ compare ${usd(pr.compare_at)}</span>` : ""}`); }
+      } else rows = `<p class="prd-ch__l prd-ch__l--one">${c.field === "available" ? (c.new ? "Back in stock" : "<b>Out of stock</b> at supplier") : c.field === "stock" ? `Stock ${esc(c.old)} → <b>${esc(c.new)}</b>` : c.field === "listing" ? "<b>Supplier removed this listing</b>" : c.new === "added" ? "New variant at supplier" : "<b>Variant removed</b> at supplier"}</p>`;
+      return `<li class="prd-ch ${dir}">
+        <div class="prd-ch__top">${thumb(imgOf(pp, c.vkey))}<div class="prd-ch__t"><b>${esc(vl || (pp ? title(pp) : "Whole product"))}</b><small>${esc(new Date(c.at).toLocaleDateString("en-US", { month: "short", day: "numeric" }))}${dir ? " · cost " + (dir === "up" ? "up" : "down") : ""}</small></div></div>
+        <div class="prd-ch__rows">${rows}</div>
+        <div class="prd-ch__b"><button class="btn primary" data-ap="${esc(c.id)}" type="button">Apply</button><button class="btn" data-ig="${esc(c.id)}" type="button">Ignore</button></div></li>`;
     };
     const uns = unsentDec();
     show(head() + `<p class="sub">Supplier price + stock changes Tab found. Nothing changes until you apply it. Cost changes come with a new price from that product's rule.</p>
       ${uns.length ? `<div class="card prd-send"><span><b>${uns.length} decision${uns.length === 1 ? "" : "s"} saved on this phone</b><small>Send them so Tab updates the master copy (and Shopify drafts, once connected).</small></span><a class="btn small primary" id="rsend" href="${esc(wa("Products: review\n" + (uns.filter((id) => S.dec[id] === "applied").length ? "apply " + uns.filter((id) => S.dec[id] === "applied").join(" ") + "\n" : "") + (uns.filter((id) => S.dec[id] === "ignored").length ? "ignore " + uns.filter((id) => S.dec[id] === "ignored").join(" ") : "")))}" target="_blank" rel="noopener">Send to Tab</a></div>` : ""}
-      ${ch.length ? `<div class="actions"><button class="btn small" id="rall" type="button">Apply all ${ch.length}</button></div>` + Object.keys(byP).map((pid) => { const p = prod(pid); return `<div class="card prd-rv"><a class="prd-rv__h" href="#/products/p/${encodeURIComponent(pid)}">${p && p.images && p.images[0] ? `<img src="${esc(p.images[0])}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}<b>${esc(p ? title(p) : pid)}</b></a><ul>${byP[pid].map(line).join("")}</ul></div>`; }).join("")
+      ${ch.length ? `<button class="btn full prd-rall" id="rall" type="button">Apply all ${ch.length}</button>` + Object.keys(byP).map((pid) => { const p = prod(pid), n = byP[pid].length; return `<div class="card prd-rv"><a class="prd-rv__h" href="#/products/p/${encodeURIComponent(pid)}">${thumb(imgOf(p))}<span class="prd-rv__t"><b>${esc(p ? title(p) : pid)}</b><small>${n} change${n === 1 ? "" : "s"}${p ? " · " + esc(p.source.supplier || host(p.source.url)) : ""}</small></span><span class="chev" aria-hidden="true">›</span></a><ul>${byP[pid].map(line).join("")}</ul></div>`; }).join("")
         : `<p class="empty">No supplier changes to review. ${CAT.monitor ? "Last check " + esc(new Date(CAT.monitor.at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })) + "." : ""}</p>`}`);
     wireHead();
     const decide = (id, how) => {
@@ -348,9 +365,11 @@
 
   function viewPricing() {
     const def = S.defRule || CAT.default_rule;
+    const usedBy = (r) => { const ps = visible().filter((p) => (S.rule[p.id] || p.rule || def) === r.id); if (!ps.length) return '<p class="prd-fine">Not on any product yet.</p>';
+      return `<div class="prd-used">${ps.slice(0, 5).map((p) => `<a href="#/products/p/${encodeURIComponent(p.id)}" aria-label="${esc(title(p))}">${thumb(imgOf(p), "prd-thumb--xs")}</a>`).join("")}<small>${ps.length > 5 ? "+" + (ps.length - 5) + " · " : ""}on ${ps.length} product${ps.length === 1 ? "" : "s"}</small></div>`; };
     const ex = (r) => [2, 5, 10].map((c) => { const [p, cmp] = priceWith(r, c, 0, null); return usd(c) + " → " + usd(p) + (cmp ? " (" + usd(cmp) + ")" : ""); }).join(" · ");
     show(head() + `<p class="sub">Named pricing rules. Use them on many products at once (Products → pick → Price rule). When a supplier's cost changes, Tab proposes the new price from the product's rule in Review — you approve it.</p>
-      ${rules().map((r) => `<div class="card prd-rule"><div class="prd-rule__h"><b>${esc(r.name)}</b>${r.id === def ? '<span class="pill s-approved"><i></i>Default</span>' : `<button class="btn small" data-def="${esc(r.id)}" type="button">Make default</button>`}</div><p class="prd-fine">${esc(ruleText(r))}</p><p class="prd-fine">${esc(ex(r))}</p><button class="btn small" data-edit="${esc(r.id)}" type="button">Edit</button></div>`).join("")}
+      ${rules().map((r) => `<div class="card prd-rule"><div class="prd-rule__h"><b>${esc(r.name)}</b>${r.id === def ? '<span class="pill s-approved"><i></i>Default</span>' : `<button class="btn small" data-def="${esc(r.id)}" type="button">Make default</button>`}</div><p class="prd-fine">${esc(ruleText(r))}</p><p class="prd-fine">${esc(ex(r))}</p>${usedBy(r)}<button class="btn small" data-edit="${esc(r.id)}" type="button">Edit</button></div>`).join("")}
       <button class="btn full" id="rnew" type="button">+ New rule</button>`);
     wireHead();
     document.querySelectorAll("[data-def]").forEach((b) => b.addEventListener("click", () => { S.defRule = b.dataset.def; save(); viewPricing(); }));
@@ -384,7 +403,7 @@
     show(head() + (orders.length ? `<p class="sub">Shopify orders mapped to the supplier product + variant. You place supplier orders yourself — Tab never buys.</p>
       <div class="actions"><button class="btn small primary" id="osheet" type="button">⬇︎ Supplier order sheet (CSV)</button></div>
       ${orders.map((o) => `<div class="card prd-ord"><div class="prd-ord__h"><b>${esc(o.name)}</b><small>${esc((o.created_at || "").slice(0, 10))} · ${esc(o.customer || "")} · ${esc(o.financial_status || "")}</small></div>
-        <ul>${(o.lines || []).map((l) => { const p = prodBy[l.pid]; return `<li><span><b>${esc(l.qty)}×</b> ${esc(l.title)}${l.variant ? " · " + esc(l.variant) : ""}<small>${p ? `→ ${esc(p.source.supplier || "")} · cost ${usd(l.cost)} · <a href="${esc(p.source.url)}" target="_blank" rel="noopener">supplier page</a>` : "<em>not matched to a supplier product</em>"}</small></span></li>`; }).join("")}</ul>
+        <ul>${(o.lines || []).map((l) => { const p = prodBy[l.pid]; const vkey = p && l.variant ? ((p.variants || []).find((v) => [(v.options || []).join(" / "), (v.options || []).join(", "), (v.options || []).join("|")].includes(l.variant)) || {}).options : null; return `<li>${thumb(l.image || imgOf(p, vkey ? vkey.join("|") : ""))}<span><b>${esc(l.qty)}×</b> ${esc(l.title)}${l.variant ? " · " + esc(l.variant) : ""}<small>${p ? `→ ${esc(p.source.supplier || "")} · cost ${usd(l.cost)} · <a href="${esc(p.source.url)}" target="_blank" rel="noopener">supplier page</a>` : "<em>not matched to a supplier product</em>"}</small></span></li>`; }).join("")}</ul>
         <div class="prd-track"><input id="tr-${esc(o.id)}" placeholder="Tracking number" value="${esc((S.track[o.id] || {}).num || "")}"><select id="tc-${esc(o.id)}">${["USPS", "UPS", "FedEx", "DHL", "YunExpress", "4PX", "Other"].map((c) => `<option${(S.track[o.id] || {}).carrier === c ? " selected" : ""}>${c}</option>`).join("")}</select><button class="btn small" data-tsave="${esc(o.id)}" type="button">Save</button></div></div>`).join("")}
       ${Object.keys(S.track).length ? `<a class="btn full" href="${esc(wa("Products: tracking\n" + Object.entries(S.track).map(([id, t]) => (orders.find((o) => o.id === id) || {}).name + " " + t.carrier + " " + t.num).join("\n")))}" target="_blank" rel="noopener">Send tracking to Tab</a>` : ""}`
       : `<div class="card prd-empty"><p><b>${sh.connected ? "No open orders." : "Orders show up here once Shopify is connected to Tab."}</b></p><p class="prd-fine">Each Shopify order is matched to the supplier product and variant it came from, with the customer's shipping address, so you get a ready supplier order sheet (link, variant, qty, address). You place and pay supplier orders yourself — Tab never buys. Paste tracking numbers here and Tab adds them to the Shopify order as a fulfillment after you say go.</p></div>`));

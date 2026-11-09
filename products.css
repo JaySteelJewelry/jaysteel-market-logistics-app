@@ -88,3 +88,85 @@
 .prd-excard{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;font:inherit;color:var(--text);background:var(--raised);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;cursor:pointer;min-height:56px}
 .prd-excard small{display:block;color:var(--muted);font-size:12.5px;font-weight:500;margin-top:2px}
 .prd-excard:active{transform:scale(.99)}
+
+/* ---------- Nov 9 2026 · mobile-first pass (Luis: "fix this ui make it flow more friendly for mobile devices" + "i dont have images along with items").
+   Root cause of the narrow page: grid rows sized to their longest unwrapped line (701px on a 390px phone), so the phone zoomed out.
+   Revert: delete this block and the "photos"/"fitBar" lines in products.js. ---------- */
+.view.prd{min-width:0;max-width:100%}
+.prd .prd-list,.prd .prd-rv ul,.prd .prd-exp{grid-template-columns:minmax(0,1fr)}
+.prd .pagehead{margin:2px 0 10px}
+/* section bar: sticky under the top bar, full width, scrolls sideways, never clips */
+.prd .prd-seg{position:sticky;top:var(--prd-top,61px);z-index:7;display:flex;flex-wrap:nowrap;gap:6px;width:auto;margin:0 -16px 12px;padding:8px 16px;border:0;border-bottom:1px solid var(--line-2);border-radius:0;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.prd .prd-seg::-webkit-scrollbar{display:none}
+.prd .prd-seg::after{content:"";flex:0 0 2px}
+.prd .prd-seg button{flex:0 0 auto;min-height:44px;padding:8px 14px;gap:6px;font-size:13.5px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--muted);white-space:nowrap;scroll-snap-align:start}
+.prd .prd-seg button[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.prd .chips{scroll-padding:0 16px}
+.prd .btn.small{min-height:44px}
+/* thumbnails: 56px, rounded, placeholder when a photo is missing or fails */
+.prd .prd-thumb{width:56px;height:56px;border-radius:12px;display:block}
+.prd .prd-thumb:empty{background:var(--raised) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA1AB' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='4.5' width='17' height='15' rx='2.5'/%3E%3Ccircle cx='9' cy='10' r='1.6'/%3E%3Cpath d='M20.5 16l-5-5-8 8.5'/%3E%3C/svg%3E") center/22px no-repeat}
+.prd .prd-thumb.prd-thumb--xs{width:36px;height:36px;border-radius:9px}
+.prd .prd-thumb--xs:empty{background-size:16px}
+/* product rows */
+.prd .prd-row{gap:0;padding:8px 10px 8px 0;min-height:76px}
+.prd .prd-row__a{gap:12px;min-height:56px}
+.prd .prd-row__t{gap:3px}
+.prd .prd-row__t b{font-size:14.5px;overflow-wrap:anywhere}
+.prd .prd-money{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-width:0}
+.prd .prd-money b,.prd .prd-money s{flex:none}
+.prd .prd-money i{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.prd .prd-row .chev{flex:none;color:var(--muted);padding-left:4px}
+.prd .prd-bulk{position:static}
+.prd .prd-bulk.on{position:sticky;top:calc(var(--prd-top,61px) + 61px)}
+.prd .prd-bulk__acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.prd .prd-bulk__acts .btn{padding:8px 6px;width:100%}
+/* review: one card per change, photo + variant on top, numbers on their own lines, big Apply / Ignore */
+.prd .prd-rall{margin:0 0 12px;min-height:48px}
+.prd .prd-rv{padding:12px;margin-bottom:12px}
+.prd .prd-rv__h{gap:12px;margin:0 0 10px;min-height:56px}
+.prd .prd-rv__h img{width:100%;height:100%;border-radius:0}
+.prd .prd-rv__t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.prd .prd-rv__t b{font-size:15px;line-height:1.3;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prd .prd-rv__t small{color:var(--muted);font-size:12.5px}
+.prd .prd-rv__h .chev{color:var(--muted);flex:none}
+.prd .prd-rv ul{display:grid;gap:10px}
+.prd .prd-ch{display:grid;gap:10px;padding:12px;border:1px solid var(--line-2);border-top:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--raised);font-size:14px;justify-content:stretch}
+.prd .prd-ch b{color:var(--text)}
+.prd .prd-ch.up .prd-nv{color:var(--bad)}
+.prd .prd-ch.down .prd-nv{color:var(--ok)}
+.prd .prd-ch__top{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.prd .prd-ch__t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.prd .prd-ch__t b{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.prd .prd-ch__t small{color:var(--muted);font-size:12.5px;display:block}
+.prd .prd-ch__rows{display:grid;gap:4px}
+.prd .prd-ch__l{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0;font-size:14px}
+.prd .prd-ch__l>span:first-child{color:var(--muted)}
+.prd .prd-ch__l>span:last-child{text-align:right}
+.prd .prd-ch__l--one{justify-content:flex-start}
+.prd .prd-ch__cmp{color:var(--muted)}
+.prd .prd-ch__b{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prd .prd-ch__b .btn{width:100%;min-height:44px}
+.prd .prd-send{flex-wrap:wrap}
+.prd .prd-send .btn{min-height:44px}
+/* pricing: which products use each rule */
+.prd .prd-used{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.prd .prd-used a{display:block;line-height:0}
+.prd .prd-used small{color:var(--muted);font-size:12.5px;margin-left:2px}
+.prd .prd-rule .btn{justify-self:start}
+/* orders + tables */
+.prd .prd-ord li{display:flex;align-items:flex-start;gap:10px}
+.prd .prd-ord li>span:last-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.prd .prd-track{grid-template-columns:minmax(0,1fr) 110px;gap:8px}
+.prd .prd-track input{grid-column:1/-1}
+.prd .prd-track .btn{min-height:48px}
+.prd-tcell{display:flex;align-items:center;gap:8px;min-width:0}
+.prd-tcell>span:last-child{min-width:0}
+.prd-sheet .prd-thumb{flex:none;overflow:hidden;background:var(--raised);border:1px solid var(--line-2)}
+.prd-sheet .prd-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.prd-sheet .prd-thumb--xs{width:32px;height:32px;border-radius:8px}
+@media (max-width:370px){.prd .prd-seg button{padding:8px 12px;font-size:13px}.prd .prd-thumb:not(.prd-thumb--xs){width:52px;height:52px}.prd .prd-ch__l{font-size:13.5px}}
+@media (min-width:760px){.prd .prd-bulk.on{top:calc(var(--prd-top,76px) + 61px)}}
+@media (max-width:759px){.view.prd>.pagehead{display:none}.prd .prd-import{margin-top:4px}}
+.prd .chips .chip{min-height:44px}.prd .rs-seg button{min-height:44px}
+.prd .prd-rw button{min-height:44px}

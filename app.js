@@ -1283,7 +1283,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     rsLoad().catch(() => {});   /* research: adds the Research button to the Products bar */
     if (window.JSLProducts) return window.JSLProducts.render(h);
     show('<div class="skel" aria-label="Loading products"><i></i><i></i><i></i></div>');
-    if (!prdLoading) prdLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "products.js?v=1"; s.onload = ok; s.onerror = no; document.body.appendChild(s); });
+    if (!prdLoading) prdLoading = new Promise((ok, no) => { const s = document.createElement("script"); s.src = ROOT + "products.js?v=2"; s.onload = ok; s.onerror = no; document.body.appendChild(s); });
     prdLoading.then(() => { if (location.hash.indexOf("#/products") === 0) window.JSLProducts.render(location.hash.replace(/^#\/?/, "")); })
       .catch(() => { prdLoading = null; show('<p class="empty">Couldn\'t load Products. Check your signal, then pull down to refresh.</p>'); });
   }
