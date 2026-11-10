@@ -75,6 +75,15 @@ LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
 DESCRIPTION:Status: approved\nPaid
 END:VEVENT
 BEGIN:VEVENT
+UID:unf-market-day-2026-11-04@jaysteel-markets
+DTSTAMP:20261104T000000Z
+DTSTART;TZID=America/New_York:20261104T100000
+DTEND;TZID=America/New_York:20261104T130000
+SUMMARY:UNF Market Day
+LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
+DESCRIPTION:Status: approved\nFee: 43\nPaid
+END:VEVENT
+BEGIN:VEVENT
 UID:first-friday-flagler-2026-11-06@jaysteel-markets
 DTSTAMP:20261106T000000Z
 DTSTART;TZID=America/New_York:20261106T180000
@@ -125,6 +134,15 @@ DTEND;TZID=America/New_York:20261111T130000
 SUMMARY:UNF Market Day
 LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
 DESCRIPTION:Status: approved\nPaid
+END:VEVENT
+BEGIN:VEVENT
+UID:st-johns-fall-makers-2026-11-14@jaysteel-markets
+DTSTAMP:20261114T000000Z
+DTSTART;TZID=America/New_York:20261114T110000
+DTEND;TZID=America/New_York:20261114T140000
+SUMMARY:St. Johns Fall Makers Market (Jacksonville Business Connections)
+LOCATION:155 Fountains Way\, St Johns\, FL 32259
+DESCRIPTION:Status: booked\nPaid
 END:VEVENT
 BEGIN:VEVENT
 UID:bjs-sunday-2026-11-15@jaysteel-markets
@@ -368,14 +386,5 @@ DTEND;TZID=America/New_York:20270226T213000
 SUMMARY:Amplified Avondale (Art Walk vendors)
 LOCATION:St. Johns Ave\, Historic Avondale\, Jacksonville\, FL
 DESCRIPTION:Status: pending\nFee: No fee listed on the application
-END:VEVENT
-BEGIN:VEVENT
-UID:unf-market-day-2026-11-04@jaysteel-markets
-DTSTAMP:20261104T000000Z
-DTSTART;TZID=America/New_York:20261104T100000
-DTEND;TZID=America/New_York:20261104T130000
-SUMMARY:UNF Market Day
-LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
-DESCRIPTION:Status: approved\nFee: 43\nPaid
 END:VEVENT
 END:VCALENDAR
