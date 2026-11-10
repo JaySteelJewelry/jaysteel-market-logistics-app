@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T22:22Z",
+ "updated": "2026-11-10T07:20Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida statewide (all 67 counties as found)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -45,7 +45,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "Nassau County",
@@ -78,7 +78,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of St. Augustine",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Palatka",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Bunnell",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Port Orange",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of DeLand",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "City of Palm Coast",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 22,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "Volusia County",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -241,9 +241,9 @@
    "county": "Duval",
    "url": "https://vendorsmap.com/cities/jacksonville-fl",
    "ok": true,
-   "items": 26,
+   "items": 20,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -252,9 +252,9 @@
    "county": "St. Johns",
    "url": "https://vendorsmap.com/cities/st-augustine",
    "ok": true,
-   "items": 17,
+   "items": 13,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -265,181 +265,10 @@
    "ok": true,
    "items": 528,
    "error": null,
-   "lastOk": "2026-11-09T22:22Z"
+   "lastOk": "2026-11-10T07:19Z"
   }
  ],
  "items": [
-  {
-   "id": "2f98c75aa508",
-   "title": "Amphitheatre Farmers Market (Old City)",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "1340C A1A South, St. Augustine Amphitheatre, St. Augustine, FL 32080",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: St. Augustine",
-   "url": "https://vendorsmap.com/events/7115",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "fl6-4d493f6e20",
-   "origin": "seed",
-   "title": "Art + Craft + Design Creative Market",
-   "org": "Armory Art Center",
-   "city": "West Palm Beach",
-   "county": "Palm Beach",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://armoryart.org/festival-call-artists-2/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/43979",
-   "date": "2026-11-09",
-   "end_date": "2026-11-10",
-   "category": "craft fair",
-   "contact_email": "advancementdirector@armoryart.org",
-   "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-09 to 2026-11-10; location: Armory Art Center, West Palm Beach, FL | organizer/official page read Nov 6: https://armoryart.org/festival-call-artists-2/ (\"Festival Call for Artists - Armory Art Center\") — date not found on that page"
-  },
-  {
-   "id": "e0fce4de6038",
-   "title": "Beach Blvd Flea Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "11041 Beach Blvd, Jacksonville, FL 32246",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/36278",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "0799dfc1899a",
-   "title": "Farmers Market at Schooner's Seafood House",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "3560 N. Ponce de Leon Blvd, St. Augustine, FL 32084",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: St. Augustine",
-   "url": "https://vendorsmap.com/events/35993",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "89625df7d461",
-   "title": "Five Points Funky Fridays",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "Five Points, Riverside Ave & Park St, Jacksonville, FL 32204",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/28393",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "c6fda3d14bef",
-   "title": "Greater Jacksonville Agricultural Fair",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "510 Fairgrounds Place, Jacksonville, FL 32202",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/34330",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "040f79a3f5f0",
-   "title": "Jacksonville Farmers Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "1810 W Beaver St, Jacksonville, FL 32209",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/989",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "a5f9edd5954c",
-   "title": "Mayport Waterfront Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "4542 Ocean St., Jacksonville, FL 32233",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/35992",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "be4cb6b59eca",
-   "title": "St. Augustine Amphitheatre Farmers Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "1340 A1A South, St. Augustine, FL 32080",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: St. Augustine",
-   "url": "https://vendorsmap.com/events/997",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "2378fa333cee",
-   "title": "St. Augustine Sunday Farmers Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "4730 US 1, St. Augustine, FL 32086",
-   "city": "St. Augustine",
-   "county": "St. Johns",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: St. Augustine",
-   "url": "https://vendorsmap.com/events/3305",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "81d7dc9574ff",
-   "title": "White Harvest Farmers Market",
-   "date": "2026-11-09",
-   "time": null,
-   "location": "4850 Moncrief Road, Jacksonville, FL 32209",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/7183",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
   {
    "id": "seed-fl-0029",
    "origin": "seed",
@@ -21356,26 +21185,6 @@
    "firstSeen": "2026-10-13"
   },
   {
-   "id": "fl6-118a0c564d",
-   "origin": "seed",
-   "title": "Sarasota Gun Show",
-   "org": "Sarasota",
-   "city": "Sarasota",
-   "county": "Sarasota",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://2guysshows.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-sarasota-gun-show_1",
-   "end_date": "2026-11-09",
-   "category": "festival/event",
-   "contact_email": "2GuysVB@gmail.com",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Robarts Arena; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. Sarasota Gun Show will be held on November 8-9, 2026. You will find a wide range of quality guns, firearms, ammo,... | organizer/official page read Nov 6: https://2guysshows.com/ (\"Explore 2 Guys Gun Shows - Sarasota &amp; More!\") — date not found on that pag"
-  },
-  {
    "id": "fl6-06037a440b",
    "origin": "seed",
    "title": "Audubon Park Community Market",
@@ -23605,6 +23414,26 @@
    "notes": "VendorsMap listing (Farmers Market Weekly); runs 2026-12-01 to 2027-04-30; location: El Sol Neighborhood Resource Center, 106 Military Trail, Jupiter, FL 33458 | organizer/official page read Nov 6: https://www.greenhouseeventsmanagement.com/ (\"Home | Greenhouse Events\")"
   },
   {
+   "id": "fl6-4d493f6e20",
+   "origin": "seed",
+   "title": "Art + Craft + Design Creative Market",
+   "org": "Armory Art Center",
+   "city": "West Palm Beach",
+   "county": "Palm Beach",
+   "state": "FL",
+   "type": "market",
+   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
+   "url": "https://armoryart.org/festival-call-artists-2/",
+   "vendorMatch": true,
+   "firstSeen": "2026-11-06",
+   "verified": false,
+   "source_url": "https://vendorsmap.com/events/43979",
+   "end_date": "2026-11-10",
+   "category": "craft fair",
+   "contact_email": "advancementdirector@armoryart.org",
+   "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-09 to 2026-11-10; location: Armory Art Center, West Palm Beach, FL | organizer/official page read Nov 6: https://armoryart.org/festival-call-artists-2/ (\"Festival Call for Artists - Armory Art Center\") — date not found on that page"
+  },
+  {
    "id": "fl6-3a55dd6ea9",
    "origin": "seed",
    "title": "Five Points Funky Fridays",
@@ -24914,25 +24743,6 @@
    "when": "Weekly: Year-round Sunday",
    "category": "farmers market",
    "notes": "VendorsMap listing (Farmers Market Weekly); runs 2026-01-01 to 2026-12-31; location: Bealls Parking Lot, 15003 Emerald Coast Pkwy, Destin, FL 32541 | organizer/official page read Nov 6: https://destincommons.com/farmers-makers-artisans/ (\"The Market at Destin Commons | Shops & Dining, FL\")"
-  },
-  {
-   "id": "fl6-973026b2fd",
-   "origin": "seed",
-   "title": "Pine Palm Artists Market",
-   "org": "Coral Springs Museum of Art",
-   "city": "Coral Springs",
-   "county": "Broward",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://vendorsmap.com/events/34303",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/34303",
-   "end_date": "2026-11-09",
-   "category": "pop-up",
-   "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-11-08 to 2026-11-09; location: Coral Springs Museum of Art, Coral Springs, FL"
   },
   {
    "id": "fl6-5b53a24e6a",
@@ -27167,7 +26977,5 @@
    "notes": "| page read Nov 6"
   }
  ],
- "newThisRun": [
-  "f2d9033d0c58"
- ]
+ "newThisRun": []
 }
