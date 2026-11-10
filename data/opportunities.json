@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T09:47Z",
+ "updated": "2026-11-10T19:43Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida + Georgia statewide (colleges, cities, counties, marketplaces, web search)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -43,9 +43,9 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 28,
+   "items": 23,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "UCF (Engage)",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "FAU (Engage)",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "FIU (Engage)",
@@ -76,9 +76,9 @@
    "county": "Miami-Dade",
    "url": "https://fiu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 18,
+   "items": 19,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Miami Dade College (Engage)",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Seminole State (Engage)",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Palm Beach State (Engage)",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -120,9 +120,9 @@
    "county": "Fulton",
    "url": "https://gatech.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "UGA (Engage)",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Georgia State (Engage)",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Georgia College (Engage)",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Columbus State (Engage)",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "North Georgia (Engage)",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 6,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Nassau County",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of St. Augustine",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Palatka",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -276,7 +276,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Bunnell",
@@ -287,7 +287,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -298,7 +298,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -309,7 +309,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Port Orange",
@@ -320,7 +320,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -331,7 +331,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of DeLand",
@@ -342,7 +342,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Palm Coast",
@@ -351,9 +351,9 @@
    "county": "Flagler",
    "url": "https://www.palmcoast.gov",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -377,7 +377,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Fort Myers",
@@ -388,7 +388,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Hollywood",
@@ -399,7 +399,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Boca Raton",
@@ -410,7 +410,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Destin",
@@ -421,7 +421,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Pensacola",
@@ -432,7 +432,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Vero Beach",
@@ -443,7 +443,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Athens-Clarke County",
@@ -454,7 +454,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Augusta",
@@ -465,7 +465,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Savannah",
@@ -476,7 +476,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Gainesville GA",
@@ -487,7 +487,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Lawrenceville",
@@ -498,7 +498,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Marietta",
@@ -509,7 +509,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "City of Hinesville",
@@ -520,7 +520,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -531,7 +531,7 @@
    "ok": true,
    "items": 26,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -542,7 +542,7 @@
    "ok": true,
    "items": 17,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Orlando",
@@ -553,7 +553,7 @@
    "ok": true,
    "items": 14,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Tampa",
@@ -564,7 +564,7 @@
    "ok": true,
    "items": 18,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Miami",
@@ -575,7 +575,7 @@
    "ok": true,
    "items": 13,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Atlanta",
@@ -586,7 +586,7 @@
    "ok": true,
    "items": 42,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Savannah",
@@ -597,7 +597,7 @@
    "ok": true,
    "items": 19,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Athens",
@@ -608,7 +608,7 @@
    "ok": true,
    "items": 8,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Augusta",
@@ -619,7 +619,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "VendorsMap: Brunswick",
@@ -630,7 +630,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL college & campus markets",
@@ -639,9 +639,9 @@
    "county": "Jacksonville",
    "url": "college markets",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL tabling calls",
@@ -650,9 +650,9 @@
    "county": "",
    "url": "vendor tabling",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL community markets",
@@ -663,7 +663,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL maker markets",
@@ -674,7 +674,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL holiday markets",
@@ -685,7 +685,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL farmers markets",
@@ -696,7 +696,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: FL craft fairs",
@@ -707,7 +707,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: GA college & campus markets",
@@ -718,7 +718,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: GA tabling calls",
@@ -729,7 +729,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: GA community markets",
@@ -740,7 +740,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: GA holiday markets",
@@ -751,7 +751,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: GA farmers markets",
@@ -762,7 +762,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Jacksonville markets",
@@ -773,7 +773,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Orlando markets",
@@ -784,7 +784,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Tampa bay markets",
@@ -795,7 +795,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: south Florida markets",
@@ -806,7 +806,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Atlanta markets",
@@ -817,7 +817,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Savannah markets",
@@ -828,7 +828,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: Augusta markets",
@@ -839,7 +839,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Search: college market days GA",
@@ -850,7 +850,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -859,9 +859,9 @@
    "county": "",
    "url": "data/opportunities_vetted.json",
    "ok": true,
-   "items": 572,
+   "items": 533,
    "error": null,
-   "lastOk": "2026-11-10T09:47Z"
+   "lastOk": "2026-11-10T19:43Z"
   }
  ],
  "items": [
@@ -881,7 +881,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-17",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -900,7 +900,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -919,7 +919,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-09-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -939,7 +939,7 @@
    "fee": "$90",
    "deadline": "2026-10-24",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -958,7 +958,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -977,7 +977,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -996,7 +996,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1015,7 +1015,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1034,7 +1034,7 @@
    "registration_url": "https://vendorsmap.com/events/992",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1053,7 +1053,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-21",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1072,7 +1072,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1091,7 +1091,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1110,7 +1110,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1129,7 +1129,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1148,7 +1148,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1167,7 +1167,7 @@
    "registration_url": "https://vendorsmap.com/events/3195",
    "deadline": "2026-10-17",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1186,7 +1186,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-09-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1205,7 +1205,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1224,7 +1224,7 @@
    "registration_url": "https://vendorsmap.com/events/6940",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1258,7 +1258,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-04",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1277,7 +1277,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-09-05",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1296,7 +1296,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-02",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1315,7 +1315,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1334,7 +1334,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1369,7 +1369,7 @@
    "registration_url": "https://vendorsmap.com/events/28390",
    "deadline": "2026-11-05",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1388,7 +1388,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-09-19",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1407,7 +1407,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1426,7 +1426,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:47Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1446,7 +1446,7 @@
    "fee": "$25",
    "deadline": "2026-09-27",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1465,7 +1465,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1500,7 +1500,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-17",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1519,7 +1519,7 @@
    "registration_url": "https://vendorsmap.com/events/992",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1538,7 +1538,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1557,7 +1557,7 @@
    "registration_url": "https://vendorsmap.com/events/6940",
    "deadline": "2026-03-07",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1576,7 +1576,7 @@
    "registration_url": "https://vendorsmap.com/events/6940",
    "deadline": "2026-03-28",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1595,40 +1595,8 @@
    "registration_url": "https://vendorsmap.com/events/6940",
    "deadline": "2026-05-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
-  },
-  {
-   "id": "9ab275e91c9c",
-   "title": "PorColombia Tabling",
-   "date": "2026-11-10",
-   "time": "10:00 AM",
-   "location": "Turlington",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12661213",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "4928e0fcce48",
-   "title": "PorColombia Tabling Fundraiser",
-   "date": "2026-11-10",
-   "time": "10:00 AM",
-   "location": "Turlington",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12954643",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
   },
   {
    "id": "05eb0bc6cde0",
@@ -1646,7 +1614,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-05-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1685,7 +1653,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1704,7 +1672,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1723,7 +1691,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-10-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1742,7 +1710,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-10T09:48Z",
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10T09:47Z"
   },
   {
@@ -1758,7 +1726,10 @@
    "source": "VendorsMap: St. Augustine",
    "url": "https://vendorsmap.com/events/997",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/997",
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-01-01",
+   "verified": true,
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -1774,7 +1745,10 @@
    "source": "VendorsMap: St. Augustine",
    "url": "https://vendorsmap.com/events/3305",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/3305",
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-01-01",
+   "verified": true,
+   "verifiedAt": "2026-11-10T19:44Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -1826,22 +1800,6 @@
    "firstSeen": "2026-11-10"
   },
   {
-   "id": "35fe98f1cfcc",
-   "title": "Tabling - BridgeUSA at UF",
-   "date": "2026-11-10",
-   "time": "12:00 PM",
-   "location": "Turlington ",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12837907",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
    "id": "dfb534ca3a5e",
    "title": "Thanksgiving Food Drive Tabling",
    "date": "2026-11-10",
@@ -1887,22 +1845,6 @@
    "url": "https://vendorsmap.com/events/35428",
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/events/35428",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "4de65ae182cb",
-   "title": "U.S. Marine Corps Birthday Tabling",
-   "date": "2026-11-10",
-   "time": "10:00 AM",
-   "location": "Reitz Union ",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12954663",
-   "vendorMatch": false,
-   "feed": "engage",
    "firstSeen": "2026-11-10"
   },
   {
@@ -2392,6 +2334,22 @@
    "url": "https://vendorsmap.com/events/41129",
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/events/41129",
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "93d0e2124a67",
+   "title": "Black on the Block",
+   "date": "2026-11-13",
+   "time": "6:00 PM",
+   "location": "Tamiami Promenade",
+   "city": "Miami",
+   "county": "Miami-Dade",
+   "state": "FL",
+   "type": "college",
+   "source": "FIU (Engage)",
+   "url": "https://fiu.campuslabs.com/engage/event/12969831",
+   "vendorMatch": true,
+   "feed": "engage",
    "firstSeen": "2026-11-10"
   },
   {
@@ -3328,7 +3286,7 @@
    "state": "FL",
    "type": "market",
    "source": "City of Fort Myers",
-   "url": "https://www.fortmyers.gov/Calendar.aspx?EID=7244",
+   "url": "https://www.fortmyers.gov/Calendar.aspx?EID=7533",
    "vendorMatch": true,
    "feed": "civic",
    "firstSeen": "2026-11-10"
@@ -7152,6 +7110,22 @@
    "type": "tabling",
    "source": "University of Florida (Engage)",
    "url": "https://gatorconnect.ufl.edu/event/12847404",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "f505f08f7fab",
+   "title": "Team Leader Tabling Day 2",
+   "date": "2026-11-24",
+   "time": "12:00 PM",
+   "location": "Tech Green South/Skiles Walkway",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "tabling",
+   "source": "Georgia Tech (Engage)",
+   "url": "https://gatech.campuslabs.com/engage/event/12968410",
    "vendorMatch": false,
    "feed": "engage",
    "firstSeen": "2026-11-10"
@@ -12574,22 +12548,6 @@
    "date": "2026-12-12",
    "category": "holiday market/fair",
    "notes": "Unverified. FairsAndFestivals listing; venue: Southern Brewing; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Southern Holiday Day Market will be held on December 12th, 2026. There will be local artists and makers selling their wares...."
-  },
-  {
-   "id": "e83e46de1498",
-   "title": "Starlight Parade",
-   "date": "2026-12-12",
-   "time": "4:00 PM",
-   "location": null,
-   "city": "Palm Coast",
-   "county": "Flagler",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Palm Coast",
-   "url": "https://www.palmcoast.gov/events/home/details/starlight-parade",
-   "vendorMatch": false,
-   "feed": "palmcoast",
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "fl6-d7da31fb95",
@@ -23744,74 +23702,6 @@
  ],
  "ongoing": [
   {
-   "id": "c48f8048e477",
-   "title": "VENDOR 中文 (简体)翻译：剑桥词典 - Cambridge Dictionary",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=0096964f9682003e712d229da5af7e267b49b315df18af97c5a1630c366765dcJmltdHM9MTc5NDI2ODgwMA&ptn=3&ver=2&hsh=4&fclid=0bf2e6c5-3285-64f7-01f6-fec833e765a6&u=a1aHR0cHM6Ly9kaWN0aW9uYXJ5LmNhbWJyaWRnZS5vcmcvemhzLyVFOCVBRiU4RCVFNSU4NSVCOC8lRTglOEIlQjElRTglQUYlQUQtJUU2JUIxJTg5JUU4JUFGJUFELSVFNyVBRSU4MCVFNCVCRCU5My92ZW5kb3I&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "VENDOR翻译：小贩;摊主;卖主。 了解更多。",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "ea6279f4999d",
-   "title": "VENDOR 中文 (简体)翻译：剑桥词典 - Cambridge Dictionary",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=e2602b967640688f17ac664636377689a31a94d5ee776524cd70cf52aacca68dJmltdHM9MTc5NDI2ODgwMA&ptn=3&ver=2&hsh=4&fclid=0cc1a788-5ad8-648e-082e-bf855bf465e8&u=a1aHR0cHM6Ly9kaWN0aW9uYXJ5LmNhbWJyaWRnZS5vcmcvemhzLyVFOCVBRiU4RCVFNSU4NSVCOC8lRTglOEIlQjElRTglQUYlQUQtJUU2JUIxJTg5JUU4JUFGJUFELSVFNyVBRSU4MCVFNCVCRCU5My92ZW5kb3I&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "VENDOR翻译：小贩;摊主;卖主。 了解更多。",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "2087e15368b9",
-   "title": "「廠商」英文是？ vendor , supplier, manufacturer 差在哪？",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=f1e605984e8255e36b27db1814058f0ecfff0fe7ea08ae9a9eba00d75da4a340JmltdHM9MTc5NDI2ODgwMA&ptn=3&ver=2&hsh=4&fclid=0bf2e6c5-3285-64f7-01f6-fec833e765a6&u=a1aHR0cHM6Ly9lbmdsaXNoLmNvb2wvdmVuZG9yLXN1cHBsaWVyLW1hbnVmYWN0dXJlci8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "中文一句「找廠商談一下」，輕輕鬆鬆帶過，但要翻成英文的時候，很多人就會在 vendor 、 supplier 、 manufacturer 這三個字之間 …",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "ccd419f79298",
-   "title": "「廠商」英文是？ vendor , supplier, manufacturer 差在哪？",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=acf301a006596c0925fa6620f96cd4656b11477e80a0b761d874e422aca3848dJmltdHM9MTc5NDI2ODgwMA&ptn=3&ver=2&hsh=4&fclid=0cc1a788-5ad8-648e-082e-bf855bf465e8&u=a1aHR0cHM6Ly9lbmdsaXNoLmNvb2wvdmVuZG9yLXN1cHBsaWVyLW1hbnVmYWN0dXJlci8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "中文一句「找廠商談一下」，輕輕鬆鬆帶過，但要翻成英文的時候，很多人就會在 vendor 、 supplier 、 manufacturer 這三個字之間 …",
-   "firstSeen": "2026-11-10"
-  },
-  {
    "id": "seed-fl-0008",
    "origin": "seed",
    "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
@@ -31063,175 +30953,8 @@
   }
  ],
  "newThisRun": [
-  "855f1e4b1671",
-  "9ab275e91c9c",
-  "4928e0fcce48",
-  "8b8a8afc9e07",
-  "3a62674e87fd",
-  "11fb03dcf294",
-  "c4db00e85f35",
-  "9c2cf8e55715",
-  "35fe98f1cfcc",
-  "dfb534ca3a5e",
-  "706173931baf",
-  "07260a95e111",
-  "4de65ae182cb",
-  "f0c0ac7a9a52",
-  "765dc894de62",
-  "841f85f5cf39",
-  "2d6642b7e135",
-  "1bca4e9c8894",
-  "1d2e342ce2e4",
-  "585df99d2491",
-  "aa2db7e06444",
-  "86299f9e5527",
-  "a88856482efa",
-  "fe8f80f8b44f",
-  "fb71ea49ce73",
-  "1305f0e684c3",
-  "ad85f200d65b",
-  "128767faa74d",
-  "128a9fc8a375",
-  "02fec9e794cc",
-  "b8d4aafab6f3",
-  "689cd2ecce4b",
-  "0296a14b7fae",
-  "278704cd8d05",
-  "3b6d966a06c6",
-  "3ce68c7b9800",
-  "39734bc2a850",
-  "caf06ef7d74c",
-  "3e83bc44539f",
-  "d007fbd3f443",
-  "05d9c401cd26",
-  "2cda1b2cbe4b",
-  "8b4e1d6ea5ed",
-  "d7274fb99e2a",
-  "4420339333d9",
-  "523fca1ca45a",
-  "967a3f83800d",
-  "ac8955c9e78c",
-  "8a8fe67a66a3",
-  "6346fcfa9df2",
-  "f7111e297e65",
-  "27e61e4c1b8c",
-  "535c2095e458",
-  "580e9153d651",
-  "131232b80382",
-  "d9eadb2a61fe",
-  "a86130db4c06",
-  "f101b8ae1839",
-  "80573b318219",
-  "ce854aa7c1db",
-  "0e957111af3a",
-  "897be93d33e6",
-  "536c35f75866",
-  "37152e59d27f",
-  "66bdf1a99978",
-  "f7f39d7a2cba",
-  "3f0b1dbcad42",
-  "004c2c9423e4",
-  "91d10ae09c9d",
-  "073c2d8cfb8e",
-  "e06b517ddda3",
-  "2b9c200c650e",
-  "bfb53d2e15fc",
-  "0c7ed4b11546",
-  "328d9dc2b4c9",
-  "39605e071a10",
-  "b6c07bc76ef2",
-  "709daca6aa22",
-  "a6e6fbb92ed8",
-  "a23aa79a66d5",
-  "3482ed0b3380",
-  "6d0b4313ea9a",
-  "ba4aef26f3a2",
-  "b4c7c79b9406",
-  "90152712d1a4",
-  "185a4998fd67",
-  "aea8464314cb",
-  "35fe0171576b",
-  "f4826aedff4f",
-  "e6ba81ba73e7",
-  "a5aff0215ffb",
-  "fb1c11a2d709",
-  "c14156fe82e7",
-  "6abcce5eef35",
-  "4fe5aca85e1c",
-  "2bc359d3379b",
-  "f4f4d3bea5e1",
-  "ac828c884ab5",
-  "f7f009111ad4",
-  "0aea4c0691b0",
-  "fdadcbcb7237",
-  "58e37ad6c85c",
-  "1bdda34e9ee4",
-  "f80359270363",
-  "55c59e163ed0",
-  "b238a2301b9b",
-  "39b6824069a1",
-  "382b905d0032",
-  "108cb13ce5af",
-  "569e24b81463",
-  "faaebd2e024b",
-  "db1d26c9aefb",
-  "366395792882",
-  "230d5d32ed38",
-  "ce0629bdd27e",
-  "e857c0ba0f2a",
-  "b7334917b0d0",
-  "0ca2f6fce6fd",
-  "d69f8b4ed827",
-  "a3cfe833a05f",
-  "94b9636d8696",
-  "365fcb5cc57a",
-  "09d3a5888651",
-  "9bdd445d70d7",
-  "b3204fd21404",
-  "2e4fab10d54f",
-  "6bbf24b77a56",
-  "10bfa922c360",
-  "53496b3919cb",
-  "6a9e6bd384f7",
-  "a856ac469ee9",
-  "71c74ee6db94",
-  "5ab1d5f81b36",
-  "fcc7abedfb59",
-  "49c8fd90fc06",
-  "75f7e8ae3f10",
-  "d98fbc38acdd",
-  "bc9a24585ef3",
-  "3f8c4a3d33df",
-  "8786840670b4",
-  "d47385d8a4e7",
-  "f3a861fb9380",
-  "86d6f4b85d54",
-  "24ae95c16078",
-  "0b96cfc65767",
-  "561791d8e60a",
-  "9cf3a9431d0c",
-  "59b83b900ce0",
-  "4422151a4a0a",
-  "b3c209a1c4c8",
-  "b51a1586135b",
-  "77fc5d45ea6a",
-  "111ae6a9ee6e",
-  "17d48d9b96bf",
-  "72ec67737726",
-  "ca8cd0152055",
-  "437d712bf761",
-  "72487b653a43",
-  "f95bf59c60cb",
-  "452852936911",
-  "8387a3f405b0",
-  "be6c5f7ce3e6",
-  "a88ba8b3c880",
-  "a7ee7716f8b7",
-  "3b932c38329d",
-  "a0ec1a5f0e62",
-  "2a4e68f9d8f9",
-  "396bcae71690",
-  "53a11f2829f7"
+  "93d0e2124a67",
+  "f505f08f7fab"
  ],
- "vettedThisRun": 41
+ "vettedThisRun": 43
 }
