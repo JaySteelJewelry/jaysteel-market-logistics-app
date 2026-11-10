@@ -16,3 +16,7 @@ pnpm-debug.log*
 .env
 .env.*
 config.json
+
+# Python (CI lint artifacts)
+__pycache__/
+*.pyc

@@ -3,11 +3,14 @@
 Live app: https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/
 
 A phone-first planner for every market JAY STEEL JEWELRY sells at: status badges, calendar, fees and pay-by dates,
-contacts, directions, a packing checklist and a sales/expense tally per market (CSV export).
+contacts, directions, a sales/expense tally per market (CSV export).
 
-## Light / dark
+## Design & app install
 
-The sun/moon button in the header switches themes. It starts on the phone's own setting, and your choice is saved on that device (shared with the home page).
+"Midnight & Gold": a dark-first design system (jewelry gold accent over deep charcoal), with a matching light theme.
+On phones the bottom dock is the primary nav — Home · Markets · Find · Map · **More** (the ☰ menu has the full list).
+It's a PWA: **Share → Add to Home Screen** on iPhone (or the install icon in Android Chrome) saves it like an app,
+and it works offline. Theme, text size and motion are under **Settings › Appearance** (saved per device).
 
 ## Edit your markets (the only file you touch)
 
@@ -55,3 +58,18 @@ Each source is tried on its own; the app's Sources list shows which ones returne
 Results: `data/opportunities.json`. Ongoing/annual leads come from `data/opportunities_seed.json`.
 New vendor-type finds are posted to #market-log in Discord (secret `DISCORD_OPPORTUNITIES_WEBHOOK_URL`).
 Add a source: one line in `SOURCES` at the top of the script.
+
+## Development
+
+No build step — this is a static site. A few things make it keep working:
+
+- **Tests:** `node --test test/site.test.mjs` covers shell/asset consistency, security and accessibility
+  baselines. `.github/workflows/ci.yml` runs it on every push/PR, and also parses every `data/*.json`,
+  validates `data/events.json` and `data/opportunities.json` against their schemas
+  (`events.schema.json`, `opportunities.schema.json`), checks `data/markets.ics` stays well-formed,
+  and syntax-checks all JS.
+- **Versioned assets:** `index.html` loads `styles.css?v=` and `app.js?v=`, and the service worker
+  (`sw.js`) lists the same strings in its shell. They must match (tested). After changing either file,
+  run `node scripts/bump-version.mjs` to bump both plus the SW cache name in one step.
+- **Device errors:** the app silently keeps the last 20 errors per device under **Settings › Diagnostics**
+  (captured only — never sent on their own).

@@ -22,7 +22,7 @@ window.JSL = {"root": "", "sw": true};
 </script>
 <link rel="preload" href="assets/fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Montserrat";src:url("assets/fonts/montserrat.woff2") format("woff2");font-weight:100 900;font-display:swap}@font-face{font-family:"Cormorant Garamond";src:url("assets/fonts/cormorant.woff2") format("woff2");font-weight:300 700;font-display:swap}</style>
-<link rel="stylesheet" href="styles.css?v=23">
+<link rel="stylesheet" href="styles.css?v=25">
 </head>
 <body>
 <a class="skip" href="#app">Skip to content</a>
@@ -54,6 +54,15 @@ window.JSL = {"root": "", "sw": true};
   <button type="button" class="menu__out" id="logout"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10"/></svg><span>Log Out</span></button>
 </nav>
 
+<nav class="dock" aria-label="Primary">
+  <a href="#/" data-tab="today" aria-label="Dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>Home</span></a>
+  <a href="#/markets" data-tab="list" aria-label="Markets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Markets</span></a>
+  <a href="#/opportunities" data-tab="opp" aria-label="Find markets"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span>Find</span></a>
+  <a href="#/map" data-tab="map" aria-label="Map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg><span>Map</span></a>
+  <button type="button" class="dock__more" id="more-btn" aria-label="More" aria-controls="menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span></button>
+</nav>
+
 <main id="app" class="wrap" tabindex="-1">
   <div class="skel" aria-label="Loading markets"><i></i><i></i><i></i></div>
 </main>
@@ -61,17 +70,34 @@ window.JSL = {"root": "", "sw": true};
 <noscript><p class="wrap">This app needs JavaScript turned on.</p></noscript>
 <style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0E0F11;z-index:9999;font-family:Montserrat,system-ui,sans-serif}#gate form{width:min(320px,86vw);text-align:center;color:#ECEEF1}#gate img{width:72px;margin-bottom:14px;filter:grayscale(1) brightness(1.18)}#gate h1{font-size:15px;letter-spacing:.18em;margin:0 0 18px;font-weight:600}#gate input{width:100%;box-sizing:border-box;padding:14px;border-radius:12px;border:1px solid #2A2E33;background:#17191C;color:#ECEEF1;font-size:16px}#gate button{width:100%;margin-top:10px;padding:14px;border:0;border-radius:12px;background:#C9CED6;color:#0E0F11;font-weight:700;font-size:15px}#gate p{color:#E5675A;font-size:13px;min-height:18px;margin:8px 0 0}</style>
 <script>
-(function(){var H="162c8e48e83400fb9cac9947ab71ea63e5e27490040529ddae7283fda6991d64",K="jsl-auth",d=document.documentElement;
-function load(){d.classList.remove("locked");var g=document.getElementById("gate");if(g)g.remove();var s=document.createElement("script");s.src="app.js?v=28";document.body.appendChild(s);if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});}
+(function(){var H="162c8e48e83400fb9cac9947ab71ea63e5e27490040529ddae7283fda6991d64",K="jsl-auth",P2="jsl-pw2",d=document.documentElement;
+function load(){d.classList.remove("locked");var g=document.getElementById("gate");if(g)g.remove();var s=document.createElement("script");s.src="app.js?v=30";document.body.appendChild(s);if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});}
 async function h(t){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
-function hqKey(pw){try{var u=((window.JSL&&window.JSL.hqDir)||"../jaysteel-hq/preview/data/")+"needs_you.json";fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(async function(b){var s=Uint8Array.from(atob(b.salt),function(c){return c.charCodeAt(0)});var k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);var raw=new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt:s,iterations:b.iter,hash:"SHA-256"},k,256));var t="";for(var i=0;i<raw.length;i++)t+=String.fromCharCode(raw[i]);localStorage.setItem("jshq_key_v1",JSON.stringify({salt:b.salt,key:btoa(t)}));window.dispatchEvent(new Event("jshq-key"));}).catch(function(){});}catch(e){}}
+/* PBKDF2 (device salt) — the same derivation the app's encrypted files use. Existing logins keep
+   working (the old token is still honoured); the slower check applies from the first typed login. */
+function b64e(b){var t="";new Uint8Array(b).forEach(function(x){t+=String.fromCharCode(x)});return btoa(t);}
+function unpack(b){return Uint8Array.from(atob(b),function(c){return c.charCodeAt(0)});}
+async function kdf(pw,salt,i){var base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);var raw=new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt:salt,iterations:i,hash:"SHA-256"},base,256));return Array.from(raw).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
+function hqKey(pw){try{var u=((window.JSL&&window.JSL.hqDir)||"../jaysteel-hq/preview/data/")+"needs_you.json";fetch(u+"?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(async function(b){var k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);var raw=new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt:unpack(b.salt),iterations:b.iter,hash:"SHA-256"},k,256));var t="";for(var i=0;i<raw.length;i++)t+=String.fromCharCode(raw[i]);localStorage.setItem("jshq_key_v1",JSON.stringify({salt:b.salt,key:btoa(t)}));window.dispatchEvent(new Event("jshq-key"));}).catch(function(){});}catch(e){}}
 var ok=false;try{ok=localStorage.getItem(K)===H}catch(e){}
 if(ok){document.addEventListener("DOMContentLoaded",load);return;}
 d.classList.add("locked");
-document.addEventListener("DOMContentLoaded",function(){var g=document.createElement("div");g.id="gate";g.innerHTML='<form autocomplete="on"><img src="assets/js-icon.png" alt=""><h1>JAY STEEL</h1><input type="text" name="username" value="jaysteel-logistics" autocomplete="username" style="display:none"><input id="gpw" type="password" name="password" autocomplete="current-password" placeholder="Password" required><button type="submit">Unlock</button><p id="gerr"></p></form>';document.body.appendChild(g);
-g.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();var v=document.getElementById("gpw").value.trim();if(await h(v)===H){try{localStorage.setItem(K,H)}catch(e){}hqKey(v);load();}else{document.getElementById("gerr").textContent="Wrong password";}});
+document.addEventListener("DOMContentLoaded",function(){var g=document.createElement("div");g.id="gate";g.innerHTML='<form autocomplete="on"><img src="assets/js-icon.png" alt=""><h1>JAY STEEL</h1><input type="text" name="username" value="jaysteel-logistics" autocomplete="username" style="display:none"><input id="gpw" type="password" name="password" autocomplete="current-password" placeholder="Password" required><button id="gunlock" type="submit">Unlock</button><p id="gerr"></p></form>';document.body.appendChild(g);
+var btn=document.getElementById("gunlock");
+/* lockout after wrong guesses: 1s, 2s, 4s, 8s (per tab). Never hard-blocks, resets itself. */
+function arm(sec){btn.disabled=true;var t0=Date.now(),iv=setInterval(function(){var left=Math.ceil(sec-(Date.now()-t0)/1000);var el=document.getElementById("gerr");if(el)el.textContent=left>0?("Wrong password · try again in "+left+"s"):"Wrong password";if(left<=0){clearInterval(iv);btn.disabled=false;btn.removeAttribute("aria-busy");}},200);}
+g.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();if(btn.disabled)return;var v=document.getElementById("gpw").value.trim();if(!v)return;btn.disabled=true;btn.setAttribute("aria-busy","true");
+try{var good=await h(v)===H;                          /* legacy check, offline-safe */
+if(!good){var p2=null;try{p2=JSON.parse(localStorage.getItem(P2)||"null");}catch(_){}
+if(p2&&p2.s&&p2.h&&await kdf(v,unpack(p2.s),p2.i)===p2.h)good=true;}   /* PBKDF2 check once enrolled */
+if(good){try{localStorage.setItem(K,H);if(!JSON.parse(localStorage.getItem(P2)||"null")){var s=new Uint8Array(16);crypto.getRandomValues(s);localStorage.setItem(P2,JSON.stringify({s:b64e(s),i:100000,h:await kdf(v,s,100000)}));}sessionStorage.removeItem("jsl-at");}catch(_){}hqKey(v);load();return;}
+}catch(_){}
+var el=document.getElementById("gerr");if(el)el.textContent="Wrong password";
+var at=1;try{at=(+((sessionStorage.getItem("jsl-at")||"0")))||0;at+=1;sessionStorage.setItem("jsl-at",String(at));}catch(_){}
+arm(Math.min(8,Math.pow(2,at-1)));});
 setTimeout(function(){var i=document.getElementById("gpw");if(i)i.focus()},50);});
 })();
+
 </script>
 </body>
 </html>

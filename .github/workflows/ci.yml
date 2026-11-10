@@ -1,0 +1,72 @@
+name: Validate site
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-site
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Existing test suite (test/site.test.mjs): shell assets, service-worker version
+      # consistency, events shape, security + accessibility basics.
+      - name: Node test suite
+        run: node --test test/site.test.mjs
+      # Every JS file must at least parse — a syntax slip can't ship silently.
+      - name: JS syntax check
+        run: |
+          fail=0
+          for f in $(git ls-files '*.js'); do node --check "$f" || fail=1; done
+          exit $fail
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # All JSON parses, events.json valid against its schema, opportunities.json valid
+      # against its schema, the feed is Florida-only, and markets.ics stays well-formed.
+      - name: Data + schema validation
+        run: |
+          pip install jsonschema
+          python3 - <<'PY'
+          import glob, json, jsonschema
+          ok = True
+          for f in sorted(glob.glob("data/*.json")):
+              try:
+                  json.load(open(f))
+              except Exception as e:
+                  print("JSON ERROR", f, e); ok = False
+          try:
+              jsonschema.validate(json.load(open("data/events.json")),
+                                  json.load(open("data/events.schema.json")))
+          except Exception as e:
+              print("events.schema ERROR:", e); ok = False
+          try:
+              jsonschema.validate(json.load(open("data/opportunities.json")),
+                                  json.load(open("data/opportunities.schema.json")))
+          except Exception as e:
+              print("opportunities.schema ERROR:", e); ok = False
+          opp = json.load(open("data/opportunities.json"))
+          for key in ("items", "ongoing", "sources"):
+              bad = [i.get("state") for i in opp.get(key, []) if i.get("state") not in (None, "FL")]
+              if bad:
+                  print("non-FL in", key, bad[:5]); ok = False
+          ics = open("data/markets.ics", encoding="utf-8").read()
+          if not ics.startswith("BEGIN:VCALENDAR") or ics.count("BEGIN:VEVENT") != ics.count("END:VEVENT"):
+              print("markets.ics malformed"); ok = False
+          raise SystemExit(0 if ok else 1)
+          PY
+      - name: Python scripts compile check
+        run: python3 -m py_compile scripts/opportunities.py

@@ -1,0 +1,227 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/opportunities.schema.json",
+ "title": "JAY STEEL vendor opportunities (data/opportunities.json)",
+ "description": "The Find-markets feed built by scripts/opportunities.py on a schedule. Items, ongoing leads and sources are Florida-only.",
+ "type": "object",
+ "required": [
+  "updated",
+  "sources",
+  "items",
+  "ongoing"
+ ],
+ "properties": {
+  "updated": {
+   "type": "string",
+   "description": "UTC timestamp of the last scan (YYYY-MM-DDTHH:MMZ)."
+  },
+  "refresh": {
+   "type": "string"
+  },
+  "coverage": {
+   "type": "string"
+  },
+  "sources": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/source"
+   }
+  },
+  "items": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/opportunity"
+   }
+  },
+  "ongoing": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/opportunity"
+   }
+  },
+  "newThisRun": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "additionalProperties": true,
+ "$defs": {
+  "source": {
+   "type": "object",
+   "required": [
+    "source",
+    "ok"
+   ],
+   "properties": {
+    "source": {
+     "type": "string"
+    },
+    "type": {
+     "type": "string"
+    },
+    "state": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "county": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "url": {
+     "type": "string"
+    },
+    "ok": {
+     "type": "boolean"
+    },
+    "stale": {
+     "type": "boolean",
+     "description": "True when this scan failed but the last good read is shown."
+    },
+    "items": {
+     "type": "integer"
+    },
+    "lastOk": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "error": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "additionalProperties": true
+  },
+  "opportunity": {
+   "type": "object",
+   "required": [
+    "id",
+    "title"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "title": {
+     "type": "string"
+    },
+    "date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "end_date": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "time": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "location": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "city": {
+     "type": "string"
+    },
+    "county": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "state": {
+     "type": "string"
+    },
+    "type": {
+     "type": "string"
+    },
+    "source": {
+     "type": "string"
+    },
+    "url": {
+     "type": "string"
+    },
+    "vendorMatch": {
+     "type": "boolean"
+    },
+    "fee": {
+     "type": [
+      "string",
+      "number",
+      "null"
+     ]
+    },
+    "deadline": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "firstSeen": {
+     "type": "string"
+    },
+    "origin": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "verified": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "verifiedAt": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "score": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "scoreWhy": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "notes": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "additionalProperties": true
+  }
+ }
+}

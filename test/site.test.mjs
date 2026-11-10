@@ -24,3 +24,43 @@ test('accessibility basics: focus ring, reduced motion, AA faint text', () => {
   assert.ok(!css.includes('--faint:#8a8d92') && !css.includes('--faint:#6d7076'), 'faint text below 4.5:1');
   assert.ok(js.includes('const esc ='), 'data is escaped before rendering');
 });
+test('data: schema files exist and parse; markets.ics stays a balanced VCALENDAR', () => {
+  for (const f of ['events.schema.json', 'opportunities.schema.json']) { JSON.parse(rd('data/' + f)); }
+  const ics = rd('data/markets.ics');
+  assert.ok(ics.startsWith('BEGIN:VCALENDAR') && ics.endsWith('END:VCALENDAR\r\n'));
+  assert.equal(ics.match(/BEGIN:VEVENT/g).length, ics.match(/END:VEVENT/g).length);
+});
+test('runtime safety net: device error capture exists and is bounded', () => {
+  assert.ok(js.includes('unhandledrejection'), 'captures unhandled rejections');
+  assert.ok(js.includes('jsl.err'), 'bounded error log key');
+  assert.ok(js.includes('ERR_MAX'), 'log is capped');
+});
+test('password gate: PBKDF2 + retry lockout present, legacy unlock preserved', () => {
+  assert.ok(html.includes('PBKDF2') && html.includes('jsl-pw2'), 'gate enrolls a slow per-device check');
+  assert.ok(html.includes('jsl-at') && html.includes('Wrong password · try again in'), 'wrong-guess lockout');
+  assert.ok(html.includes('await h(v)===H'), 'legacy (offline-safe) check is still the fallback');
+});
+test('service worker: navigationPreload + external image cache, old caches still purged', () => {
+  assert.ok(sw.includes('navigationPreload.enable'), 'activate enables preload');
+  assert.ok(sw.includes('IMG_CACHE') && sw.includes('jsl-img-v1'), 'image cache defined');
+  assert.ok(sw.includes('k !== CACHE && k !== IMG_CACHE'), 'image cache survives activate purge');
+});
+test('primary nav: 5-tab bottom dock present and wired into the tab system', () => {
+  assert.match(html, /class="dock"/);
+  assert.ok(html.includes('id="more-btn"'), 'dock More button opens the slide-in menu');
+  assert.ok(js.includes('.dock a[data-tab]'), 'setTab highlights dock links too');
+  assert.ok(js.includes('more.addEventListener'), 'dock More is wired to the menu');
+});
+test('map: dark/light basemap with automatic OSM fallback', () => {
+  assert.ok(js.includes('basemaps.cartocdn.com'), 'uses a real dark/light basemap');
+  assert.ok(js.includes('tileerror'), 'falls back on tile errors');
+  assert.ok(js.includes('t-osm-dark') || js.includes('t-osm-ink'), 'fallback tile filter class present');
+});
+test('design tokens: dark default, gold accent, no forbidden faint values', () => {
+  assert.ok(css.includes('--accent:#E6C87C'), 'gold accent is the brand accent');
+  assert.ok(css.includes('.dock a[aria-current]'), 'dock has an active state');
+  assert.ok(!css.includes('--faint:#8a8d92') && !css.includes('--faint:#6d7076'), 'faint text below 4.5:1');
+});
+test('build: one-command build script exists', () => {
+  assert.ok(existsSync('scripts/build.mjs'));
+});

@@ -55,21 +55,36 @@
     const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
     document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
   }
+  /* device error log (Nov 9 2026): the last 20 errors, shown in Settings › Diagnostics.
+     Additive — captures only, never sends anything on its own. */
+  const ERR_KEY = "jsl.err", ERR_MAX = 20;
+  function captureError(err) {
+    try {
+      const log = JSON.parse(localStorage.getItem(ERR_KEY) || "[]") || [];
+      log.push({ at: new Date().toISOString(), msg: String((err && err.message) || err).slice(0, 400), route: location.hash || "/", ua: navigator.userAgent.slice(0, 120) });
+      localStorage.setItem(ERR_KEY, JSON.stringify(log.slice(-ERR_MAX)));
+    } catch (_) {}
+  }
+  window.addEventListener("error", (ev) => captureError(ev.error || ev.message));
+  window.addEventListener("unhandledrejection", (ev) => captureError(ev.reason));
   const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
   const show = (html) => { app.innerHTML = `<div class="view">${html}</div>`; };
 
-  /* ---------- menu (Nov 6 2026): ☰ opens a slide-in menu; closes on tap outside, Esc, or picking an item ---------- */
+  /* ---------- menu (Nov 6 2026): ☰ — or the dock's "More" button — opens a slide-in menu; closes on tap outside, Esc, or picking an item ---------- */
   (function menu() {
-    const btn = document.getElementById("menu-btn"), nav = document.getElementById("menu"), scrim = document.getElementById("menu-scrim"), x = document.getElementById("menu-close");
+    const btn = document.getElementById("menu-btn"), more = document.getElementById("more-btn"), nav = document.getElementById("menu"), scrim = document.getElementById("menu-scrim"), x = document.getElementById("menu-close");
     if (!btn || !nav) return;
     const set = (open) => {
-      btn.setAttribute("aria-expanded", String(open)); nav.setAttribute("aria-hidden", String(!open)); nav.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      if (more) more.setAttribute("aria-expanded", String(open));
+      nav.setAttribute("aria-hidden", String(!open)); nav.classList.toggle("open", open);
       scrim.hidden = !open; document.body.classList.toggle("menu-open", open);
       nav.querySelectorAll("a,button").forEach((el) => { el.tabIndex = open ? 0 : -1; });
-      if (open) { const f = nav.querySelector("[aria-current]") || nav.querySelector("a"); f && f.focus(); } else btn.focus({ preventScroll: true });
+      if (open) { const f = nav.querySelector("[aria-current]") || nav.querySelector("a"); f && f.focus(); } else { (document.activeElement === more ? more : btn).focus({ preventScroll: true }); }
     };
     set(false); btn.blur();
     btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+    if (more) more.addEventListener("click", () => set(more.getAttribute("aria-expanded") !== "true"));
     scrim.addEventListener("click", () => set(false)); x.addEventListener("click", () => set(false));
     nav.querySelectorAll("a").forEach((l) => l.addEventListener("click", () => set(false)));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("open")) set(false); });
@@ -210,8 +225,7 @@
   const TAB_NAME = { today: "Dashboard", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", products: "Products", links: "Shop & Links", settings: "Settings" };
   function setTab(name) {
     name = TAB_OF[name] || name;
-    document.querySelectorAll(".menu a").forEach((a) => a.toggleAttribute("aria-current", false));
-    const a = document.querySelector(`.menu a[data-tab="${name}"]`); if (a) a.setAttribute("aria-current", "page");
+    document.querySelectorAll(".menu a[data-tab], .dock a[data-tab]").forEach((a) => a.toggleAttribute("aria-current", a.dataset.tab === name));
     const pn = document.getElementById("page-name"); if (pn) pn.textContent = TAB_NAME[name] || "";
     document.body.classList.toggle("booth", name === "booth");
   }
@@ -1128,7 +1142,21 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       const box = document.getElementById("map"); if (!box || !document.body.contains(box)) return;
       if (LMAP) { try { LMAP.remove(); } catch (_) {} }
       const m = LMAP = Lf.map(box, { zoomControl: true, attributionControl: true, scrollWheelZoom: false, tap: true });
-      Lf.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }).addTo(m);
+      /* true dark (or light) basemap from CARTO, retina-friendly; drops back to the filtered OSM tiles on any error */
+      const light = document.documentElement.getAttribute("data-theme") === "light";
+      const tiles = [
+        { url: `https://{s}.basemaps.cartocdn.com/${light ? "light_all" : "dark_all"}/{z}/{x}/{y}{r}.png`, opts: { maxZoom: 19, detectRetina: true },
+          attr: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>' },
+        { url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png", opts: { maxZoom: 18, className: light ? "t-osm-ink" : "t-osm-dark" },
+          attr: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }
+      ];
+      const addTiles = (k) => {
+        if (k >= tiles.length) return;
+        const t = Lf.tileLayer(tiles[k].url, Object.assign({ attribution: tiles[k].attr }, tiles[k].opts));
+        t.on("tileerror", () => { try { m.removeLayer(t); } catch (_) {} addTiles(k + 1); });
+        t.addTo(m);
+      };
+      addTiles(0);
       const groups = new Map(), nogeo = [];
       mapItems(mapFilter).forEach((it) => {
         const g = it.ll || (it.address && geo[it.address]);
@@ -1224,6 +1252,8 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         <div class="set-r"><span><b>App password</b><small>It also unlocks HQ's encrypted data, so Tab changes it on its side and re-encrypts everything.</small></span><a class="btn small" href="https://wa.me/${TAB_WA}?text=${encodeURIComponent("Tab, please change my JAY STEEL app password.")}" target="_blank" rel="noopener">Ask Tab</a></div>
         <div class="set-r"><span><b>Auto-lock</b><small>Ask for the password after this long idle</small></span>${seg("lock", [["0", "Off"], ["5", "5 min"], ["15", "15 min"], ["60", "1 hr"]])}</div>
       </div>
+      <h2 class="set-h">Diagnostics</h2>
+      <div class="card set" id="diagbox"></div>
       <h2 class="set-h">Connect · AI agents</h2>
       <p class="set-note">Read-only links an assistant or another app can use. Items marked public can be read by anyone with the link. HQ data stays encrypted and isn't listed here.</p>
       <div class="card set">
@@ -1247,6 +1277,18 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     app.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast("Copied"); } catch (_) { prompt("Copy this link:", b.dataset.copy); } }));
     document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
     document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
+    const errs = (() => { try { return JSON.parse(localStorage.getItem(ERR_KEY) || "[]") || []; } catch (_) { return []; } })();
+    const diag = document.getElementById("diagbox");
+    if (diag) {
+      diag.innerHTML = errs.length
+        ? `<div class="set-r"><span><b>Device errors</b><small>Last ${errs.length} on this phone — captured here, never sent on their own.</small></span><span class="set-btns"><button class="btn small" type="button" id="e-send">Send to Tab</button><button class="btn small" type="button" id="e-clr">Clear</button></span></div>
+           <details class="set-dt"><summary>Show errors</summary><ul class="ledger">${errs.slice(-5).map((x) => `<li><span>${esc((x.msg || "").slice(0, 140))}<small>${esc(String(x.at || "").replace("T", " ").slice(5, 16))} · ${esc(x.route || "/")}</small></span><span></span></li>`).join("")}</ul></details>`
+        : `<div class="set-r"><span><b>Device errors</b><small>None recorded on this phone.</small></span></div>`;
+      const send = document.getElementById("e-send");
+      if (send) send.onclick = () => window.open(waURL(["Device errors from the logistics app:"].concat(errs.slice(-5).map((x) => String((x.at || "") + " " + (x.route || "") + " — " + (x.msg || "")).slice(0, 300)))), "_blank", "noopener");
+      const clr = document.getElementById("e-clr");
+      if (clr) clr.onclick = () => { try { localStorage.removeItem(ERR_KEY); } catch (_) {} viewSettings(); };
+    }
     withHQ(() => { paintRem(); paintBrief(); const t = document.getElementById("hqteam"); if (t) t.innerHTML = teamHTML(); });
   }
   function paintBrief() {
