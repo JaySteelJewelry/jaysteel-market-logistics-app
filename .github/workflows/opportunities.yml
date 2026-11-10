@@ -15,15 +15,19 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Scan public calendars
+      - name: Scan public calendars + web search + vet
         env:
           DISCORD_OPPORTUNITIES_WEBHOOK_URL: ${{ secrets.DISCORD_OPPORTUNITIES_WEBHOOK_URL }}
+          # Optional: Google search via Serper (https://serper.dev). Without it the scanner falls
+          # back to DuckDuckGo HTML, and without either it still scans all the fixed feeds.
+          SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY }}
+          SEARCH_ENGINE: ${{ secrets.SEARCH_ENGINE }}
         run: python scripts/opportunities.py
       - name: Save results
         run: |

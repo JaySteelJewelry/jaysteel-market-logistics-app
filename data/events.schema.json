@@ -136,8 +136,10 @@
      "type": [
       "integer",
       "number",
-      "string"
-     ]
+      "string",
+      "null"
+     ],
+     "description": "Vendor fee. Null means not set yet."
     },
     "feeNote": {
      "type": "string"

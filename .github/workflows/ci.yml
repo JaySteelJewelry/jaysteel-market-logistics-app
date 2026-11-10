@@ -59,14 +59,17 @@ jobs:
           except Exception as e:
               print("opportunities.schema ERROR:", e); ok = False
           opp = json.load(open("data/opportunities.json"))
+          allowed = (None, "FL", "GA")
           for key in ("items", "ongoing", "sources"):
-              bad = [i.get("state") for i in opp.get(key, []) if i.get("state") not in (None, "FL")]
+              bad = [i.get("state") for i in opp.get(key, []) if i.get("state") not in allowed]
               if bad:
-                  print("non-FL in", key, bad[:5]); ok = False
+                  print("unexpected state in", key, bad[:5]); ok = False
           ics = open("data/markets.ics", encoding="utf-8").read()
           if not ics.startswith("BEGIN:VCALENDAR") or ics.count("BEGIN:VEVENT") != ics.count("END:VEVENT"):
               print("markets.ics malformed"); ok = False
           raise SystemExit(0 if ok else 1)
           PY
-      - name: Python scripts compile check
-        run: python3 -m py_compile scripts/opportunities.py
+      - name: Python scripts compile + scanner unit tests
+        run: |
+          python3 -m py_compile scripts/opportunities.py
+          python3 scripts/test_scan.py

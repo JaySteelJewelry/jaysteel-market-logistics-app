@@ -50,14 +50,23 @@ The webhook URL lives only in the repo secret `DISCORD_WEBHOOK_URL` — never in
 
 ## Opportunities tab ("Find")
 
-`scripts/opportunities.py` scans public calendars (college Engage/Localist feeds, CivicPlus city/county calendars,
-Eventbrite/VendorsMap where they allow it) for vendor markets, market days, festivals and tabling calls in
-NE Florida (Nassau, Duval, Clay, St. Johns, Baker, Putnam, Flagler, Volusia) and Georgia (Atlanta area, Hall County).
-It runs **every 6 hours** (`.github/workflows/opportunities.yml`, or Actions → Run workflow) — not literally live.
-Each source is tried on its own; the app's Sources list shows which ones returned data on the last scan.
-Results: `data/opportunities.json`. Ongoing/annual leads come from `data/opportunities_seed.json`.
-New vendor-type finds are posted to #market-log in Discord (secret `DISCORD_OPPORTUNITIES_WEBHOOK_URL`).
-Add a source: one line in `SOURCES` at the top of the script.
+`scripts/opportunities.py` autonomously finds vendor opportunities across **all of Florida and Georgia**:
+college/university calendars (Localist + CampusLabs "Engage"), city and county calendars (CivicPlus),
+marketplace listings (VendorsMap), **web search** (Google via the optional `SEARCH_API_KEY` secret,
+otherwise Bing/DuckDuckGo), and Tab's daily vetted pipeline. Every lead that has a link gets **vetted
+on its own page**: the run opens the organizer's site and pulls the real date, exact **registration link**,
+fee, apply-by deadline and contact — so the "Apply on organizer site" and "Apply via Tab" buttons work from
+the feed itself.
+
+- Runs **every 6 hours** (`.github/workflows/opportunities.yml`, or Actions → Run workflow) — not literally live.
+- Each source is wrapped on its own; the app's Sources list shows which returned data on the last scan
+  (a site that misses one scan keeps its last good read for 3 days).
+- Results: `data/opportunities.json`. Ongoing/annual leads come from `data/opportunities_seed.json`.
+- New vendor-type finds are posted to #market-log in Discord (secret `DISCORD_OPPORTUNITIES_WEBHOOK_URL`).
+- **Optional:** add a GitHub secret `SEARCH_API_KEY` (a free [Serper.dev](https://serper.dev) key) and,
+  if you want to force Google over the automatic fallback, `SEARCH_ENGINE=serper`.
+- Add a source or search query: one line in `SOURCES` at the top of the script. Parser unit tests live in
+  `scripts/test_scan.py` and run on every push/PR.
 
 ## Development
 
@@ -67,7 +76,7 @@ No build step — this is a static site. A few things make it keep working:
   baselines. `.github/workflows/ci.yml` runs it on every push/PR, and also parses every `data/*.json`,
   validates `data/events.json` and `data/opportunities.json` against their schemas
   (`events.schema.json`, `opportunities.schema.json`), checks `data/markets.ics` stays well-formed,
-  and syntax-checks all JS.
+  syntax-checks all JS, and runs the scanner's unit tests (`python3 scripts/test_scan.py`).
 - **Versioned assets:** `index.html` loads `styles.css?v=` and `app.js?v=`, and the service worker
   (`sw.js`) lists the same strings in its shell. They must match (tested). After changing either file,
   run `node scripts/bump-version.mjs` to bump both plus the SW cache name in one step.

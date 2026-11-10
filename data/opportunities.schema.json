@@ -2,7 +2,7 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/opportunities.schema.json",
  "title": "JAY STEEL vendor opportunities (data/opportunities.json)",
- "description": "The Find-markets feed built by scripts/opportunities.py on a schedule. Items, ongoing leads and sources are Florida-only.",
+ "description": "The Find-markets feed built by scripts/opportunities.py on a schedule. Covers Florida and Georgia: colleges, cities, counties, marketplaces plus autonomous web search, with organizer-page vetting (registration link, fee, deadline).",
  "type": "object",
  "required": [
   "updated",
@@ -20,6 +20,10 @@
   },
   "coverage": {
    "type": "string"
+  },
+  "vettedThisRun": {
+   "type": "integer",
+   "description": "How many leads had their organizer page read this run."
   },
   "sources": {
    "type": "array",
@@ -185,6 +189,32 @@
      "type": "string"
     },
     "origin": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "feed": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Which feed kind returned the item (localist, engage, civic, tribe, rss, jsonld, palmcoast, search)."
+    },
+    "registration_url": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "The organizer's vendor application / registration link, taken from the event's own page."
+    },
+    "email": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "phone": {
      "type": [
       "string",
       "null"

@@ -13,7 +13,7 @@ Base URL: https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/
 | `data/events.json` | Every market: `events[]` plus `openApplications[]` (applied, no date yet). Schema: `data/events.schema.json`. |
 | `data/events.schema.json` | JSON Schema (2020-12) for `data/events.json`. |
 | `data/markets.ics` | The same markets as an iCalendar feed (declined ones left out). Regenerated when the market list changes. |
-| `data/opportunities.json` | Vendor opportunities / leads (shown in the app under My Markets > Find markets). |
+| `data/opportunities.json` | Vendor opportunities / leads (shown in the app under Find markets). Covers all of Florida + Georgia: college/city/county calendars, marketplaces, web search. Leads with a link are vetted on the organizer's page — `registration_url` (apply link), `fee`, `deadline`, `email`, `verified`/`verifiedAt` are filled when found. |
 | `assets/geo.json` | Map pins: `places["<exact address string from events.json>"] = [lat, lng]` or `[lat, lng, 1]` (1 = approximate spot). |
 
 ## Reading `data/events.json`

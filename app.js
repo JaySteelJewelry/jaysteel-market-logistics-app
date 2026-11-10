@@ -734,11 +734,12 @@
       get("opportunities_vetted.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)]).then(([d, v]) => mergeVetted(d, v));
   }
   /* Nov 6 2026: data/opportunities_vetted.json = events Tab's daily pipeline read on the organizer's own page (search 5:30, publish 5:50 AM ET).
-     A vetted copy replaces the unverified row of the same event (same name + date); new ones are added. */
+     A vetted copy replaces the unverified row of the same event (same name + date); new ones are added. FL + GA statewide. */
   function mergeVetted(d, v) {
-    if (d) { const fl = (i) => !i.state || i.state === "FL"; d.items = (d.items || []).filter(fl); d.ongoing = (d.ongoing || []).filter(fl); d.sources = (d.sources || []).filter(fl); } /* Nov 9 2026: Florida only */
+    const ge = (i) => !i.state || i.state === "FL" || i.state === "GA";
+    if (d) { d.items = (d.items || []).filter(ge); d.ongoing = (d.ongoing || []).filter(ge); d.sources = (d.sources || []).filter(ge); }
     if (!v || !d) return d;
-    v = { ...v, items: (v.items || []).filter((i) => !i.state || i.state === "FL"), ongoing: (v.ongoing || []).filter((i) => !i.state || i.state === "FL") };
+    v = { ...v, items: (v.items || []).filter(ge), ongoing: (v.ongoing || []).filter(ge) };
     d.ongoing = d.ongoing || [];
     const k = (i) => nameKey(i.title) + "|" + (i.date || "");
     const idx = new Map(); d.items.concat(d.ongoing).forEach((i) => { if (!idx.has(k(i))) idx.set(k(i), i); });
@@ -851,7 +852,7 @@
     const sel = (id, label, opts, val) => `<label class="fsel"><span>${label}</span><select id="${id}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(val) === String(v) ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
     let html = `<div class="pagehead"><h1>Find markets</h1><div class="seg" role="tablist" aria-label="Browse or saved">
         <button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved${nSaved ? " · " + nSaved : ""}</button></div></div>
-      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across Florida.</p>`}
+      ${oSeg === "saved" ? `<p class="sub">Your shortlist. Tap ☆ on any lead to keep it here; saved on this phone only.</p>` : `<p class="sub">Vendor calls, markets, college market days + city/county events across Florida &amp; Georgia — scanned from calendars, marketplaces and web search, then vetted on the organizer's page.</p>`}
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input class="search" type="search" id="oq" placeholder="Search events, cities, organizers…" value="${esc(oQuery)}" aria-label="Search opportunities"></div>
       <div class="chips" role="group" aria-label="Status">${stChips.map(([k, l]) => `<button class="chip" data-os="${k}" aria-pressed="${oStatus === k}">${l}</button>`).join("")}</div>
       <div class="qrow">${sel("ofe", "Max fee", [["", "Any fee"], ["free", "Free"], ["u25", "≤ $25"], ["u50", "≤ $50"], ["u100", "≤ $100"], ["u150", "≤ $150"], ["custom", oFeeMax != null ? "≤ $" + oFeeMax + " (custom)" : "Custom max…"], ["o100", "Over $100"], ["pct", "% of sales"], ["unknown", "Not listed"]], oFee)}${sel("oso", "Sort", [["date", "Soonest first"], ["fee", "Fee: low → high"], ["dist", "Closest first"], ["score", "Score: high → low"], ["deadline", "Deadline first"]], oSort)}</div>
