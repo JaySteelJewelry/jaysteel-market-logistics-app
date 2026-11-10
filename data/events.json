@@ -153,6 +153,21 @@
       "end": "15:30"
     },
     {
+      "id": "unf-market-day-2026-11-04",
+      "name": "UNF Market Day",
+      "series": "unf-market-day",
+      "kind": "campus",
+      "status": "approved",
+      "date": "2026-11-04",
+      "start": "10:00",
+      "end": "13:00",
+      "notes": "Reservation 227357. $43 paid (Luis confirmed Nov 2 8:18 PM).",
+      "venue": "University of North Florida — Osprey Plaza",
+      "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": true,
+      "fee": 43
+    },
+    {
       "id": "first-friday-flagler-2026-11-06",
       "name": "First Friday Flagler Beach",
       "series": "first-friday-flagler",
@@ -258,6 +273,23 @@
       "notes": "Approved + paid (Luis confirmed Nov 6 10:17 AM).",
       "venue": "University of North Florida — Osprey Plaza",
       "address": "1 UNF Dr, Jacksonville, FL 32224",
+      "paid": true
+    },
+    {
+      "id": "st-johns-fall-makers-2026-11-14",
+      "name": "St. Johns Fall Makers Market (Jacksonville Business Connections)",
+      "series": "jbcc",
+      "kind": "market",
+      "status": "booked",
+      "date": "2026-11-14",
+      "start": "11:00",
+      "end": "14:00",
+      "venue": "The Fountains at St. Johns",
+      "address": "The Fountains at St. Johns, St Johns, FL",
+      "fee": null,
+      "nextStep": "Watch for JBCC day-of email with setup/arrival time.",
+      "showInToPay": false,
+      "notes": "Luis said Nov 9 10:55 PM he is approved + paid (sent FB event screenshot). Fee amount not recorded. Bring own tent, tables, chairs. Exact street address not confirmed yet.",
       "paid": true
     },
     {
@@ -843,21 +875,6 @@
       "nextStep": "Applied Oct 30 (Google Form, one application for Nov 27, Jan 29, Feb 26). They reply by email in 7-10 business days. Setup 4:00-5:30 PM only; stay until the end; bring own tent/table.",
       "notes": "Application: https://docs.google.com/forms/d/e/1FAIpQLScJhjIpaoDUoXPSqHCC5djtd0RqN1_8a3SKyPxapnDNHVufyQ/viewform ; applying is not a guaranteed spot.",
       "paid": false
-    },
-    {
-      "id": "unf-market-day-2026-11-04",
-      "name": "UNF Market Day",
-      "series": "unf-market-day",
-      "kind": "campus",
-      "status": "approved",
-      "date": "2026-11-04",
-      "start": "10:00",
-      "end": "13:00",
-      "notes": "Reservation 227357. $43 paid (Luis confirmed Nov 2 8:18 PM).",
-      "venue": "University of North Florida — Osprey Plaza",
-      "address": "1 UNF Dr, Jacksonville, FL 32224",
-      "paid": true,
-      "fee": 43
     }
   ],
   "openApplications": [
