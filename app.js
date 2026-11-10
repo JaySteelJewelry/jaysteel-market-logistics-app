@@ -55,6 +55,12 @@
     const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
     document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
   }
+  function toastAction(msg, label, fn) {
+    const t = document.createElement("div"); t.className = "toast toast--act"; t.setAttribute("role", "status");
+    t.innerHTML = `<span>${esc(msg)}</span><button type="button" class="toast__act">${esc(label)}</button>`;
+    t.querySelector(".toast__act").onclick = () => { fn(); t.remove(); };
+    document.body.appendChild(t); setTimeout(() => t.remove(), 4500);
+  }
   /* device error log (Nov 9 2026): the last 20 errors, shown in Settings › Diagnostics.
      Additive — captures only, never sends anything on its own. */
   const ERR_KEY = "jsl.err", ERR_MAX = 20;
@@ -106,6 +112,35 @@
   }
   const csvCell = (v) => { v = String(v == null ? "" : v); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
   const byId = (id) => DATA.events.find((e) => e.id === id);
+
+  /* ---------- save / remove local actions (Nov 10 2026) ----------
+     "Remove from calendar/list" hides an event on this device with an Undo toast; nothing is
+     deleted from data/events.json (that only changes via Tab). Saved events ⭐ filter into Markets. */
+  const hiddenMap = (k) => store.get(k, {});
+  const hideOpp = (id) => { const m = hiddenMap("hiddenOpps"); m[id] = true; store.set("hiddenOpps", m); };
+  const showOpp = (id) => { const m = hiddenMap("hiddenOpps"); delete m[id]; store.set("hiddenOpps", m); };
+  const isHiddenOpp = (id) => !!hiddenMap("hiddenOpps")[id];
+  const hideEvent = (id) => { const m = hiddenMap("hiddenEvents"); m[id] = true; store.set("hiddenEvents", m); };
+  const showEvent = (id) => { const m = hiddenMap("hiddenEvents"); delete m[id]; store.set("hiddenEvents", m); };
+  const isHiddenEvent = (id) => !!hiddenMap("hiddenEvents")[id];
+  const savedEventsMap = () => store.get("savedEvents", {});
+  const isSavedEvent = (id) => !!savedEventsMap()[id];
+  function toggleSavedEvent(id) { const s = savedEventsMap(); if (s[id]) { delete s[id]; toast("Removed from saved"); } else { s[id] = todayISO(); toast("⭐ Saved"); } store.set("savedEvents", s); }
+  const visEvent = (e) => !!e && !isHiddenEvent(e.id);
+  function unhideLast(which, id) {
+    return () => { if (which === "event") { showEvent(id); toast("Back on the calendar"); } else { showOpp(id); toast("Back on the list"); } };
+  }
+  function hideEventUI(id, name, rerender) {
+    const label = name || "That event";
+    hideEvent(id);
+    toastAction(`${label} removed from the list`, "Undo", unhideLast("event", id));
+    if (rerender) rerender();
+  }
+  function hideOppUI(id, rerender) {
+    hideOpp(id);
+    toastAction("Lead hidden", "Undo", unhideLast("opp", id));
+    if (rerender) rerender();
+  }
 
   /* ---------- Apply via Tab (Oct 20 2026) ----------
      Static site, so the hand-off is a prefilled WhatsApp message to Tab's own number. Tab submits the application and
@@ -197,7 +232,7 @@
   const started = (e, now) => !!e.start && nyMs(e.date, e.start) <= now;
   function nextMarket() {
     const now = Date.now();
-    const live = DATA.events.filter((e) => e.status !== "declined" && !ended(e, now));
+    const live = DATA.events.filter((e) => e.status !== "declined" && !ended(e, now) && !isHiddenEvent(e.id));
     return live.find((e) => e.status !== "pending" && e.status !== "tentative") || live[0] || null;
   }
   const packStat = (id) => { const l = checklist(id); const d = l.filter((i) => i.done).length; return { done: d, total: l.length, pct: l.length ? Math.round((d / l.length) * 100) : 0 }; };
@@ -211,7 +246,7 @@
     link: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
     map: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg>',
     cash: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/></svg>',
-    check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>'
+    trash: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M10 11v6M14 11v6"/></svg>'
   };
   const statusPill = (s) => `<span class="pill s-${esc(s)}"><i></i>${esc((STATUS[s] || { label: s }).label)}</span>`;
   const shortDate = (iso) => fmt(iso, { weekday: "short", month: "short", day: "numeric" });
@@ -227,6 +262,7 @@
     name = TAB_OF[name] || name;
     document.querySelectorAll(".menu a[data-tab], .dock a[data-tab]").forEach((a) => a.toggleAttribute("aria-current", a.dataset.tab === name));
     const pn = document.getElementById("page-name"); if (pn) pn.textContent = TAB_NAME[name] || "";
+    document.body.dataset.tab = name;                 /* per-tab accent color (styles.css) */
     document.body.classList.toggle("booth", name === "booth");
   }
 
@@ -421,49 +457,42 @@
     };
   }
 
-  /* ===== TODAY: next-market countdown hero ===== */
-  let tick = null;
+  /* ===== TODAY: compact dashboard (Nov 10 2026) — the big hero moved to Calendar; here it's one
+     clean line: next market, colorful quick actions, needs you, money. ===== */
   function viewToday() {
     setTab("today");
     const today = todayISO(), now = Date.now();
-    const upcoming = DATA.events.filter((e) => lastDay(e) >= today && e.status !== "declined");
     const next = nextMarket();
-    const approved = upcoming.filter((e) => UPCOMING_OK.includes(e.status)).length;
-    const waiting = upcoming.filter((e) => WAITING.includes(e.status)).length;
     const due = dueItems(today), over = overdueItems(today);
-    let hero = "";
+    let strip = "";
     if (next) {
       const live = started(next, now) && !ended(next, now);
-      const target = next.start ? nyMs(next.date, next.start) : nyMs(next.date, "00:00");
       const n = daysBetween(today, next.date);
-      hero = `<section class="hero" aria-labelledby="hero-name">
-        <div class="hero__top"><p class="kicker">${live ? '<span class="livedot"></span>Happening now' : n <= 0 ? "Today" : "Next market"}</p>${statusPill(next.status)}</div>
-        <h1 class="hero__name" id="hero-name"><a href="#/e/${encodeURIComponent(next.id)}">${esc(next.name)}</a></h1>
-        <p class="hero__when">${esc(fmt(next.date, { weekday: "long", month: "long", day: "numeric" }))}${next.endDate ? " – " + esc(shortDate(next.endDate)) : ""} · ${esc(timeRange(next))}</p>
-        <p class="hero__where">${esc(next.venue || next.address || "")}</p>
-        ${live || (n <= 0 && !next.start) ? `<div class="clock clock--now" role="timer"><b>${live ? "Open" : "Today"}</b><span>${live ? (next.end ? "until " + esc(t12(next.end)) : "go get 'em") : "start time not set"}</span></div>`
-          : `<div class="clock" id="clock" data-t="${target}" role="timer" aria-live="off">${["Days", "Hrs", "Min", "Sec"].map((u) => `<div><b data-u="${u}">–</b><span>${u}</span></div>`).join("")}</div>
-             ${next.start ? "" : `<p class="clock-note">Start time not set yet — counting to the day.</p>`}`}
-        <div class="hero__acts">
-          ${next.address ? `<a class="act act--gold" href="${esc(dirURL(next.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : `<a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.pin}<span>No address</span></a>`}
-          <a class="act" href="#/e/${encodeURIComponent(next.id)}">${I.info}<span>Details</span></a>
-        </div>
-      </section>`;
-    } else hero = `<section class="hero hero--empty"><p class="kicker">Next market</p><h1 class="hero__name">Nothing booked yet</h1><p class="hero__where">Open ☰ › Find markets to look for the next one.</p></section>`;
-
-    /* money due: one summary line; the full list lives on Payments only */
+      strip = `<a class="next-strip" href="#/e/${encodeURIComponent(next.id)}">
+        <span class="next-strip__ic">${I.cal}</span>
+        <span class="next-strip__t"><b>${esc(next.name)}</b><small>${esc(fmt(next.date, { weekday: "short", month: "short", day: "numeric" }))}${next.start ? " · " + esc(timeRange(next)) : ""}${next.venue || next.address ? " · " + esc(next.venue || next.address) : ""}</small></span>
+        <span class="next-strip__c"><b>${live ? "Open now" : n === 0 ? "Today" : n === 1 ? "1 day" : n + " days"}</b><small>${esc(shortDate(next.date))}</small></span>
+        <span class="chev" aria-hidden="true">›</span></a>`;
+    } else strip = `<a class="next-strip" href="#/opportunities"><span class="next-strip__ic">${I.bag}</span><span class="next-strip__t"><b>Nothing booked yet</b><small>Open Find markets to look for the next one</small></span><span class="chev" aria-hidden="true">›</span></a>`;
+    const quick = `<div class="quick4">
+      <a href="#/markets" class="q4 q4--list">${I.cal}<span>Markets</span></a>
+      <a href="#/opportunities" class="q4 q4--opp">${I.bag}<span>Find</span></a>
+      <a href="#/map" class="q4 q4--map">${I.map}<span>Map</span></a>
+      <a href="#/calendar" class="q4 q4--cal">${I.cal}<span>Calendar</span></a>
+    </div>`;
     const owe = over.concat(due);
     const feeNum = (s) => { const m = String(s || "").replace(/,/g, "").match(/\$\s*(\d+(?:\.\d+)?)/); return m ? Number(m[1]) : null; };
     const sum = owe.reduce((a, e) => { const n = feeNum(e.fee); return n == null ? a : a + n; }, 0);
     const nextDue = owe.slice().sort((p, q) => String(p.payBy).localeCompare(String(q.payBy)))[0];
-    const moneyHTML = sec("Money due") + (owe.length
-      ? `<a class="card nodate${over.length ? " late" : ""}" href="#/money"><span><b>${owe.length} fee${owe.length === 1 ? "" : "s"} to pay${sum ? " · " + money(sum) : ""}${over.length ? ` · ${over.length} late` : ""}</b><small>Next: ${esc(nextDue.name)} · ${over.includes(nextDue) ? "was due" : "pay by"} ${esc(fmt(nextDue.payBy, { month: "short", day: "numeric" }))}</small></span><span class="chev" aria-hidden="true">›</span></a>`
-      : `<div class="card"><p class="m" style="margin:0">Nothing due right now.</p></div>`);
-    let html = `<div class="pagehead"><h1>Dashboard</h1></div><section id="hqbox" aria-live="polite"></section><div class="today">${hero}<div class="today__side">${moneyHTML}</div></div>` + footer();
+    const moneyHTML = owe.length
+      ? `<a class="card nodate money-line${over.length ? " late" : ""}" href="#/money"><span class="money-line__t"><b>${sum ? money(sum) : "Fees due"} · ${owe.length} fee${owe.length === 1 ? "" : "s"}${over.length ? ` · ${over.length} late` : ""}</b><small>Next: ${esc(nextDue.name)} · ${over.includes(nextDue) ? "was due" : "pay by"} ${esc(fmt(nextDue.payBy, { month: "short", day: "numeric" }))}</small></span><span class="chev" aria-hidden="true">›</span></a>`
+      : `<div class="card"><p class="m" style="margin:0">Nothing due right now.</p></div>`;
+    let html = `<div class="pagehead"><h1>Dashboard</h1></div>
+      <section id="hqbox" aria-live="polite"></section>${strip}${quick}${moneyHTML}${footer()}`;
     show(html);
-    startClock();
     fillNeeds();
   }
+  let tick = null;
   function startClock() {
     clearInterval(tick); const c = document.getElementById("clock"); if (!c) return;
     const t = +c.dataset.t; const cells = {}; c.querySelectorAll("[data-u]").forEach((b) => { cells[b.dataset.u] = b; });
@@ -495,7 +524,8 @@
     const count = (k) => upcoming.filter((e) => e.status === k).length;
     const nOpen = (DATA.openApplications || []).length;
     const nPast = DATA.events.filter((e) => lastDay(e) < today).length;
-    const chips = [["upcoming", "Upcoming", upcoming.length], ["past", "Past", nPast]].concat(nOpen ? [["nodate", "No date yet", nOpen]] : []);
+    const nSaved = Object.keys(savedEventsMap()).length;
+    const chips = [["upcoming", "Upcoming", upcoming.length]].concat(nSaved ? [["saved", "⭐ Saved", nSaved]] : []).concat([["past", "Past", nPast]]).concat(nOpen ? [["nodate", "No date yet", nOpen]] : []);
     if (!chips.some((c) => c[0] === filter)) filter = "upcoming";
     let html = `<div class="pagehead"><h1>Markets</h1></div>
       <div class="searchbox">${'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>'}<input class="search" type="search" id="q" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets" autocomplete="off"></div>
@@ -526,9 +556,11 @@
     const ql = query.toLowerCase();
     let list = DATA.events.filter((e) => {
       const isPast = lastDay(e) < today;
+      if (isHiddenEvent(e.id)) return false;
+      if (filter === "saved" && !isSavedEvent(e.id)) return false;
       if (filter === "past") { if (!isPast) return false; }
       else if (filter !== "all" && isPast) return false;
-      if (!["upcoming", "past", "all"].includes(filter) && e.status !== filter) return false;
+      if (!["upcoming", "past", "all", "saved"].includes(filter) && e.status !== filter) return false;
       if (ql) { const hay = `${e.name} ${e.venue || ""} ${e.address || ""} ${e.notes || ""}`.toLowerCase(); if (!hay.includes(ql)) return false; }
       return true;
     });
@@ -553,12 +585,12 @@
      Paid and hideFromToPay still win. */
   const toPay = (e) => !!e.payBy && e.paid !== true && !e.hideFromToPay && (PAYABLE.includes(e.status) || e.showInToPay === true);
   function dueItems(today) {
-    return DATA.events.filter((e) => toPay(e) && e.payBy >= today)
+    return DATA.events.filter((e) => visEvent(e) && toPay(e) && e.payBy >= today)
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
   /* pay-by date already passed, still marked unpaid, market still ahead */
   function overdueItems(today) {
-    return DATA.events.filter((e) => toPay(e) && e.payBy < today && lastDay(e) >= today)
+    return DATA.events.filter((e) => visEvent(e) && toPay(e) && e.payBy < today && lastDay(e) >= today)
       .sort((a, b) => a.payBy.localeCompare(b.payBy));
   }
 
@@ -570,8 +602,18 @@
     const [y, m] = calMonth.split("-").map(Number);
     const first = new Date(Date.UTC(y, m - 1, 1, 12)); const startDow = first.getUTCDay();
     const daysIn = new Date(Date.UTC(y, m, 0, 12)).getUTCDate();
+    /* Apple-like countdown strip: the next market sits right above the grid */
+    const nx = nextMarket();
+    const nxDays = nx ? daysBetween(today, nx.date) : null;
+    const countdown = nx
+      ? `<a class="cal-cta" href="#/e/${encodeURIComponent(nx.id)}">
+          <span class="cal-cta__l"><small>Next market</small><b>${esc(nx.name)}</b></span>
+          <span class="cal-cta__c">${nxDays === 0 ? "Today" : nxDays === 1 ? "1 day" : nxDays + " days"}</span>
+          <span class="clock clock--sm" id="clock" data-t="${nx.start ? nyMs(nx.date, nx.start) : nyMs(nx.date, "00:00")}" role="timer" aria-label="Countdown to ${esc(nx.name)}">${["Days", "Hrs", "Min", "Sec"].map((u) => `<b data-u="${u}">–</b>`).join("")}</span>
+          <span class="chev" aria-hidden="true">›</span></a>`
+      : `<a class="cal-cta" href="#/opportunities"><span class="cal-cta__l"><small>Next market</small><b>Nothing booked yet</b></span><span class="chev" aria-hidden="true">›</span></a>`;
     const map = {};
-    DATA.events.forEach((e) => { let d = e.date; const end = lastDay(e); while (d <= end) { (map[d] = map[d] || []).push(e); const nd = parse(d); nd.setUTCDate(nd.getUTCDate() + 1); d = nd.toISOString().slice(0, 10); } });
+    DATA.events.forEach((e) => { if (isHiddenEvent(e.id)) return; let d = e.date; const end = lastDay(e); while (d <= end) { (map[d] = map[d] || []).push(e); const nd = parse(d); nd.setUTCDate(nd.getUTCDate() + 1); d = nd.toISOString().slice(0, 10); } });
     let cells = ""; for (let i = 0; i < startDow; i++) cells += `<div class="day out" aria-hidden="true"></div>`;
     for (let d = 1; d <= daysIn; d++) {
       const iso = `${calMonth}-${String(d).padStart(2, "0")}`; const evs = map[iso] || [];
@@ -579,8 +621,8 @@
         <span class="num">${d}</span><span class="dots">${evs.slice(0, 4).map((e) => `<i class="dot s-${e.status}"></i>`).join("")}</span></button>`;
     }
     const sel = calSel && map[calSel] ? map[calSel] : null;
-    const monthEvents = DATA.events.filter((e) => e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth));
-    show(`<div class="pagehead"><h1>Calendar</h1></div>
+    const monthEvents = DATA.events.filter((e) => !isHiddenEvent(e.id) && (e.date.startsWith(calMonth) || lastDay(e).startsWith(calMonth)));
+    show(`<div class="pagehead"><h1>Calendar</h1></div>${countdown}
       <div class="card calcard"><div class="cal-head"><button class="iconbtn" id="prev" aria-label="Previous month">‹</button>
       <h2>${fmt(calMonth + "-01", { month: "long", year: "numeric" })}</h2><button class="iconbtn" id="nextm" aria-label="Next month">›</button></div>
       <div class="grid">${["S", "M", "T", "W", "T", "F", "S"].map((d) => `<div class="dow">${d}</div>`).join("")}${cells}</div>
@@ -592,6 +634,7 @@
     document.getElementById("prev").onclick = () => { calMonth = shiftMonth(calMonth, -1); calSel = null; viewCalendar(); };
     document.getElementById("nextm").onclick = () => { calMonth = shiftMonth(calMonth, 1); calSel = null; viewCalendar(); };
     document.getElementById("icsall").onclick = () => download("jaysteel-markets.ics", ics(DATA.events.filter((e) => lastDay(e) >= today)), "text/calendar");
+    startClock();
   }
   const shiftMonth = (ym, n) => { const [y, m] = ym.split("-").map(Number); const d = new Date(Date.UTC(y, m - 1 + n, 1)); return d.toISOString().slice(0, 7); };
 
@@ -602,6 +645,11 @@
     setTab("list");
     const e = byId(id);
     if (!e) { show(`<a class="back" href="#/markets">‹ All markets</a><p class="empty">That market isn't in the list anymore.</p>`); return; }
+    if (isHiddenEvent(id)) {
+      show(`<a class="back" href="#/markets">‹ All markets</a><div class="card" style="text-align:center"><p class="m" style="margin:0 0 10px">This market is hidden on this device.</p><button class="btn small" id="unhide-ev" type="button">Put it back on the calendar</button></div>`);
+      document.getElementById("unhide-ev").onclick = () => { showEvent(id); viewEvent(id); };
+      return;
+    }
     const c = e.contact || {};
     const contact = [c.name && esc(c.name), c.email && (/@/.test(c.email) && !/\s/.test(c.email) ? `<a href="mailto:${esc(c.email)}">${esc(c.email)}</a>` : esc(c.email))].filter(Boolean).join("<br>");
     const paidLine = (e.status === "approved" || e.status === "agreement" || e.status === "conditional") ? (e.paid ? "✅ <b>Paid</b>" : "⚠️ Not paid yet") : "";
@@ -618,6 +666,8 @@
       <div class="bigacts">
         ${e.address ? `<a class="act act--gold" href="${esc(dirURL(e.address))}" target="_blank" rel="noopener">${I.pin}<span>Directions</span></a>` : ""}
         <button class="act" id="ics" type="button">${I.cal}<span>Add to calendar</span></button>
+        <button class="act" id="save-ev" type="button" aria-pressed="${isSavedEvent(e.id)}">${isSavedEvent(e.id) ? "★" : "☆"}<span>${isSavedEvent(e.id) ? "Saved" : "Save"}</span></button>
+        <button class="act act--danger" id="hide-ev" type="button">${I.trash || "🗑"}<span>Remove from list</span></button>
         ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : ""}
       </div>
       ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
@@ -636,6 +686,8 @@
       </div>
       ${sec("Sales &amp; expenses")}<div class="card" id="money"></div>${footer()}`);
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
+    const sv = document.getElementById("save-ev"); if (sv) sv.onclick = () => { toggleSavedEvent(e.id); viewEvent(id); };
+    const hv = document.getElementById("hide-ev"); if (hv) hv.onclick = () => hideEventUI(e.id, e.name, () => { location.replace("#/markets"); viewList(); });
     renderTally(e); wireApply(app, () => viewEvent(id));
     window.scrollTo(0, 0);
   }
@@ -674,13 +726,13 @@
   function viewMoney() {
     setTab("money");
     const today = todayISO(); const due = dueItems(today), over = overdueItems(today);
-    const withRows = DATA.events.map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
+    const withRows = DATA.events.filter(visEvent).map((e) => ({ e, t: totals(tally(e.id)), n: tally(e.id).length })).filter((x) => x.n);
     const all = withRows.reduce((a, x) => ({ sales: a.sales + x.t.sales, exp: a.exp + x.t.exp }), { sales: 0, exp: 0 });
     const dueRow = (e, late) => `<a class="payrow${late ? " late" : ""}" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}${late ? " · still marked unpaid" : ""}</small></span><span class="payrow__d">${late ? "was due" : "pay by"}<b>${esc(fmt(e.payBy, { month: "short", day: "numeric" }))}</b></span></a>`;
     show(`<div class="pagehead"><h1>Payments</h1></div><p class="sub">Fees to pay, what's paid, and what each market made. Sales are saved on this phone.</p>
       <p class="month">To pay</p>
       <div class="card pays">${over.length || due.length ? over.map((e) => dueRow(e, true)).join("") + due.map((e) => dueRow(e, false)).join("") : '<p class="empty">Nothing due right now.</p>'}</div>
-      ${(() => { const pd = DATA.events.filter((e) => e.paid && lastDay(e) >= today); return pd.length ? `<p class="month">Paid</p><div class="card pays">${pd.map((e) => `<a class="payrow" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}</small></span><span class="payrow__d"><span class="pill s-paid"><i></i>Paid</span><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b></span></a>`).join("")}</div>` : ""; })()}
+      ${(() => { const pd = DATA.events.filter((e) => visEvent(e) && e.paid && lastDay(e) >= today); return pd.length ? `<p class="month">Paid</p><div class="card pays">${pd.map((e) => `<a class="payrow" href="#/e/${encodeURIComponent(e.id)}"><span class="payrow__t"><b>${esc(e.name)}</b><small>${esc(e.fee || "")}</small></span><span class="payrow__d"><span class="pill s-paid"><i></i>Paid</span><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b></span></a>`).join("")}</div>` : ""; })()}
       <p class="month">All markets · totals</p>
       <div class="tot"><div><b class="pos">${money(all.sales)}</b><span>Sales</span></div><div><b class="neg">${money(all.exp)}</b><span>Expenses</span></div><div><b class="${all.sales - all.exp >= 0 ? "pos" : "neg"}">${money(all.sales - all.exp)}</b><span>Profit</span></div></div>
       <div class="card"><ul class="ledger">${withRows.length ? withRows.map((x) => `<li><a href="#/e/${encodeURIComponent(x.e.id)}">${esc(x.e.name)}<small>${esc(fmt(x.e.date, { month: "short", day: "numeric", year: "numeric" }))} · ${x.n} entr${x.n === 1 ? "y" : "ies"}</small></a><b class="${x.t.sales - x.t.exp >= 0 ? "pos" : "neg"}">${money(x.t.sales - x.t.exp)}</b><span></span></li>`).join("") : '<li class="empty">No sales logged yet — open a market and tap “+ Sale”.</li>'}</ul></div>
@@ -784,7 +836,7 @@
   }
   const dlBadge = (d) => d ? `<span class="dl dl--${d.kind}" title="${esc(d.text)}">⏰ ${esc(d.label)}</span>` : "";
   const pub = (s) => String(s || "").replace(/100%\s*hand-?made/gi, "maker-only").replace(/hand-?made/gi, "maker-made"); /* public-page wording rule */
-  const oppAll = () => (OPP ? OPP.items.concat(OPP.ongoing || []) : []);
+  const oppAll = () => (OPP ? OPP.items.concat(OPP.ongoing || []) : []).filter((i) => !isHiddenOpp(i.id));
   const oppById = (id) => oppAll().find((i) => i.id === id);
   const knownEvent = (i) => { const k = nameKey(i.title); if (k.length < 8) return null; return DATA.events.find((e) => { const n = nameKey(e.name); return n.length >= 8 && (n.includes(k) || k.includes(n)); }) || null; };
   const isNewOpp = (i, today) => i.origin !== "seed" && i.firstSeen >= new Date(parse(today) - 7 * 86400000).toISOString().slice(0, 10);
@@ -809,12 +861,14 @@
         <p class="m">${esc(where)}</p>
         <p class="m">${esc([i.time, n != null && n >= 0 ? (n === 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days") : ""].filter(Boolean).join(" · ") || (i.org || i.source))}</p></a>${starBtn(i)}</div>
       <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || String(i.fee).slice(0, 24))}</span>` : '<span class="fee">💵 Fee not listed</span>'}${i.verified === false ? '<span class="badge s-pending">Unverified</span>' : i.verified === true ? '<span class="badge s-approved">✓ Verified</span>' : ""}${i.score != null ? `<span class="badge" title="Scout score">${esc(String(i.score))}/100</span>` : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
-      <div class="actions"><a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button></div>
+      <div class="actions"><a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>
+        <button class="btn small icon" data-hide-opp="${esc(i.id)}" aria-label="Hide this lead" title="Remove from list">✕</button></div>
     </article>`;
   }
   function wireOppCards(root, rerender) {
     root.querySelectorAll("[data-star]").forEach((b) => b.addEventListener("click", (ev) => { ev.preventDefault(); toggleSaved(b.dataset.star); const y = window.scrollY; rerender(); window.scrollTo(0, y); }));
     root.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { if (isApplied(b.dataset.ap)) unmarkApplied(b.dataset.ap); else markApplied(b.dataset.ap); const y = window.scrollY; rerender(); window.scrollTo(0, y); }));
+    root.querySelectorAll("[data-hide-opp]").forEach((b) => b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); hideOppUI(b.dataset.hideOpp, () => { const y = window.scrollY; rerender(); window.scrollTo(0, y); }); }));
   }
   function needOpp(then) {
     if (OPP) return true;
@@ -931,6 +985,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     const i = oppById(id);
     const back = `<a class="back" href="#/opportunities">‹ Find</a>`;
     if (!i) { show(back + `<p class="empty">That lead isn't in the feed anymore.</p>`); return; }
+    if (isHiddenOpp(id)) { show(back + `<div class="card" style="text-align:center"><p class="m" style="margin:0 0 10px">This lead is hidden on this device.</p><button class="btn small" id="unhide-opp" type="button">Put it back</button></div>`); document.getElementById("unhide-opp").onclick = () => { showOpp(id); viewOppDetail(id); }; return; }
     const today = todayISO(), s = oppStatus(i, today), d = dl(i, today), ev = knownEvent(i), mi = milesText(i);
     const n = i.date ? daysBetween(today, i.date) : null;
     const pick = (...ks) => { for (const k of ks) if (i[k]) return i[k]; return ""; };
@@ -973,7 +1028,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         ${kv("⭐", "Score", i.score != null ? `<b>${esc(String(i.score))}/100</b>${i.scoreWhy ? `<br><span class="sub">${esc(i.scoreWhy)}</span>` : ""}` : "")}
         ${kv("🔎", "Found via", esc(i.source + (i.firstSeen ? " · first seen " + fmt(i.firstSeen, { month: "short", day: "numeric" }) : "")))}
       </div>
-      <div class="actions" style="margin:14px 0 0"><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}</div>
+      <div class="actions" style="margin:14px 0 0"><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}<button class="btn small icon" data-hide-opp="${esc(i.id)}" aria-label="Hide this lead" title="Remove from list">✕ Hide</button></div>
       <p class="fine" style="text-align:left;margin-top:14px">Once you're booked it moves to Markets with load-in, fees and directions. Always confirm details on the organizer's page.</p>${footer()}`);
     const rr = () => viewOppDetail(id);
     wireOppCards(app, rr); wireApply(app, rr);
@@ -1021,6 +1076,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     if (f === "gacampus") return OPP ? oppAll().filter((i) => i.state === "GA" && i.type === "college" && (!i.date || i.date >= today)).map((i) => ({ id: null, oid: i.id, name: pub(i.title), status: "tentative", date: i.date || null, when: i.date ? shortDate(i.date) : (i.when || "Ongoing"), address: i.city + ", GA", venue: i.org, ll: cityLL(i.city, "GA") })) : [];
     if (f === "nodate") return (DATA.openApplications || []).map((o, i) => ({ id: null, name: o.name, status: "nodate", date: null, when: o.when || "No date yet", address: o.address, venue: "" }));
     return DATA.events.filter((e) => {
+      if (isHiddenEvent(e.id)) return false;
       const up = lastDay(e) >= today;
       if (f === "past") return !up && e.status !== "declined";
       if (!up || e.status === "declined") return false;
@@ -1133,12 +1189,13 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     if (!OPP) loadOpp().then((d) => { OPP = d; }).catch(() => {});
     if (focusId) { const fe = byId(focusId); if (fe) mapFilter = lastDay(fe) < today ? "past" : "upcoming"; }
     show(`<div class="pagehead"><h1>Map</h1></div>
-      <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n || (k === "gacampus" ? "" : n)}</span></button>`).join("")}</div>
+      <div class="chips" role="group" aria-label="Show">${chips.map(([k, t, n]) => `<button class="chip" type="button" data-mf="${k}" aria-pressed="${k === mapFilter}">${esc(t)} <span class="n">${n || (k === "gacampus" ? "" : n)}</span></button>`).join("")}<button class="chip map-refresh" type="button" id="map-refresh" aria-label="Reload map tiles">↻ Tiles</button></div>
       ${routePanelHTML()}
       <div class="mapwrap"><div id="map" role="region" aria-label="Map of markets"></div></div>
       <div class="map-legend" aria-hidden="true">${[["approved", "Approved"], ["booked", "On my calendar"], ["agreement", "Agreement"], ["pending", "Pending"], ["tentative", "Tentative / conditional"], ["nodate", "No date yet"]].map(([s, t]) => `<span><i style="background:${stColor(s)}"></i>${t}</span>`).join("")}</div>
       <div class="places" id="places"><p class="loading">Loading map…</p></div>${footer()}`);
     app.querySelectorAll("[data-mf]").forEach((b) => b.addEventListener("click", () => { mapFilter = b.dataset.mf; viewMap(); }));
+    const mrp = document.getElementById("map-refresh"); if (mrp) mrp.onclick = () => viewMap();
     Promise.all([loadLeaflet(), loadGeo(), loadCityGeo(), mapFilter === "gacampus" && !OPP ? loadOpp().then((d) => { OPP = d; }).catch(() => {}) : null]).then(([Lf, geo]) => {
       const box = document.getElementById("map"); if (!box || !document.body.contains(box)) return;
       if (LMAP) { try { LMAP.remove(); } catch (_) {} }
@@ -1226,7 +1283,19 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
   function viewSettings() {
     setTab("settings");
     const s = SETS();
-    const seg = (key, opts) => `<div class="seg seg--set" role="radiogroup" aria-label="${esc(key)}">${opts.map(([v, t]) => `<button type="button" role="radio" data-set="${key}" data-v="${v}" aria-checked="${String(s[key]) === String(v)}">${t}</button>`).join("")}</div>`;
+    /* calendar sync (Nov 10 2026): one tap to subscribe the markets feed on Apple / Google / Outlook */
+    const CIS_URL = "https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/markets.ics";
+    const WEB_CAL = "webcal://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/markets.ics";
+    const GOOGLE_CAL = "https://calendar.google.com/calendar/r?cid=" + encodeURIComponent("webcal://jaysteeljewelry.github.io/jaysteel-market-logistics-app/data/markets.ics");
+    const OUTLOOK_CAL = "https://outlook.live.com/calendar/0/addfromweb?url=" + encodeURIComponent(CIS_URL);
+    const hiddenEv = Object.keys(hiddenMap("hiddenEvents"));
+    const hiddenOp = Object.keys(hiddenMap("hiddenOpps"));
+    const hiddenHTML = (hiddenEv.length || hiddenOp.length)
+      ? `<h2 class="set-h">Hidden · removed from lists</h2><div class="card set"><p class="set-note">Hidden on this device only — your live data is untouched.</p>
+          ${hiddenEv.map((id) => `<div class="set-r"><span><b>${esc((byId(id) || {}).name || id)}</b></span><button class="btn small" type="button" data-unhide="ev:${esc(id)}">Put back</button></div>`).join("")}
+          ${hiddenOp.map((id) => `<div class="set-r"><span><b>${esc((oppById(id) || {}).title || id)}</b><small>Find-market lead</small></span><button class="btn small" type="button" data-unhide="op:${esc(id)}">Put back</button></div>`).join("")}
+        </div>`
+      : "";    const seg = (key, opts) => `<div class="seg seg--set" role="radiogroup" aria-label="${esc(key)}">${opts.map(([v, t]) => `<button type="button" role="radio" data-set="${key}" data-v="${v}" aria-checked="${String(s[key]) === String(v)}">${t}</button>`).join("")}</div>`;
     const copyRow = (t, url, what, tag) => `<div class="conn"><div><b>${esc(t)}${tag ? ` <span class="pill">${esc(tag)}</span>` : ""}</b><small>${esc(what)}</small><code>${esc(url)}</code></div><button class="btn small" type="button" data-copy="${esc(url)}">Copy</button></div>`;
     const ro = (t, what) => `<div class="conn"><div><b>${esc(t)}</b><small>${esc(what)}</small></div><span class="pill s-approved"><i></i>Connected via Tab</span></div>`;
     const synced = DATA.updated ? fmt(DATA.updated, { month: "short", day: "numeric", year: "numeric" }) : "—";
@@ -1253,6 +1322,17 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         <div class="set-r"><span><b>App password</b><small>It also unlocks HQ's encrypted data, so Tab changes it on its side and re-encrypts everything.</small></span><a class="btn small" href="https://wa.me/${TAB_WA}?text=${encodeURIComponent("Tab, please change my JAY STEEL app password.")}" target="_blank" rel="noopener">Ask Tab</a></div>
         <div class="set-r"><span><b>Auto-lock</b><small>Ask for the password after this long idle</small></span>${seg("lock", [["0", "Off"], ["5", "5 min"], ["15", "15 min"], ["60", "1 hr"]])}</div>
       </div>
+      <h2 class="set-h">Sync your calendar</h2>
+      <div class="card set">
+        <p class="set-note">Subscribe the markets feed once and it stays in sync automatically — every market, status and fee lands on whichever calendar you pick.</p>
+        <div class="syncbtns">
+          <a class="sync sync--apple" href="${esc(WEB_CAL)}" target="_blank" rel="noopener"><span>🍎</span><b>Apple Calendar</b><small>Subscribe on iPhone · Mac</small></a>
+          <a class="sync sync--google" href="${esc(GOOGLE_CAL)}" target="_blank" rel="noopener"><span>📅</span><b>Google Calendar</b><small>Add the feed in a tap</small></a>
+          <a class="sync sync--outlook" href="${esc(OUTLOOK_CAL)}" target="_blank" rel="noopener"><span>🔷</span><b>Outlook</b><small>Web or desktop</small></a>
+        </div>
+        <div class="syncrow"><code>${esc(WEB_CAL)}</code><button class="btn small" type="button" data-copy="${esc(WEB_CAL)}">Copy</button></div>
+      </div>
+      ${hiddenHTML}
       <h2 class="set-h">Diagnostics</h2>
       <div class="card set" id="diagbox"></div>
       <h2 class="set-h">Connect · AI agents</h2>
@@ -1276,6 +1356,12 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       app.querySelectorAll(`[data-set="${b.dataset.set}"]`).forEach((x) => x.setAttribute("aria-checked", String(x === b)));
     }));
     app.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast("Copied"); } catch (_) { prompt("Copy this link:", b.dataset.copy); } }));
+    app.querySelectorAll("[data-unhide]").forEach((b) => b.addEventListener("click", () => {
+      const [t, id] = b.dataset.unhide.split(":");
+      if (t === "ev") showEvent(id); else showOpp(id);
+      toast("Put back");
+      viewSettings();
+    }));
     document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
     document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
     const errs = (() => { try { return JSON.parse(localStorage.getItem(ERR_KEY) || "[]") || []; } catch (_) { return []; } })();

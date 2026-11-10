@@ -452,8 +452,7 @@ body.menu-open{overflow:hidden}
 @media (max-width:420px){.set-r{flex-wrap:wrap}.set-r .seg--set{width:100%}.seg--set button{flex:1}}
 
 /* ---------- light theme ---------- */
-[data-theme="light"]{color-scheme:light;
-  --bg:#EDEFF2;--bg-rgb:237 239 242;--bg-2:#E4E7EB;--card:#F8F9FA;--card-2:#F8F9FA;--raised:#ECEEF2;--line:#CFD4DC;--line-2:#C2C7D0;--glass:rgb(237 239 242 / .9);
+[data-theme="light"]{color-scheme:light;  --bg:#EDEFF2;--bg-rgb:237 239 242;--bg-2:#E4E7EB;--card:#F8F9FA;--card-2:#F8F9FA;--raised:#ECEEF2;--line:#CFD4DC;--line-2:#C2C7D0;--glass:rgb(237 239 242 / .9);
   --text:#22252B;--muted:#5A6270;--faint:#697280;
   --accent:#8A5E14;--accent-hi:#6E4A0E;--accent-rgb:138 94 20;--accent-ink:#6E4A0E;--on-accent:#FFF9E9;
   --ok:#1F8A54;--ok-rgb:31 138 84;--bad:#C0392B;--bad-rgb:192 57 43;--warn:#9A6200;--warn-rgb:154 98 0;
@@ -487,3 +486,85 @@ html.calm *,html.calm *::before,html.calm *::after{animation:none!important;tran
   .toast{bottom:30px}
 }
 @media (max-width:360px){.clock b{font-size:32px}.act{font-size:11.5px}.brand__word{font-size:9.5px;letter-spacing:.2em}}
+
+/* ============================================================
+   Midnight & Gold · v2 (Nov 10 2026) — colorful per-tab accents,
+   compact dashboard, Apple-style calendar, calendar sync, actions
+   ============================================================ */
+/* --- per-tab accent colors (dark) --- */
+body[data-tab="today"]{--tab-accent:#E6C87C}
+body[data-tab="list"]{--tab-accent:#4FD8C4}
+body[data-tab="opp"]{--tab-accent:#C09BF0}
+body[data-tab="map"]{--tab-accent:#6FB6E8}
+body[data-tab="cal"]{--tab-accent:#F06A6A}
+body[data-tab="money"]{--tab-accent:#58D39B}
+body[data-tab="products"]{--tab-accent:#F291B7}
+body[data-tab="settings"]{--tab-accent:#9FB4D8}
+body[data-tab="links"]{--tab-accent:#F0B45A}
+body[data-tab] .pagehead h1{position:relative;padding-bottom:9px}
+body[data-tab] .pagehead h1::after{content:"";position:absolute;left:0;bottom:0;width:46px;height:3px;border-radius:3px;background:var(--tab-accent)}
+[data-theme="light"] body[data-tab="list"]{--tab-accent:#0E8E7E}
+[data-theme="light"] body[data-tab="opp"]{--tab-accent:#7A48C9}
+[data-theme="light"] body[data-tab="map"]{--tab-accent:#1E6BB8}
+[data-theme="light"] body[data-tab="cal"]{--tab-accent:#D9342A}
+[data-theme="light"] body[data-tab="money"]{--tab-accent:#148A5C}
+[data-theme="light"] body[data-tab="products"]{--tab-accent:#C2217A}
+[data-theme="light"] body[data-tab="settings"]{--tab-accent:#4A6FA5}
+[data-theme="light"] body[data-tab="links"]{--tab-accent:#9A6908}
+
+/* --- dashboard: compact next-market strip + colorful quick grid --- */
+.next-strip{display:flex;align-items:center;gap:12px;padding:14px 14px;border-radius:var(--r);text-decoration:none;color:var(--text);
+  background:var(--card);border:1px solid var(--line-2);box-shadow:var(--shadow);margin-bottom:12px;min-height:72px}
+.next-strip__ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none;color:var(--on-accent);
+  background:linear-gradient(160deg,var(--accent-hi),var(--accent))}
+.next-strip__t{flex:1;min-width:0}
+.next-strip__t b{display:block;font-size:15px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.next-strip__t small{display:block;color:var(--muted);font-size:12px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.next-strip__c{text-align:right;flex:none;display:flex;flex-direction:column;align-items:flex-end}
+.next-strip__c b{font-size:13px;font-weight:800;color:var(--tab-accent,var(--accent-ink))}
+.next-strip__c small{color:var(--muted);font-size:10.5px}
+.quick4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.q4{--qc:#888;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px;border-radius:16px;text-decoration:none;color:var(--text);
+  font-weight:700;font-size:12px;background:var(--card);border:1px solid var(--line-2);position:relative;overflow:hidden}
+.q4::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--qc)}
+.q4 svg{width:22px;height:22px;color:var(--qc)}
+.q4--list{--qc:#4FD8C4}.q4--opp{--qc:#C09BF0}.q4--map{--qc:#6FB6E8}.q4--cal{--qc:#F06A6A}
+.money-line{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.money-line__t b{display:block;font-size:14.5px}.money-line__t small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.money-line.late{background:rgb(var(--bad-rgb) / .08);border-color:rgb(var(--bad-rgb) / .45)}
+
+/* --- dashboard "needs you" chips get per-tab color --- */
+#hqbox .need--on{border-color:var(--tab-accent)}
+
+/* --- calendar: Apple-like + countdown strip --- */
+.cal-cta{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;text-decoration:none;color:var(--text);margin:0 0 12px;
+  background:var(--card);border:1px solid var(--line-2);box-shadow:var(--shadow)}
+.cal-cta__l{flex:1;min-width:0}
+.cal-cta__l small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.cal-cta__l b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-cta__c{flex:none;font-size:12px;font-weight:800;color:var(--bad);background:rgb(var(--bad-rgb) / .14);padding:4px 10px;border-radius:99px}
+.clock--sm{display:flex;gap:3px;margin:0}
+.clock--sm b{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:10px;background:var(--raised);
+  border:1px solid var(--line-2);font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--text)}
+.day.today .num{background:var(--bad,#EC6B5F);color:var(--on-accent)}
+.day.today{border-color:rgb(var(--bad-rgb) / .4)}
+.cal-cta .chev{color:var(--muted)}
+
+/* --- settings: calendar sync + hidden manager --- */
+.syncbtns{display:grid;gap:8px;margin:4px 0 10px}
+.sync{display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto auto;gap:0 12px;align-items:center;padding:12px 14px;
+  border-radius:14px;text-decoration:none;color:var(--text);border:1px solid var(--line-2);background:var(--card-2)}
+.sync span{font-size:22px;grid-row:1/-1}
+.sync b{font-size:14px}.sync small{grid-column:2;color:var(--muted);font-size:12px}
+.sync--apple{border-color:rgb(160 180 255 / .35)}
+.sync--google{border-color:rgb(108 190 110 / .35)}
+.sync--outlook{border-color:rgb(90 150 255 / .35)}
+.syncrow{display:flex;align-items:center;gap:8px;margin-top:2px}
+.syncrow code{flex:1;min-width:0;font-size:11px;color:var(--faint);overflow-wrap:anywhere;background:var(--raised);border:1px solid var(--line-2);padding:8px 10px;border-radius:10px}
+
+/* --- action buttons (Apply / Save / Remove / Hide) --- */
+.btn.icon{width:42px;min-width:42px;padding:0;flex:none;font-size:15px}
+.act--danger{color:var(--bad);border-color:rgb(var(--bad-rgb) / .5);background:rgb(var(--bad-rgb) / .08)}
+.toast--act{display:flex;align-items:center;gap:12px;background:var(--text);color:var(--bg)}
+.toast__act{border:0;background:none;color:var(--bad);font-weight:800;font-size:13px;cursor:pointer;padding:6px 4px;text-transform:uppercase;letter-spacing:.06em}
+.map-refresh{border-color:rgb(var(--accent-rgb) / .5);color:var(--accent-ink);background:rgb(var(--accent-rgb) / .1)}
