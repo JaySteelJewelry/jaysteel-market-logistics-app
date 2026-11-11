@@ -1200,11 +1200,12 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       const box = document.getElementById("map"); if (!box || !document.body.contains(box)) return;
       if (LMAP) { try { LMAP.remove(); } catch (_) {} }
       const m = LMAP = Lf.map(box, { zoomControl: true, attributionControl: true, scrollWheelZoom: false, tap: true });
-      /* true dark (or light) basemap from CARTO, retina-friendly; drops back to the filtered OSM tiles on any error */
+      /* true dark (or light) basemap from Esri (no key; CARTO started requiring one Nov 2026), retina-friendly; drops back to the filtered OSM tiles on any error */
       const light = document.documentElement.getAttribute("data-theme") === "light";
       const tiles = [
-        { url: `https://{s}.basemaps.cartocdn.com/${light ? "light_all" : "dark_all"}/{z}/{x}/{y}{r}.png`, opts: { maxZoom: 19, detectRetina: true },
-          attr: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>' },
+        { url: `https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/${light ? "World_Light_Gray_Base" : "World_Dark_Gray_Base"}/MapServer/tile/{z}/{y}/{x}`, opts: { maxZoom: 16 },
+          labels: `https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/${light ? "World_Light_Gray_Reference" : "World_Dark_Gray_Reference"}/MapServer/tile/{z}/{y}/{x}`,
+          attr: 'Tiles &copy; <a href="https://www.esri.com" target="_blank" rel="noopener">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors' },
         { url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png", opts: { maxZoom: 18, className: light ? "t-osm-ink" : "t-osm-dark" },
           attr: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' }
       ];
@@ -1213,6 +1214,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         const t = Lf.tileLayer(tiles[k].url, Object.assign({ attribution: tiles[k].attr }, tiles[k].opts));
         t.on("tileerror", () => { try { m.removeLayer(t); } catch (_) {} addTiles(k + 1); });
         t.addTo(m);
+        if (tiles[k].labels) Lf.tileLayer(tiles[k].labels, { maxZoom: 16, pane: "overlayPane" }).addTo(m);
       };
       addTiles(0);
       const groups = new Map(), nogeo = [];
