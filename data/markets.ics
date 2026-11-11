@@ -127,10 +127,10 @@ URL:https://www.jacksonvillebusinessconnections.com/events/riverside-fall-m
  arket
 END:VEVENT
 BEGIN:VEVENT
-UID:unf-market-day-2026-11-11@jaysteel-markets
-DTSTAMP:20261111T000000Z
-DTSTART;TZID=America/New_York:20261111T100000
-DTEND;TZID=America/New_York:20261111T130000
+UID:unf-market-day-2026-11-18@jaysteel-markets
+DTSTAMP:20261118T000000Z
+DTSTART;TZID=America/New_York:20261118T100000
+DTEND;TZID=America/New_York:20261118T130000
 SUMMARY:UNF Market Day
 LOCATION:1 UNF Dr\, Jacksonville\, FL 32224
 DESCRIPTION:Status: approved\nPaid
@@ -142,7 +142,7 @@ DTSTART;TZID=America/New_York:20261114T110000
 DTEND;TZID=America/New_York:20261114T140000
 SUMMARY:St. Johns Fall Makers Market (Jacksonville Business Connections)
 LOCATION:155 Fountains Way\, St Johns\, FL 32259
-DESCRIPTION:Status: booked\nPaid
+DESCRIPTION:Status: approved\nPaid
 END:VEVENT
 BEGIN:VEVENT
 UID:bjs-sunday-2026-11-15@jaysteel-markets
@@ -170,9 +170,9 @@ DTSTART;TZID=America/New_York:20261121T100000
 DTEND;TZID=America/New_York:20261121T140000
 SUMMARY:Mayport Village Waterfront Market
 LOCATION:4542 Ocean St\, Jacksonville\, FL 32233
-DESCRIPTION:Status: booked\nFee: $45\nPaid\nSetup: Setup 7:30–9:45 AM\, g
- ates close 9:30. 10×10 tent\, 30 lb weight per leg\, no power/wifi.\nhttp
- s://market.mayportwaterfrontpartnership.org
+DESCRIPTION:Status: approved\nFee: $45\nPaid\nSetup: Setup 7:30–9:45 AM\,
+  gates close 9:30. 10×10 tent\, 30 lb weight per leg\, no power/wifi.\nht
+ tps://market.mayportwaterfrontpartnership.org
 URL:https://market.mayportwaterfrontpartnership.org
 END:VEVENT
 BEGIN:VEVENT
