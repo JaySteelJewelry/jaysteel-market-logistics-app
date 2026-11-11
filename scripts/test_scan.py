@@ -66,6 +66,35 @@ class TestJsonLd(unittest.TestCase):
         self.assertEqual(evs[0]["startDate"], "2026-11-21T10:00")
 
 
+class TestAllevents(unittest.TestCase):
+    def test_parses_events_and_filters_non_vendor(self):
+        fixture = '''
+        <script type="application/ld+json">{"@type":"Event","name":"Riverside Artisan Market",
+          "startDate":"2026-11-21T10:00","url":"https://allevents.in/fl/market1",
+          "location":{"@type":"Place","name":"Town Green","address":{"addressLocality":"Jacksonville","addressRegion":"FL"}},
+          "description":"Vendors wanted, booths from $45"}</script>
+        <script type="application/ld+json">{"@type":"Event","name":"Live Comedy Night",
+          "startDate":"2026-11-21T20:00","url":"https://allevents.in/fl/comedy",
+          "description":"Stand up show"}</script>
+        '''
+        src = ("AllEvents: Florida", "allevents", "u", "market", "", "", "FL")
+        out = opp._allevents_parse(src, fixture)
+        self.assertEqual(len(out), 1)
+        it = out[0]
+        self.assertEqual(it["title"], "Riverside Artisan Market")
+        self.assertEqual(it["date"], "2026-11-21")
+        self.assertEqual(it["state"], "FL")
+        self.assertEqual(it["feed"], "allevents")
+
+    def test_skips_past_and_horizon_events(self):
+        fixture = ('<script type="application/ld+json">{"@type":"Event","name":"Old Market",'
+                   '"startDate":"2020-01-01","url":"u1"}</script>'
+                   '<script type="application/ld+json">{"@type":"Event","name":"Far Market",'
+                   '"startDate":"2038-01-01","url":"u2"}</script>')
+        src = ("AllEvents: Florida", "allevents", "u", "market", "", "", "FL")
+        self.assertEqual(opp._allevents_parse(src, fixture), [])
+
+
 class TestDdgParse(unittest.TestCase):
     def test_parses_redirect_links(self):
         fixture = ('<div class="result">'

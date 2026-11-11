@@ -104,6 +104,9 @@ SOURCES = [
     ("VendorsMap: Athens", "jsonld", "https://vendorsmap.com/cities/athens-ga", "market", "Athens", "Clarke", "GA"),
     ("VendorsMap: Augusta", "jsonld", "https://vendorsmap.com/cities/augusta-ga", "market", "Augusta", "Richmond", "GA"),
     ("VendorsMap: Brunswick", "jsonld", "https://vendorsmap.com/cities/brunswick-ga", "market", "Brunswick", "Glynn", "GA"),
+    # ---------- AllEvents.in (official API needs a subscription key; public pages are JSON-LD) ----------
+    ("AllEvents: Florida", "allevents", "https://www.allevents.in/florida/", "market", "", "", "FL"),
+    ("AllEvents: Georgia", "allevents", "https://www.allevents.in/georgia/", "market", "", "", "GA"),
     # ---------- autonomous web search (Google via Serper when SEARCH_API_KEY is set, else Bing, else DuckDuckGo) ----------
     ("Search: FL college & campus markets", "search", "college markets", "college", "", "Jacksonville", "FL"),
     ("Search: FL tabling calls", "search", "vendor tabling", "tabling", "", "", "FL"),
@@ -415,6 +418,65 @@ def p_vetted(src):
     v = json.load(open(src[2]))
     n = sum(1 for i in (v.get("items") or []) + (v.get("ongoing") or []) if (i.get("state") or "FL") in BOTH)
     return [None] * n
+
+
+# ---------- AllEvents.in (Nov 11 2026) ----------
+# AllEvents is a large events board (40k cities). Its official API lives at
+# allevents.developer.azure-api.net (Azure API Management, subscription key). Without a key we
+# read the public state/city pages, which ship schema.org Event JSON-LD — the same approach as
+# VendorsMap. Each page is wrapped on its own so a flaky answer only costs that row's items.
+ALLEVENTS_CITY = {
+    "FL": ["jacksonville_fl", "st-augustine_fl", "orlando_fl", "tampa_fl", "miami_fl", "gainesville_fl",
+           "daytona_beach_fl", "sarasota_fl", "tallahassee_fl", "pensacola_fl", "naples_fl", "fort_myers_fl",
+           "destin_fl", "fernandina_beach_fl", "palm_coast_fl", "new_smyrna_beach_fl",
+           "melbourne_fl", "vero_beach_fl", "west_palm_beach_fl", "boca_raton_fl", "fort_lauderdale_fl"],
+    "GA": ["atlanta_ga", "savannah_ga", "athens_ga", "augusta_ga", "macon_ga", "columbus_ga", "valdosta_ga",
+           "albany_ga", "brunswick_ga", "marietta_ga", "lawrenceville_ga", "alpharetta_ga", "kennesaw_ga",
+           "gainesville_ga", "statesboro_ga", "warner_robins_ga", "dalton_ga"],
+}
+
+def _allevents_parse(src, txt):
+    """Parse an AllEvents page's JSON-LD into vendor/market leads. Pure function — unit tested."""
+    out = []
+    for e in _jsonld_events(txt):
+        title = clean(e.get("name") or "")
+        try:
+            d = datetime.fromisoformat((e.get("startDate") or "")[:10]).date()
+        except Exception:
+            continue
+        if not title or not (TODAY <= d <= HORIZON):
+            continue
+        desc = clean(e.get("description") or "")[:200]
+        if not keep(title, desc, src[3]):
+            continue
+        loc = e.get("location") or {}
+        locname = loc.get("name") if isinstance(loc, dict) else None
+        x = mk(src, title, d, e.get("url"), None, locname, desc)
+        if x:
+            x["feed"] = "allevents"
+            out.append(x)
+    return out
+
+def _allevents_page(src, url):
+    try:
+        txt = fetch(url, timeout=25)
+    except Exception:
+        return []
+    return _allevents_parse(src, txt)
+
+def p_allevents(src):
+    """AllEvents for a state: the state page plus the state's biggest cities, deduped by url."""
+    name, _, base, typ, city, county, state = src
+    urls = [base] + [f"https://www.allevents.in/{s}/" for s in ALLEVENTS_CITY.get(state, [])[:12]]
+    seen, out = set(), []
+    for u in urls:
+        for it in _allevents_page(src, u):
+            k = it.get("url") or (it["title"], it["date"])
+            if k in seen:
+                continue
+            seen.add(k)
+            out.append(it)
+    return out
 
 
 def p_search(src):
@@ -832,7 +894,8 @@ def post_discord(out, had_previous):
 
 
 PARSERS = {"engage": p_engage, "localist": p_localist, "civic": p_civic, "eventbrite": p_jsonld, "jsonld": p_jsonld,
-           "rss": p_rss, "tribe": p_tribe, "palmcoast": p_palmcoast, "search": p_search, "vetted": p_vetted}
+           "rss": p_rss, "tribe": p_tribe, "palmcoast": p_palmcoast, "search": p_search, "allevents": p_allevents,
+           "vetted": p_vetted}
 
 if __name__ == "__main__":
     had_previous = os.path.exists(OUT)
