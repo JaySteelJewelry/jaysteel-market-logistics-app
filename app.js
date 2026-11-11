@@ -329,7 +329,7 @@
   /* Nov 6 2026 IA fix (Luis: "links and tabs repeatedly are redundant"): ONE map, each thing in exactly one place.
      ☰ Dashboard · Markets · Find markets · Map · Calendar · Payments · Shop & Links · Settings · Log Out. No sub-tabs. */
   const TAB_OF = { hq: "today", booth: "list" };
-  const TAB_NAME = { today: "Dashboard", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", products: "Products", links: "Shop & Links", settings: "Settings" };
+  const TAB_NAME = { today: "Today", list: "Markets", opp: "Find markets", map: "Map", cal: "Calendar", money: "Payments", products: "Products", links: "Shop & Links", settings: "Settings", todo: "To-Do" };
   function setTab(name) {
     name = TAB_OF[name] || name;
     document.querySelectorAll(".menu a[data-tab], .dock a[data-tab]").forEach((a) => a.toggleAttribute("aria-current", a.dataset.tab === name));
@@ -561,8 +561,10 @@
       : `<div class="card"><p class="m" style="margin:0">Nothing due right now.</p></div>`;
     const nApplied = Object.keys(appliedMap()).length;
     const appliedHTML = nApplied ? `<a class="card nodate money-line" href="#/opportunities/applied"><span class="money-line__t"><b>📮 ${nApplied} application${nApplied === 1 ? "" : "s"} in motion</b><small>Tap to review what you've applied to</small></span><span class="chev" aria-hidden="true">›</span></a>` : "";
-    let html = `<div class="pagehead"><h1>Dashboard</h1></div>
-      <section id="hqbox" aria-live="polite"></section>${strip}${quick}${moneyHTML}${appliedHTML}${footer()}`;
+    const tt = systemTasks().slice(0, 3);
+    const todoSnap = tt.length ? `<a class="card todo-snap" href="#/todo"><span class="todo-snap__h"><b>⚡ ${tt.length} thing${tt.length === 1 ? "" : "s"} need you</b><span class="chev" aria-hidden="true">›</span></span>${tt.map((x) => `<i>${x.t}</i>`).join("")}</a>` : "";
+    let html = `<div class="pagehead"><h1>Today</h1></div>
+      <section id="hqbox" aria-live="polite"></section>${strip}${quick}${todoSnap}${moneyHTML}${appliedHTML}${footer()}`;
     show(html);
     fillNeeds();
   }
@@ -1386,7 +1388,8 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         <div class="set-r"><span><b>Motion</b><small>Turn off animations</small></span>${seg("motion", [["full", "On"], ["reduce", "Reduced"]])}</div>
       </div>
       <h2 class="set-h">Notifications</h2>
-      <p class="set-note">These send your choice to Tab on the same signed channel as HQ answers. Tab confirms on the next update.</p>
+      <p class="set-note">Local reminders ("needs you" badge + optional phone notifications) and the WhatsApp nudges Tab sends.</p>
+      <div id="notifybox"></div>
       <div id="rembox"></div>
       <div id="briefbox"></div>
       <section id="hqteam"></section>
@@ -1461,6 +1464,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       saveProfile({ business: g("pf-business"), contact: g("pf-contact"), phone: g("pf-phone"), ig: g("pf-ig"), space: g("pf-space"), inventory: g("pf-inventory"), setup: g("pf-setup"), insurance: g("pf-insurance"), resale: g("pf-resale"), notes: g("pf-notes") });
       toast("Vendor profile saved");
     };
+    paintNotify();
     document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
     document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
     const errs = (() => { try { return JSON.parse(localStorage.getItem(ERR_KEY) || "[]") || []; } catch (_) { return []; } })();
@@ -1516,12 +1520,90 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       .catch(() => { prdLoading = null; show('<p class="empty">Couldn\'t load Products. Check your signal, then pull down to refresh.</p>'); });
   }
 
+  /* ===== TO-DO / PENDING (Nov 11 2026) — one list for everything that needs you,
+     a live badge on the dock, and optional local notifications. ===== */
+  const K_TODOS = "jsj.todos";
+  const todos = () => { try { const t = store.get(K_TODOS, []); return Array.isArray(t) ? t : []; } catch (_) { return []; } };
+  const saveTodos = (t) => store.set(K_TODOS, t);
+  function systemTasks(today) {
+    today = today || todayISO();
+    const ts = [];
+    const over = overdueItems(today), due = dueItems(today);
+    over.forEach((e) => ts.push({ id: "pay:" + e.id, kind: "fee", level: 1,
+      t: `Pay ${esc(e.fee || "the fee")} — ${esc(e.name)}`, s: "Fee overdue",
+      href: "#/e/" + encodeURIComponent(e.id) }));
+    due.slice(0, 4).forEach((e) => ts.push({ id: "pay:" + e.id, kind: "fee", level: 2,
+      t: `Pay ${esc(e.fee || "the fee")} by ${esc(fmt(e.payBy, { month: "short", day: "numeric" }))} — ${esc(e.name)}`, s: "Fee due",
+      href: "#/e/" + encodeURIComponent(e.id) }));
+    DATA.events.filter((e) => visEvent(e) && e.applyBy && e.applyBy >= today && daysBetween(today, e.applyBy) <= 14 && canApplyEvent(e))
+      .forEach((e) => ts.push({ id: "app:" + e.id, kind: "apply", level: daysBetween(today, e.applyBy) <= 3 ? 1 : 2,
+        t: `Apply by ${esc(fmt(e.applyBy, { month: "short", day: "numeric" }))} — ${esc(e.name)}`, s: "Application deadline",
+        href: "#/e/" + encodeURIComponent(e.id) }));
+    if (OPP) oppAll().filter((i) => i.deadline && i.deadline >= today && daysBetween(today, i.deadline) <= 14 && !isApplied(i.id))
+      .forEach((i) => ts.push({ id: "opp:" + i.id, kind: "apply", level: daysBetween(today, i.deadline) <= 3 ? 1 : 2,
+        t: `Deadline ${esc(fmt(i.deadline, { month: "short", day: "numeric" }))} — ${esc(String(i.title || "").slice(0, 60))}`, s: "Vendor application deadline",
+        href: "#/o/" + encodeURIComponent(i.id) }));
+    return ts.sort((a, b) => a.level - b.level || String((a.s + a.t)).localeCompare(String(b.s + b.t))).slice(0, 14);
+  }
+  function todoCount() {
+    return Math.min(9, systemTasks().length + todos().filter((t) => !t.done).length);
+  }
+  function paintBadge() {
+    const n = todoCount();
+    ["todo-badge", "todo-menu-count"].forEach((id) => { const el = document.getElementById(id); if (!el) return; if (n > 0) { el.hidden = false; el.textContent = n; } else el.hidden = true; });
+  }
+  function maybeNotify() {
+    if (!("Notification" in window)) return;
+    if (Notification.permission !== "granted" || !SETS().notify) return;
+    const n = todoCount();
+    if (n > 0) new Notification("JAY STEEL · " + n + (n === 1 ? " thing needs you" : " things need you"), { body: "Fees, deadlines and tasks are pending — open To-Do.", tag: "jsl-todo", icon: ROOT + "assets/icon-192.png" });
+  }
+  function paintNotify() {
+    const box = document.getElementById("notifybox"); if (!box) return;
+    const on = !!SETS().notify;
+    box.innerHTML = `<button type="button" class="swrow" role="switch" aria-checked="${on}" id="notifysw"><span><b>Reminders on this phone</b><small>${on ? "A notification nudges you when something is pending" : "Off — the To-Do badge still shows counts"}</small></span><span class="tog" aria-hidden="true"></span></button>`;
+    document.getElementById("notifysw").onclick = async () => {
+      const cur = SETS(); cur.notify = !cur.notify; sv(K_SETTINGS, cur);
+      if (cur.notify && "Notification" in window && Notification.permission !== "granted") {
+        try { const p = await Notification.requestPermission(); if (p !== "granted") { cur.notify = false; sv(K_SETTINGS, cur); toast("Notifications permission denied"); } }
+        catch (_) { cur.notify = false; sv(K_SETTINGS, cur); }
+      }
+      if (cur.notify) maybeNotify();
+      paintNotify();
+    };
+  }
+  function viewTodo() {
+    setTab("todo");
+    const today = todayISO();
+    const sys = systemTasks(today);
+    const mine = todos();
+    const open = mine.filter((t) => !t.done), done = mine.filter((t) => t.done);
+    const row = (x) => `<a class="trow ${x.level === 1 ? "trow--urgent" : ""}" href="${x.href}"><span class="tdot ${x.kind === "fee" ? "d-fee" : "d-apply"}"></span><span><b>${x.t}</b>${x.s ? `<small>${x.s}</small>` : ""}</span><span class="chev" aria-hidden="true">›</span></a>`;
+    const myRow = (x) => `<div class="mrow${x.done ? " mrow--done" : ""}" data-id="${esc(x.id)}"><button class="mchk" type="button" data-mid="${esc(x.id)}" aria-pressed="${x.done ? "true" : "false"}" aria-label="Toggle done">${x.done ? "✓" : ""}</button><span>${esc(x.text)}</span><button class="x" type="button" data-mdel="${esc(x.id)}" aria-label="Delete">×</button></div>`;
+    show(`<div class="pagehead"><h1>To-Do</h1></div>
+      <p class="sub">Everything that needs you — fees, deadlines, applications — plus your own list. Mark things off as you go.</p>
+      ${sys.length ? sec("Needs you", `<span class="more-link">${sys.length} open</span>`) + `<div class="tlist">${sys.map(row).join("")}</div>` : `<div class="card"><p class="m" style="margin:0">Nothing pending right now. 🎉</p></div>`}
+      <p class="month">My list</p>
+      <form class="tadd" id="tadd"><input id="ttext" placeholder="Add a task…" maxlength="120" aria-label="New task"><button class="btn primary" type="submit">Add</button></form>
+      ${open.length ? `<div class="mvlist">${open.map(myRow).join("")}</div>` : ""}
+      ${done.length ? `<details class="panel" style="margin-top:10px"><summary>Done (${done.length})</summary><div class="mvlist">${done.map(myRow).join("")}</div></details>` : ""}
+      ${footer()}`);
+    document.getElementById("tadd").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const v = document.getElementById("ttext").value.trim(); if (!v) return;
+      const t = todos(); t.push({ id: "t" + Date.now(), text: v.slice(0, 120), done: false }); saveTodos(t); viewTodo(); paintBadge();
+    });
+    app.querySelectorAll("[data-mid]").forEach((b) => b.addEventListener("click", () => { const t = todos(); const x = t.find((y) => y.id === b.dataset.mid); if (x) x.done = !x.done; saveTodos(t); viewTodo(); paintBadge(); }));
+    app.querySelectorAll("[data-mdel]").forEach((b) => b.addEventListener("click", () => { saveTodos(todos().filter((y) => y.id !== b.dataset.mdel)); toast("Task removed"); viewTodo(); paintBadge(); }));
+  }
   /* ---------- router ---------- */
   function route() {
     if (!DATA) return;
     const h = location.hash.replace(/^#\/?/, "");
     if (h !== "" && h !== "markets") clearInterval(tick);
+    paintBadge();
     if (LMAP && !h.startsWith("map")) { try { LMAP.remove(); } catch (_) {} LMAP = null; }
+    if (h === "todo") return viewTodo();
     if (h.startsWith("e/")) return viewEvent(decodeURIComponent(h.slice(2)));
     if (h.startsWith("pack/")) { location.replace("#/e/" + h.slice(5)); return; }   /* Nov 6 2026: packing checklist removed (Luis) */
     if (h === "markets") return viewList();
@@ -1605,6 +1687,6 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
 
   fetch(ROOT + "data/events.json", { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then((txt) => { lastEventsTxt = txt; DATA = sortEvents(JSON.parse(txt)); migrateSent(); route(); })
+    .then((txt) => { lastEventsTxt = txt; DATA = sortEvents(JSON.parse(txt)); migrateSent(); route(); setTimeout(maybeNotify, 2500); })
     .catch(() => { app.innerHTML = '<p class="loading">Couldn\'t load the market list. Check your signal, then pull down to refresh.</p>'; });
 })();

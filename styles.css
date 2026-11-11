@@ -636,3 +636,38 @@ body[data-tab] .pagehead h1::after{box-shadow:0 0 14px var(--tab-accent)}
 .pfield{display:flex;flex-direction:column;gap:4px;margin:10px 0;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700}
 .pfield input,.pfield textarea{min-height:46px;border-radius:12px;border:1px solid var(--line-2);background:var(--card-2);
   color:var(--text);font:500 15px/1.4 var(--sans);padding:10px 12px;letter-spacing:0;text-transform:none;width:100%;resize:vertical}
+
+/* ============================================================
+   Minimal "quiet glass" layer + To-Do system (Nov 11 2026)
+   ============================================================ */
+/* --- menu sections + badges --- */
+.menu__sec{margin:16px 6px 4px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);font-weight:800}
+.menu-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:99px;margin-left:auto;
+  background:var(--bad);color:var(--on-accent);font-size:11px;font-weight:800}
+.dokbadge{position:absolute;top:5px;right:22%;min-width:18px;height:18px;padding:0 4px;border-radius:99px;display:grid;place-items:center;
+  background:var(--bad);color:#fff;font:800 10px/1 var(--sans);box-shadow:0 0 0 2px var(--bg)}
+.dock a{position:relative}
+
+/* --- To-Do list --- */
+.tlist{display:grid;gap:8px}
+.trow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--card);
+  border:1px solid var(--line-2);text-decoration:none;color:var(--text)}
+.trow b{display:block;font-size:14px;line-height:1.3}
+.trow small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.trow .chev{color:var(--faint)}
+.trow--urgent{border-color:rgb(var(--bad-rgb) / .55);background:rgb(var(--bad-rgb) / .08)}
+.tdot{width:10px;height:10px;border-radius:50%;flex:none}
+.d-fee{background:var(--bad)}.d-apply{background:var(--warn)}
+.tadd{display:flex;gap:8px;margin:0 0 10px}
+.tadd input{flex:1;min-width:0;min-height:48px;border-radius:14px;border:1px solid var(--line-2);background:var(--card);padding:10px 14px;font-size:15px;color:var(--text)}
+.mvlist{display:grid;gap:6px}
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line-2)}
+.mrow span{flex:1;font-size:14px;line-height:1.35}
+.mrow--done span{color:var(--muted);text-decoration:line-through}
+.mchk{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--line-2);background:none;color:var(--on-accent);font-weight:800;cursor:pointer;flex:none;display:grid;place-items:center}
+.mchk[aria-pressed="true"]{background:var(--ok);border-color:transparent}
+.todo-snap{display:grid;gap:6px;margin-bottom:12px}
+.todo-snap__h{display:flex;align-items:center;justify-content:space-between}
+.todo-snap b{font-size:14px}
+.todo-snap i{font-style:normal;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.todo-snap i:first-of-type{color:var(--text)}
