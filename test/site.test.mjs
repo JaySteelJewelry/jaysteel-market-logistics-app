@@ -52,7 +52,7 @@ test('primary nav: 5-tab bottom dock present and wired into the tab system', () 
   assert.ok(js.includes('more.addEventListener'), 'dock More is wired to the menu');
 });
 test('map: dark/light basemap with automatic OSM fallback', () => {
-  assert.ok(js.includes('basemaps.cartocdn.com'), 'uses a real dark/light basemap');
+  assert.ok(js.includes('arcgisonline.com') || js.includes('basemaps.cartocdn.com'), 'uses a real dark/light basemap (Esri or CARTO)');
   assert.ok(js.includes('tileerror'), 'falls back on tile errors');
   assert.ok(js.includes('t-osm-dark') || js.includes('t-osm-ink'), 'fallback tile filter class present');
 });

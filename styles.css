@@ -568,3 +568,60 @@ body[data-tab] .pagehead h1::after{content:"";position:absolute;left:0;bottom:0;
 .toast--act{display:flex;align-items:center;gap:12px;background:var(--text);color:var(--bg)}
 .toast__act{border:0;background:none;color:var(--bad);font-weight:800;font-size:13px;cursor:pointer;padding:6px 4px;text-transform:uppercase;letter-spacing:.06em}
 .map-refresh{border-color:rgb(var(--accent-rgb) / .5);color:var(--accent-ink);background:rgb(var(--accent-rgb) / .1)}
+
+/* ============================================================
+   Framer-style layer (Nov 11 2026) — "dark night, animated
+   gradients, glass, magic": ambient aurora, frosted surfaces,
+   gradient glow on accents, tiny lift micro-interactions.
+   ============================================================ */
+/* --- ambient aurora (painted behind all content) --- */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.aurora .a1{width:62vw;height:62vw;left:-22vw;top:-20vh;background:radial-gradient(circle at 30% 30%,rgb(96 62 190 / .85),transparent 70%)}
+.aurora .a2{width:58vw;height:58vw;right:-20vw;top:24vh;background:radial-gradient(circle at 60% 40%,rgb(26 122 214 / .7),transparent 70%)}
+.aurora .a3{width:50vw;height:50vw;left:6vw;bottom:-22vh;background:radial-gradient(circle at 50% 50%,rgb(var(--accent-rgb) / .4),transparent 70%)}
+body[data-tab="opp"] .aurora .a2{background:radial-gradient(circle at 60% 40%,rgb(160 96 235 / .7),transparent 70%)}
+body[data-tab="cal"] .aurora .a2{background:radial-gradient(circle at 60% 40%,rgb(240 84 96 / .62),transparent 70%)}
+body[data-tab="list"] .aurora .a2{background:radial-gradient(circle at 60% 40%,rgb(38 190 168 / .6),transparent 70%)}
+body[data-tab="money"] .aurora .a2{background:radial-gradient(circle at 60% 40%,rgb(56 180 130 / .6),transparent 70%)}
+body[data-tab="products"] .aurora .a2{background:radial-gradient(circle at 60% 40%,rgb(224 110 165 / .6),transparent 70%)}
+@media (prefers-reduced-motion:no-preference){
+  .aurora .a1{animation:drift1 26s ease-in-out infinite alternate}
+  .aurora .a2{animation:drift2 32s ease-in-out infinite alternate}
+  .aurora .a3{animation:drift3 24s ease-in-out infinite alternate}
+}
+@keyframes drift1{to{transform:translate(9vw,8vh) scale(1.16)}}
+@keyframes drift2{to{transform:translate(-8vw,-6vh) scale(1.12)}}
+@keyframes drift3{to{transform:translate(6vw,-9vh) scale(1.22)}}
+main#app{position:relative;z-index:1}
+/* --- frosted glass chrome --- */
+.top{background:rgb(var(--bg-rgb) / .72);border-bottom:1px solid rgb(var(--hi-rgb) / .07)}
+.dock{background:rgb(15 17 23 / .78)}
+.menu{background:rgb(20 22 29 / .92)}
+.sheet{background:rgb(22 25 33 / .96)}
+/* --- surfaces get a whisper-light top edge (glass highlight) --- */
+.card{background:linear-gradient(180deg,rgb(var(--hi-rgb) / .04),rgb(var(--hi-rgb) / 0) 55%),var(--card)}
+.hero,.hangtag{background:linear-gradient(180deg,rgb(var(--hi-rgb) / .05),rgb(var(--hi-rgb) / 0) 50%),radial-gradient(120% 120% at 100% 0%,rgb(var(--accent-rgb) / .16) 0,rgb(var(--accent-rgb) / .02) 42%),var(--card)}
+/* --- gradient + glow on the primary moments --- */
+.btn.primary,.act--gold,.dock a[aria-current]{background:linear-gradient(135deg,var(--accent-hi),var(--accent) 55%,#d5af54)}
+.next-strip__ic{box-shadow:0 10px 22px -10px rgb(var(--accent-rgb) / .95)}
+body[data-tab] .pagehead h1::after{box-shadow:0 0 14px var(--tab-accent)}
+.clock--sm b{background:linear-gradient(180deg,var(--raised),rgb(var(--hi-rgb) / .03)),var(--raised)}
+.q4{transition:transform .18s ease,box-shadow .18s ease}
+.q4:hover{transform:translateY(-2px)}
+/* --- micro-interactions (only on real pointers) --- */
+@media (hover:hover){
+  .card,.row,.opp,.need,.place,.linkcard,.next-strip,.cal-cta,.tag,.stat,.qk{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .card:hover,.row:hover,.opp:hover,.need:hover,.next-strip:hover,.cal-cta:hover{transform:translateY(-2px)}
+  .btn.primary:hover,.act--gold:hover{filter:brightness(1.07)}
+  .iconbtn:hover,.chip:hover{border-color:rgb(var(--accent-rgb) / .45)}
+}
+/* --- type polish --- */
+.pagehead h1{letter-spacing:-.03em}
+.hero__name{letter-spacing:-.02em}
+.sec h2{letter-spacing:.18em}
+/* --- light theme: softer aurora + light glass --- */
+[data-theme="light"] .aurora i{opacity:.34}
+[data-theme="light"] .top{background:rgb(var(--bg-rgb) / .8)}
+[data-theme="light"] .dock{background:rgb(248 249 250 / .86)}
+[data-theme="light"] .menu{background:rgb(247 248 250 / .96)}
