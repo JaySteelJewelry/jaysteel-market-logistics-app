@@ -5,7 +5,9 @@
 (function () {
   "use strict";
   const TZ = "America/New_York";
-  const STORE_URL = "https://jaysteeljewelry.github.io/links/";   /* Nov 6 2026: the brand links page (no third-party store link) */
+  /* Nov 9 2026 redesign: links point at the brand's own site, never a third-party store. */
+  const STORE_URL = "https://jaysteeljewelry.github.io/";               /* brand home */
+  const LINKS_URL = "https://jaysteeljewelry.github.io/#links";          /* brand links page */
   const EDIT_URL = "https://github.com/JaySteelJewelry/jaysteel-market-logistics-app/edit/main/data/events.json";
   const STATUS = {
     approved: { label: "Approved", icon: "✅" },
@@ -201,6 +203,76 @@
       setTimeout(() => { close(); toast("✅ Applied · sent to Tab"); const y = window.scrollY; if (rerender) rerender(); window.scrollTo(0, y); }, 60);
     });
     document.getElementById("as-yes").focus();
+  }
+
+  /* ---------- Auto-apply (Nov 11 2026): vendor profile + one-tap application ----------
+     A stored vendor profile (Settings › My vendor profile) fills every application. One tap composes
+     the complete filled application and hands it over for submission: email the organizer, open their
+     application link with the draft copied, or queue it to Tab. Fees & policies stay owner-confirmed —
+     nothing is ever paid or signed automatically. Defaults are business-safe. */
+  const PROF_KEY = "jsl.profile";
+  const PROF_DEFAULTS = {
+    business: "JAY STEEL JEWELRY",
+    contact: EMAIL,
+    phone: "",
+    ig: "jaysteeljewelry",
+    space: "10×10 tent, one 6ft table + display cases",
+    inventory: "Handmade gold & gold-filled jewelry: Cuban and Figaro chains, necklaces, bracelets, rings, hoop earrings, stacking gift sets — $25–$250 range",
+    setup: "Arrive 60–90 min early; battery displays, no power needed; one car, quick load-in",
+    insurance: "",
+    resale: "",
+    notes: ""
+  };
+  const profile = () => Object.assign({}, PROF_DEFAULTS, (store.get("profile", {}) || {}));
+  const saveProfile = (p) => store.set("profile", Object.assign({}, PROF_DEFAULTS, p));
+  function appDraft(x) {
+    const p = profile();
+    const L = [`VENDOR APPLICATION — ${x.name}`, x.dates || "", "",
+      `Business: ${p.business}`, `Contact: ${p.contact}${p.phone ? " · " + p.phone : ""}`,
+      `Instagram: @${String(p.ig || "").replace(/^@/, "")}`, "",
+      `Space needed: ${p.space}`, `Inventory: ${p.inventory}`, `Setup: ${p.setup}`];
+    if (p.insurance) L.push(`Insurance: ${p.insurance}`);
+    if (p.resale) L.push(`Resale certificate: ${p.resale}`);
+    if (p.notes) L.push(`Notes: ${p.notes}`);
+    L.push("", "Prepared in the JAY STEEL logistics app.");
+    return L.join("\n");
+  }
+  const appMailto = (email, x) => "mailto:" + (email || "").replace(/^mailto:/, "") + "?subject=" + encodeURIComponent("Vendor application — " + x.name) + "&body=" + encodeURIComponent(appDraft(x));
+  function autoApplySheet(x, email, opener, rerender) {
+    const old = document.getElementById("applysheet"); if (old) old.remove();
+    const wrap = document.createElement("div"); wrap.className = "sheet-wrap"; wrap.id = "applysheet";
+    const wa = "https://wa.me/" + TAB_WA + "?text=" + encodeURIComponent("APPLY ✅ " + x.name + " — " + (x.dates || "") + (x.link ? " — " + x.link : "") + "\n\n" + appDraft(x) + "\nLuis sent from the JAY STEEL logistics app.");
+    wrap.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="aa-t" aria-describedby="aa-d">
+      <p class="eyebrow">Auto-apply</p><h3 id="aa-t">${esc(x.name)}</h3>
+      <p id="aa-d" class="sheet-note">Your full application is filled from your vendor profile. Pick how to submit — fees and sign-ups stay yours to confirm.</p>
+      <div class="auto">
+        ${email && /@/.test(email) ? `<a class="auto-row" href="${esc(appMailto(email, x))}"><b>📧 Email the organizer</b><small>Opens Mail with everything filled in</small></a>` : ""}
+        ${x.link ? `<button type="button" class="auto-row" id="aa-copy"><b>↗️ Application link + copy draft</b><small>Opens the organizer page with your application copied</small></button>` : ""}
+        <a class="auto-row" href="${esc(wa)}" target="_blank" rel="noopener"><b>🟢 Send to Tab to submit</b><small>WhatsApp — Tab files it for you</small></a>
+      </div>
+      <div class="actions"><button type="button" class="btn" id="aa-no">Cancel</button></div></div>`;
+    document.body.appendChild(wrap); document.body.classList.add("sheet-open");
+    const close = () => { wrap.remove(); document.body.classList.remove("sheet-open"); document.removeEventListener("keydown", onKey); if (opener && document.body.contains(opener)) opener.focus(); };
+    const onKey = (ev) => { if (ev.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+    wrap.addEventListener("click", (ev) => { if (ev.target === wrap) close(); });
+    document.getElementById("aa-no").onclick = close;
+    const cp = document.getElementById("aa-copy");
+    if (cp) cp.onclick = () => { (navigator.clipboard ? navigator.clipboard.writeText(appDraft(x)) : Promise.reject()).then(() => toast("Application copied — paste it into the form")).catch(() => toast("Long-press to copy")); window.open(x.link, "_blank", "noopener"); setTimeout(close, 250); };
+    markApplied(x.id); if (rerender) rerender();
+    document.getElementById("aa-no").focus();
+  }
+  /* a compact action row used on cards + details */
+  const autoBtn = (id) => `<button type="button" class="btn small primary auto-tap" data-auto="${esc(id)}">⚡ Auto-apply</button>`;
+  function wireAuto(root, rerender) {
+    (root || app).querySelectorAll("[data-auto]").forEach((b) => b.addEventListener("click", (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      const x = oppById(b.dataset.auto) || byId(b.dataset.auto);
+      if (!x) return;
+      const email = x.contact_email || x.email || (x.contact && x.contact.email) || "";
+      const o = { name: x.name || x.title, dates: oppDates(x), link: x.registration_url || x.url || x.link || "" };
+      autoApplySheet(o, email, b, () => rerender());
+    }));
   }
 
   /* ---------- tally + checklist state ---------- */
@@ -487,8 +559,10 @@
     const moneyHTML = owe.length
       ? `<a class="card nodate money-line${over.length ? " late" : ""}" href="#/money"><span class="money-line__t"><b>${sum ? money(sum) : "Fees due"} · ${owe.length} fee${owe.length === 1 ? "" : "s"}${over.length ? ` · ${over.length} late` : ""}</b><small>Next: ${esc(nextDue.name)} · ${over.includes(nextDue) ? "was due" : "pay by"} ${esc(fmt(nextDue.payBy, { month: "short", day: "numeric" }))}</small></span><span class="chev" aria-hidden="true">›</span></a>`
       : `<div class="card"><p class="m" style="margin:0">Nothing due right now.</p></div>`;
+    const nApplied = Object.keys(appliedMap()).length;
+    const appliedHTML = nApplied ? `<a class="card nodate money-line" href="#/opportunities/applied"><span class="money-line__t"><b>📮 ${nApplied} application${nApplied === 1 ? "" : "s"} in motion</b><small>Tap to review what you've applied to</small></span><span class="chev" aria-hidden="true">›</span></a>` : "";
     let html = `<div class="pagehead"><h1>Dashboard</h1></div>
-      <section id="hqbox" aria-live="polite"></section>${strip}${quick}${moneyHTML}${footer()}`;
+      <section id="hqbox" aria-live="polite"></section>${strip}${quick}${moneyHTML}${appliedHTML}${footer()}`;
     show(html);
     fillNeeds();
   }
@@ -670,7 +744,7 @@
         <button class="act act--danger" id="hide-ev" type="button">${I.trash || "🗑"}<span>Remove from list</span></button>
         ${e.link ? `<a class="act" href="${esc(e.link)}" target="_blank" rel="noopener">${I.link}<span>Event site</span></a>` : ""}
       </div>
-      ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail">${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
+      ${lastDay(e) >= todayISO() && canApplyEvent(e) ? `<div class="apply-detail actions">${autoBtn(e.id)}${applyBtn({ id: e.id, name: e.name, dates: eventDates(e), link: e.link || "" })}</div>` : ""}
       ${e.headsUp ? `<div class="card heads">${kv("⚠️", "Heads up", esc(e.headsUp))}</div>` : ""}
       <div class="card info">
         ${kv("📍", "Where", `${esc(e.venue || "")}${e.address ? "<br>" + esc(e.address) : ""}`)}
@@ -688,7 +762,7 @@
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
     const sv = document.getElementById("save-ev"); if (sv) sv.onclick = () => { toggleSavedEvent(e.id); viewEvent(id); };
     const hv = document.getElementById("hide-ev"); if (hv) hv.onclick = () => hideEventUI(e.id, e.name, () => { location.replace("#/markets"); viewList(); });
-    renderTally(e); wireApply(app, () => viewEvent(id));
+    renderTally(e); wireApply(app, () => viewEvent(id)); wireAuto(app, () => viewEvent(id));
     window.scrollTo(0, 0);
   }
 
@@ -756,10 +830,10 @@
     const L = DATA.links || {};
     const host = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch (_) { return u; } };
     const card = (href, i, b, s, ext) => `<a class="linkcard" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}><span class="i" aria-hidden="true">${ICONS[i]}</span><span><b>${b}</b><small>${s}</small></span><span class="arrow" aria-hidden="true">›</span></a>`;
-    const store = STORE_URL;
-    /* Nov 6 2026 (Luis): the online store isn't open until inventory is loaded, so this points at the links page. */
+    /* Nov 11 2026: the brand's own site — home + the links page. The online store opens when inventory is live. */
     show(`<div class="pagehead"><h1>Shop &amp; Links</h1></div><p class="sub">Send customers here from the booth, Discord or socials.</p>
-      ${card(store, "store", "Shop &amp; links", "jaysteeljewelry.github.io/links", true)}
+      ${card(LINKS_URL, "store", "Shop &amp; Links", "jaysteeljewelry.github.io/#links", true)}
+      ${card(STORE_URL, "store", "Jay Steel Jewelry", "jaysteeljewelry.github.io", true)}
       ${card(L.instagram || "https://www.instagram.com/jaysteeljewelry/", "ig", "Instagram", "@jaysteeljewelry", true)}
       ${card("mailto:" + EMAIL, "mail", "Email", EMAIL, false)}
       <section id="hqfol"></section>
@@ -778,7 +852,7 @@
 
 
   /* ---------- opportunities ---------- */
-  let OPP = null, oLimit = 25, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
+  let OPP = null, oLimit = 25, oOngoing = 12, oType = "all", oState = "", oCounty = "", oVendor = false, oQuery = "", oHideApplied = false;
   const TYPE_LABEL = { college: "🎓 College", tabling: "🪧 Tabling", city: "🏙️ City", county: "🏛️ County", market: "🛍️ Market" };
   function loadOpp(fresh) {
     const get = (f) => fetch(ROOT + "data/" + f + (fresh ? "?t=" + Date.now() : ""), { cache: fresh ? "no-store" : "no-cache" });
@@ -861,7 +935,7 @@
         <p class="m">${esc(where)}</p>
         <p class="m">${esc([i.time, n != null && n >= 0 ? (n === 0 ? "Today" : n === 1 ? "Tomorrow" : "in " + n + " days") : ""].filter(Boolean).join(" · ") || (i.org || i.source))}</p></a>${starBtn(i)}</div>
       <div class="facts">${stChip(s)}${i.fee ? `<span class="fee">💵 ${esc(feeShort(i) || String(i.fee).slice(0, 24))}</span>` : '<span class="fee">💵 Fee not listed</span>'}${i.verified === false ? '<span class="badge s-pending">Unverified</span>' : i.verified === true ? '<span class="badge s-approved">✓ Verified</span>' : ""}${i.score != null ? `<span class="badge" title="Scout score">${esc(String(i.score))}/100</span>` : ""}${dlBadge(d)}${i.vendorMatch ? '<span class="badge s-booked">Vendor</span>' : ""}<span class="badge s-tentative">${esc((TYPE_LABEL[i.type] || i.type).replace(/^\S+ /, ""))}</span></div>
-      <div class="actions"><a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>
+      <div class="actions">${autoBtn(i.id)}<a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>
         <button class="btn small icon" data-hide-opp="${esc(i.id)}" aria-label="Hide this lead" title="Remove from list">✕</button></div>
     </article>`;
   }
@@ -869,6 +943,7 @@
     root.querySelectorAll("[data-star]").forEach((b) => b.addEventListener("click", (ev) => { ev.preventDefault(); toggleSaved(b.dataset.star); const y = window.scrollY; rerender(); window.scrollTo(0, y); }));
     root.querySelectorAll("[data-ap]").forEach((b) => b.addEventListener("click", () => { if (isApplied(b.dataset.ap)) unmarkApplied(b.dataset.ap); else markApplied(b.dataset.ap); const y = window.scrollY; rerender(); window.scrollTo(0, y); }));
     root.querySelectorAll("[data-hide-opp]").forEach((b) => b.addEventListener("click", (ev) => { ev.preventDefault(); ev.stopPropagation(); hideOppUI(b.dataset.hideOpp, () => { const y = window.scrollY; rerender(); window.scrollTo(0, y); }); }));
+    wireAuto(root, rerender);
   }
   function needOpp(then) {
     if (OPP) return true;
@@ -926,7 +1001,7 @@
     else {
       html += dated.length ? dated.slice(0, oLimit).map((i) => { const m = oSort === "date" ? (i.date < today ? "Past" : fmt(i.date, { month: "long", year: "numeric" })) : ""; const h = m && m !== month ? `<p class="month">${m}</p>` : ""; month = m || month; return h + oppCard(i, today); }).join("") : '<p class="empty">Nothing dated matches these filters.</p>';
       if (dated.length > oLimit) html += `<button class="btn full more" id="omore">Show ${Math.min(25, dated.length - oLimit)} more · ${dated.length - oLimit} left</button>`;
-      if (ongoing.length) html += `<details class="panel" id="ongo"${oQuery || oSeg === "saved" ? " open" : ""}><summary>Ongoing &amp; annual · apply anytime (${ongoing.length})</summary>${ongoing.map((i) => oppCard(i, today)).join("")}</details>`;
+      if (ongoing.length) html += `<details class="panel" id="ongo"${oQuery || oSeg === "saved" ? " open" : ""}><summary>Ongoing &amp; annual · apply anytime (${ongoing.length})</summary>${ongoing.slice(0, oOngoing).map((i) => oppCard(i, today)).join("")}${ongoing.length > oOngoing ? `<button class="btn full more" type="button" id="ongo-more">Show ${Math.min(12, ongoing.length - oOngoing)} more · ${ongoing.length - oOngoing} left</button>` : ""}</details>`;
     }
     const okSrc = OPP.sources.filter((s) => s.ok && s.items).length;
     html += `<details class="panel" style="margin-top:16px"><summary>Sources · last scan ${esc(OPP.updated.replace("T", " ").replace("Z", " UTC"))} · ${okSrc} of ${OPP.sources.length} returned items</summary>
@@ -939,7 +1014,8 @@
     on("seg-b", "onclick", () => { oSeg = "browse"; oLimit = 25; if (/saved/.test(location.hash)) location.hash = "#/opportunities"; else viewOpp(); });
     on("seg-s", "onclick", () => { oSeg = "saved"; oLimit = 25; viewOpp(); });
     on("gob", "onclick", (e) => { e.preventDefault(); oSeg = "browse"; oQuery = ""; location.hash = "#/opportunities"; viewOpp(); });
-    on("omore", "onclick", () => { const y = window.scrollY; oLimit += 25; viewOpp(); window.scrollTo(0, y); });
+    document.getElementById("omore") && on("omore", "onclick", () => { const y = window.scrollY; oLimit += 25; viewOpp(); window.scrollTo(0, y); });
+    on("ongo-more", "onclick", () => { oOngoing += 12; viewOpp(); });
     app.querySelectorAll("[data-ot]").forEach((b) => b.addEventListener("click", () => { oType = b.dataset.ot; oLimit = 25; viewOpp(); }));
     app.querySelectorAll("[data-os]").forEach((b) => b.addEventListener("click", () => { oStatus = b.dataset.os; oLimit = 25; viewOpp(); }));
     on("ost", "onchange", (e) => { oState = e.target.value; oCounty = ""; oLimit = 25; viewOpp(); });
@@ -1028,7 +1104,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         ${kv("⭐", "Score", i.score != null ? `<b>${esc(String(i.score))}/100</b>${i.scoreWhy ? `<br><span class="sub">${esc(i.scoreWhy)}</span>` : ""}` : "")}
         ${kv("🔎", "Found via", esc(i.source + (i.firstSeen ? " · first seen " + fmt(i.firstSeen, { month: "short", day: "numeric" }) : "")))}
       </div>
-      <div class="actions" style="margin:14px 0 0"><button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}<button class="btn small icon" data-hide-opp="${esc(i.id)}" aria-label="Hide this lead" title="Remove from list">✕ Hide</button></div>
+      <div class="actions" style="margin:14px 0 0">${autoBtn(i.id)}<button class="btn small" data-ap="${esc(i.id)}" aria-pressed="${isApplied(i.id)}">${isApplied(i.id) ? "✓ Applied" : "Mark applied"}</button>${applyLink ? `<a class="btn small" href="${esc(applyLink)}" target="_blank" rel="noopener">Apply on organizer site ↗</a>` : ""}<button class="btn small icon" data-hide-opp="${esc(i.id)}" aria-label="Hide this lead" title="Remove from list">✕ Hide</button></div>
       <p class="fine" style="text-align:left;margin-top:14px">Once you're booked it moves to Markets with load-in, fees and directions. Always confirm details on the organizer's page.</p>${footer()}`);
     const rr = () => viewOppDetail(id);
     wireOppCards(app, rr); wireApply(app, rr);
@@ -1324,6 +1400,21 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
         <div class="set-r"><span><b>App password</b><small>It also unlocks HQ's encrypted data, so Tab changes it on its side and re-encrypts everything.</small></span><a class="btn small" href="https://wa.me/${TAB_WA}?text=${encodeURIComponent("Tab, please change my JAY STEEL app password.")}" target="_blank" rel="noopener">Ask Tab</a></div>
         <div class="set-r"><span><b>Auto-lock</b><small>Ask for the password after this long idle</small></span>${seg("lock", [["0", "Off"], ["5", "5 min"], ["15", "15 min"], ["60", "1 hr"]])}</div>
       </div>
+      <h2 class="set-h">My vendor profile</h2>
+      <div class="card set">
+        <p class="set-note">Filled automatically into every <b>Auto-apply</b> application. Saved on this device only — your live data is untouched.</p>
+        <label class="pfield"><span>Business name</span><input id="pf-business" value="${esc(profile().business)}"></label>
+        <label class="pfield"><span>Contact email</span><input id="pf-contact" type="email" value="${esc(profile().contact)}"></label>
+        <label class="pfield"><span>Phone</span><input id="pf-phone" type="tel" value="${esc(profile().phone)}"></label>
+        <label class="pfield"><span>Instagram</span><input id="pf-ig" value="${esc(profile().ig)}"></label>
+        <label class="pfield"><span>Space needed</span><input id="pf-space" value="${esc(profile().space)}"></label>
+        <label class="pfield"><span>Inventory (short blurb)</span><textarea id="pf-inventory" rows="3">${esc(profile().inventory)}</textarea></label>
+        <label class="pfield"><span>Setup / load-in notes</span><textarea id="pf-setup" rows="2">${esc(profile().setup)}</textarea></label>
+        <label class="pfield"><span>Insurance (if the organizer asks)</span><input id="pf-insurance" value="${esc(profile().insurance)}"></label>
+        <label class="pfield"><span>Resale certificate #</span><input id="pf-resale" value="${esc(profile().resale)}"></label>
+        <label class="pfield"><span>Anything else to include</span><textarea id="pf-notes" rows="2">${esc(profile().notes)}</textarea></label>
+        <button class="btn primary full" id="pf-save" type="button">Save profile</button>
+      </div>
       <h2 class="set-h">Sync your calendar</h2>
       <div class="card set">
         <p class="set-note">Subscribe the markets feed once and it stays in sync automatically — every market, status and fee lands on whichever calendar you pick.</p>
@@ -1364,6 +1455,12 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
       toast("Put back");
       viewSettings();
     }));
+    const pfs = document.getElementById("pf-save");
+    if (pfs) pfs.onclick = () => {
+      const g = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+      saveProfile({ business: g("pf-business"), contact: g("pf-contact"), phone: g("pf-phone"), ig: g("pf-ig"), space: g("pf-space"), inventory: g("pf-inventory"), setup: g("pf-setup"), insurance: g("pf-insurance"), resale: g("pf-resale"), notes: g("pf-notes") });
+      toast("Vendor profile saved");
+    };
     document.getElementById("x-csv").onclick = () => download("jaysteel-markets.csv", marketsCSV(), "text/csv");
     document.getElementById("x-json").onclick = () => download("jaysteel-markets.json", JSON.stringify(DATA.events, null, 2), "application/json");
     const errs = (() => { try { return JSON.parse(localStorage.getItem(ERR_KEY) || "[]") || []; } catch (_) { return []; } })();
@@ -1435,7 +1532,7 @@ ${esc(t.body || "")}</pre><button class="btn small" id="tcopy" type="button">Cop
     if (h === "money") return viewMoney();
     if (h.startsWith("o/")) return viewOppDetail(decodeURIComponent(h.slice(2)));
     if (h === "ga-guide") return viewGaGuide();
-    if (h === "opportunities" || h === "saved") return viewOpp();
+    if (h === "opportunities" || h === "saved" || h === "opportunities/applied") { if (h === "opportunities/applied") oStatus = "applied"; return viewOpp(); }
     if (h === "links") return viewLinks();
     if (h === "products" || h.startsWith("products/")) return viewProducts(h);
     viewToday();

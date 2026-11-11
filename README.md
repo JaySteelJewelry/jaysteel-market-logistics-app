@@ -5,6 +5,27 @@ Live app: https://jaysteeljewelry.github.io/jaysteel-market-logistics-app/
 A phone-first planner for every market JAY STEEL JEWELRY sells at: status badges, calendar, fees and pay-by dates,
 contacts, directions, a sales/expense tally per market (CSV export).
 
+## Auto-apply (one-tap vendor applications)
+
+Every lead and booked market gets an **⚡ Auto-apply** button. It fills your application from your
+**vendor profile** (Settings › My vendor profile) and hands it over for submission — tap *Email the
+organizer* (Mail opens fully written), *Application link + copy draft*, or *Send to Tab to submit*.
+The app never pays a fee or signs for you: the last click is always yours (or Tab's). Applications are
+tracked on this device; the Dashboard shows an "applications in motion" card.
+
+## APIs & costs
+
+Everything is **free and open-source**: the app uses no paid API keys. The opportunity engine reads
+public/open feeds (CampusLabs Engage, Localist, CivicPlus, The Events Calendar, VendorsMap, AllEvents
+pages, Esri + OpenStreetMap map tiles) and searches the web via an optional free-tier
+[Serper.dev](https://serper.dev) key (falling back to Bing/DuckDuckGo with no key). If a paid API is
+ever worth it, it is only added after you approve the cost.
+
+## Shop & links
+
+The app links customers to **jaysteeljewelry.github.io** and its **#links** page — no third-party
+storefront until the online store is live.
+
 ## Design & app install
 
 "Midnight & Gold": a dark-first design system (jewelry gold accent over deep charcoal), with a matching light theme.
