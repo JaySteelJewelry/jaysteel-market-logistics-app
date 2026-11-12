@@ -63,13 +63,18 @@
   const isHiddenEvent = (id) => !!hideMap("hiddenEvents")[id];
   const hideEvent = (id) => { const m = hideMap("hiddenEvents"); m[id] = true; store.set("hiddenEvents", m); };
   const showEvent = (id) => { const m = hideMap("hiddenEvents"); delete m[id]; store.set("hiddenEvents", m); };
+  /* not interested: distinctly hidden, restorable on its own */
+  const niMap = () => store.get("notInterested", {});
+  const isNotInterested = (id) => !!niMap()[id];
+  const markNotInterested = (id) => { const m = niMap(); m[id] = true; store.set("notInterested", m); };
+  const unmarkNotInterested = (id) => { const m = niMap(); delete m[id]; store.set("notInterested", m); };
   const isHiddenOpp = (id) => !!hideMap("hiddenOpps")[id];
   const hideOpp = (id) => { const m = hideMap("hiddenOpps"); m[id] = true; store.set("hiddenOpps", m); };
   const showOpp = (id) => { const m = hideMap("hiddenOpps"); delete m[id]; store.set("hiddenOpps", m); };
   const savedMap = () => store.get("savedEvents", {});
   const isSavedEvent = (id) => !!savedMap()[id];
   function toggleSavedEvent(id) { const s = savedMap(); if (s[id]) { delete s[id]; toast("Removed from saved"); } else { s[id] = todayISO(); toast("⭐ Saved"); } store.set("savedEvents", s); }
-  const visEvent = (e) => !!e && !isHiddenEvent(e.id);
+  const visEvent = (e) => !!e && !isHiddenEvent(e.id) && !isNotInterested(e.id);
   const oppAll = () => (OPP ? (OPP.items || []).concat(OPP.ongoing || []) : []).filter((i) => !isHiddenOpp(i.id));
   const oppById = (id) => oppAll().find((i) => i.id === id);
   const nameKey = (s) => String(s || "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\b(the|a|an)\b/g, " ").replace(/\s+/g, " ").trim();
@@ -226,7 +231,9 @@
   function viewMarkets() {
     setTab("list"); const today = todayISO();
     const up = (DATA.events || []).filter((e) => lastDay(e) >= today);
-    const chips = [["upcoming", "Upcoming", up.length]].concat(Object.keys(savedMap()).length ? [["saved", "⭐ Saved", Object.keys(savedMap()).length]] : []).concat([["past", "Past", (DATA.events || []).length - up.length]]);
+    const hidePast = !!SETS().hidePast;
+    if (hidePast && filter === "past") filter = "upcoming";
+    const chips = [["upcoming", "Upcoming", up.length]].concat(Object.keys(savedMap()).length ? [["saved", "⭐ Saved", Object.keys(savedMap()).length]] : []).concat(hidePast ? [] : [["past", "Past", (DATA.events || []).length - up.length]]);
     const chipHTML = (c, k) => `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${c}${k === "upcoming" ? ` <span class="n">${up.length}</span>` : ""}</button>`;
     show(`<div class="pagehead"><h1>Markets</h1></div>
       <div class="searchbox">${I.search}<input class="search" id="q" type="search" placeholder="Search markets, places…" value="${esc(query)}" aria-label="Search markets"></div>
@@ -272,6 +279,7 @@
         ${e.address ? `<a class="act act--gold" href="${esc(/iphone|ipad|ipod/i.test(navigator.userAgent) ? amaps(e.address) : maps(e.address))}" target="_blank" rel="noopener">🧭<span>Directions</span></a>` : ""}
         <button class="act" id="ics" type="button">📅<span>Add to calendar</span></button>
         <button class="act" id="save-ev" type="button" aria-pressed="${isSavedEvent(e.id)}">${isSavedEvent(e.id) ? "★" : "☆"}<span>${isSavedEvent(e.id) ? "Saved" : "Save"}</span></button>
+        <button class="act act--noi" id="noi-ev" type="button" aria-pressed="${isNotInterested(e.id) ? "true" : "false"}">🙅<span>${isNotInterested(e.id) ? "Not interested" : "Not interested"}</span></button>
         <button class="act act--danger" id="hide-ev" type="button">🗑<span>Remove</span></button>
       </div>
       ${canApply ? `<div class="apply-detail actions">${autoBtn(e.id)}</div>` : ""}
@@ -287,6 +295,7 @@
     document.getElementById("ics").onclick = () => download(`${e.id}.ics`, ics([e]), "text/calendar");
     document.getElementById("save-ev").onclick = () => { toggleSavedEvent(e.id); viewEvent(id); };
     document.getElementById("hide-ev").onclick = () => { hideEvent(e.id); toastAction(e.name + " removed", "Undo", () => { showEvent(e.id); viewEvent(id); }); location.replace("#/markets"); renderMarkets(); };
+    document.getElementById("noi-ev").onclick = () => { if (isNotInterested(e.id)) { unmarkNotInterested(e.id); toast("Back on the list"); } else { markNotInterested(e.id); toastAction(e.name + " marked not interested", "Undo", () => { unmarkNotInterested(e.id); viewEvent(id); }); } viewEvent(id); };
     wireAuto(app, () => viewEvent(id));
     renderTally(e);
   }
@@ -370,7 +379,7 @@
         <a class="t" href="#/o/${encodeURIComponent(i.id)}"><p class="n">${esc(i.title)}</p><p class="m">${esc([i.city, i.state].filter(Boolean).join(", "))}${i.time ? " · " + esc(i.time) : ""}</p></a>
         <button class="star" data-star="${esc(i.id)}" aria-pressed="${savedOpps()[i.id] ? "true" : "false"}">${savedOpps()[i.id] ? "★" : "☆"}</button></div>
       <div class="facts">${stChip(i)}<span class="fee">${feeShort(i)}</span>${i.verified === true ? '<span class="n" style="font-size:11px;color:var(--ok)">✓ Read on organizer page</span>' : ""}</div>
-      <div class="actions">${autoBtn(i.id)}<a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small icon" data-hide-opp="${esc(i.id)}" title="Hide">✕</button></div>
+      <div class="actions">${autoBtn(i.id)}<a class="btn small" href="#/o/${encodeURIComponent(i.id)}">Details ›</a><button class="btn small icon" data-hide-opp="${esc(i.id)}" title="Not interested">✕</button></div>
     </article>`;
     show(`<div class="pagehead"><h1>Find</h1><div class="seg" role="tablist"><button role="tab" id="seg-b" aria-selected="${oSeg === "browse"}">Browse</button><button role="tab" id="seg-s" aria-selected="${oSeg === "saved"}">★ Saved</button></div></div>
       <div class="searchbox">${I.search}<input class="search" id="oq" type="search" placeholder="Search events, cities…" value="${esc(oQuery)}"></div>
@@ -516,7 +525,8 @@
         <button type="button" class="swrow" role="switch" aria-checked="${s.notify ? "true" : "false"}" id="notifysw"><span><b>Reminders</b><small>Phone notification when To-Do is pending</small></span><span class="tog"></span></button>
       </div>
       <h2 class="set-h">Data &amp; hidden</h2><div class="card set">
-        <div class="set-r"><span><b>Hidden markets / leads</b></span><a class="btn small" id="md-unhide">Restore</a></div>
+        <div class="set-r"><span><b>Hide past markets</b><small>Keep the Markets list focused on what's ahead</small></span><button class="chip" id="hidepast" aria-pressed="${s.hidePast ? "true" : "false"}">${s.hidePast ? "On" : "Off"}</button></div>
+        <div class="set-r"><span><b>Hidden / not interested</b><small>${Object.keys(hideMap("hiddenEvents")).length + Object.keys(hideMap("hiddenOpps")).length + Object.keys(niMap()).length} on this device</small></span><a class="btn small" id="md-unhide">Restore</a></div>
         <div class="set-r"><span><b>Data source</b><small>${esc(CFG.eventsUrl)}</small></span></div>
       </div>
       <h2 class="set-h">About</h2><div class="card set"><div class="set-r"><span><b>MarketDesk</b><small>Open-source vendor market command center · MIT · v1.0</small></span><a class="btn small" href="#/about">About</a></div></div>${footer()}`);
@@ -524,7 +534,8 @@
     app.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", () => { (navigator.clipboard || { writeText: () => Promise.reject() }).writeText(b.dataset.copy).then(() => toast("Copied")).catch(() => prompt("Copy:", b.dataset.copy)); }));
     document.getElementById("pf-save").onclick = () => { const g = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ""; }; saveProfile({ business: g("pf-business"), contact: g("pf-contact"), phone: g("pf-phone"), ig: g("pf-ig"), space: g("pf-space"), inventory: g("pf-inventory"), setup: g("pf-setup"), insurance: g("pf-insurance"), resale: g("pf-resale") }); toast("Vendor profile saved"); };
     const he = Object.keys(hideMap("hiddenEvents")), ho = Object.keys(hideMap("hiddenOpps"));
-    document.getElementById("md-unhide").onclick = () => { [["hiddenEvents", he], ["hiddenOpps", ho]].forEach(([k, ids]) => { const m = hideMap(k); ids.forEach((id) => delete m[id]); store.set(k, m); }); toast("All restored"); viewSettings(); };
+    document.getElementById("md-unhide").onclick = () => { [["hiddenEvents", he], ["hiddenOpps", ho], ["notInterested", Object.keys(niMap())]].forEach(([k, ids]) => { const m = (k === "notInterested" ? niMap() : hideMap(k)); ids.forEach((id) => delete m[id]); store.set(k, m); }); toast("All restored"); viewSettings(); };
+    document.getElementById("hidepast").onclick = () => { const c = SETS(); c.hidePast = !c.hidePast; store.set(K_SETTINGS, c); viewSettings(); };
     document.getElementById("notifysw").onclick = async () => { const c = SETS(); c.notify = !c.notify; store.set(K_SETTINGS, c); if (c.notify && "Notification" in window && Notification.permission !== "granted") { const p = await Notification.requestPermission().catch(() => "denied"); if (p !== "granted") { c.notify = false; store.set(K_SETTINGS, c); } } viewSettings(); };
   }
   function viewAbout() {

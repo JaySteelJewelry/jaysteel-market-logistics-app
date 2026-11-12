@@ -1,6 +1,6 @@
 /* MarketDesk service worker — app shell cached for offline; data stays network-first. */
-const CACHE = "marketdesk-v1";
-const SHELL = ["./", "index.html", "styles.css?v=1", "app.js?v=1", "manifest.webmanifest",
+const CACHE = "marketdesk-v2";
+const SHELL = ["./", "index.html", "styles.css?v=1", "app.js?v=2", "manifest.webmanifest",
   "assets/icon-192.png", "assets/montserrat.woff2", "assets/cormorant.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

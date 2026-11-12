@@ -33,4 +33,5 @@ test('core features wired: router, to-do, auto-apply, sync buttons', () => {
   assert.ok(js.includes('autoApplySheet') && js.includes('appDraft'), 'auto-apply engine');
   assert.ok(html.includes('id="todo-badge"') && html.includes('class="dock"'), 'dock + badge');
   assert.ok(js.includes('calendar.google.com') && js.includes('outlook.live.com'), 'calendar sync');
+  assert.ok(js.includes('markNotInterested') && js.includes('hidePast'), 'hide past + not interested');
 });
