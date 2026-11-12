@@ -1,0 +1,51 @@
+{
+  "updated": "2026-11-11T12:00Z",
+  "refresh": "sample — replace with your feed output (see tools/fetch-data.mjs)",
+  "coverage": "sample",
+  "sources": [
+    { "source": "Sample feed", "type": "market", "state": "FL", "url": "", "ok": true, "items": 2, "lastOk": "2026-11-11T12:00Z" }
+  ],
+  "items": [
+    {
+      "id": "sample-opp-1",
+      "title": "First Coast Farmers Market — 2026 vendor call",
+      "date": "2026-11-30",
+      "time": "9:00 AM",
+      "city": "Jacksonville",
+      "state": "FL",
+      "type": "market",
+      "source": "Sample feed",
+      "url": "https://example.org/apply",
+      "fee": "$40",
+      "deadline": "2026-11-20",
+      "vendorMatch": true,
+      "verified": true,
+      "verifiedAt": "2026-11-11T12:00Z",
+      "registration_url": "https://example.org/apply"
+    },
+    {
+      "id": "sample-opp-2",
+      "title": "State College Tabling Day application",
+      "date": "2026-12-02",
+      "city": "Gainesville",
+      "state": "FL",
+      "type": "tabling",
+      "source": "Sample feed",
+      "url": "https://example.org/campus",
+      "fee": "Free",
+      "vendorMatch": true
+    }
+  ],
+  "ongoing": [
+    {
+      "id": "sample-opp-3",
+      "title": "Evergreen Makers Market — rolling vendor applications",
+      "city": "Savannah",
+      "state": "GA",
+      "type": "market",
+      "source": "Sample feed",
+      "url": "https://example.org/makers",
+      "vendorMatch": true
+    }
+  ]
+}

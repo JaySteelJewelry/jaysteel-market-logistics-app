@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MarketDesk · open vendor command center</title>
+<meta name="description" content="Open-source vendor market command center: today, to-do, markets, find leads, calendar, map, payments, auto-apply.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0A0B0E" id="theme-color">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MarketDesk">
+<script>
+/* optional unlock gate: set window.MARKETDESK = { unlock: "<sha256 hex>" } (or ?unlock=) to require a password. null = open. */
+(function(){try{var s=JSON.parse(localStorage.getItem("md.settings")||"{}"),d=document.documentElement,l=s.theme==="light"||(s.theme==="system"&&matchMedia("(prefers-color-scheme: light)").matches);d.setAttribute("data-theme",l?"light":"dark");if(s.text==="large")d.classList.add("text-lg");}catch(e){}})();
+</script>
+<style>@font-face{font-family:"Montserrat";src:url("assets/montserrat.woff2") format("woff2");font-weight:100 900;font-display:swap}@font-face{font-family:"Cormorant Garamond";src:url("assets/cormorant.woff2") format("woff2");font-weight:300 700;font-display:swap}</style>
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header class="top">
+  <a class="brand" href="#/" aria-label="MarketDesk, today">
+    <picture><source srcset="assets/icon-192.png" type="image/png"><img src="assets/icon-192.png" alt="" width="192" height="192"></picture>
+    <span class="brand__text"><span class="brand__word">MARKETDESK</span><span class="brand__sub" id="page-name">Today</span></span>
+  </a>
+  <div class="top__btns"><button class="iconbtn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</header>
+
+<div class="menu-scrim" id="menu-scrim" hidden></div>
+<nav class="menu" id="menu" aria-label="Menu" aria-hidden="true">
+  <div class="menu__head"><span class="brand__word">MENU</span>
+    <button class="iconbtn" id="menu-close" type="button" aria-label="Close menu"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <p class="menu__sec">Plan</p>
+  <a href="#/" data-tab="today"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>Today</span></a>
+  <a href="#/todo" data-tab="todo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h7"/><path d="M4.5 6l1 1 2-2M4.5 12l1 1 2-2M4.5 18l1 1 2-2"/></svg><span>To-Do</span><span class="menu-count" id="todo-menu-count" hidden></span></a>
+  <a href="#/calendar" data-tab="cal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendar</span></a>
+  <a href="#/map" data-tab="map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6z"/><path d="M9 4v14M15 6v14"/></svg><span>Map</span></a>
+  <p class="menu__sec">Business</p>
+  <a href="#/markets" data-tab="list"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Markets</span></a>
+  <a href="#/opportunities" data-tab="opp"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span>Find</span></a>
+  <a href="#/money" data-tab="money"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-3-4.5-3s-4.5 1.3-4.5 3 2 2.6 4.5 3 4.5 1.3 4.5 3-2 3-4.5 3-4.5-1.3-4.5-3"/></svg><span>Payments</span></a>
+  <p class="menu__sec">App</p>
+  <a href="#/settings" data-tab="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Settings</span></a>
+  <p class="menu__sec">Open source</p>
+  <a href="#/about" data-tab="about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.2"/></svg><span>About &amp; license</span></a>
+</nav>
+
+<nav class="dock" aria-label="Primary">
+  <a href="#/" data-tab="today" aria-label="Today"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>Today</span></a>
+  <a href="#/todo" data-tab="todo" aria-label="To-do"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h7"/><path d="M4.5 6l1 1 2-2M4.5 12l1 1 2-2M4.5 18l1 1 2-2"/></svg><span>To-Do</span><i class="dokbadge" id="todo-badge" hidden></i></a>
+  <a href="#/opportunities" data-tab="opp" aria-label="Find markets"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span>Find</span></a>
+  <a href="#/markets" data-tab="list" aria-label="Markets"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Markets</span></a>
+  <button type="button" class="dock__more" id="more-btn" aria-label="More" aria-controls="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span></button>
+</nav>
+
+<main id="app" class="wrap" tabindex="-1">
+  <div class="skel" aria-label="Loading"><i></i><i></i></div>
+</main>
+<noscript><p class="wrap">MarketDesk needs JavaScript.</p></noscript>
+<script>
+/* unlock gate (optional). Set unlock: null to keep the app open. */
+(function(){
+  var K="md.auth",P="md.pw2";
+  var want=null; try{ want=(window.MARKETDESK&&window.MARKETDESK.unlock)||null; }catch(e){}
+  if(!want){return;}
+  var d=document.documentElement, D=document;
+  D.addEventListener("DOMContentLoaded",function(){
+    var ok=false;try{ok=localStorage.getItem(K)===want;}catch(e){}
+    if(ok){D.getElementById("app").removeAttribute("data-locked");return;}
+    d.setAttribute("data-locked","1");
+    var g=D.createElement("div");g.id="gate";g.innerHTML='<form><img src="assets/icon-192.png" alt=""><h1>MARKETDESK</h1><input id="gpw" type="password" placeholder="Password" required autocomplete="current-password"><button type="submit">Unlock</button><p id="gerr" role="alert"></p></form>';
+    D.body.appendChild(g);
+    g.querySelector("form").addEventListener("submit",async function(e){
+      e.preventDefault();var v=D.getElementById("gpw").value;
+      var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v));
+      var h=Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");
+      if(h===want){try{localStorage.setItem(K,want);}catch(_){}}else{D.getElementById("gerr").textContent="Wrong password";return;}
+      g.remove();d.removeAttribute("data-locked");
+    });
+  });
+})();
+</script>
+<script src="app.js?v=1" defer></script>
+</body>
+</html>
