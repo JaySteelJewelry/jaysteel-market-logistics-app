@@ -141,7 +141,7 @@ DTSTAMP:20261114T000000Z
 DTSTART;TZID=America/New_York:20261114T110000
 DTEND;TZID=America/New_York:20261114T140000
 SUMMARY:St. Johns Fall Makers Market (Jacksonville Business Connections)
-LOCATION:155 Fountains Way\, St Johns\, FL 32259
+LOCATION:175 Fountains Way\, St Johns\, FL 32259
 DESCRIPTION:Status: approved\nPaid
 END:VEVENT
 BEGIN:VEVENT
