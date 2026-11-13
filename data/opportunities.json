@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T06:46Z",
+ "updated": "2026-11-13T19:42Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida + Georgia statewide (colleges, cities, counties, marketplaces, web search)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -43,9 +43,9 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 21,
+   "items": 27,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "UCF (Engage)",
@@ -54,9 +54,9 @@
    "county": "Orange",
    "url": "https://ucf.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 3,
+   "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "FAU (Engage)",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "FIU (Engage)",
@@ -78,7 +78,7 @@
    "ok": true,
    "items": 15,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Miami Dade College (Engage)",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Seminole State (Engage)",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Palm Beach State (Engage)",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "UGA (Engage)",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Georgia State (Engage)",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Georgia College (Engage)",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Columbus State (Engage)",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "North Georgia (Engage)",
@@ -186,9 +186,9 @@
    "county": "Lumpkin",
    "url": "https://ung.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 7,
+   "items": 6,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Nassau County",
@@ -219,9 +219,9 @@
    "county": "Nassau",
    "url": "https://www.nassaucountyfl.com",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of St. Augustine",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Palatka",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -276,7 +276,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Bunnell",
@@ -287,7 +287,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -298,7 +298,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -309,7 +309,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Port Orange",
@@ -320,7 +320,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -331,7 +331,7 @@
    "ok": true,
    "items": 6,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of DeLand",
@@ -342,7 +342,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Palm Coast",
@@ -353,7 +353,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -361,12 +361,9 @@
    "state": "FL",
    "county": "Clay",
    "url": "https://exploreclay.com",
-   "ok": true,
-   "items": 21,
-   "error": null,
-   "stale": true,
-   "lastOk": "2026-11-10T07:19Z",
-   "note": "HTTPError: HTTP Error 403: Forbidden"
+   "ok": false,
+   "items": 0,
+   "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
    "source": "Volusia County",
@@ -377,7 +374,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Fort Myers",
@@ -388,7 +385,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Hollywood",
@@ -399,7 +396,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Boca Raton",
@@ -410,7 +407,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Destin",
@@ -421,7 +418,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Pensacola",
@@ -432,7 +429,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Vero Beach",
@@ -443,7 +440,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Athens-Clarke County",
@@ -454,7 +451,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Augusta",
@@ -465,7 +462,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Savannah",
@@ -474,9 +471,9 @@
    "county": "Chatham",
    "url": "https://www.savannahga.gov",
    "ok": true,
-   "items": 0,
+   "items": 5,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Gainesville GA",
@@ -487,7 +484,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Lawrenceville",
@@ -498,7 +495,7 @@
    "ok": true,
    "items": 8,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Marietta",
@@ -509,7 +506,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "City of Hinesville",
@@ -520,7 +517,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -529,9 +526,9 @@
    "county": "Duval",
    "url": "https://vendorsmap.com/cities/jacksonville-fl",
    "ok": true,
-   "items": 22,
+   "items": 24,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -542,7 +539,7 @@
    "ok": true,
    "items": 15,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Orlando",
@@ -551,9 +548,9 @@
    "county": "Orange",
    "url": "https://vendorsmap.com/cities/orlando-fl",
    "ok": true,
-   "items": 9,
+   "items": 12,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Tampa",
@@ -562,9 +559,9 @@
    "county": "Hillsborough",
    "url": "https://vendorsmap.com/cities/tampa-fl",
    "ok": true,
-   "items": 15,
+   "items": 13,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Miami",
@@ -573,9 +570,9 @@
    "county": "Miami-Dade",
    "url": "https://vendorsmap.com/cities/miami-fl",
    "ok": true,
-   "items": 11,
+   "items": 13,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Atlanta",
@@ -584,9 +581,9 @@
    "county": "Fulton",
    "url": "https://vendorsmap.com/cities/atlanta-ga",
    "ok": true,
-   "items": 24,
+   "items": 28,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Savannah",
@@ -595,9 +592,9 @@
    "county": "Chatham",
    "url": "https://vendorsmap.com/cities/savannah-ga",
    "ok": true,
-   "items": 13,
+   "items": 16,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Athens",
@@ -606,9 +603,9 @@
    "county": "Clarke",
    "url": "https://vendorsmap.com/cities/athens-ga",
    "ok": true,
-   "items": 5,
+   "items": 7,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Augusta",
@@ -617,9 +614,9 @@
    "county": "Richmond",
    "url": "https://vendorsmap.com/cities/augusta-ga",
    "ok": true,
-   "items": 3,
+   "items": 5,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "VendorsMap: Brunswick",
@@ -630,7 +627,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "AllEvents: Florida",
@@ -641,7 +638,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "AllEvents: Georgia",
@@ -652,7 +649,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL college & campus markets",
@@ -661,9 +658,9 @@
    "county": "Jacksonville",
    "url": "college markets",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL tabling calls",
@@ -672,9 +669,9 @@
    "county": "",
    "url": "vendor tabling",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL community markets",
@@ -685,7 +682,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL maker markets",
@@ -696,7 +693,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL holiday markets",
@@ -707,7 +704,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL farmers markets",
@@ -718,7 +715,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: FL craft fairs",
@@ -729,7 +726,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: GA college & campus markets",
@@ -740,7 +737,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: GA tabling calls",
@@ -751,7 +748,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: GA community markets",
@@ -762,7 +759,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: GA holiday markets",
@@ -773,7 +770,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: GA farmers markets",
@@ -784,7 +781,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Jacksonville markets",
@@ -795,7 +792,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Orlando markets",
@@ -806,7 +803,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Tampa bay markets",
@@ -817,7 +814,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: south Florida markets",
@@ -828,7 +825,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Atlanta markets",
@@ -839,7 +836,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Savannah markets",
@@ -850,7 +847,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: Augusta markets",
@@ -861,7 +858,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Search: college market days GA",
@@ -872,7 +869,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -883,10 +880,29 @@
    "ok": true,
    "items": 535,
    "error": null,
-   "lastOk": "2026-11-13T06:46Z"
+   "lastOk": "2026-11-13T19:42Z"
   }
  ],
  "items": [
+  {
+   "id": "d0f4e7ecc30b",
+   "title": "2026 Atlanta Holiday Antique Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Atlanta Expo Center, Atlanta, GA",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Atlanta",
+   "url": "https://vendorsmap.com/events/43844",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-11-12",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
   {
    "id": "b8d4aafab6f3",
    "title": "404 Fest @ Tech Green",
@@ -919,8 +935,117 @@
    "feed": "civic",
    "registration_url": "https://ameliaislandpetanque.com/AIO/register",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-09"
+  },
+  {
+   "id": "6157e3928797",
+   "title": "Annual Christmas Tree Sales",
+   "date": "2026-11-13",
+   "time": "11:00 AM - 05:00 PM",
+   "location": "1 Waring Dr. / S.Victory Drive / Washington Ave. /Savannah, GA 31401",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "city",
+   "source": "City of Savannah",
+   "url": "https://www.savannahga.gov/Calendar.aspx?EID=8298",
+   "vendorMatch": false,
+   "feed": "civic",
+   "firstSeen": "2026-11-13"
+  },
+  {
+   "id": "6ed8a0845855",
+   "title": "Artisan Marketplace at Promenade at Sunset Walk",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Promenade at Sunset Walk, near Walt Disney World, Orlando, FL",
+   "city": "Orlando",
+   "county": "Orange",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Orlando",
+   "url": "https://vendorsmap.com/events/35977",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "b8c882bb18d9",
+   "title": "As You Wish Fantasy Night Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Daffin Park Drive, Savannah, GA",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Savannah",
+   "url": "https://vendorsmap.com/events/35724",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-10-24",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "d81561c1404f",
+   "title": "Athens Farmers Market at Bishop Park",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "705 Sunset Drive, Athens, GA 30606",
+   "city": "Athens",
+   "county": "Clarke",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Athens",
+   "url": "https://vendorsmap.com/events/4237",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-03-01",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "d19d20ea9709",
+   "title": "Augusta Market on the River",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "8th Street Plaza, Riverwalk, Augusta, GA 30901",
+   "city": "Augusta",
+   "county": "Richmond",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Augusta",
+   "url": "https://vendorsmap.com/events/4236",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-03-21",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "7a5cecf56749",
+   "title": "Augusta State Farmer's Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "1150 5TH STREET, AUGUSTA, GA 30901",
+   "city": "Augusta",
+   "county": "Richmond",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Augusta",
+   "url": "https://vendorsmap.com/events/6884",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "689cd2ecce4b",
@@ -938,7 +1063,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-13",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -955,9 +1080,8 @@
    "url": "https://vendorsmap.com/events/36278",
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -992,7 +1116,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-13",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -1011,7 +1135,7 @@
    "registration_url": "https://madeinthesouthshows.com/apply",
    "deadline": "2026-11-13",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -1049,8 +1173,62 @@
    "feed": "civic",
    "registration_url": "https://www.mgoconnect.org/cp/portal",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "5badcbd70a37",
+   "title": "Collective Corner Market at Avalon Park (Halloweentown)",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Founders Square, Avalon Park, Orlando, FL 32828",
+   "city": "Orlando",
+   "county": "Orange",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Orlando",
+   "url": "https://vendorsmap.com/events/36232",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/events/3195",
+   "deadline": "2026-10-17",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "34cb03e68934",
+   "title": "Crafts on the River",
+   "date": "2026-11-13",
+   "time": "10:00 AM - 10:00 PM",
+   "location": "Rousakis PlazaSavannah, GA 31401",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "city",
+   "source": "City of Savannah",
+   "url": "https://www.savannahga.gov/Calendar.aspx?EID=8297",
+   "vendorMatch": false,
+   "feed": "civic",
+   "firstSeen": "2026-11-13"
+  },
+  {
+   "id": "d57754b79625",
+   "title": "Creator's Market at Atlantic Station - November",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Atlantic Station, in and around Atlantic Green, Atlanta, GA",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Atlanta",
+   "url": "https://vendorsmap.com/events/43841",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-11-01",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "fl6-510ddad236",
@@ -1093,6 +1271,25 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Propagate Social House; vendor types allowed: Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Downtown Apopka Holiday Night Farmers Market will be held on November 13th, 2026. You will find freshest produce, unique handmade crafts,... | organizer/official page read Nov 6: https://www.apopka.gov/events (\"Events | Apopka, FL\")"
   },
   {
+   "id": "f2e3c3413565",
+   "title": "Food Truck Fridays at Savannah Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "Savannah Market Pavilion, Savannah, GA",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Savannah",
+   "url": "https://vendorsmap.com/events/35801",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-10-02",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
    "id": "fl6-2fcab34ef8",
    "origin": "seed",
    "title": "Goodwood Jingle & Mingle: Holiday Night Market",
@@ -1111,6 +1308,25 @@
    "end_date": "2026-11-14",
    "category": "festival",
    "notes": "Unverified. VendorsMap listing (Festival Annual); runs 2026-11-13 to 2026-11-14; location: Goodwood Museum & Gardens, 1600 Miccosukee Road, Tallahassee, FL 32308"
+  },
+  {
+   "id": "af4f0cb30328",
+   "title": "Greater Jacksonville Agricultural Fair",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "510 Fairgrounds Place, Jacksonville, FL 32202",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Jacksonville",
+   "url": "https://vendorsmap.com/events/34330",
+   "vendorMatch": false,
+   "registration_url": "https://vendorsmap.com/events/28390",
+   "deadline": "2026-11-05",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "fl6-17d49b9708",
@@ -1148,8 +1364,26 @@
    "t": "12:00",
    "registration_url": "https://events.unf.edu/event/harder-barter-market",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-10-18"
+  },
+  {
+   "id": "21932c0f3acb",
+   "title": "Jacksonville Farmers Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "1810 W Beaver St, Jacksonville, FL 32209",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Jacksonville",
+   "url": "https://vendorsmap.com/events/989",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "449ac99aae58",
@@ -1167,27 +1401,8 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-13",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "8b4e1d6ea5ed",
-   "title": "Jingle & Mingle Holiday Market",
-   "date": "2026-11-13",
-   "time": null,
-   "location": "Junior League of Atlanta Headquarters, 3154 Northside Parkway NW, Atlanta, GA 30327",
-   "city": "Atlanta",
-   "county": "Fulton",
-   "state": "GA",
-   "type": "market",
-   "source": "VendorsMap: Atlanta",
-   "url": "https://vendorsmap.com/events/29941",
-   "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/1559",
-   "deadline": "2026-11-13",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
-   "firstSeen": "2026-11-10"
   },
   {
    "id": "fl6-2374de96f2",
@@ -1207,6 +1422,62 @@
    "date": "2026-11-13",
    "category": "craft fair",
    "notes": "Unverified. FairsAndFestivals listing; venue: The Hub at Bexley; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Land O’ Lakes Fall Friday Moonlight Market will be held on November 13th, 2026. There will be a group of crafters..."
+  },
+  {
+   "id": "8187b021f971",
+   "title": "Liberty City Community Green Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "5988 NW 7th Ave, Miami, FL 33127",
+   "city": "Miami",
+   "county": "Miami-Dade",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Miami",
+   "url": "https://vendorsmap.com/events/7091",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-11-01",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "e74aae234dc2",
+   "title": "Mayport Waterfront Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "4542 Ocean St., Jacksonville, FL 32233",
+   "city": "Jacksonville",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Jacksonville",
+   "url": "https://vendorsmap.com/events/35992",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-10-17",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "42bc8e4b6900",
+   "title": "Municipal Market Sweet Auburn - Ongoing Pop-Up Vendor Spaces",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "209 Edgewood Ave SE, Atlanta, GA 30303",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Atlanta",
+   "url": "https://vendorsmap.com/events/28450",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "fl6-abd52ed295",
@@ -1247,6 +1518,43 @@
    "end_date": "2026-11-15",
    "category": "holiday market/fair",
    "notes": "FairsAndFestivals listing; venue: World Equestrian Center; vendor types allowed: Art, Craft, Commercial; organizer site/contact/fee are paywalled on that listing. Ocala Holiday Craft Show will be held on November 13-15, 2026. There will be over 350 artisans and crafters selling a... | organizer/official page read Nov 6: https://www.bmgevents.com/ocalacraftshow.html (\"2026 Ocala Holiday Craft Show "
+  },
+  {
+   "id": "df4d33948f94",
+   "title": "SWOOM Farmers Market at Atwood Community Gardens",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "779 Atwood Street SW, Atlanta, GA 30310",
+   "city": "Atlanta",
+   "county": "Fulton",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Atlanta",
+   "url": "https://vendorsmap.com/events/6972",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "deadline": "2026-05-01",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
+  },
+  {
+   "id": "5a8679ee5b50",
+   "title": "Savannah State Farmers Market",
+   "date": "2026-11-13",
+   "time": null,
+   "location": "701 US-80, Savannah, GA 31408",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Savannah",
+   "url": "https://vendorsmap.com/events/1055",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "fl6-64e8421393",
@@ -1290,52 +1598,23 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Martin County Airport, Witham Field; vendor types allowed: Food, Commercial; organizer site/contact/fee are paywalled on that listing. Stuart Air Show will be held on November 13-15, 2026. It will have thrilling civilian & military aerobatic performers, local vendors,... | organizer/official page read Nov 6: https://www.stuartairshow.com/vendors (\"Exhibitors and V"
   },
   {
-   "id": "3ce68c7b9800",
-   "title": "Surgical Healthcare Society Tabling",
+   "id": "ae1b8dfb5d5d",
+   "title": "TPD Night Market",
    "date": "2026-11-13",
-   "time": "12:00 PM",
-   "location": "Turlington",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12919812",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "39734bc2a850",
-   "title": "Tabling @ Student Union",
-   "date": "2026-11-13",
-   "time": "9:00 AM",
-   "location": "UCF Student Union Patio",
+   "time": null,
+   "location": "Thornton Park, Orlando, FL",
    "city": "Orlando",
    "county": "Orange",
    "state": "FL",
-   "type": "tabling",
-   "source": "UCF (Engage)",
-   "url": "https://knightconnect.campuslabs.com/engage/event/12925392",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "caf06ef7d74c",
-   "title": "Tabling Sigma Lambda Beta",
-   "date": "2026-11-13",
-   "time": "10:00 AM",
-   "location": "Turlington Table 09",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12935013",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
+   "type": "market",
+   "source": "VendorsMap: Orlando",
+   "url": "https://vendorsmap.com/events/35976",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/events/3195",
+   "deadline": "2026-10-01",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "e42ea595b85a",
@@ -1374,20 +1653,22 @@
    "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-13 to 2026-11-14; location: Trinity-by-the-Cove, 1100 Pine Ridge Rd, Naples, FL 34108 | organizer/official page read Nov 6: https://trinitybythecove.com/the-christmas-market (\"Christmas Market in Naples FL | Trinity by the Cove\") — date not found on that page"
   },
   {
-   "id": "d007fbd3f443",
-   "title": "World Kindness Day Tabling Event (GVL)",
+   "id": "af2bab871fe2",
+   "title": "Upper West Market",
    "date": "2026-11-13",
-   "time": "10:30 AM",
-   "location": "Student Center Lobby",
-   "city": "Dahlonega",
-   "county": "Lumpkin",
+   "time": null,
+   "location": "1385 Collier Road, Atlanta, GA",
+   "city": "Atlanta",
+   "county": "Fulton",
    "state": "GA",
-   "type": "tabling",
-   "source": "North Georgia (Engage)",
-   "url": "https://connect.ung.edu/event/12494067",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
+   "type": "market",
+   "source": "VendorsMap: Atlanta",
+   "url": "https://vendorsmap.com/events/42469",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/signup",
+   "verified": true,
+   "verifiedAt": "2026-11-13T19:43Z",
+   "firstSeen": "2026-11-13T19:42Z"
   },
   {
    "id": "fl6-890941b1b2",
@@ -1426,7 +1707,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-14",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-11"
   },
   {
@@ -1448,21 +1729,6 @@
    "end_date": "2026-11-15",
    "category": "craft fair",
    "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-14 to 2026-11-15; location: 14200 U.S. Highway 1, Juno Beach, FL 33408"
-  },
-  {
-   "id": "6278bf51cb4b",
-   "title": "2nd Saturday Lakeside Market",
-   "date": "2026-11-14",
-   "time": "10:00 AM",
-   "location": "661 Blanding Blvd. Orange Park, FL 32073",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "market",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/2nd-saturday-lakeside-market-3/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "fl6-1432d6b963",
@@ -1520,9 +1786,8 @@
    "url": "https://vendorsmap.com/events/7115",
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -1541,7 +1806,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-03-01",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -1709,7 +1974,7 @@
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/signup",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -1728,7 +1993,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-14",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -1842,9 +2107,8 @@
    "url": "https://vendorsmap.com/events/2092",
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-01-01",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -1863,7 +2127,7 @@
    "registration_url": "https://vendorsmap.com/signup",
    "deadline": "2026-11-14",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -1916,7 +2180,7 @@
    "feed": "civic",
    "registration_url": "https://palatka-fl.gov/Faq.aspx?QID=60",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-10-31"
   },
   {
@@ -1975,21 +2239,6 @@
    "date": "2026-11-14"
   },
   {
-   "id": "3a74ed404bdf",
-   "title": "Farm Fall Festival",
-   "date": "2026-11-14",
-   "time": "1:00 PM",
-   "location": "Blue By U Farm",
-   "city": "Jacksonville",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/farm-fall-festival/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "9ce945ca11c2",
    "title": "Farmers Market",
    "date": "2026-11-14",
@@ -2020,7 +2269,7 @@
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/signup",
    "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "verifiedAt": "2026-11-13T19:43Z",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -2068,10 +2317,7 @@
    "source": "VendorsMap: Savannah",
    "url": "https://vendorsmap.com/events/3310",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-01-01",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/3310",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -2162,10 +2408,7 @@
    "source": "VendorsMap: Atlanta",
    "url": "https://vendorsmap.com/events/6916",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-03-01",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/6916",
    "firstSeen": "2026-11-12T07:11Z"
   },
   {
@@ -2222,10 +2465,7 @@
    "source": "VendorsMap: Miami",
    "url": "https://vendorsmap.com/events/35990",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-09-19",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/35990",
    "firstSeen": "2026-11-12"
   },
   {
@@ -2318,10 +2558,6 @@
    "url": "https://events.unf.edu/event/flock-party-homecoming-tailgate",
    "vendorMatch": true,
    "feed": "localist",
-   "t": "11:00",
-   "registration_url": "https://events.unf.edu/event/flock-party-homecoming-tailgate",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
    "firstSeen": "2026-10-18"
   },
   {
@@ -2376,10 +2612,7 @@
    "source": "VendorsMap: Savannah",
    "url": "https://vendorsmap.com/events/35661",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-01-01",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/35661",
    "firstSeen": "2026-11-12"
   },
   {
@@ -2395,10 +2628,7 @@
    "source": "VendorsMap: Jacksonville",
    "url": "https://vendorsmap.com/events/18663",
    "vendorMatch": true,
-   "registration_url": "https://www.signupgenius.com/go/8050C4CA9AD2DA31-64109681-2026#/",
-   "deadline": "2026-01-01",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/18663",
    "firstSeen": "2026-11-09"
   },
   {
@@ -2550,9 +2780,7 @@
    "source": "VendorsMap: Miami",
    "url": "https://vendorsmap.com/events/7100",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/7100",
    "firstSeen": "2026-11-12"
   },
   {
@@ -2587,10 +2815,7 @@
    "source": "VendorsMap: Atlanta",
    "url": "https://vendorsmap.com/events/38371",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-11-14",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/38371",
    "firstSeen": "2026-11-10"
   },
   {
@@ -2611,21 +2836,6 @@
    "date": "2026-11-14",
    "category": "holiday market/fair",
    "notes": "Unverified. FairsAndFestivals listing; venue: Cantina Laredo; vendor types allowed: Art, Craft, Commercial; organizer site/contact/fee are paywalled on that listing. Miramar Beach Holiday Bazaar will be held on November 14th, 2026. Come start or complete your holiday shopping. You will find..."
-  },
-  {
-   "id": "e6c998dc1e04",
-   "title": "Moosehaven 16th Annual Chili Cook-off & Car Show",
-   "date": "2026-11-14",
-   "time": "10:00 AM",
-   "location": "Moosehaven",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/moosehaven-16th-annual-chili-cook-off-car-show/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "fl6-c10a809ec2",
@@ -2660,10 +2870,7 @@
    "source": "VendorsMap: Jacksonville",
    "url": "https://vendorsmap.com/events/43007",
    "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/signup",
-   "deadline": "2026-11-14",
-   "verified": true,
-   "verifiedAt": "2026-11-13T06:46Z",
+   "registration_url": "https://vendorsmap.com/events/43007",
    "firstSeen": "2026-11-09"
   },
   {
@@ -2848,6 +3055,22 @@
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/events/1049",
    "firstSeen": "2026-11-12"
+  },
+  {
+   "id": "e50b3aba92c9",
+   "title": "Pine Royale",
+   "date": "2026-11-14",
+   "time": "10:00 AM - 07:00 PM",
+   "location": "4100 Callahan Club BlvdCallahan, FL 32011",
+   "city": "Fernandina Beach",
+   "county": "Nassau",
+   "state": "FL",
+   "type": "county",
+   "source": "Nassau County",
+   "url": "https://www.nassaucountyfl.com/Calendar.aspx?EID=3302",
+   "vendorMatch": true,
+   "feed": "civic",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "fl6-7ef75c5e96",
@@ -3047,6 +3270,38 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Sarasota Fairgrounds; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Sarasota Medieval Fair will be held on November 14-15, 2026. It will feature Celtic music & entertainment, lane performers, heroic knights,..."
   },
   {
+   "id": "f7de8e9794ca",
+   "title": "Saturday Farmers' Market at Forsyth Park",
+   "date": "2026-11-14",
+   "time": "09:00 AM - 01:00 PM",
+   "location": "Savannah, GA 31401",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "market",
+   "source": "City of Savannah",
+   "url": "https://forsythfarmersmarket.com/farmersmarket",
+   "vendorMatch": true,
+   "feed": "civic",
+   "firstSeen": "2026-11-13"
+  },
+  {
+   "id": "6321b5e103ea",
+   "title": "Scouts BSA Troop 1 Christmas Tree Sale",
+   "date": "2026-11-14",
+   "time": "08:00 AM - 02:00 PM",
+   "location": "3101 Waters AveSavannah, GA 31401",
+   "city": "Savannah",
+   "county": "Chatham",
+   "state": "GA",
+   "type": "city",
+   "source": "City of Savannah",
+   "url": "https://www.savannahga.gov/Calendar.aspx?EID=8308",
+   "vendorMatch": false,
+   "feed": "civic",
+   "firstSeen": "2026-11-13"
+  },
+  {
    "id": "fl6-3868dec9f4",
    "origin": "seed",
    "title": "Sebastian Holiday Craft Show",
@@ -3151,7 +3406,7 @@
    "title": "Southwest Community Farmers Market at Tropical Park",
    "date": "2026-11-14",
    "time": null,
-   "location": "7900 Bird Road, Miami, FL 33115",
+   "location": "7900 SW 40th St, Miami, FL 33155",
    "city": "Miami",
    "county": "Miami-Dade",
    "state": "FL",
@@ -3934,6 +4189,22 @@
    "firstSeen": "2026-11-10"
   },
   {
+   "id": "cc885fb21a76",
+   "title": "Genesis Dance Crew Showcase Tabling",
+   "date": "2026-11-16",
+   "time": "9:00 AM",
+   "location": "Turlington Table 08",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979698",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
+  },
+  {
    "id": "ace2b715eda4",
    "title": "Orlando Audubon Park Community Market",
    "date": "2026-11-16",
@@ -4012,6 +4283,22 @@
    "vendorMatch": false,
    "feed": "engage",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "5b80f46b2c3c",
+   "title": "Genesis Dance Crew Showcase Tabling",
+   "date": "2026-11-17",
+   "time": "9:00 AM",
+   "location": "Turlington Table 01",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979699",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "f7111e297e65",
@@ -4412,6 +4699,22 @@
    "vendorMatch": false,
    "feed": "engage",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "0dc69538f4a5",
+   "title": "Athens Locally Grown",
+   "date": "2026-11-19",
+   "time": null,
+   "location": "580 Tallassee Rd., Athens, GA 30606",
+   "city": "Athens",
+   "county": "Clarke",
+   "state": "GA",
+   "type": "market",
+   "source": "VendorsMap: Athens",
+   "url": "https://vendorsmap.com/events/6881",
+   "vendorMatch": false,
+   "registration_url": "https://vendorsmap.com/events/6881",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "f2d9033d0c58",
@@ -6313,22 +6616,6 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Punta Gorda History Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Punta Gorda Holiday Artisans Market will be held on November 22nd, 2026. This market will feature fresh produce, eggs, locally hived... | also listed: https://www.fairsandfestivals.net/events/details/2026-punta-gorda-holiday-artisans-market-i"
   },
   {
-   "id": "664b37698534",
-   "title": "Small Business Sunday Market",
-   "date": "2026-11-22",
-   "time": null,
-   "location": "Gator's Dockside, 8316 Merchants Way, Jacksonville, FL 32222",
-   "city": "Jacksonville",
-   "county": "Duval",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Jacksonville",
-   "url": "https://vendorsmap.com/events/46025",
-   "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/46025",
-   "firstSeen": "2026-11-11"
-  },
-  {
    "id": "fl6-87e7faeeb7",
    "origin": "seed",
    "title": "Volusia Senior Expo",
@@ -6673,17 +6960,17 @@
    "notes": "VendorsMap listing (Festival Annual); runs 2026-11-27 to 2026-11-28; location: Aaron Bessant Park, 500 West Park Drive, Panama City Beach, FL 32407 | organizer/official page read Nov 6: https://www.visitpanamacitybeach.com/events/holiday-events/beach-home-for-the-holidays/ (\"Beach Home for the Holidays | Christmas in Panama City Beach\")"
   },
   {
-   "id": "29890803d1bb",
-   "title": "Christmas On Canal - Spark the Spirt",
+   "id": "39a463aed971",
+   "title": "Christmas On Canal - Spark the Spirit",
    "date": "2026-11-27",
-   "time": "12:00 AM - 11:59 PM",
+   "time": "05:00 PM - 07:00 PM",
    "location": "New Smyrna Beach, FL 32168",
    "city": "New Smyrna Beach",
    "county": "Volusia",
    "state": "FL",
    "type": "city",
    "source": "City of New Smyrna Beach",
-   "url": "https://www.cityofnsb.com/Calendar.aspx?EID=3523",
+   "url": "https://www.canalstreetnsb.com/event-6885413",
    "vendorMatch": false,
    "feed": "civic",
    "firstSeen": "2026-11-13"
@@ -7747,6 +8034,22 @@
    "notes": "organizer/official page read Nov 6; 2027 Artisan and Craft Vendor Application - Treasure Coast Renaissance Festival  | Deadline: November 30, 2026 - Date: Jan 09, 2027 10:00 am - Feb 14, 2027 6:00 pm (EST) place Vero Beach, Florida. This application is for Arts, Crafts, and ... | also listed: https://www.eventeny.com/events/vendor/?id=50072&srsltid=AYCX9vIWtONiDR-oZh8Ouwa91ALikXIksEPeiZUPBxuVsYU8h"
   },
   {
+   "id": "ea907bd48bfb",
+   "title": "Genesis Dance Crew Showcase Tabling",
+   "date": "2026-11-30",
+   "time": "9:00 AM",
+   "location": "Turlington Table 04",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979701",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
+  },
+  {
    "id": "fl6-23dd603f01",
    "origin": "seed",
    "title": "Holiday Countdown Arts & Crafts Festival at Lakewood Ranch Park",
@@ -7801,6 +8104,38 @@
    "date": "2026-12-01",
    "category": "night market",
    "notes": "Unverified. search-result lead (snippet only) | 1 of the Lakeland holiday fairs is still accepting vendors; Holiday Night Market closes applications on Dec 1, 2026. Open a listing for its application link ..."
+  },
+  {
+   "id": "e3c6643428ec",
+   "title": "Genesis Dance Crew Showcase Tabling",
+   "date": "2026-12-01",
+   "time": "9:00 AM",
+   "location": "Turlington Table 15",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979702",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
+  },
+  {
+   "id": "e8640cfdf0ab",
+   "title": "Greenhouse College Tabling",
+   "date": "2026-12-01",
+   "time": "10:00 AM",
+   "location": "Newell Hall",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979207",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "fl6-1d0d0ef324",
@@ -7859,21 +8194,6 @@
    "date": "2026-12-01",
    "category": "holiday market/fair",
    "notes": "Unverified. FairsAndFestivals listing; venue: Sharon Sheffield Park; vendor types allowed: Food; organizer site/contact/fee are paywalled on that listing. Lynn Haven Christmas Tree Lighting will be held on December 1st, 2026. It will feature a concert in the park, Santa..."
-  },
-  {
-   "id": "ce90dbab40ed",
-   "title": "Parade of Trees in Spring Park",
-   "date": "2026-12-01",
-   "time": "6:00 PM",
-   "location": "Spring Park",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/parade-of-trees-in-spring-park/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "0aea4c0691b0",
@@ -8071,6 +8391,38 @@
    "date": "2026-12-02",
    "category": "holiday market/fair",
    "notes": "FairsAndFestivals listing; venue: Fratarcangeli Residence; vendor types allowed: Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Fort Lauderdale Holiday Shopping Bazaar will be held on December 2nd, 2026. It will feature some of finest local boutiques and... | organizer/official page read Nov 6: https://www.visitlauderdale.com/blog/stories/post/holiday-marke"
+  },
+  {
+   "id": "3872e1dd0f98",
+   "title": "Genesis Dance Crew Showcase Tabling",
+   "date": "2026-12-02",
+   "time": "9:00 AM",
+   "location": "Plaza of the Americas",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979697",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
+  },
+  {
+   "id": "7be3070ea832",
+   "title": "Greenhouse College Tabling",
+   "date": "2026-12-02",
+   "time": "10:00 AM",
+   "location": "Newell Hall",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12979208",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "ff704a9fcfb9",
@@ -8505,36 +8857,6 @@
    "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-12-04 to 2026-12-04; location: The Dog Bar, 2300 Central Ave, St. Petersburg, FL 33712 | organizer/official page read Nov 6: https://www.grandcentraldistrict.org/christmas-market/ (\"Christmas Market - Grand Central District\") — date not found on that page"
   },
   {
-   "id": "a8f94f122432",
-   "title": "Christmas Radio Hour – Live Show",
-   "date": "2026-12-04",
-   "time": "2:00 PM",
-   "location": "Orange Park Community Theater",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-radio-hour-2026/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "a796e9c81396",
-   "title": "Christmas in the Village",
-   "date": "2026-12-04",
-   "time": "6:00 PM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-04/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-ce2b179bfb",
    "origin": "seed",
    "title": "Crystal River Christmas Tree Lighting Festival",
@@ -8796,21 +9118,6 @@
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-04 to 2026-12-06; location: Clay County Fairgrounds, 2497 SR-16, Green Cove Springs, FL 32043 | also listed: https://vendorsmap.com/events/18275 | organizer/official page read Nov 6: https://vintagemarketdays.com/market/jacksonville/index.php (\"Welcome to the Vintage Market Days of Jacksonville\")"
   },
   {
-   "id": "a5561428e4e7",
-   "title": "Vintage Market Days® Holidays 2026",
-   "date": "2026-12-04",
-   "time": "10:00 AM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "market",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/vintage-market-days-holidays-2026/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-7ae4898da7",
    "origin": "seed",
    "title": "Wesley Chapel Christmas Market",
@@ -8870,19 +9177,23 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Stephen Foster Folk Culture Center State Park; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. White Springs Festival of Lights will be held from December 4 through December 23, 2026. At the Holiday Magic Nights, lights..."
   },
   {
-   "id": "aa8fef88e633",
+   "id": "fl6-93a55fc83d",
+   "origin": "seed",
    "title": "13th Annual Holiday Market in the South",
-   "date": "2026-12-05",
-   "time": "11:00 AM",
-   "location": "Thrasher-Horne Center",
+   "org": "Jacksonville Business Connections",
    "city": "Orange Park",
    "county": "Clay",
    "state": "FL",
    "type": "market",
-   "source": "Clay County (Explore Clay)",
+   "source": "Statewide FL search, Nov 2026",
    "url": "https://exploreclay.com/event/13th-annual-holiday-market-in-the-south/",
    "vendorMatch": true,
-   "firstSeen": "2026-11-09"
+   "firstSeen": "2026-11-06",
+   "verified": true,
+   "source_url": "https://vendorsmap.com/events/39376",
+   "date": "2026-12-05",
+   "category": "craft fair",
+   "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-05 to 2026-12-05; location: Thrasher-Horne Center, 2900 Thrasher Horne Ave, Orange Park, FL 32065 | organizer/official page read Nov 6: https://exploreclay.com/event/13th-annual-holiday-market-in-the-south/ (\"13th Annual Holiday Market in the South - Clay County\")"
   },
   {
    "id": "366395792882",
@@ -8899,21 +9210,6 @@
    "vendorMatch": true,
    "registration_url": "https://vendorsmap.com/events/43842",
    "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "79f48e23ebd6",
-   "title": "2026 Christmas on Walnut Street & Parade",
-   "date": "2026-12-05",
-   "time": "10:00 AM",
-   "location": "Spring Park",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/2026-christmas-on-walnut-street-parade/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "fl6-edca230c18",
@@ -10534,21 +10830,6 @@
    "notes": "organizer/official page read Nov 6; The Magical Market - Be Our Guest:  Holiday Edition - Eventeny | ... application. Vendor Application. Deadline: Dec 06, 2026. Apply now ... 2026 at the Embassy Suites West Palm Beach. IMPORTANT - It is very ..."
   },
   {
-   "id": "190e92b8a389",
-   "title": "The Ultimate Elvis Christmas",
-   "date": "2026-12-06",
-   "time": "6:00 PM",
-   "location": "Thrasher-Horne Center",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/the-ultimate-elvis-christmas/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-739789bab8",
    "origin": "seed",
    "title": "Vero Beach Holiday Art in the Park",
@@ -10799,36 +11080,6 @@
    "notes": "Unverified. VendorsMap listing (Festival Annual); runs 2026-12-11 to 2026-12-11; location: Washington County Farmer's Market Complex, 685 7th Street, Chipley, FL 32428"
   },
   {
-   "id": "aa2678ff570a",
-   "title": "Christmas Radio Hour – Live Show",
-   "date": "2026-12-11",
-   "time": "2:00 PM",
-   "location": "Orange Park Community Theater",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-radio-hour-live-show/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "1dc64e9db272",
-   "title": "Christmas in the Village",
-   "date": "2026-12-11",
-   "time": "6:00 PM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-11/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-aa025926ff",
    "origin": "seed",
    "title": "Dickens on Centre",
@@ -11053,21 +11304,6 @@
    "date": "2026-12-12",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-12 to 2026-12-12; location: Palm Bay, FL | organizer/official page read Nov 6: https://www.visitspacecoast.com/event/13th-annual-holiday-craft-fair-market-food-truck-event/ (\"13th Annual Holiday Craft Fair Market & Food Truck Event - V\")"
-  },
-  {
-   "id": "37aa0d8800c2",
-   "title": "2nd Saturday Lakeside Market",
-   "date": "2026-12-12",
-   "time": "10:00 AM",
-   "location": "661 Blanding Blvd. Orange Park, FL 32073",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "market",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/2nd-saturday-lakeside-market-4/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "e2295e3bc5f6",
@@ -11377,21 +11613,6 @@
    "notes": "organizer/official page read Nov 6; Christmas in Columbia Holiday Market Vendor Applications | FestKit | Annual Christmas in Columbia Market on Saturday, December 12th, 2026. The Festival will have crafts, food trucks, children's activities, and entertainment. ..."
   },
   {
-   "id": "ba04ee3e7086",
-   "title": "Christmas in the Village",
-   "date": "2026-12-12",
-   "time": "6:00 PM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-12/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-7207ef239a",
    "origin": "seed",
    "title": "City of Milton Holiday Market",
@@ -11662,36 +11883,6 @@
    "date": "2026-12-12",
    "category": "pop-up",
    "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-12-12 to 2026-12-12; location: CoolToday Park, 18800 S West Villages Pkwy, Venice, FL 34293"
-  },
-  {
-   "id": "a4cfd0ce1bf4",
-   "title": "Keystone Heights 2026 Christmas Parade",
-   "date": "2026-12-12",
-   "time": "6:00 PM",
-   "location": "Keystone Heights Historic Pavilion at Lake Geneva",
-   "city": "Keystone Heights",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/keystone-heights-2026-christmas-parade/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "d8caaccb8c7f",
-   "title": "Keystone Heights Third Annual Christmas Market",
-   "date": "2026-12-12",
-   "time": "10:00 AM",
-   "location": "Keystone Heights Historic Pavilion at Lake Geneva",
-   "city": "Keystone Heights",
-   "county": "Clay",
-   "state": "FL",
-   "type": "market",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/keystone-heights-third-annual-christmas-market/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "fl6-698e67085f",
@@ -12272,20 +12463,24 @@
    "firstSeen": "2026-11-09"
   },
   {
-   "id": "b3204fd21404",
+   "id": "fl6-d718908b62",
+   "origin": "seed",
    "title": "8th Annual Jingle Bell Bazaar at Ybor Holiday Festival",
-   "date": "2026-12-13",
-   "time": null,
-   "location": "Centennial Park, 1800 E 8th Ave, Tampa, FL 33605",
+   "org": "From Boys 2 Men, Inc.",
    "city": "Tampa",
    "county": "Hillsborough",
    "state": "FL",
    "type": "market",
-   "source": "VendorsMap: Tampa",
-   "url": "https://vendorsmap.com/events/38446",
-   "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/38446",
-   "firstSeen": "2026-11-10"
+   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
+   "url": "https://www.jinglebellbazaar.com/vendor-registration",
+   "vendorMatch": false,
+   "firstSeen": "2026-11-06",
+   "verified": false,
+   "source_url": "https://vendorsmap.com/events/38446",
+   "date": "2026-12-13",
+   "fee": "From $35",
+   "category": "festival",
+   "notes": "Unverified. VendorsMap listing (Festival Annual); runs 2026-12-13 to 2026-12-13; location: Centennial Park, 1800 E 8th Ave, Tampa, FL 33605 | organizer/official page read Nov 6: https://www.jinglebellbazaar.com/vendor-registration (\"2026 Vendor Registration | Jingle Bell Bazaar | Historic Ybo\") — date not found on that page"
   },
   {
    "id": "fl6-535207f535",
@@ -12551,21 +12746,6 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Beaches Town Center; vendor types allowed: Music, Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. North Beaches Christmas Art Walk will be held on December 17th, 2026. It will feature a great selection of local artists,..."
   },
   {
-   "id": "7486821320c3",
-   "title": "Christmas in the Village",
-   "date": "2026-12-18",
-   "time": "6:00 PM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-18/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "2e4fab10d54f",
    "title": "Crafts & Drafts Market - Creature Comforts Brewing",
    "date": "2026-12-18",
@@ -12692,36 +12872,6 @@
    "fee": "$10 (from organizer page; check tier)",
    "category": "flea/vintage",
    "notes": "Unverified. FairsAndFestivals listing; venue: Blessed Sacrament Catholic Church; vendor types allowed: Art, Craft; organizer site/contact/fee are paywalled on that listing. Blessed Sacrament Holiday Flea Market will be held on December 19, 2026. This market will feature a group of antiques and... | organizer/official page read Nov 6: http://mobile.blessedsacramentcocoa.org/flea-market (\"Flea Market - www.bles"
-  },
-  {
-   "id": "63a62472a566",
-   "title": "Christmas In Motion",
-   "date": "2026-12-19",
-   "time": "7:30 PM",
-   "location": "Thrasher-Horne Center",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-motion-2026/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "f4a52f081d7d",
-   "title": "Christmas in the Village",
-   "date": "2026-12-19",
-   "time": "6:00 PM",
-   "location": "Clay County Fairgrounds",
-   "city": "Green Cove Springs",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-19/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "10bfa922c360",
@@ -13094,21 +13244,6 @@
    "notes": "FairsAndFestivals listing; venue: South Florida Fairgrounds; vendor types allowed: Craft, Commercial; organizer site/contact/fee are paywalled on that listing. West Palm Beach Holiday Gun and Knife Show will be held on December 19-20, 2026. You will find a wide variety... | organizer/official page read Nov 6: https://flgunshows.com/shows/ (\"Schedules | Admission Fee | Florida Gun & Knife Shows\")"
   },
   {
-   "id": "d989da66764f",
-   "title": "Whitey’s 2026 Christmas Boat Parade",
-   "date": "2026-12-19",
-   "time": "6:00 PM",
-   "location": "Whitey’s Fish Camp",
-   "city": "Fleming Island",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/whiteys-2026-christmas-boat-parade/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
-  },
-  {
    "id": "fl6-a839d4b5dc",
    "origin": "seed",
    "title": "Williston Christmas in the Park",
@@ -13393,21 +13528,6 @@
    "date": "2026-12-20",
    "category": "market",
    "notes": "Unverified. FairsAndFestivals listing; venue: Water Street in Downtown Tampa between Channelside Drive and Cumberland Avenue; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Water Street Third Sunday Market will be held on December 20th, 2026. It will host about 70 vendors who will be... | organizer/official page read Nov 6: https://www.tampabaymarkets.com/wat"
-  },
-  {
-   "id": "0d688f3d4f74",
-   "title": "We Three Kings, The Irish Dance Christmas Sensation",
-   "date": "2026-12-20",
-   "time": "6:00 PM",
-   "location": "Thrasher-Horne Center",
-   "city": "Orange Park",
-   "county": "Clay",
-   "state": "FL",
-   "type": "county",
-   "source": "Clay County (Explore Clay)",
-   "url": "https://exploreclay.com/event/we-three-kings-the-irish-dance-christmas-sensation/",
-   "vendorMatch": false,
-   "firstSeen": "2026-11-09"
   },
   {
    "id": "a856ac469ee9",
@@ -13787,6 +13907,22 @@
    "end_date": "2027-01-03",
    "category": "craft fair",
    "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2027-01-02 to 2027-01-03; location: Town Center Green, 600 Bay Isles Road (near Publix), Longboat Key, FL 34228"
+  },
+  {
+   "id": "5ba660cc806c",
+   "title": "BTN Lake Nona Farmers Market",
+   "date": "2027-01-02",
+   "time": null,
+   "location": "12350 Narcoossee Road, Orlando, FL 32832",
+   "city": "Orlando",
+   "county": "Orange",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Orlando",
+   "url": "https://vendorsmap.com/events/7018",
+   "vendorMatch": true,
+   "registration_url": "https://vendorsmap.com/events/7018",
+   "firstSeen": "2026-11-13"
   },
   {
    "id": "fl6-36560c91c1",
@@ -17111,6 +17247,22 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Coachman Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Clearwater Spring Market will be held on February 13th, 2027. This market will feature live DJ, a group of vendors, pet..."
   },
   {
+   "id": "fcc7abedfb59",
+   "title": "Coconut Grove Arts Festival",
+   "date": "2027-02-13",
+   "time": null,
+   "location": "Regatta Park, Dinner Key Marina, Coconut Grove, Miami, FL 33133",
+   "city": "Miami",
+   "county": "Miami-Dade",
+   "state": "FL",
+   "type": "market",
+   "source": "VendorsMap: Miami",
+   "url": "https://vendorsmap.com/events/1292",
+   "vendorMatch": false,
+   "registration_url": "https://vendorsmap.com/events/1292",
+   "firstSeen": "2026-11-13"
+  },
+  {
    "id": "fl6-be3f16a8dc",
    "origin": "seed",
    "title": "Deerfield Beach Weekend Renaissance Festival",
@@ -18909,7 +19061,7 @@
    "title": "Central Florida Fair",
    "date": "2027-03-04",
    "time": null,
-   "location": "Orlando Fairgrounds, off Orange Blossom Trail (OBT), Orlando, FL",
+   "location": "4603 W Colonial Drive, Orlando, FL 32808",
    "city": "Orlando",
    "county": "Orange",
    "state": "FL",
@@ -22117,22 +22269,6 @@
    "notes": "VendorsMap listing (Festival ); runs 2027-04-18 to 2027-04-18; location: 5700 SW 250th St, Newberry, FL 32669 | organizer/official page read Nov 6: https://www.thebryerpatchfarm.com/ (\"The Bryer Patch Farm | Produce & Flower U-Pick Farm | Newber\")"
   },
   {
-   "id": "4422151a4a0a",
-   "title": "Water Street Sunday Market",
-   "date": "2027-04-18",
-   "time": null,
-   "location": "Water Street between Channelside Drive and Cumberland Avenue, Tampa, FL 33602",
-   "city": "Tampa",
-   "county": "Hillsborough",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Tampa",
-   "url": "https://vendorsmap.com/events/18240",
-   "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/18240",
-   "firstSeen": "2026-11-10"
-  },
-  {
    "id": "fl6-7dffefd7d7",
    "origin": "seed",
    "title": "GLAM Craft Show Spring 2027",
@@ -22824,22 +22960,6 @@
    "firstSeen": "2026-11-10"
   },
   {
-   "id": "3b932c38329d",
-   "title": "Conway Community Market and Biz Kids",
-   "date": "2027-05-17",
-   "time": null,
-   "location": "3701 Gatlin Avenue, Orlando, FL 32812",
-   "city": "Orlando",
-   "county": "Orange",
-   "state": "FL",
-   "type": "market",
-   "source": "VendorsMap: Orlando",
-   "url": "https://vendorsmap.com/events/18346",
-   "vendorMatch": true,
-   "registration_url": "https://vendorsmap.com/events/18346",
-   "firstSeen": "2026-11-10"
-  },
-  {
    "id": "2a4e68f9d8f9",
    "title": "Midtown Tampa Sunshine Market",
    "date": "2027-05-22",
@@ -22920,74 +23040,6 @@
   }
  ],
  "ongoing": [
-  {
-   "id": "6cdec7983d4c",
-   "title": "Vendor - Wikipedia",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=a2be8cbf27654823620b2b2830314f5cbf6cf18b410099bbf1bfeed3188be36dJmltdHM9MTc5NDQ0MTYwMA&ptn=3&ver=2&hsh=4&fclid=23244f7e-e5bf-6ad4-08ef-576ee49d6bec&u=a1aHR0cHM6Ly9lbi5tLndpa2lwZWRpYS5vcmcvd2lraS9WZW5kb3I&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "A vendor is a supply chain management term that means anyone who provides goods or services of experience to another entity. …",
-   "firstSeen": "2026-11-13"
-  },
-  {
-   "id": "011718e2cd8f",
-   "title": "Vendor - Wikipedia",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=2acecd19b33483cc625de6aa70a232d4e24ed9688d122d5a50e6b2dffed41e3bJmltdHM9MTc5NDQ0MTYwMA&ptn=3&ver=2&hsh=4&fclid=3476aedd-3c95-6418-21dd-b6cd3d476526&u=a1aHR0cHM6Ly9lbi5tLndpa2lwZWRpYS5vcmcvd2lraS9WZW5kb3I&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "A vendor is a supply chain management term that means anyone who provides goods or services of experience to another entity. …",
-   "firstSeen": "2026-11-13"
-  },
-  {
-   "id": "3e6018982092",
-   "title": "vendor ® | Your electricity. Your internet. Covered.",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=ba0f631a0520d81c41867ebcde6cc00a0f47b951213b4a20eadc575bc9451cd8JmltdHM9MTc5NDQ0MTYwMA&ptn=3&ver=2&hsh=4&fclid=23244f7e-e5bf-6ad4-08ef-576ee49d6bec&u=a1aHR0cHM6Ly93d3cudmVuZG9yLmNvbS8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "Computing power for businesses. Income for your home. Enterprise businesses pay for computing power to run applications, …",
-   "firstSeen": "2026-11-13"
-  },
-  {
-   "id": "1b9e25d81edb",
-   "title": "vendor ® | Your electricity. Your internet. Covered.",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=5c3fa56ed74b8dd774c9be97c9a545521f6d0ac90d6bb2259b9b1cb32d959261JmltdHM9MTc5NDQ0MTYwMA&ptn=3&ver=2&hsh=4&fclid=3476aedd-3c95-6418-21dd-b6cd3d476526&u=a1aHR0cHM6Ly93d3cudmVuZG9yLmNvbS8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "Computing power for businesses. Income for your home. Enterprise businesses pay for computing power to run applications, …",
-   "firstSeen": "2026-11-13"
-  },
   {
    "id": "seed-fl-0008",
    "origin": "seed",
@@ -30329,9 +30381,22 @@
   }
  ],
  "newThisRun": [
-  "e6233d2fdb5a",
-  "29890803d1bb",
-  "6b70a2e90d21"
+  "6157e3928797",
+  "34cb03e68934",
+  "e50b3aba92c9",
+  "f7de8e9794ca",
+  "6321b5e103ea",
+  "cc885fb21a76",
+  "5b80f46b2c3c",
+  "0dc69538f4a5",
+  "39a463aed971",
+  "ea907bd48bfb",
+  "e3c6643428ec",
+  "e8640cfdf0ab",
+  "3872e1dd0f98",
+  "7be3070ea832",
+  "5ba660cc806c",
+  "fcc7abedfb59"
  ],
- "vettedThisRun": 27
+ "vettedThisRun": 35
 }
