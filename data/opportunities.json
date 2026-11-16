@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T06:30Z",
+ "updated": "2026-11-16T22:02Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida + Georgia statewide (colleges, cities, counties, marketplaces, web search)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -43,9 +43,9 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 28,
+   "items": 30,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "UCF (Engage)",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "FAU (Engage)",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "FIU (Engage)",
@@ -76,9 +76,9 @@
    "county": "Miami-Dade",
    "url": "https://fiu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 15,
+   "items": 14,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Miami Dade College (Engage)",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Seminole State (Engage)",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Palm Beach State (Engage)",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "UGA (Engage)",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Georgia State (Engage)",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Georgia College (Engage)",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Columbus State (Engage)",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "North Georgia (Engage)",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 6,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -197,9 +197,9 @@
    "county": "Duval",
    "url": "https://www.jacksonvillebeach.org",
    "ok": true,
-   "items": 2,
+   "items": 3,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Nassau County",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of St. Augustine",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Palatka",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -276,7 +276,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Bunnell",
@@ -287,7 +287,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -298,7 +298,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -309,7 +309,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Port Orange",
@@ -320,7 +320,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -331,7 +331,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of DeLand",
@@ -342,7 +342,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Palm Coast",
@@ -353,7 +353,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -374,7 +374,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Fort Myers",
@@ -383,9 +383,9 @@
    "county": "Lee",
    "url": "https://www.cityftmyers.com",
    "ok": true,
-   "items": 3,
+   "items": 4,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Hollywood",
@@ -396,7 +396,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Boca Raton",
@@ -407,7 +407,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Destin",
@@ -418,7 +418,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Pensacola",
@@ -429,7 +429,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Vero Beach",
@@ -440,7 +440,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Athens-Clarke County",
@@ -451,7 +451,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Augusta",
@@ -462,7 +462,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Savannah",
@@ -473,7 +473,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Gainesville GA",
@@ -484,7 +484,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Lawrenceville",
@@ -495,7 +495,7 @@
    "ok": true,
    "items": 10,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Marietta",
@@ -506,7 +506,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "City of Hinesville",
@@ -517,7 +517,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -528,7 +528,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -539,7 +539,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Orlando",
@@ -550,7 +550,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Tampa",
@@ -561,7 +561,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Miami",
@@ -572,7 +572,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Atlanta",
@@ -583,7 +583,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Savannah",
@@ -594,7 +594,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Athens",
@@ -605,7 +605,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Augusta",
@@ -616,7 +616,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "VendorsMap: Brunswick",
@@ -627,7 +627,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "AllEvents: Florida",
@@ -638,7 +638,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "AllEvents: Georgia",
@@ -649,7 +649,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL college & campus markets",
@@ -658,9 +658,9 @@
    "county": "Jacksonville",
    "url": "college markets",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL tabling calls",
@@ -669,9 +669,9 @@
    "county": "",
    "url": "vendor tabling",
    "ok": true,
-   "items": 0,
+   "items": 1,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL community markets",
@@ -682,7 +682,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL maker markets",
@@ -693,7 +693,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL holiday markets",
@@ -704,7 +704,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL farmers markets",
@@ -715,7 +715,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: FL craft fairs",
@@ -726,7 +726,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: GA college & campus markets",
@@ -737,7 +737,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: GA tabling calls",
@@ -748,7 +748,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: GA community markets",
@@ -759,7 +759,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: GA holiday markets",
@@ -770,7 +770,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: GA farmers markets",
@@ -781,7 +781,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Jacksonville markets",
@@ -792,7 +792,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Orlando markets",
@@ -803,7 +803,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Tampa bay markets",
@@ -814,7 +814,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: south Florida markets",
@@ -825,7 +825,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Atlanta markets",
@@ -836,7 +836,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Savannah markets",
@@ -847,7 +847,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: Augusta markets",
@@ -858,7 +858,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Search: college market days GA",
@@ -869,7 +869,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -880,58 +880,10 @@
    "ok": true,
    "items": 535,
    "error": null,
-   "lastOk": "2026-11-16T06:30Z"
+   "lastOk": "2026-11-16T22:02Z"
   }
  ],
  "items": [
-  {
-   "id": "967a3f83800d",
-   "title": "BCM Tabling!!",
-   "date": "2026-11-16",
-   "time": "11:00 AM",
-   "location": "HOAG Patio",
-   "city": "Dahlonega",
-   "county": "Lumpkin",
-   "state": "GA",
-   "type": "tabling",
-   "source": "North Georgia (Engage)",
-   "url": "https://connect.ung.edu/event/12940582",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "ac8955c9e78c",
-   "title": "EIG Tabling Event",
-   "date": "2026-11-16",
-   "time": "10:00 AM",
-   "location": "GL Breezeway ",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "tabling",
-   "source": "FIU (Engage)",
-   "url": "https://fiu.campuslabs.com/engage/event/12964463",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "cc885fb21a76",
-   "title": "Genesis Dance Crew Showcase Tabling",
-   "date": "2026-11-16",
-   "time": "9:00 AM",
-   "location": "Turlington Table 08",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12979698",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-13"
-  },
   {
    "id": "243b7be38f47",
    "title": "Pop-Up Thrift Shop",
@@ -964,7 +916,7 @@
    "feed": "civic",
    "registration_url": "https://accgovga.myrec.com/info/activities/program_details.aspx?ProgramID=30172#21156_152996",
    "verified": true,
-   "verifiedAt": "2026-11-16T06:31Z",
+   "verifiedAt": "2026-11-16T22:02Z",
    "firstSeen": "2026-11-10"
   },
   {
@@ -1231,6 +1183,22 @@
    "notes": "Campus calendar read Nov 6 lists \"November 18 Market Day Crawford Green\"; vendor eligibility not stated on that page."
   },
   {
+   "id": "5bf0c4d7c352",
+   "title": "Literacy Tabling event",
+   "date": "2026-11-18",
+   "time": "11:00 AM",
+   "location": "HOAG PATIO",
+   "city": "Dahlonega",
+   "county": "Lumpkin",
+   "state": "GA",
+   "type": "tabling",
+   "source": "North Georgia (Engage)",
+   "url": "https://connect.ung.edu/event/12982608",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-16"
+  },
+  {
    "id": "fl6-a44d5cf017",
    "origin": "seed",
    "title": "Marco Island Holiday Community Farmers Market",
@@ -1382,6 +1350,22 @@
    "vendorMatch": false,
    "feed": "engage",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "17986b4c6043",
+   "title": "BSA Tabling",
+   "date": "2026-11-19",
+   "time": "9:00 AM",
+   "location": "Turlington Plaza",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12983392",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-16"
   },
   {
    "id": "f2d9033d0c58",
@@ -1854,6 +1838,22 @@
    "vendorMatch": true,
    "feed": "civic",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "99b97279126f",
+   "title": "Autumn Garden Festival at Edison & Ford Winter Estates",
+   "date": "2026-11-21",
+   "time": "09:00 AM - 04:00 PM",
+   "location": "2350 McGregor BlvdFort Myers, FL 33901",
+   "city": "Fort Myers",
+   "county": "Lee",
+   "state": "FL",
+   "type": "city",
+   "source": "City of Fort Myers",
+   "url": "https://www.fortmyers.gov/Calendar.aspx?EID=7554",
+   "vendorMatch": false,
+   "feed": "civic",
+   "firstSeen": "2026-11-16"
   },
   {
    "id": "1792c217cc82",
@@ -2460,6 +2460,22 @@
    "date": "2026-11-21",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-21; location: Aloft Jacksonville Tapestry, 4812 W Deer Lake Dr, Jacksonville, FL 32246 | organizer/official page read Nov 6: https://www.jacksonvillebusinessconnections.com/events/mistletoe-holiday-market (\"Mistletoe Holiday Market | JaxBizConnections\")"
+  },
+  {
+   "id": "8f6fcf51afa3",
+   "title": "Jax Beach Arts Market",
+   "date": "2026-11-21",
+   "time": "10:00 AM - 04:00 PM",
+   "location": "11 1st Street NJacksonville Beach, FL 32250",
+   "city": "Jacksonville Beach",
+   "county": "Duval",
+   "state": "FL",
+   "type": "market",
+   "source": "City of Jacksonville Beach",
+   "url": "https://www.jacksonvillebeach.org/Calendar.aspx?EID=3122",
+   "vendorMatch": true,
+   "feed": "civic",
+   "firstSeen": "2026-11-16"
   },
   {
    "id": "fl6-56bbf9d481",
@@ -4685,6 +4701,22 @@
    "notes": "organizer/official page read Nov 6; 2027 Artisan and Craft Vendor Application - Treasure Coast Renaissance Festival  | Deadline: November 30, 2026 - Date: Jan 09, 2027 10:00 am - Feb 14, 2027 6:00 pm (EST) place Vero Beach, Florida. This application is for Arts, Crafts, and ... | also listed: https://www.eventeny.com/events/vendor/?id=50072&srsltid=AYCX9vIWtONiDR-oZh8Ouwa91ALikXIksEPeiZUPBxuVsYU8h"
   },
   {
+   "id": "dfe726f516bf",
+   "title": "BSA Tabling",
+   "date": "2026-11-30",
+   "time": "9:00 AM",
+   "location": "Turlington Plaza",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12983393",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-16"
+  },
+  {
    "id": "ea907bd48bfb",
    "title": "Genesis Dance Crew Showcase Tabling",
    "date": "2026-11-30",
@@ -4755,6 +4787,22 @@
    "date": "2026-12-01",
    "category": "night market",
    "notes": "Unverified. search-result lead (snippet only) | 1 of the Lakeland holiday fairs is still accepting vendors; Holiday Night Market closes applications on Dec 1, 2026. Open a listing for its application link ..."
+  },
+  {
+   "id": "57734a7eeb20",
+   "title": "BSA Tabling",
+   "date": "2026-12-01",
+   "time": "11:30 AM",
+   "location": "Turlington Plaza",
+   "city": "Gainesville",
+   "county": "Alachua",
+   "state": "FL",
+   "type": "tabling",
+   "source": "University of Florida (Engage)",
+   "url": "https://gatorconnect.ufl.edu/event/12983394",
+   "vendorMatch": false,
+   "feed": "engage",
+   "firstSeen": "2026-11-16"
   },
   {
    "id": "e3c6643428ec",
@@ -19198,6 +19246,40 @@
  ],
  "ongoing": [
   {
+   "id": "6da033c94c9c",
+   "title": "Statewide Vendor Number Lookup - Office of Financial Management",
+   "date": null,
+   "time": null,
+   "location": null,
+   "city": "",
+   "county": "Jacksonville",
+   "state": "FL",
+   "type": "college",
+   "source": "Search: FL college & campus markets",
+   "url": "https://www.bing.com/ck/a?!&&p=46ba050bba04cc16b44ad805b27eff50795ee328b75d8e9c1d1be5ccdf3b2e07JmltdHM9MTc5NDc4NzIwMA&ptn=3&ver=2&hsh=4&fclid=17c31309-3516-6a8b-25d3-0b1a34476b7d&u=a1aHR0cHM6Ly9vZm0ud2EuZ292L3RlY2gtc3VwcG9ydC9zdGF0ZXdpZGUtdmVuZG9yLXBheWVlLXNlcnZpY2VzL3N0YXRld2lkZS12ZW5kb3ItbnVtYmVyLWxvb2t1cC8&ntb=1",
+   "vendorMatch": true,
+   "origin": "search",
+   "notes": "The Statewide Vendor/Supplier online search allows users to obtain vendor numbers for active suppliers. However, search results …",
+   "firstSeen": "2026-11-16"
+  },
+  {
+   "id": "32d136b286fa",
+   "title": "Statewide Vendor Number Lookup - Office of Financial Management",
+   "date": null,
+   "time": null,
+   "location": null,
+   "city": "",
+   "county": "",
+   "state": "FL",
+   "type": "tabling",
+   "source": "Search: FL tabling calls",
+   "url": "https://www.bing.com/ck/a?!&&p=d48a0df7f3b2574787ca10c659e0deb180cfd3e1f66e8c03d0b8ae54bb4cd4e4JmltdHM9MTc5NDc4NzIwMA&ptn=3&ver=2&hsh=4&fclid=0c3e3c0e-0348-60fe-22da-241d02576165&u=a1aHR0cHM6Ly9vZm0ud2EuZ292L3RlY2gtc3VwcG9ydC9zdGF0ZXdpZGUtdmVuZG9yLXBheWVlLXNlcnZpY2VzL3N0YXRld2lkZS12ZW5kb3ItbnVtYmVyLWxvb2t1cC8&ntb=1",
+   "vendorMatch": true,
+   "origin": "search",
+   "notes": "The Statewide Vendor/Supplier online search allows users to obtain vendor numbers for active suppliers. However, search results …",
+   "firstSeen": "2026-11-16"
+  },
+  {
    "id": "seed-fl-0008",
    "origin": "seed",
    "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
@@ -26505,7 +26587,12 @@
   }
  ],
  "newThisRun": [
-  "a29ee4e75fe1"
+  "5bf0c4d7c352",
+  "17986b4c6043",
+  "99b97279126f",
+  "8f6fcf51afa3",
+  "dfe726f516bf",
+  "57734a7eeb20"
  ],
  "vettedThisRun": 1
 }
