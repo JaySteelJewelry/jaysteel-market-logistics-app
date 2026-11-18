@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T20:56Z",
+ "updated": "2026-11-18T07:28Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida + Georgia statewide (colleges, cities, counties, marketplaces, web search)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -43,9 +43,9 @@
    "county": "Alachua",
    "url": "https://ufl.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 25,
+   "items": 23,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "UCF (Engage)",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "FAU (Engage)",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "FIU (Engage)",
@@ -76,9 +76,9 @@
    "county": "Miami-Dade",
    "url": "https://fiu.campuslabs.com/engage/events.rss",
    "ok": true,
-   "items": 12,
+   "items": 9,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Miami Dade College (Engage)",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Seminole State (Engage)",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Palm Beach State (Engage)",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "UGA (Engage)",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Georgia State (Engage)",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Georgia College (Engage)",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Columbus State (Engage)",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "North Georgia (Engage)",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Nassau County",
@@ -221,9 +221,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "stale": true,
-   "lastOk": "2026-11-16T22:02Z",
-   "note": "HTTPError: HTTP Error 429: Too Many Requests"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -234,7 +232,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of St. Augustine",
@@ -245,7 +243,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -256,7 +254,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Palatka",
@@ -267,7 +265,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -278,7 +276,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Bunnell",
@@ -289,9 +287,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "stale": true,
-   "lastOk": "2026-11-16T22:02Z",
-   "note": "HTTPError: HTTP Error 429: Too Many Requests"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -302,7 +298,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -313,7 +309,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Port Orange",
@@ -324,7 +320,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -335,7 +331,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of DeLand",
@@ -346,7 +342,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Palm Coast",
@@ -357,7 +353,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -365,9 +361,10 @@
    "state": "FL",
    "county": "Clay",
    "url": "https://exploreclay.com",
-   "ok": false,
-   "items": 0,
-   "error": "HTTPError: HTTP Error 403: Forbidden"
+   "ok": true,
+   "items": 21,
+   "error": null,
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Volusia County",
@@ -378,7 +375,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Fort Myers",
@@ -389,7 +386,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Hollywood",
@@ -400,7 +397,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Boca Raton",
@@ -411,7 +408,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Destin",
@@ -422,7 +419,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Pensacola",
@@ -433,7 +430,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Vero Beach",
@@ -444,9 +441,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "stale": true,
-   "lastOk": "2026-11-16T22:02Z",
-   "note": "HTTPError: HTTP Error 429: Too Many Requests"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Athens-Clarke County",
@@ -455,9 +450,9 @@
    "county": "Clarke",
    "url": "https://www.accgov.com",
    "ok": true,
-   "items": 4,
+   "items": 3,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Augusta",
@@ -468,7 +463,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Savannah",
@@ -479,7 +474,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Gainesville GA",
@@ -490,7 +485,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Lawrenceville",
@@ -499,9 +494,9 @@
    "county": "Gwinnett",
    "url": "https://www.lawrencevillega.org",
    "ok": true,
-   "items": 10,
+   "items": 11,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Marietta",
@@ -512,7 +507,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "City of Hinesville",
@@ -523,7 +518,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -534,7 +529,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -545,7 +540,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Orlando",
@@ -556,7 +551,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Tampa",
@@ -567,7 +562,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Miami",
@@ -578,7 +573,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Atlanta",
@@ -589,7 +584,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Savannah",
@@ -600,7 +595,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Athens",
@@ -611,7 +606,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Augusta",
@@ -622,7 +617,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "VendorsMap: Brunswick",
@@ -633,7 +628,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "AllEvents: Florida",
@@ -644,7 +639,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "AllEvents: Georgia",
@@ -655,7 +650,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL college & campus markets",
@@ -664,9 +659,9 @@
    "county": "Jacksonville",
    "url": "college markets",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL tabling calls",
@@ -675,9 +670,9 @@
    "county": "",
    "url": "vendor tabling",
    "ok": true,
-   "items": 2,
+   "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL community markets",
@@ -688,7 +683,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL maker markets",
@@ -699,7 +694,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL holiday markets",
@@ -710,7 +705,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL farmers markets",
@@ -721,7 +716,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: FL craft fairs",
@@ -732,7 +727,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: GA college & campus markets",
@@ -743,7 +738,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: GA tabling calls",
@@ -754,7 +749,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: GA community markets",
@@ -765,7 +760,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: GA holiday markets",
@@ -776,7 +771,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: GA farmers markets",
@@ -787,7 +782,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Jacksonville markets",
@@ -798,7 +793,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Orlando markets",
@@ -809,7 +804,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Tampa bay markets",
@@ -820,7 +815,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: south Florida markets",
@@ -831,7 +826,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Atlanta markets",
@@ -842,7 +837,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Savannah markets",
@@ -853,7 +848,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: Augusta markets",
@@ -864,7 +859,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Search: college market days GA",
@@ -875,7 +870,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -886,113 +881,10 @@
    "ok": true,
    "items": 535,
    "error": null,
-   "lastOk": "2026-11-17T20:56Z"
+   "lastOk": "2026-11-18T07:28Z"
   }
  ],
  "items": [
-  {
-   "id": "8a8fe67a66a3",
-   "title": "\"Buford Highway Farmers Market\" Adult Trip",
-   "date": "2026-11-17",
-   "time": "09:00 AM - 05:00 PM",
-   "location": "291 Henderson Ext.Athens, GA 30606",
-   "city": "Athens",
-   "county": "Clarke",
-   "state": "GA",
-   "type": "market",
-   "source": "Athens-Clarke County",
-   "url": "https://www.accgov.com/Calendar.aspx?EID=30559",
-   "vendorMatch": true,
-   "feed": "civic",
-   "registration_url": "https://accgovga.myrec.com/info/activities/program_details.aspx?ProgramID=30172#21156_152996",
-   "verified": true,
-   "verifiedAt": "2026-11-17T20:56Z",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "c1bc218adb76",
-   "title": "305 Night Market",
-   "date": "2026-11-17",
-   "time": "6:00 PM",
-   "location": "AHC 1/2 Lawn",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "college",
-   "source": "FIU (Engage)",
-   "url": "https://fiu.campuslabs.com/engage/event/12986052",
-   "vendorMatch": true,
-   "feed": "engage",
-   "firstSeen": "2026-11-17"
-  },
-  {
-   "id": "f7111e297e65",
-   "title": "Mini-Marathon- Roarthon",
-   "date": "2026-11-17",
-   "time": "5:00 PM",
-   "location": "GC Ballrooms",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "college",
-   "source": "FIU (Engage)",
-   "url": "https://fiu.campuslabs.com/engage/event/12916823",
-   "vendorMatch": true,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "786a066a50b4",
-   "title": "North African Student Association Tabling for New Members",
-   "date": "2026-11-17",
-   "time": "11:00 AM",
-   "location": "Turlington Table 2 ",
-   "city": "Gainesville",
-   "county": "Alachua",
-   "state": "FL",
-   "type": "tabling",
-   "source": "University of Florida (Engage)",
-   "url": "https://gatorconnect.ufl.edu/event/12981299",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-15"
-  },
-  {
-   "id": "fl6-5be97c63cf",
-   "origin": "seed",
-   "title": "Sarasota Senior Lifestyle and Wellness Expo",
-   "org": "Sarasota",
-   "city": "Sarasota",
-   "county": "Sarasota",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://floridapenguinproductions.com/sarasota-senior-expo-1",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-sarasota-senior-lifestyle-and-wellness-expo_1",
-   "date": "2026-11-17",
-   "category": "festival",
-   "contact_email": "filler@godaddy.com, Kevin@FloridaPenguinProductions.com",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Sarasota Fairgrounds - Robarts Arena; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. The Senior Lifestyle and Wellness Expo will be held on November 17th, 2026. It will feature local businesses, raffles, prize giveaways,... | organizer/official page read Nov 6: https://floridapenguinproductions.com/sarasota-senior-expo-"
-  },
-  {
-   "id": "a86130db4c06",
-   "title": "genCLEO Tabling Tuesdays - Chat with us!",
-   "date": "2026-11-17",
-   "time": "1:00 PM",
-   "location": "Green Library Breezeway Table 1",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "tabling",
-   "source": "FIU (Engage)",
-   "url": "https://fiu.campuslabs.com/engage/event/12908223",
-   "vendorMatch": false,
-   "feed": "engage",
-   "firstSeen": "2026-11-10"
-  },
   {
    "id": "f101b8ae1839",
    "title": "Awakening Collegiate Fellowship Tabling",
@@ -1513,6 +1405,25 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Downtown; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Cocoa Beach Holiday Friday Fest will be held on November 20th, 2026. It will feature live music, unique crafts, small businesses,... | organizer/official page read Nov 6: https://cocoabeachmainstreet.org/friday-fest-3rd-friday (\"Friday Fes"
   },
   {
+   "id": "2a206a127421",
+   "title": "FIRMSanity 2026",
+   "date": "2026-11-20",
+   "time": null,
+   "location": "The FIRM – Florida International Rally & Motorsport Park",
+   "city": "Starke",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/firmsanity-2026/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "registration_url": "https://tickets.thefoat.com/FIRM/FIRMSANITY+2026/tickets/id-D61yTsoQjY_B/?tl=VH36X7&#038;fbclid=IwY2xjawVoUsBleHRuA2FlbQIxMABwZG9mAWJyaWQRMVBEZ2FZeWdwUHdoUUFDWHVzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEf39XOb1nYXvfikJbuadeniFwoXsxqIAiyaJf-t18yrmuQJCCEzjPmMMvs8T8_aem_VF5F-yAdnuTIY07NJ9S-zg",
+   "verified": true,
+   "verifiedAt": "2026-11-18T07:29Z",
+   "firstSeen": "2026-11-18T07:28Z"
+  },
+  {
    "id": "e06b517ddda3",
    "title": "Hollywood Annual Tree Lighting and Live Jazz",
    "date": "2026-11-20",
@@ -1696,6 +1607,24 @@
    "date": "2026-11-21",
    "category": "craft fair",
    "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-21; location: Washington County Fair Park, Chipley, FL 32428"
+  },
+  {
+   "id": "4b8438cbc207",
+   "title": "3rd Saturday Market in the Park",
+   "date": "2026-11-21",
+   "time": "10:00 AM",
+   "location": "Spring Park",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/3rd-saturday-market-in-the-park-4/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "verified": true,
+   "verifiedAt": "2026-11-18T07:29Z",
+   "firstSeen": "2026-11-18T07:28Z"
   },
   {
    "id": "fl6-f7536545e2",
@@ -2528,6 +2457,24 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: The Cottage Art Gallery; vendor types allowed: Music, Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Nokomis Fall Art and Craft Market will be held on November 21st, 2026. Come shop small and support local artisans and... | organizer/official page read Nov 6: https://thecottageinnokomis.com/art-market (\"Art Market\") — date not found on"
   },
   {
+   "id": "8c9c7aeb7fc8",
+   "title": "Oh Little Town of Middleburg Christmas Market",
+   "date": "2026-11-21",
+   "time": "11:00 AM",
+   "location": "Star Center",
+   "city": "Middleburg",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/oh-little-town-of-middleburg-christmas-market/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "verified": true,
+   "verifiedAt": "2026-11-18T07:29Z",
+   "firstSeen": "2026-11-18T07:28Z"
+  },
+  {
    "id": "fl6-36858cb8c3",
    "origin": "seed",
    "title": "Palm Harbor Craft Festival",
@@ -2780,7 +2727,7 @@
    "feed": "civic",
    "registration_url": "https://ormondbeachperformingartscenter.csstix.com/",
    "verified": true,
-   "verifiedAt": "2026-11-17T20:56Z",
+   "verifiedAt": "2026-11-18T07:29Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -2799,7 +2746,7 @@
    "feed": "civic",
    "registration_url": "https://www.greencovesprings.com/list.aspx?Mode=Subscribe#newsFlash",
    "verified": true,
-   "verifiedAt": "2026-11-17T20:56Z",
+   "verifiedAt": "2026-11-18T07:29Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -3088,7 +3035,7 @@
    "feed": "civic",
    "registration_url": "https://ormondbeachperformingartscenter.csstix.com/",
    "verified": true,
-   "verifiedAt": "2026-11-17T20:56Z",
+   "verifiedAt": "2026-11-18T07:29Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -4830,6 +4777,22 @@
    "firstSeen": "2026-11-17"
   },
   {
+   "id": "ce90dbab40ed",
+   "title": "Parade of Trees in Spring Park",
+   "date": "2026-12-01",
+   "time": "6:00 PM",
+   "location": "Spring Park",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/parade-of-trees-in-spring-park/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "0aea4c0691b0",
    "title": "Surgical Healthcare Society Tabling",
    "date": "2026-12-01",
@@ -4935,6 +4898,22 @@
    "vendorMatch": false,
    "feed": "engage",
    "firstSeen": "2026-11-10"
+  },
+  {
+   "id": "c8c05d5d93c3",
+   "title": "Atlanta Christkindl Market in Lawrenceville",
+   "date": "2026-12-02",
+   "time": "03:00 PM - 09:00 PM",
+   "location": "210 Luckie StreetLawrenceville, GA 30046",
+   "city": "Lawrenceville",
+   "county": "Gwinnett",
+   "state": "GA",
+   "type": "market",
+   "source": "City of Lawrenceville",
+   "url": "https://www.lawrencevillega.org/Calendar.aspx?EID=1491",
+   "vendorMatch": true,
+   "feed": "civic",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-ef2ca79005",
@@ -5468,6 +5447,38 @@
    "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-12-04 to 2026-12-04; location: The Dog Bar, 2300 Central Ave, St. Petersburg, FL 33712 | organizer/official page read Nov 6: https://www.grandcentraldistrict.org/christmas-market/ (\"Christmas Market - Grand Central District\") — date not found on that page"
   },
   {
+   "id": "a8f94f122432",
+   "title": "Christmas Radio Hour – Live Show",
+   "date": "2026-12-04",
+   "time": "2:00 PM",
+   "location": "Orange Park Community Theater",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-radio-hour-2026/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
+   "id": "a796e9c81396",
+   "title": "Christmas in the Village",
+   "date": "2026-12-04",
+   "time": "6:00 PM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-04/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-ce2b179bfb",
    "origin": "seed",
    "title": "Crystal River Christmas Tree Lighting Festival",
@@ -5681,6 +5692,22 @@
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-04 to 2026-12-06; location: Clay County Fairgrounds, 2497 SR-16, Green Cove Springs, FL 32043 | also listed: https://vendorsmap.com/events/18275 | organizer/official page read Nov 6: https://vintagemarketdays.com/market/jacksonville/index.php (\"Welcome to the Vintage Market Days of Jacksonville\")"
   },
   {
+   "id": "a5561428e4e7",
+   "title": "Vintage Market Days® Holidays 2026",
+   "date": "2026-12-04",
+   "time": "10:00 AM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/vintage-market-days-holidays-2026/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-7ae4898da7",
    "origin": "seed",
    "title": "Wesley Chapel Christmas Market",
@@ -5740,23 +5767,36 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Stephen Foster Folk Culture Center State Park; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. White Springs Festival of Lights will be held from December 4 through December 23, 2026. At the Holiday Magic Nights, lights..."
   },
   {
-   "id": "fl6-93a55fc83d",
-   "origin": "seed",
+   "id": "aa8fef88e633",
    "title": "13th Annual Holiday Market in the South",
-   "org": "Jacksonville Business Connections",
+   "date": "2026-12-05",
+   "time": "11:00 AM",
+   "location": "Thrasher-Horne Center",
    "city": "Orange Park",
    "county": "Clay",
    "state": "FL",
    "type": "market",
-   "source": "Statewide FL search, Nov 2026",
+   "source": "Clay County (Explore Clay)",
    "url": "https://exploreclay.com/event/13th-annual-holiday-market-in-the-south/",
    "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/39376",
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
+   "id": "79f48e23ebd6",
+   "title": "2026 Christmas on Walnut Street & Parade",
    "date": "2026-12-05",
-   "category": "craft fair",
-   "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-05 to 2026-12-05; location: Thrasher-Horne Center, 2900 Thrasher Horne Ave, Orange Park, FL 32065 | organizer/official page read Nov 6: https://exploreclay.com/event/13th-annual-holiday-market-in-the-south/ (\"13th Annual Holiday Market in the South - Clay County\")"
+   "time": "10:00 AM",
+   "location": "Spring Park",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/2026-christmas-on-walnut-street-parade/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-edca230c18",
@@ -7314,6 +7354,22 @@
    "notes": "organizer/official page read Nov 6; The Magical Market - Be Our Guest:  Holiday Edition - Eventeny | ... application. Vendor Application. Deadline: Dec 06, 2026. Apply now ... 2026 at the Embassy Suites West Palm Beach. IMPORTANT - It is very ..."
   },
   {
+   "id": "190e92b8a389",
+   "title": "The Ultimate Elvis Christmas",
+   "date": "2026-12-06",
+   "time": "6:00 PM",
+   "location": "Thrasher-Horne Center",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/the-ultimate-elvis-christmas/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-739789bab8",
    "origin": "seed",
    "title": "Vero Beach Holiday Art in the Park",
@@ -7567,6 +7623,38 @@
    "notes": "Unverified. VendorsMap listing (Festival Annual); runs 2026-12-11 to 2026-12-11; location: Washington County Farmer's Market Complex, 685 7th Street, Chipley, FL 32428"
   },
   {
+   "id": "aa2678ff570a",
+   "title": "Christmas Radio Hour – Live Show",
+   "date": "2026-12-11",
+   "time": "2:00 PM",
+   "location": "Orange Park Community Theater",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-radio-hour-live-show/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
+   "id": "1dc64e9db272",
+   "title": "Christmas in the Village",
+   "date": "2026-12-11",
+   "time": "6:00 PM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-11/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-aa025926ff",
    "origin": "seed",
    "title": "Dickens on Centre",
@@ -7798,6 +7886,22 @@
    "date": "2026-12-12",
    "category": "craft fair",
    "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-12-12 to 2026-12-12; location: Palm Bay, FL | organizer/official page read Nov 6: https://www.visitspacecoast.com/event/13th-annual-holiday-craft-fair-market-food-truck-event/ (\"13th Annual Holiday Craft Fair Market & Food Truck Event - V\")"
+  },
+  {
+   "id": "37aa0d8800c2",
+   "title": "2nd Saturday Lakeside Market",
+   "date": "2026-12-12",
+   "time": "10:00 AM",
+   "location": "661 Blanding Blvd. Orange Park, FL 32073",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/2nd-saturday-lakeside-market-4/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-a4e2ccd8ea",
@@ -8075,6 +8179,22 @@
    "notes": "organizer/official page read Nov 6; Christmas in Columbia Holiday Market Vendor Applications | FestKit | Annual Christmas in Columbia Market on Saturday, December 12th, 2026. The Festival will have crafts, food trucks, children's activities, and entertainment. ..."
   },
   {
+   "id": "ba04ee3e7086",
+   "title": "Christmas in the Village",
+   "date": "2026-12-12",
+   "time": "6:00 PM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-12/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-7207ef239a",
    "origin": "seed",
    "title": "City of Milton Holiday Market",
@@ -8329,6 +8449,38 @@
    "date": "2026-12-12",
    "category": "pop-up",
    "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-12-12 to 2026-12-12; location: CoolToday Park, 18800 S West Villages Pkwy, Venice, FL 34293"
+  },
+  {
+   "id": "a4cfd0ce1bf4",
+   "title": "Keystone Heights 2026 Christmas Parade",
+   "date": "2026-12-12",
+   "time": "6:00 PM",
+   "location": "Keystone Heights Historic Pavilion at Lake Geneva",
+   "city": "Keystone Heights",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/keystone-heights-2026-christmas-parade/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
+   "id": "d8caaccb8c7f",
+   "title": "Keystone Heights Third Annual Christmas Market",
+   "date": "2026-12-12",
+   "time": "10:00 AM",
+   "location": "Keystone Heights Historic Pavilion at Lake Geneva",
+   "city": "Keystone Heights",
+   "county": "Clay",
+   "state": "FL",
+   "type": "market",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/keystone-heights-third-annual-christmas-market/",
+   "vendorMatch": true,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-698e67085f",
@@ -9180,6 +9332,22 @@
    "notes": "Unverified. FairsAndFestivals listing; venue: Beaches Town Center; vendor types allowed: Music, Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. North Beaches Christmas Art Walk will be held on December 17th, 2026. It will feature a great selection of local artists,..."
   },
   {
+   "id": "7486821320c3",
+   "title": "Christmas in the Village",
+   "date": "2026-12-18",
+   "time": "6:00 PM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-18/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-8906a62039",
    "origin": "seed",
    "title": "Downtown Apopka Friday Night Farmers Market",
@@ -9293,6 +9461,38 @@
    "fee": "$10 (from organizer page; check tier)",
    "category": "flea/vintage",
    "notes": "Unverified. FairsAndFestivals listing; venue: Blessed Sacrament Catholic Church; vendor types allowed: Art, Craft; organizer site/contact/fee are paywalled on that listing. Blessed Sacrament Holiday Flea Market will be held on December 19, 2026. This market will feature a group of antiques and... | organizer/official page read Nov 6: http://mobile.blessedsacramentcocoa.org/flea-market (\"Flea Market - www.bles"
+  },
+  {
+   "id": "63a62472a566",
+   "title": "Christmas In Motion",
+   "date": "2026-12-19",
+   "time": "7:30 PM",
+   "location": "Thrasher-Horne Center",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-motion-2026/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
+   "id": "f4a52f081d7d",
+   "title": "Christmas in the Village",
+   "date": "2026-12-19",
+   "time": "6:00 PM",
+   "location": "Clay County Fairgrounds",
+   "city": "Green Cove Springs",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/christmas-in-the-village-2/2026-12-19/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-3ef0b703f5",
@@ -9649,6 +9849,22 @@
    "notes": "FairsAndFestivals listing; venue: South Florida Fairgrounds; vendor types allowed: Craft, Commercial; organizer site/contact/fee are paywalled on that listing. West Palm Beach Holiday Gun and Knife Show will be held on December 19-20, 2026. You will find a wide variety... | organizer/official page read Nov 6: https://flgunshows.com/shows/ (\"Schedules | Admission Fee | Florida Gun & Knife Shows\")"
   },
   {
+   "id": "d989da66764f",
+   "title": "Whitey’s 2026 Christmas Boat Parade",
+   "date": "2026-12-19",
+   "time": "6:00 PM",
+   "location": "Whitey’s Fish Camp",
+   "city": "Fleming Island",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/whiteys-2026-christmas-boat-parade/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
+  },
+  {
    "id": "fl6-a839d4b5dc",
    "origin": "seed",
    "title": "Williston Christmas in the Park",
@@ -9921,6 +10137,22 @@
    "date": "2026-12-20",
    "category": "market",
    "notes": "Unverified. FairsAndFestivals listing; venue: Water Street in Downtown Tampa between Channelside Drive and Cumberland Avenue; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Water Street Third Sunday Market will be held on December 20th, 2026. It will host about 70 vendors who will be... | organizer/official page read Nov 6: https://www.tampabaymarkets.com/wat"
+  },
+  {
+   "id": "0d688f3d4f74",
+   "title": "We Three Kings, The Irish Dance Christmas Sensation",
+   "date": "2026-12-20",
+   "time": "6:00 PM",
+   "location": "Thrasher-Horne Center",
+   "city": "Orange Park",
+   "county": "Clay",
+   "state": "FL",
+   "type": "county",
+   "source": "Clay County (Explore Clay)",
+   "url": "https://exploreclay.com/event/we-three-kings-the-irish-dance-christmas-sensation/",
+   "vendorMatch": false,
+   "feed": "tribe",
+   "firstSeen": "2026-11-18"
   },
   {
    "id": "fl6-9c60286204",
@@ -19197,74 +19429,6 @@
  ],
  "ongoing": [
   {
-   "id": "d9795f417d67",
-   "title": "Los Angeles County Vendor Registration",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=7266afeb2276571fe382f3ddb09aac1423b0bae9c838f59cade3d8cffb8ccb79JmltdHM9MTc5NDg3MzYwMA&ptn=3&ver=2&hsh=4&fclid=3568c770-e2bb-6929-2ebd-df64e3cb68b8&u=a1aHR0cHM6Ly9jYW1pc3ZyLmNvLmxhLmNhLnVzL3dlYnZlbi8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "Registering as a vendor only takes a few minutes. Once you enter the New Registration page, you will be led through the registration …",
-   "firstSeen": "2026-11-17"
-  },
-  {
-   "id": "23c8bdf3c35d",
-   "title": "Los Angeles County Vendor Registration",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=155ca4e8410903979b8d9dbfc4804b705c3587dfec4994f4190d2dec6ccbdd2cJmltdHM9MTc5NDg3MzYwMA&ptn=3&ver=2&hsh=4&fclid=09f0e289-0b54-66f0-05aa-fa9d0a836774&u=a1aHR0cHM6Ly9jYW1pc3ZyLmNvLmxhLmNhLnVzL3dlYnZlbi8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "Registering as a vendor only takes a few minutes. Once you enter the New Registration page, you will be led through the registration …",
-   "firstSeen": "2026-11-17"
-  },
-  {
-   "id": "f851a408c4cd",
-   "title": "NetVendor | Vendor Management Built on Compliance",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "Jacksonville",
-   "state": "FL",
-   "type": "college",
-   "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=13d7c3a1430a9cd9e972c94d166ec20d80a1ac02fd1a1f189299c1bf84f50202JmltdHM9MTc5NDg3MzYwMA&ptn=3&ver=2&hsh=4&fclid=3568c770-e2bb-6929-2ebd-df64e3cb68b8&u=a1aHR0cHM6Ly93d3cubmV0dmVuZG9yLmNvbS8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "We govern your vendor ecosystem from sourcing to contracts, with compliance requirements configured by owner and enforced at …",
-   "firstSeen": "2026-11-17"
-  },
-  {
-   "id": "2f5020ec4a86",
-   "title": "NetVendor | Vendor Management Built on Compliance",
-   "date": null,
-   "time": null,
-   "location": null,
-   "city": "",
-   "county": "",
-   "state": "FL",
-   "type": "tabling",
-   "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=11de8869025f340390aaf45389d54ef80826c080c257fdc5a39590db0a519e25JmltdHM9MTc5NDg3MzYwMA&ptn=3&ver=2&hsh=4&fclid=09f0e289-0b54-66f0-05aa-fa9d0a836774&u=a1aHR0cHM6Ly93d3cubmV0dmVuZG9yLmNvbS8&ntb=1",
-   "vendorMatch": true,
-   "origin": "search",
-   "notes": "We govern your vendor ecosystem from sourcing to contracts, with compliance requirements configured by owner and enforced at …",
-   "firstSeen": "2026-11-17"
-  },
-  {
    "id": "seed-fl-0008",
    "origin": "seed",
    "title": "Baker County Fair – Exhibit Hall (Commercial/Non-Profit) & Outside Food/Merchandise Booths",
@@ -26553,9 +26717,25 @@
   }
  ],
  "newThisRun": [
-  "c1bc218adb76",
-  "4fd12083d296",
-  "7e1f1290afab"
+  "ce90dbab40ed",
+  "c8c05d5d93c3",
+  "a8f94f122432",
+  "a796e9c81396",
+  "a5561428e4e7",
+  "aa8fef88e633",
+  "79f48e23ebd6",
+  "190e92b8a389",
+  "aa2678ff570a",
+  "1dc64e9db272",
+  "37aa0d8800c2",
+  "ba04ee3e7086",
+  "a4cfd0ce1bf4",
+  "d8caaccb8c7f",
+  "7486821320c3",
+  "63a62472a566",
+  "f4a52f081d7d",
+  "d989da66764f",
+  "0d688f3d4f74"
  ],
- "vettedThisRun": 4
+ "vettedThisRun": 6
 }
