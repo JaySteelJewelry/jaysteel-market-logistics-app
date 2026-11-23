@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T19:41Z",
+ "updated": "2026-11-23T07:39Z",
  "refresh": "every 6 hours (GitHub Actions), not live",
  "coverage": "Florida + Georgia statewide (colleges, cities, counties, marketplaces, web search)",
  "sources": [
@@ -12,7 +12,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "FSCJ Events",
@@ -23,7 +23,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Stetson University (Engage)",
@@ -34,7 +34,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "University of Florida (Engage)",
@@ -45,7 +45,7 @@
    "ok": true,
    "items": 16,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "UCF (Engage)",
@@ -56,7 +56,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "FAU (Engage)",
@@ -67,7 +67,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "FIU (Engage)",
@@ -78,7 +78,7 @@
    "ok": true,
    "items": 8,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Miami Dade College (Engage)",
@@ -89,7 +89,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Seminole State (Engage)",
@@ -100,7 +100,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Palm Beach State (Engage)",
@@ -111,7 +111,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Georgia Tech (Engage)",
@@ -122,7 +122,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "UGA (Engage)",
@@ -133,7 +133,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Georgia State (Engage)",
@@ -144,7 +144,7 @@
    "ok": true,
    "items": 4,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Kennesaw State (Engage)",
@@ -155,7 +155,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Georgia College (Engage)",
@@ -166,7 +166,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Columbus State (Engage)",
@@ -177,7 +177,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "North Georgia (Engage)",
@@ -188,7 +188,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Jacksonville Beach",
@@ -199,7 +199,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Fernandina Beach",
@@ -210,7 +210,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Nassau County",
@@ -221,7 +221,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Green Cove Springs",
@@ -232,7 +232,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of St. Augustine",
@@ -243,7 +243,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of St. Augustine Beach",
@@ -254,7 +254,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Palatka",
@@ -265,7 +265,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Flagler Beach",
@@ -276,7 +276,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Bunnell",
@@ -287,7 +287,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Daytona Beach",
@@ -298,7 +298,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Ormond Beach",
@@ -307,9 +307,9 @@
    "county": "Volusia",
    "url": "https://www.ormondbeach.org",
    "ok": true,
-   "items": 2,
+   "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Port Orange",
@@ -320,7 +320,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of New Smyrna Beach",
@@ -331,7 +331,7 @@
    "ok": true,
    "items": 8,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of DeLand",
@@ -342,7 +342,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Palm Coast",
@@ -353,7 +353,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Clay County (Explore Clay)",
@@ -364,7 +364,7 @@
    "ok": true,
    "items": 19,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Volusia County",
@@ -375,7 +375,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Fort Myers",
@@ -386,7 +386,7 @@
    "ok": true,
    "items": 5,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Hollywood",
@@ -397,7 +397,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Boca Raton",
@@ -408,7 +408,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Destin",
@@ -419,7 +419,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Pensacola",
@@ -430,7 +430,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Vero Beach",
@@ -441,7 +441,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Athens-Clarke County",
@@ -452,7 +452,7 @@
    "ok": true,
    "items": 6,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Augusta",
@@ -463,7 +463,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Savannah",
@@ -474,7 +474,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Gainesville GA",
@@ -485,7 +485,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Lawrenceville",
@@ -494,9 +494,9 @@
    "county": "Gwinnett",
    "url": "https://www.lawrencevillega.org",
    "ok": true,
-   "items": 13,
+   "items": 12,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Marietta",
@@ -507,7 +507,7 @@
    "ok": true,
    "items": 1,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "City of Hinesville",
@@ -518,7 +518,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Jacksonville",
@@ -529,7 +529,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: St. Augustine",
@@ -540,7 +540,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Orlando",
@@ -551,7 +551,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Tampa",
@@ -562,7 +562,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Miami",
@@ -573,7 +573,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Atlanta",
@@ -584,7 +584,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Savannah",
@@ -595,7 +595,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Athens",
@@ -606,7 +606,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Augusta",
@@ -617,7 +617,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "VendorsMap: Brunswick",
@@ -628,7 +628,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "AllEvents: Florida",
@@ -639,7 +639,7 @@
    "ok": true,
    "items": 3,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "AllEvents: Georgia",
@@ -650,7 +650,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL college & campus markets",
@@ -661,7 +661,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL tabling calls",
@@ -672,7 +672,7 @@
    "ok": true,
    "items": 2,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL community markets",
@@ -683,7 +683,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL maker markets",
@@ -694,7 +694,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL holiday markets",
@@ -705,7 +705,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL farmers markets",
@@ -716,7 +716,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: FL craft fairs",
@@ -727,7 +727,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: GA college & campus markets",
@@ -738,7 +738,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: GA tabling calls",
@@ -749,7 +749,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: GA community markets",
@@ -760,7 +760,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: GA holiday markets",
@@ -771,7 +771,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: GA farmers markets",
@@ -782,7 +782,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Jacksonville markets",
@@ -793,7 +793,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Orlando markets",
@@ -804,7 +804,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Tampa bay markets",
@@ -815,7 +815,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: south Florida markets",
@@ -826,7 +826,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Atlanta markets",
@@ -837,7 +837,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Savannah markets",
@@ -848,7 +848,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: Augusta markets",
@@ -859,7 +859,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Search: college market days GA",
@@ -870,7 +870,7 @@
    "ok": true,
    "items": 0,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   },
   {
    "source": "Verified by Tab (organizer pages, statewide)",
@@ -881,217 +881,10 @@
    "ok": true,
    "items": 535,
    "error": null,
-   "lastOk": "2026-11-22T19:41Z"
+   "lastOk": "2026-11-23T07:39Z"
   }
  ],
  "items": [
-  {
-   "id": "ba4aef26f3a2",
-   "title": "Atlanta Christkindl Market in Lawrenceville",
-   "date": "2026-11-22",
-   "time": "11:00 AM - 09:00 PM",
-   "location": "210 Luckie StreetLawrenceville, GA 30046",
-   "city": "Lawrenceville",
-   "county": "Gwinnett",
-   "state": "GA",
-   "type": "market",
-   "source": "City of Lawrenceville",
-   "url": "https://www.lawrencevillega.org/Calendar.aspx?EID=1501",
-   "vendorMatch": true,
-   "feed": "civic",
-   "firstSeen": "2026-11-10"
-  },
-  {
-   "id": "fl6-fdb46b2e78",
-   "origin": "seed",
-   "title": "Brandon Holiday Gift Sunday Market",
-   "org": "Brandon",
-   "city": "Brandon",
-   "county": "Hillsborough",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-brandon-holiday-gift-sunday-market",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-brandon-holiday-gift-sunday-market",
-   "date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: 788 W Lumsden Rd; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Brandon Holiday Gift Sunday Market will be held on November 22, 2026. There will be a group of unique vendors, delicious..."
-  },
-  {
-   "id": "fl6-91cebd7e6b",
-   "origin": "seed",
-   "title": "Flamingo Flea at Tarpon River Brewing",
-   "org": "The Flamingo Flea (Carley Sumner)",
-   "city": "Fort Lauderdale",
-   "county": "Broward",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.flamingoflea.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/36282",
-   "date": "2026-11-22",
-   "category": "pop-up",
-   "notes": "Unverified. VendorsMap listing (Pop-Up Annual); runs 2026-11-22 to 2026-11-22; location: Tarpon River Brewing, 280 SW 6th St, Fort Lauderdale, FL 33301 | organizer/official page read Nov 6: https://www.flamingoflea.com/ (\"Flamingo Flea - Weekend Markets and Pop Up Events Fort Laude\") — date not found on that page"
-  },
-  {
-   "id": "fl6-54d1c4709a",
-   "origin": "seed",
-   "title": "Ford’s Garage Craft Fair",
-   "org": "Fords Garage Craft Fair",
-   "city": "Melbourne",
-   "county": "Brevard",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://vendorsmap.com/events/39077",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/39077",
-   "date": "2026-11-22",
-   "fee": "Free",
-   "category": "hosted",
-   "notes": "Unverified. VendorsMap listing (Hosted ); runs 2026-11-22 to 2026-11-22; location: 5480 Lake Andrew Drive, Melbourne, FL"
-  },
-  {
-   "id": "fl6-a118990715",
-   "origin": "seed",
-   "title": "Lakeside Village Holiday Makers Market",
-   "org": "Lakeland",
-   "city": "Lakeland",
-   "county": "Polk",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://shoplakesidevillage.com/events/makers-market/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-lakeside-village-holiday-makers-market",
-   "date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Lakeside Village; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Lakeside Village Holiday Makers Market will be held on November 22nd, 2026. It will host a great selection of skilled artisans... | organizer/official page read Nov 6: https://shoplakesidevillage.com/events/makers-market/ (\"Makers Market | Lakeside V"
-  },
-  {
-   "id": "fa17132dc3d0",
-   "title": "Late Night Catechism Christmas",
-   "date": "2026-11-22",
-   "time": "03:30 PM - 11:59 PM",
-   "location": "399 N. US1Ormond Beach, FL 32174",
-   "city": "Ormond Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "city",
-   "source": "City of Ormond Beach",
-   "url": "https://www.ormondbeach.org/m/calendar/event/detail/8642",
-   "vendorMatch": false,
-   "feed": "civic",
-   "registration_url": "https://ormondbeachperformingartscenter.csstix.com/",
-   "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
-   "firstSeen": "2026-11-09"
-  },
-  {
-   "id": "fl6-4bb11e199a",
-   "origin": "seed",
-   "title": "New Port Richey Holiday Community Market",
-   "org": "Odessa",
-   "city": "Odessa",
-   "county": "Hillsborough",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-new-port-richey-holiday-community-market",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-new-port-richey-holiday-community-market",
-   "date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Starkey Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. New Port Richey Holiday Community Market will be held on November 22nd, 2026. Come shop small and support local businesses. It..."
-  },
-  {
-   "id": "fl6-66773df9df",
-   "origin": "seed",
-   "title": "Punta Gorda Holiday Artisans Market",
-   "org": "Punta Gorda",
-   "city": "Punta Gorda",
-   "county": "Charlotte",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fleventsandfestivals.com/events/punta-gorda-artisans-market-in-the-history-park-listing-1596-20130.aspx",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-punta-gorda-holiday-artisans-market",
-   "date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Punta Gorda History Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Punta Gorda Holiday Artisans Market will be held on November 22nd, 2026. This market will feature fresh produce, eggs, locally hived... | also listed: https://www.fairsandfestivals.net/events/details/2026-punta-gorda-holiday-artisans-market-i"
-  },
-  {
-   "id": "fl6-87e7faeeb7",
-   "origin": "seed",
-   "title": "Volusia Senior Expo",
-   "org": "New Smyrna Beach",
-   "city": "New Smyrna Beach",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.eventeny.com/events/volusia-senior-expo-27300/?srsltid=AYCX9vJHoWO-CeKG_OOiTf565A0bhtuPGhaCkelTeLeTQiCPsbHEc9Tw",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-volusia-senior-expo",
-   "date": "2026-11-22",
-   "category": "expo",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Brannon Center; vendor types allowed: Art, Craft, Commercial; organizer site/contact/fee are paywalled on that listing. Volusia Senior Expo will be held on November 22nd, 2026. There will be an array of vendors offering up-to-date resources, information,... | organizer/official page read Nov 6: https://www.eventeny.com/events/volusia-senior-expo-27300/?srsltid=AYC"
-  },
-  {
-   "id": "fl6-516d3cbdc2",
-   "origin": "seed",
-   "title": "Wesley Chapel Harvest Market",
-   "org": "Wesley Chapel",
-   "city": "Wesley Chapel",
-   "county": "Pasco",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.tampabaymarkets.com/fresh-market-at-wiregrass",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-wesley-chapel-harvest-market",
-   "date": "2026-11-22",
-   "category": "market",
-   "notes": "Unverified. FairsAndFestivals listing; venue: The Grove at Wesley Chapel; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Wesley Chapel Harvest Market will be held on November 22nd, 2026. This market will feature local produce, cottage goods, handmade items,... | organizer/official page read Nov 6: https://www.tampabaymarkets.com/fresh-marke"
-  },
-  {
-   "id": "fl6-5b27602d10",
-   "origin": "seed",
-   "title": "Westshore Marina District Holiday Sunday Market",
-   "org": "Tampa",
-   "city": "Tampa",
-   "county": "Hillsborough",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.tampabaymarkets.com/sunday-market-at-westshore-marina-district",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-westshore-marina-district-holiday-sunday-market",
-   "date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Westshore Marina District; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Westshore Marina District Holiday Sunday Market will be held on November 22nd, 2026. You will find a great selection of fresh... | organizer/official page read Nov 6: https://www.tampabaymarkets.com/sunday-market-at-westshore-marina-district"
-  },
   {
    "id": "b4c7c79b9406",
    "title": "Atlanta Christkindl Market in Lawrenceville",
@@ -1193,7 +986,7 @@
    "t": "10:00",
    "registration_url": "https://allevents.in/florida/holiday-market-at-the-florida-ny-farmers-market/200030941833856",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-11"
   },
   {
@@ -1660,7 +1453,7 @@
    "feed": "civic",
    "registration_url": "https://flnewsmyrnabeachweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=29307355&fbclid=IwY2xjawVYeM1leHRuA2FlbQIxMABwZG9mAWJyaWQRMUxUcXhDZmtROUh2MWZub0xzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEfJIQ-zqMkn7JzK5R4wt6F2l8oaoWA-0arYHjBa62SGDDFcEf9QZQUuE0KH6s_aem_5mEOVvIN0Hbm_WEe4GlhcQ",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-14"
   },
   {
@@ -1816,7 +1609,7 @@
    "feed": "civic",
    "registration_url": "https://flnewsmyrnabeachweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=29307355&fbclid=IwY2xjawVYeM1leHRuA2FlbQIxMABwZG9mAWJyaWQRMUxUcXhDZmtROUh2MWZub0xzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEfJIQ-zqMkn7JzK5R4wt6F2l8oaoWA-0arYHjBa62SGDDFcEf9QZQUuE0KH6s_aem_5mEOVvIN0Hbm_WEe4GlhcQ",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-14"
   },
   {
@@ -1986,7 +1779,7 @@
    "t": "11:00",
    "registration_url": "https://www.eventbrite.com/e/moca-mini-market-tickets-1996446109055?aff=ebdsoporgprofile",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-10-21"
   },
   {
@@ -2379,7 +2172,7 @@
    "feed": "palmcoast",
    "registration_url": "https://www.palmcoastgov.com/utility-service",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-09"
   },
   {
@@ -2398,7 +2191,7 @@
    "feed": "civic",
    "registration_url": "https://flnewsmyrnabeachweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=29307355&fbclid=IwY2xjawVYeM1leHRuA2FlbQIxMABwZG9mAWJyaWQRMUxUcXhDZmtROUh2MWZub0xzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEfJIQ-zqMkn7JzK5R4wt6F2l8oaoWA-0arYHjBa62SGDDFcEf9QZQUuE0KH6s_aem_5mEOVvIN0Hbm_WEe4GlhcQ",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-18"
   },
   {
@@ -2472,7 +2265,7 @@
    "feed": "civic",
    "registration_url": "https://gcc02.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.wmoda.com%2Ffired-arts-fair-november-29%2F&data=05%7C02%7Cjhussey%40hollywoodfl.org%7C114424640ee74500df2e08df3b513ba4%7Cf0ba70bfc34c416db2009c6f6a563c05%7C0%7C0%7C639294892229961223%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=2swPYnqiqfYg5rxh0QHbBK0EYx0zxOFktpDkkS9WuRM%3D&reserved=0",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-15"
   },
   {
@@ -2529,7 +2322,7 @@
    "feed": "civic",
    "registration_url": "https://www.mortontheatre.com/list-of-events/2026/11/30-yallmark-christmas",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-16"
   },
   {
@@ -2777,7 +2570,7 @@
    "feed": "civic",
    "registration_url": "https://www.greencovesprings.com/list.aspx?Mode=Subscribe#newsFlash",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-17"
   },
   {
@@ -2795,7 +2588,7 @@
    "vendorMatch": false,
    "feed": "tribe",
    "verified": true,
-   "verifiedAt": "2026-11-22T19:41Z",
+   "verifiedAt": "2026-11-23T07:39Z",
    "firstSeen": "2026-11-18"
   },
   {
@@ -4554,7 +4347,7 @@
    "state": "FL",
    "type": "market",
    "source": "City of Fort Myers",
-   "url": "https://www.fortmyers.gov/Calendar.aspx?EID=7536",
+   "url": "https://www.fortmyers.gov/Calendar.aspx?EID=7522",
    "vendorMatch": true,
    "feed": "civic",
    "firstSeen": "2026-11-21"
@@ -17867,8 +17660,8 @@
  ],
  "ongoing": [
   {
-   "id": "ba746358ef63",
-   "title": "NetVendor | Vendor Management Built on Compliance",
+   "id": "2b7af8277599",
+   "title": "Los Angeles County Vendor Registration",
    "date": null,
    "time": null,
    "location": null,
@@ -17877,15 +17670,15 @@
    "state": "FL",
    "type": "college",
    "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=e420a74bdc8bce06ba400f06c0f105680536fe72547bd19705bce7e09b8d30a5JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=29853188-a7a7-682f-15b8-2991a6fc697c&u=a1aHR0cHM6Ly93d3cubmV0dmVuZG9yLmNvbS8&ntb=1",
+   "url": "https://www.bing.com/ck/a?!&&p=90138b527612ccd2b7ad62a70971670a8add4f3848584a9b4da9eb63c0ca3200JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=2e95860f-e6c2-6199-03e2-9e15e7e1606c&u=a1aHR0cHM6Ly9jYW1pc3ZyLmNvLmxhLmNhLnVzL3dlYnZlbi8&ntb=1",
    "vendorMatch": true,
    "origin": "search",
-   "notes": "We govern your vendor ecosystem from sourcing to contracts, with compliance requirements configured by owner and enforced at … Read more",
-   "firstSeen": "2026-11-22"
+   "notes": "Vendor Search Already registered? Before registering as a new vendor, you can search our directory of vendors to see if you’re …",
+   "firstSeen": "2026-11-23"
   },
   {
-   "id": "d95c0cbc81bc",
-   "title": "NetVendor | Vendor Management Built on Compliance",
+   "id": "af65edc0d101",
+   "title": "Los Angeles County Vendor Registration",
    "date": null,
    "time": null,
    "location": null,
@@ -17894,15 +17687,15 @@
    "state": "FL",
    "type": "tabling",
    "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=4c4a5ca3d5387780b1d0a70e2ebccab1d9cfae680fe2486f7094e04bdc84a477JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=2bf18a15-aa93-66e8-2850-920cab526736&u=a1aHR0cHM6Ly93d3cubmV0dmVuZG9yLmNvbS8&ntb=1",
+   "url": "https://www.bing.com/ck/a?!&&p=c0e59278ca76793374433c812b5dcfedca7a121e2536e6f395f737880534c7f3JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=184e7aa5-e9f6-6ded-1aa6-62bfe8826cbd&u=a1aHR0cHM6Ly9jYW1pc3ZyLmNvLmxhLmNhLnVzL3dlYnZlbi8&ntb=1",
    "vendorMatch": true,
    "origin": "search",
-   "notes": "We govern your vendor ecosystem from sourcing to contracts, with compliance requirements configured by owner and enforced at …",
-   "firstSeen": "2026-11-22"
+   "notes": "Vendor Search Already registered? Before registering as a new vendor, you can search our directory of vendors to see if you’re …",
+   "firstSeen": "2026-11-23"
   },
   {
-   "id": "4582da7311ae",
-   "title": "vendor ® | Your electricity. Your internet. Covered.",
+   "id": "3aa815c51ba4",
+   "title": "Vendor - Wikipedia",
    "date": null,
    "time": null,
    "location": null,
@@ -17911,15 +17704,15 @@
    "state": "FL",
    "type": "college",
    "source": "Search: FL college & campus markets",
-   "url": "https://www.bing.com/ck/a?!&&p=be75f568769d0c8f8a20a3f705445e3d8f2e3fa31a1871be684b1b8bd506453eJmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=29853188-a7a7-682f-15b8-2991a6fc697c&u=a1aHR0cHM6Ly93d3cudmVuZG9yLmNvbS8&ntb=1",
+   "url": "https://www.bing.com/ck/a?!&&p=71fe2b207d38c2e7d8423afd6b75fd7b01ae4423a65599d49292dfffc0c81b97JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=2e95860f-e6c2-6199-03e2-9e15e7e1606c&u=a1aHR0cHM6Ly9lbi5tLndpa2lwZWRpYS5vcmcvd2lraS9WZW5kb3I&ntb=1",
    "vendorMatch": true,
    "origin": "search",
-   "notes": "Computing power for businesses. Income for your home. Enterprise businesses pay for computing power to run applications, … Read more",
-   "firstSeen": "2026-11-22"
+   "notes": "A vendor is a supply chain management term that means anyone who provides goods or services of experience to another entity. …",
+   "firstSeen": "2026-11-23"
   },
   {
-   "id": "417413943b27",
-   "title": "vendor ® | Your electricity. Your internet. Covered.",
+   "id": "efe60f09d0f1",
+   "title": "Vendor - Wikipedia",
    "date": null,
    "time": null,
    "location": null,
@@ -17928,11 +17721,11 @@
    "state": "FL",
    "type": "tabling",
    "source": "Search: FL tabling calls",
-   "url": "https://www.bing.com/ck/a?!&&p=41ca5b293b05ead2387a02486938a379a84d522f7e2daac5b2c526a036a7e707JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=2bf18a15-aa93-66e8-2850-920cab526736&u=a1aHR0cHM6Ly93d3cudmVuZG9yLmNvbS8&ntb=1",
+   "url": "https://www.bing.com/ck/a?!&&p=90efb107918f1e058fdbdbfbecf2957a907ae6f05ad8b78a4187b1f5408bb3f2JmltdHM9MTc5NTMwNTYwMA&ptn=3&ver=2&hsh=4&fclid=184e7aa5-e9f6-6ded-1aa6-62bfe8826cbd&u=a1aHR0cHM6Ly9lbi5tLndpa2lwZWRpYS5vcmcvd2lraS9WZW5kb3I&ntb=1",
    "vendorMatch": true,
    "origin": "search",
-   "notes": "Computing power for businesses. Income for your home. Enterprise businesses pay for computing power to run applications, …",
-   "firstSeen": "2026-11-22"
+   "notes": "A vendor is a supply chain management term that means anyone who provides goods or services of experience to another entity. …",
+   "firstSeen": "2026-11-23"
   },
   {
    "id": "seed-fl-0008",
@@ -18883,316 +18676,6 @@
    "firstSeen": "2026-10-13"
   },
   {
-   "id": "fl6-eaeeffc497",
-   "origin": "seed",
-   "title": "Punta Gorda Holiday Art and Crafts Show",
-   "org": "Punta Gorda",
-   "city": "Punta Gorda",
-   "county": "Charlotte",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-punta-gorda-holiday-art-and-crafts-show",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-punta-gorda-holiday-art-and-crafts-show",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Gilchrist Park; vendor types allowed: Art, Craft, Commercial; organizer site/contact/fee are paywalled on that listing. Punta Gorda Holiday Art and Crafts Show will be held on November 20-22, 2026. There will be over 90 crafters and..."
-  },
-  {
-   "id": "fl6-d0615880c5",
-   "origin": "seed",
-   "title": "Longwood Arts and Craft Festival",
-   "org": "Longwood",
-   "city": "Longwood",
-   "county": "Seminole",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://longwoodfestival.com/set-up-info-arts-crafts/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-longwood-arts-and-craft-festival",
-   "end_date": "2026-11-22",
-   "fee": "$50, (from organizer page; check tier)",
-   "category": "holiday market/fair",
-   "notes": "FairsAndFestivals listing; venue: Longwood historic city district; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Longwood Arts and Craft Festival will be held on November 21-22, 2026. Come get a jump on the holiday shopping. It... | organizer/official page read Nov 6: https://longwoodfestival.com/set-up-info-arts-crafts/ (\"Set "
-  },
-  {
-   "id": "fl6-6807e0960a",
-   "origin": "seed",
-   "title": "Tampa Fall Makers Market",
-   "org": "Tampa",
-   "city": "Tampa",
-   "county": "Hillsborough",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://floridastatefairgrounds.com/event/markets-for-makers/2026-06-13/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-tampa-fall-makers-market",
-   "end_date": "2026-11-22",
-   "category": "makers market",
-   "notes": "FairsAndFestivals listing; venue: Florida State Fairgrounds; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Tampa Fall Makers Market will be held on November 21-22, 2026. Come shop one-of-a-kind items and support local makers and small... | organizer/official page read Nov 6: https://floridastatefairgrounds.com/event/markets-for-makers/2026-06-13/"
-  },
-  {
-   "id": "fl6-e7b7f0fff9",
-   "origin": "seed",
-   "title": "Vero Beach Holiday Arts and Crafts Expo",
-   "org": "Vero Beach",
-   "city": "Vero Beach",
-   "county": "Indian River",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-vero-beach-holiday-arts-and-crafts-expo",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-vero-beach-holiday-arts-and-crafts-expo",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Indian River County Fairgrounds; vendor types allowed: Art, Craft; organizer site/contact/fee are paywalled on that listing. Vero Beach Holiday Arts and Crafts Expo will be held on November 21-22, 2026. It will host about 110 art and..."
-  },
-  {
-   "id": "fl6-e92fc64479",
-   "origin": "seed",
-   "title": "Venice Fall Gun Show",
-   "org": "Venice",
-   "city": "Venice",
-   "county": "Sarasota",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-venice-fall-gun-show",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-venice-fall-gun-show",
-   "end_date": "2026-11-22",
-   "category": "festival/event",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Venice Community Center; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. Venice Fall Gun Show will be held on November 21-22, 2026. Buy, sell, trade or browse. You will find a wide..."
-  },
-  {
-   "id": "fl6-45f5888da2",
-   "origin": "seed",
-   "title": "Sebring Gun Show",
-   "org": "Sebring",
-   "city": "Sebring",
-   "county": "Highlands",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://greatamericanfloridapromotions.com/show-info-%26-prices",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-sebring-gun-show",
-   "end_date": "2026-11-22",
-   "category": "festival/event",
-   "contact_email": "greatamericanfloridapromotions@gmail.com",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Highlands County Fairgrounds; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. Sebring Gun Show will be held on November 21-22, 2026. It will feature a wide range of guns, firearms, ammo, accessories,... | organizer/official page read Nov 6: https://greatamericanfloridapromotions.com/show-info-%26-prices (\"SHOW INFO & PRI"
-  },
-  {
-   "id": "fl6-36858cb8c3",
-   "origin": "seed",
-   "title": "Palm Harbor Craft Festival",
-   "org": "Palm Harbor",
-   "city": "Palm Harbor",
-   "county": "Pinellas",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-palm-harbor-craft-festival",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-palm-harbor-craft-festival",
-   "end_date": "2026-11-22",
-   "category": "craft fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: 1023 Florida Ave; vendor types allowed: Craft, Food; organizer site/contact/fee are paywalled on that listing. Palm Harbor Craft Festival will be held on November 21-22, 2026. It will host a diverse group of artisans and crafters..."
-  },
-  {
-   "id": "fl6-e885cca26b",
-   "origin": "seed",
-   "title": "Punta Gorda Christmas Countdown Arts and Crafts Show",
-   "org": "Punta Gorda",
-   "city": "Punta Gorda",
-   "county": "Charlotte",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://everythingpuntagorda.com/event/christmas-countdown-arts-crafts-show-at-charlotte-harbor-event-center-punta-gorda/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-punta-gorda-christmas-countdown-arts-and-crafts-show",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "contact_email": "LLSN@comcast.net, noreply@facebookmail.com",
-   "notes": "FairsAndFestivals listing; venue: Charlotte Harbor Event Center; vendor types allowed: Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Punta Gorda Christmas Countdown Arts and Crafts Show will be held on November 21-22, 2026. It will feature local crafters and... | organizer/official page read Nov 6: https://everythingpuntagorda.com/event/christmas-countdown"
-  },
-  {
-   "id": "fl6-1c0432ddd0",
-   "origin": "seed",
-   "title": "Early Elf Art Market",
-   "org": "Tarpon Springs",
-   "city": "Tarpon Springs",
-   "county": "Pinellas",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-early-elf-art-market",
-   "end_date": "2026-11-22",
-   "fee": "$50 (from organizer page; check tier)",
-   "category": "craft fair",
-   "notes": "FairsAndFestivals listing; venue: Downtown; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. The Early Elf Art Market will be held on November 21-22, 2026. There will be an array of crafters from across... | organizer/official page read Nov 6: https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market (\"Nov 21-22, 2026"
-  },
-  {
-   "id": "fl6-165fe8e300",
-   "origin": "seed",
-   "title": "Venice Holiday Festival of the Arts",
-   "org": "Venice",
-   "city": "Venice",
-   "county": "Sarasota",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.thevenicefest.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-venice-holiday-festival-of-the-arts",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "contact_email": "thevenicefest@gmail.com",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Downtown; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Venice Holiday Festival of the Arts will be held on November 21-22, 2026. There will be a great selection of artisans... | organizer/official page read Nov 6: https://www.thevenicefest.com/ (\"The Venice Fest\") — date not found on that page"
-  },
-  {
-   "id": "fl6-860962894c",
-   "origin": "seed",
-   "title": "Hollywood Camelot Days Festival",
-   "org": "Hollywood",
-   "city": "Hollywood",
-   "county": "Broward",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-hollywood-camelot-days-festival",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-hollywood-camelot-days-festival",
-   "end_date": "2026-11-22",
-   "category": "craft fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: T.Y. Park; vendor types allowed: Art, Craft, Food; organizer site/contact/fee are paywalled on that listing. Hollywood Camelot Days Festival will be held on November 21-22, 2026. It will feature musicians, knights, jesters, sword fighting, artisans, crafters,..."
-  },
-  {
-   "id": "fl6-5f9b636379",
-   "origin": "seed",
-   "title": "DeLand Fall Festival of the Arts",
-   "org": "Deland",
-   "city": "Deland",
-   "county": "Volusia",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-deland-fall-festival-of-the-arts",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-deland-fall-festival-of-the-arts",
-   "end_date": "2026-11-22",
-   "category": "art festival",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Downtown; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. DeLand Fall Festival of the Arts will be held on November 21-22, 2026. It will host over 175 juried artists from..."
-  },
-  {
-   "id": "fl6-3dea989fdf",
-   "origin": "seed",
-   "title": "Sarasota Fall Gun Show",
-   "org": "Sarasota",
-   "city": "Sarasota",
-   "county": "Sarasota",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://2guysshows.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-sarasota-fall-gun-show",
-   "end_date": "2026-11-22",
-   "category": "festival/event",
-   "contact_email": "2GuysVB@gmail.com",
-   "notes": "FairsAndFestivals listing; venue: Robarts Arena; vendor types allowed: Commercial; organizer site/contact/fee are paywalled on that listing. Sarasota Gun Show will be held on November 21-22, 2026. Come explore over 200 tables featuring a wide range of firearms,... | organizer/official page read Nov 6: https://2guysshows.com/ (\"Explore 2 Guys Gun Shows - Sarasota &amp; More!\")"
-  },
-  {
-   "id": "fl6-3601ae4eba",
-   "origin": "seed",
-   "title": "Saint Petersburg Holiday Market",
-   "org": "Saint Petersburg",
-   "city": "Saint Petersburg",
-   "county": "Pinellas",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-saint-petersburg-holiday-market",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-saint-petersburg-holiday-market",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: The Coliseum; vendor types allowed: Art, Craft, Commercial; organizer site/contact/fee are paywalled on that listing. Saint Petersburg Holiday Market will be held on November 21-22, 2026. There will be an array of local vendors selling unique..."
-  },
-  {
-   "id": "fl6-0820d88814",
-   "origin": "seed",
-   "title": "Davie Holiday Craft Show and Green Fair",
-   "org": "Davie",
-   "city": "Davie",
-   "county": "Broward",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://www.fairsandfestivals.net/events/details/2026-davie-holiday-craft-show-and-green-fair",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-davie-holiday-craft-show-and-green-fair",
-   "end_date": "2026-11-22",
-   "category": "holiday market/fair",
-   "notes": "Unverified. FairsAndFestivals listing; venue: Bergeron Rodeo Grounds; vendor types allowed: Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Davie Holiday Craft Show and Green Fair will be held on November 21-22, 2026. Come start your holiday shopping. There will..."
-  },
-  {
-   "id": "fl6-a54806779a",
-   "origin": "seed",
-   "title": "Yankeetown Seafood Festival",
-   "org": "Yankeetown",
-   "city": "Yankeetown",
-   "county": "Levy",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://yankeetownseafoodfestival.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://www.fairsandfestivals.net/events/details/2026-yankeetown-seafood-festival",
-   "end_date": "2026-11-22",
-   "category": "seafood festival",
-   "notes": "FairsAndFestivals listing; venue: Riverside Dr; vendor types allowed: Music, Art, Craft, Food, Commercial; organizer site/contact/fee are paywalled on that listing. Yankeetown Seafood Festival will be held on November 21-22, 2026. This festival will feature live bands and entertainment, fine art and... | organizer/official page read Nov 6: https://yankeetownseafoodfestival.com/ (\"\")"
-  },
-  {
    "id": "fl6-06037a440b",
    "origin": "seed",
    "title": "Audubon Park Community Market",
@@ -19668,27 +19151,6 @@
    "notes": "VendorsMap listing (Farmers Market Weekly); runs 2026-01-01 to 2026-12-31; location: Aventura Mall, 19501 Biscayne Boulevard, Aventura, FL 33180 (upper & lower levels) | organizer/official page read Nov 6: https://aventuramall.com/aventura-market/ (\"The Aventura Market: Miami's Best Farmers Market\")"
   },
   {
-   "id": "fl6-47b35ec723",
-   "origin": "seed",
-   "title": "Tampa Bay Holiday Market",
-   "org": "Tampa Bay Times",
-   "city": "St. Petersburg",
-   "county": "Pinellas",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://www.mytbtickets.com/events/2026-tampa-bay-holiday-market-11-21-2026",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/38447",
-   "end_date": "2026-11-22",
-   "fee": "Packages begin at $495 for the two-day event",
-   "category": "craft fair",
-   "contact_email": "events@tampabay.com",
-   "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: The Coliseum, 535 4th Ave N, St. Petersburg, FL 33701 | organizer/official page read Nov 6: https://www.mytbtickets.com/events/2026-tampa-bay-holiday-market-11-21-2026 (\"Tampa Bay Times Events – 2026 Tampa Bay Holiday Market\")"
-  },
-  {
    "id": "fl6-846564bb60",
    "origin": "seed",
    "title": "Fresh Market at Wiregrass",
@@ -19807,26 +19269,6 @@
    "when": "Weekly: Year-round Sunday Lincoln Road Mall, Miami Beach, FL 33139",
    "category": "festival",
    "notes": "Unverified. VendorsMap listing (Festival Weekly); runs 2026-10-11 to 2027-10-11; location: Lincoln Road Mall, Miami Beach, FL 33139"
-  },
-  {
-   "id": "fl6-f436fd2bda",
-   "origin": "seed",
-   "title": "Christmas Countdown Arts & Crafts Show",
-   "org": "LLSN Events (Local Ladies Social Network, Inc.)",
-   "city": "Punta Gorda",
-   "county": "Charlotte",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://everythingpuntagorda.com/event/christmas-countdown-arts-crafts-show-at-charlotte-harbor-event-center-punta-gorda/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/36339",
-   "end_date": "2026-11-22",
-   "category": "craft fair",
-   "contact_email": "LLSN@comcast.net, noreply@facebookmail.com",
-   "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: Charlotte Harbor Event & Conference Center, 75 Taylor St, Punta Gorda, FL 33950 | organizer/official page read Nov 6: https://everythingpuntagorda.com/event/christmas-countdown-arts-crafts-show-at-charlotte-harbor-event-center-punta-gorda/ (\"Christmas Countdown Arts & Crafts Show at Charlotte Harbor E\")"
   },
   {
    "id": "fl6-0a56962c34",
@@ -20974,26 +20416,6 @@
    "notes": "VendorsMap listing (Farmers Market Weekly); runs 2026-10-01 to 2027-06-30; location: 6918 N Florida Ave, Tampa, FL 33604 | organizer/official page read Nov 6: https://www.tampabaymarkets.com/seminole-heights-sunday-market (\"Seminole Heights Sunday Market — Tampa Bay Markets\")"
   },
   {
-   "id": "fl6-903626fd75",
-   "origin": "seed",
-   "title": "Longwood Arts and Crafts Festival",
-   "org": "Festivals with Janet / WTDI, Inc.",
-   "city": "Longwood",
-   "county": "Seminole",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://longwoodfestival.com/set-up-info-arts-crafts/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/18668",
-   "end_date": "2026-11-22",
-   "fee": "$50, (from organizer page; check tier)",
-   "category": "craft fair",
-   "notes": "VendorsMap listing (Craft Fair ); runs 2026-11-21 to 2026-11-22; location: Historic Longwood District, 200 W Warren Ave, Longwood, FL 32750 | organizer/official page read Nov 6: https://longwoodfestival.com/set-up-info-arts-crafts/ (\"Set Up Info-Arts & Crafts – Longwood FL Festivals\")"
-  },
-  {
    "id": "fl6-a92d517eb7",
    "origin": "seed",
    "title": "Market at the Depot",
@@ -21441,25 +20863,6 @@
    "category": "farmers market",
    "contact_email": "events@tlhdowntown.co",
    "notes": "VendorsMap listing (Farmers Market Weekly); runs 2026-03-01 to 2026-11-30; location: Ponce De Leon Park, 127 E Park Ave, Tallahassee, FL 32301 | organizer/official page read Nov 6: https://tallahasseearts.org/venue/tallahassee-downtown-marketplace/ (\"Tallahassee Downtown Marketplace\")"
-  },
-  {
-   "id": "fl6-e3f92732ac",
-   "origin": "seed",
-   "title": "2026 Miami Makers Market & Small Business Expo",
-   "org": "Greenway Arts Alliances",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://vendorsmap.com/events/38425",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/38425",
-   "end_date": "2026-11-22",
-   "category": "craft fair",
-   "notes": "Unverified. VendorsMap listing (Craft Fair ); runs 2026-11-20 to 2026-11-22; location: Mana Wynwood Convention Center, 318 NW 23rd Street, Miami, FL 33127"
   },
   {
    "id": "fl6-050d3c1e6b",
@@ -23966,26 +23369,6 @@
    "notes": "VendorsMap listing (Festival Weekly); runs 2026-01-01 to 2026-12-31; location: 11902 Bonita Beach Rd SE, Bonita Springs, FL 34135 | organizer/official page read Nov 6: https://www.flamingoisland.com/flamingo-island-flea-sell (\"Flamingo Island Flea - Sell\")"
   },
   {
-   "id": "fl6-f6bdeb76e8",
-   "origin": "seed",
-   "title": "Harvest in Miami",
-   "org": "Wendy's Chocolates",
-   "city": "Miami",
-   "county": "Miami-Dade",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://harvestinmiami.com/",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/38426",
-   "end_date": "2026-11-22",
-   "category": "festival",
-   "contact_email": "Events@WendysChocolates.com",
-   "notes": "VendorsMap listing (Festival Annual); runs 2026-11-21 to 2026-11-22; location: E. Darwin Fuchs Pavilion, Miami-Dade County Fair & Expo Center, 10901 SW 24th St, Miami, FL 33165 | organizer/official page read Nov 6: https://harvestinmiami.com/ (\"Harvest\")"
-  },
-  {
    "id": "fl6-860fb161c9",
    "origin": "seed",
    "title": "Red Hills Online Market",
@@ -24223,26 +23606,6 @@
    "notes": "Unverified. VendorsMap listing (Farmers Market Annual); runs 2026-09-01 to 2027-06-30; location: 208 Ohio Ave N, Live Oak, FL 32064 | organizer/official page read Nov 6: https://www.liveoakmakersmarket.com/general-clean (\"Vendor Highlights | Live Oak Makers’ Mar\") — date not found on that page"
   },
   {
-   "id": "fl6-f7f9d85189",
-   "origin": "seed",
-   "title": "The Early Elf Art Market",
-   "org": "SIK Promotions, Inc. for the Tarpon Springs Chamber of Commerce",
-   "city": "Tarpon Springs",
-   "county": "Pinellas",
-   "state": "FL",
-   "type": "market",
-   "source": "Statewide FL search, Nov 2026",
-   "url": "https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": true,
-   "source_url": "https://vendorsmap.com/events/38516",
-   "end_date": "2026-11-22",
-   "fee": "$50 (from organizer page; check tier)",
-   "category": "craft fair",
-   "notes": "VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: Downtown Tarpon Springs, along E. Court St., Tarpon Springs, FL 34689 | organizer/official page read Nov 6: https://www.sikpromotions.com/applicants/fall/the-early-elf-art-market (\"Nov 21-22, 2026 - Early Elf Art Market - TARPON SPRINGS\")"
-  },
-  {
    "id": "fl6-b5c44e980c",
    "origin": "seed",
    "title": "Spring Hill Sunday Market",
@@ -24417,25 +23780,6 @@
    "when": "Monthly: Starting Dec 10,",
    "category": "pop-up",
    "notes": "Unverified. VendorsMap listing (Pop-Up Monthly); runs 2026-12-10 to 2026-12-10; location: The Shorely at Marina Village, 849 Seabreeze Blvd, Fort Lauderdale, FL 33316 | organizer/official page read Nov 6: https://www.flamingoflea.com/events (\"Flamingo Flea - Fort Lauderdale and Boca Raton\") — date not found on that page"
-  },
-  {
-   "id": "fl6-dda1789da5",
-   "origin": "seed",
-   "title": "Holiday Craft Show & Green Fair",
-   "org": "Town of Davie Special Events",
-   "city": "Davie",
-   "county": "Broward",
-   "state": "FL",
-   "type": "city",
-   "source": "Statewide FL search, Nov 2026 (unverified: confirm on the organizer page)",
-   "url": "https://vendorsmap.com/events/38387",
-   "vendorMatch": true,
-   "firstSeen": "2026-11-06",
-   "verified": false,
-   "source_url": "https://vendorsmap.com/events/38387",
-   "end_date": "2026-11-22",
-   "category": "craft fair",
-   "notes": "Unverified. VendorsMap listing (Craft Fair Annual); runs 2026-11-21 to 2026-11-22; location: Bergeron Rodeo Grounds, 4201 SW 65th Way, Davie, FL 33314"
   },
   {
    "id": "fl6-835b166cbb",
@@ -25710,8 +25054,6 @@
    "when": "Yearly (Apr)"
   }
  ],
- "newThisRun": [
-  "ba2866590d6e"
- ],
- "vettedThisRun": 11
+ "newThisRun": [],
+ "vettedThisRun": 10
 }
